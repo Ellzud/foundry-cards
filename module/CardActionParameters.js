@@ -201,10 +201,9 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
         let isHere;
         const owner = stack.stackOwner;
         if( owner.forGMs ) {
-            const gmActor = game.aesystem.actorTools.gmActor;
             isHere = game.users.some( u => u.isGM && u.active );
-            result.name = gmActor.name;
-            result.icon = gmActor.img;
+            result.name = game.settings.get("ready-to-use-cards", "gmName");
+            result.icon = game.settings.get("ready-to-use-cards", "gmIcon");
         } else {
             const user = game.users.get(stack.stackOwner.playerId);
             isHere = user.active ?? false;

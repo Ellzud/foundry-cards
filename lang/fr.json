@@ -1,4 +1,9 @@
 {
+    "RTUCards.settings.GmNameLabel": "Nom du MJ",
+    "RTUCards.settings.GmNameHint": "Nom affiché lorsque les MJ fait des actions sur les decks",
+    "RTUCards.settings.GmIconLabel": "Icone du MJ",
+    "RTUCards.settings.GmIconHint": "Icone affichée lorsque les MJ fait des actions sur les decks",
+
     "RTUCards.sheet.template": "IHM unifiée",
 
     "RTUCards.base.deck.title": "Deck (Classique)",

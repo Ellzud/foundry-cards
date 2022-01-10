@@ -439,12 +439,8 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickPeekOnSack(event) {
         event.preventDefault();
 
-        const gmActor = game.aesystem.actorTools.gmActor;
-        const msgData = {
-            flavor: this._cards.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name),
-            content: ''
-        };
-        await gmActor.sendMessage(msgData);
+        const flavor = this._cards.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name);
+        await this._cards.sendMessageForStacks(flavor, []);
 
         this._peekOn = true;
         this.render();

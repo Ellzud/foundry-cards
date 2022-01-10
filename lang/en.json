@@ -1,4 +1,9 @@
 {
+    "RTUCards.settings.GmNameLabel": "GM name",
+    "RTUCards.settings.GmNameHint": "Name displayed when GMs do actions on decks",
+    "RTUCards.settings.GmIconLabel": "GM icon",
+    "RTUCards.settings.GmIconHint": "Displayed when GMs do actions on decks",
+
     "RTUCards.sheet.template": "Unified GUI",
 
     "RTUCards.base.deck.title": "Deck (Classic)",

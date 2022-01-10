@@ -184,8 +184,7 @@ export class CustomCards extends Cards {
                 const data = { id: s.id, name: s.name };
 
                 if( owner.forGMs ) {
-                    const gmActor = game.aesystem.actorTools.gmActor;
-                    data.icon = gmActor.img;
+                    data.icon = game.settings.get("ready-to-use-cards", "gmIcon");
                 } else {
                     const user = game.users.get( s.stackOwner.playerId );
                     data.icon = user?.character?.img ?? 'icons/svg/mystery-man.svg';
@@ -197,13 +196,11 @@ export class CustomCards extends Cards {
         const html = await renderTemplate(template, preparedData);
 
         // Send message
-        const gmActor = game.aesystem.actorTools.gmActor;
         const msgData = {
             content: html,
             user: game.user.id,
             speaker: {
-                actor: gmActor.id,
-                alias: gmActor.name
+                alias: game.settings.get("ready-to-use-cards", "gmName")
             }
         }
         return ChatMessage.create(msgData);
@@ -248,18 +245,16 @@ export class CustomCards extends Cards {
         };
 
         // Who will speak ?
-        let speakerActor = null;
+        msgData.speaker = {}
         const stackOwner = this.stackOwner;
         if( stackOwner.forPlayers ) { 
-            speakerActor = game.users.find( u => u.id === stackOwner.playerId )?.character;
+            const speakerActor = game.users.find( u => u.id === stackOwner.playerId )?.character;
+            msgData.speaker.id = speakerActor?.id;
+            msgData.speaker.alias = speakerActor?.name;
         } else {
-            speakerActor = game.aesystem.actorTools.gmActor;
+            msgData.speaker.alias = game.settings.get("ready-to-use-cards", "gmName");
         }
         msgData.user = game.user.id;
-        msgData.speaker = {
-            actor: speakerActor?.id,
-            alias: speakerActor?.name
-        }
 
         // Flags used when handling click on this message
         msgData["flags.ready-to-use-cards.handleCards"] = {

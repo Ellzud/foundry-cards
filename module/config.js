@@ -16,3 +16,25 @@ export const registerCardSystem = () => {
 		makeDefault: true
 	});
 }
+
+export const loadCardSettings = () => {
+
+    game.settings.register("ready-to-use-cards", "gmName", {
+		name: "WA.GmNameLabel",
+		hint: "WA.GmNameHint",
+		scope: "world",
+		type: String,
+		default: 'GM',
+		config: true
+	});
+  
+    game.settings.register("ready-to-use-cards", "gmIcon", {
+		name: "WA.GmIconLabel",
+		hint: "WA.GmIconHint",
+		scope: "world",
+		type: String,
+		default: 'modules/ready-to-use-cards/resources/gmIcon.png',
+		config: true
+	});
+  
+}

@@ -84,7 +84,12 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     const preset = initPreset(type, name, description, imgFile, stackFlag, permission );
     if( type == 'deck' ) {
-        preset.cards = await coreStack.cardsPreset();
+
+        if( coreStack.preset ) {
+            const base = await fetch(coreStack.preset).then(r => r.json());
+            preset.cards = base.cards;
+        } else if( coreStack.presetLoader )
+        preset.cards = await coreStack.presetLoader();
     }
     return preset;
 }
@@ -249,10 +254,7 @@ const loadStackDefinition = () => {
         resourceBaseDir : 'modules/ready-to-use-cards/resources/base',
         availableOnHands: true,
         availableOnRevealedCards: true,
-        cardsPreset: async () => {
-            const data = await fetch(CONFIG.Cards.presets.pokerDark.src).then(r => r.json());
-            return data.cards;
-        }
+        preset: CONFIG.Cards.presets.pokerDark.src,
     }
 
     def.shared.cardClasses = {
