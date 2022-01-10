@@ -1,0 +1,24 @@
+<div class="rtucards-message table-draw">
+    <ol class="table-results">
+        <li class="flexrow table-result">
+            <img class="result-image" src="{{from.icon}}">
+            <div class="result-text flavor">
+                {{from.message}}
+            </div>
+        </li>
+        {{#each stacks as |stack|}}
+            <li class="flexrow table-result">
+                <img class="result-image" src="{{stack.icon}}">
+                <div class="result-text">
+                    <a class="entity-link content-link" 
+                        draggable="true" 
+                        data-type="Cards" 
+                        data-entity="Cards" 
+                        data-id="{{stack.id}}">
+                        {{stack.name}}
+                    </a>
+                </div>
+            </li>
+        {{/each}}
+    </ol>
+</div>
