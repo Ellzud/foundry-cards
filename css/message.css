@@ -2,11 +2,11 @@
   For card  manipulation
   ------------------------*/
 
-.ae-card-message .result-image {
+.rtucards-message .result-image {
   border: none;
 }
 
-.ae-card-message .result-text {
+.rtucards-message .result-text {
   flex: 0 0 50px;
 }
 

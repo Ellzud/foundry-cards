@@ -9,6 +9,7 @@ import * as message  from './module/message.js';
  Hooks.once("init", () => {
 
   console.log('Ready-To-Use Cards | Module initializing ...');
+  config.loadCardSettings();
   config.registerCardSystem();
 
   const module = game.modules.get('ready-to-use-cards');

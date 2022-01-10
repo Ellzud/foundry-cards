@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module has been developped with the following midset : 
+This module has been developped with the following mindset : 
 
 > You don't need to edit your card deck inside the game. Once set, you only need to have easy acces to your cards and the related decks and discard piles.
 
