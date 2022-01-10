@@ -8,8 +8,8 @@
 
     "RTUCards.base.deck.title": "Deck (Classic)",
     "RTUCards.base.deck.description": "A classic 52 cards deck.",
-    "RTUCards.base.pile.title": "Pile (Classic)",
-    "RTUCards.base.pile.description": "Classic card pile.",
+    "RTUCards.base.pile.title": "Discard pile (Classic)",
+    "RTUCards.base.pile.description": "Classic discard pile.",
 
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",
@@ -25,8 +25,8 @@
 
     "RTUCards.default.sheet.contentHidden": "NB card(s)",
 
-    "RTUCards.default.sheet.actions.backToDeck": "Put it back on the deck",
-    "RTUCards.default.sheet.actions.backToHand": "Put it back on your hand",
+    "RTUCards.default.sheet.actions.backToDeck": "Put it back in the deck",
+    "RTUCards.default.sheet.actions.backToHand": "Put it back in your hand",
     "RTUCards.default.sheet.actions.dealCards": "Deal cards",
     "RTUCards.default.sheet.actions.discardCard": "Discard card",
     "RTUCards.default.sheet.actions.discardHand": "Discard all hand",
@@ -36,9 +36,9 @@
     "RTUCards.default.sheet.actions.giveCard": "Give it to someone",
     "RTUCards.default.sheet.actions.recallCards": "Recall all cards",
     "RTUCards.default.sheet.actions.revealCard": "Reveal card",
-    "RTUCards.default.sheet.actions.rotate": "Rotate card",
+    "RTUCards.default.sheet.actions.rotateCard": "Rotate card",
     "RTUCards.default.sheet.actions.shuffleCards": "Shuffle cards",
-    "RTUCards.default.sheet.actions.shuffleDiscard": "Suffle all discard inside deck",
+    "RTUCards.default.sheet.actions.shuffleDiscard": "Shuffle all discard inside deck",
 
     "RTUCards.default.sheet.parameters.stacks.hands": "Player hands: ",
     "RTUCards.default.sheet.parameters.stacks.revealed": "Revealed cards: ",

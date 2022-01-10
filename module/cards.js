@@ -416,7 +416,7 @@ export class CustomCards extends Cards {
      async playCards(cardsIds) {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
-        assertStackType(this, {hands: true});
+        assertStackType(this, {hands: true, piles: true});
 
         const playedCards = [];
         for( let [coreKey, pile] of Object.entries( this.cardStacks.piles ) ) {
