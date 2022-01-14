@@ -1,0 +1,2743 @@
+{
+  "name": "Divinatory Tarot",
+  "type": "deck",
+  "description": "78 cards with major arcana.",
+  "img": "modules/ready-to-use-cards/resources/divineTarot/icons/back.webp",
+  "data": {},
+  "cards": [
+    {
+      "name": "swords_01",
+      "faces": [
+        {
+          "name": "swords_01",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "swords",
+      "id": "h6c8eq8mo4j1j6aw",
+      "face": 0,
+      "drawn": false,
+      "sort": 29,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "QFTofZ6tiDUL3zS9",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_02",
+      "faces": [
+        {
+          "name": "swords_02",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "swords",
+      "id": "8dwdumdos5rkq6bc",
+      "face": 0,
+      "drawn": false,
+      "sort": 0,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "ljUoYX0yKK8xx3z2",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_03",
+      "faces": [
+        {
+          "name": "swords_03",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "swords",
+      "id": "69y6dojgov53d8jj",
+      "face": 0,
+      "drawn": false,
+      "sort": 70,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "QnUTuBGxe6FFj3Ot",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_04",
+      "faces": [
+        {
+          "name": "swords_04",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "swords",
+      "id": "kbc95kj6yaqabgs5",
+      "face": 0,
+      "drawn": false,
+      "sort": 40,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "JTN8N2SYTPRfyeMA",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_05",
+      "faces": [
+        {
+          "name": "swords_05",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "swords",
+      "id": "z6f5e2hw7a8ef2wx",
+      "face": 0,
+      "drawn": false,
+      "sort": 11,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "i5ouqr5CTegHvG0Y",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_06",
+      "faces": [
+        {
+          "name": "swords_06",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "swords",
+      "id": "f074tcjqphte9p1k",
+      "face": 0,
+      "drawn": false,
+      "sort": 41,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "HXvZdpatj8L7dBsL",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_07",
+      "faces": [
+        {
+          "name": "swords_07",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "swords",
+      "id": "2r12z6e34orrwrzu",
+      "face": 0,
+      "drawn": false,
+      "sort": 26,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "QmGFZx14UJdd8wAN",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_08",
+      "faces": [
+        {
+          "name": "swords_08",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "swords",
+      "id": "iyct30o3srfgxnx9",
+      "face": 0,
+      "drawn": false,
+      "sort": 17,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "AYR13SNu8QjKZFPx",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_09",
+      "faces": [
+        {
+          "name": "swords_09",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "swords",
+      "id": "twbk4wjtednr9fy3",
+      "face": 0,
+      "drawn": false,
+      "sort": 32,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "XKDKnE5sIhBnEOwz",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_10",
+      "faces": [
+        {
+          "name": "swords_10",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "swords",
+      "id": "7y65xuqubjgiv84c",
+      "face": 0,
+      "drawn": false,
+      "sort": 72,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "c64KKV77j8Y3j7tG",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_11",
+      "faces": [
+        {
+          "name": "swords_11",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "swords",
+      "id": "hac1fqohlq885x96",
+      "face": 0,
+      "drawn": false,
+      "sort": 45,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "l9nNA8weB6GrgSNM",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_12",
+      "faces": [
+        {
+          "name": "swords_12",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "swords",
+      "id": "s9czm0i4dflecm6o",
+      "face": 0,
+      "drawn": false,
+      "sort": 62,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "5Paf4gVavQO8fl5Z",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_13",
+      "faces": [
+        {
+          "name": "swords_13",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "swords",
+      "id": "eo21fi4uvkc4eh64",
+      "face": 0,
+      "drawn": false,
+      "sort": 56,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "WzEoqI9M0T0ffEy2",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "swords_14",
+      "faces": [
+        {
+          "name": "swords_14",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "swords",
+      "id": "2x72egqag9jxkn24",
+      "face": 0,
+      "drawn": false,
+      "sort": 10,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "26XUbwBzdnI552P6",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_01",
+      "faces": [
+        {
+          "name": "money_01",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "money",
+      "id": "9wc21eqoxzm3rxp9",
+      "face": 0,
+      "drawn": false,
+      "sort": 25,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "kH1VLZZKup94qpDZ",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_02",
+      "faces": [
+        {
+          "name": "money_02",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "money",
+      "id": "x9extzthh2jekon2",
+      "face": 0,
+      "drawn": false,
+      "sort": 34,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "kIg6lWiHWMvyAFhd",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_03",
+      "faces": [
+        {
+          "name": "money_03",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "money",
+      "id": "y2mlhotyseshvtlo",
+      "face": 0,
+      "drawn": false,
+      "sort": 63,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "Z9PCAvkAoXQZbIqg",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_04",
+      "faces": [
+        {
+          "name": "money_04",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "money",
+      "id": "1v0v2k6a85rd1b2m",
+      "face": 0,
+      "drawn": false,
+      "sort": 2,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "gsPKP1lXE0QlTroJ",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_05",
+      "faces": [
+        {
+          "name": "money_05",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "money",
+      "id": "t4r3c9oljc9r2zih",
+      "face": 0,
+      "drawn": false,
+      "sort": 48,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "3ETB0r3xruf2osNi",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_06",
+      "faces": [
+        {
+          "name": "money_06",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "money",
+      "id": "dyh5gs9zsjndhtrn",
+      "face": 0,
+      "drawn": false,
+      "sort": 16,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "fYM8MUorpfWFveJ6",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_07",
+      "faces": [
+        {
+          "name": "money_07",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "money",
+      "id": "32n3yl8s54f0ex1v",
+      "face": 0,
+      "drawn": false,
+      "sort": 7,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "120CJmaO5XHZzcca",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_08",
+      "faces": [
+        {
+          "name": "money_08",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "money",
+      "id": "a804lgba2u9nmjxn",
+      "face": 0,
+      "drawn": false,
+      "sort": 21,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "xUl159FUuaJkj6Po",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_09",
+      "faces": [
+        {
+          "name": "money_09",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "money",
+      "id": "j7nlakifqlqzhwew",
+      "face": 0,
+      "drawn": false,
+      "sort": 60,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "R3eVn5xqGxDBmleG",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_10",
+      "faces": [
+        {
+          "name": "money_10",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "money",
+      "id": "bcs8ykvekon24d7r",
+      "face": 0,
+      "drawn": false,
+      "sort": 66,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "YRyEhEwiYKpAm6Qt",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_11",
+      "faces": [
+        {
+          "name": "money_11",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "money",
+      "id": "9kwssd2wq7gq6jtc",
+      "face": 0,
+      "drawn": false,
+      "sort": 69,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "vQ0Lj8pDkVpRytJo",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_12",
+      "faces": [
+        {
+          "name": "money_12",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "money",
+      "id": "au3hcsh8p1v4z3ir",
+      "face": 0,
+      "drawn": false,
+      "sort": 39,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "QUruROpsUeELMyso",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_13",
+      "faces": [
+        {
+          "name": "money_13",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "money",
+      "id": "p5xfzsvozbkr2kvm",
+      "face": 0,
+      "drawn": false,
+      "sort": 20,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "bXpLhI9ocVFVGVgY",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "money_14",
+      "faces": [
+        {
+          "name": "money_14",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "money",
+      "id": "gac8vda979hgj2dk",
+      "face": 0,
+      "drawn": false,
+      "sort": 6,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "8j5tsmosDwR1z5or",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_01",
+      "faces": [
+        {
+          "name": "cups_01",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "cups",
+      "id": "3tqtd9pljfha4gps",
+      "face": 0,
+      "drawn": false,
+      "sort": 57,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "mvbbWoNDzZppMq5X",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_02",
+      "faces": [
+        {
+          "name": "cups_02",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "cups",
+      "id": "wvbruegzact7onyd",
+      "face": 0,
+      "drawn": false,
+      "sort": 23,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "tUdTgOf6NIGTh2A0",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_03",
+      "faces": [
+        {
+          "name": "cups_03",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "cups",
+      "id": "xn1os1e354ksb3wn",
+      "face": 0,
+      "drawn": false,
+      "sort": 49,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "DuSI9u79WyWUFqDR",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_04",
+      "faces": [
+        {
+          "name": "cups_04",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "cups",
+      "id": "p29mdvor47j8yjmx",
+      "face": 0,
+      "drawn": false,
+      "sort": 73,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "ZQCQetCKAsNptfMH",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_05",
+      "faces": [
+        {
+          "name": "cups_05",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "cups",
+      "id": "y228vbfkfth0yodu",
+      "face": 0,
+      "drawn": false,
+      "sort": 35,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "crQGdVjjj5HSmnGg",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_06",
+      "faces": [
+        {
+          "name": "cups_06",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "cups",
+      "id": "mmy0aka8gjqp6bc7",
+      "face": 0,
+      "drawn": false,
+      "sort": 53,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "SgXh7EcMOAF7lpWf",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_07",
+      "faces": [
+        {
+          "name": "cups_07",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "cups",
+      "id": "a1qr1avzw1cewtsq",
+      "face": 0,
+      "drawn": false,
+      "sort": 65,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "MvWvlrJW8aH0WUpo",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_08",
+      "faces": [
+        {
+          "name": "cups_08",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "cups",
+      "id": "mtk61nj6bbjeej60",
+      "face": 0,
+      "drawn": false,
+      "sort": 42,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "nQWvGbZm1J8rZmOx",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_09",
+      "faces": [
+        {
+          "name": "cups_09",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "cups",
+      "id": "ntoce3x5lagusbmi",
+      "face": 0,
+      "drawn": false,
+      "sort": 55,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "1sifkK8WWqcr3LhH",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_10",
+      "faces": [
+        {
+          "name": "cups_10",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "cups",
+      "id": "nwfztuh64mmmm0u8",
+      "face": 0,
+      "drawn": false,
+      "sort": 68,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "6SY8CHQ9cTqlztG4",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_11",
+      "faces": [
+        {
+          "name": "cups_11",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "cups",
+      "id": "9pkn1gqxrxemzkjq",
+      "face": 0,
+      "drawn": false,
+      "sort": 15,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "7NTSKNpvyHaKkuaH",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_12",
+      "faces": [
+        {
+          "name": "cups_12",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "cups",
+      "id": "uqbh6o4aiz47cgwl",
+      "face": 0,
+      "drawn": false,
+      "sort": 43,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "Oj3Ap2ShjJxNxJJA",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_13",
+      "faces": [
+        {
+          "name": "cups_13",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "cups",
+      "id": "saudommihq4snwkw",
+      "face": 0,
+      "drawn": false,
+      "sort": 22,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "IRp0Pl74y52RYBXy",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "cups_14",
+      "faces": [
+        {
+          "name": "cups_14",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "cups",
+      "id": "gpd9yle0gbe3mt8o",
+      "face": 0,
+      "drawn": false,
+      "sort": 4,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "qEd0sxlmM3bokW8S",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_01",
+      "faces": [
+        {
+          "name": "clubs_01",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "clubs",
+      "id": "mjr0x5m7r2oigbji",
+      "face": 0,
+      "drawn": false,
+      "sort": 44,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "iysFm07OpPSaEKdn",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_02",
+      "faces": [
+        {
+          "name": "clubs_02",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "clubs",
+      "id": "pkpaj96984f9qjxi",
+      "face": 0,
+      "drawn": false,
+      "sort": 50,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "DmxFwksbKLThR6EQ",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_03",
+      "faces": [
+        {
+          "name": "clubs_03",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "clubs",
+      "id": "kwmd07u8gyxu37xw",
+      "face": 0,
+      "drawn": false,
+      "sort": 64,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "cCPVdeWrsSnARiRO",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_04",
+      "faces": [
+        {
+          "name": "clubs_04",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "clubs",
+      "id": "tz1fsv08j2tanvmf",
+      "face": 0,
+      "drawn": false,
+      "sort": 58,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "jyuQYL04dv61E3Eb",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_05",
+      "faces": [
+        {
+          "name": "clubs_05",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "clubs",
+      "id": "zxoxmfsucxy4s7bj",
+      "face": 0,
+      "drawn": false,
+      "sort": 8,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "5rWSLBcctTkonqP7",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_06",
+      "faces": [
+        {
+          "name": "clubs_06",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "clubs",
+      "id": "1cghu3x0tpttisyr",
+      "face": 0,
+      "drawn": false,
+      "sort": 18,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "ooLuZooIL5vZH3fi",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_07",
+      "faces": [
+        {
+          "name": "clubs_07",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "clubs",
+      "id": "pjmibtazzsz2tetg",
+      "face": 0,
+      "drawn": false,
+      "sort": 38,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "mXBWQD2NJlQHPiqi",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_08",
+      "faces": [
+        {
+          "name": "clubs_08",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "clubs",
+      "id": "pbi964kay2ecajjh",
+      "face": 0,
+      "drawn": false,
+      "sort": 14,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "aAAiNoAO3FMLRO3y",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_09",
+      "faces": [
+        {
+          "name": "clubs_09",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "clubs",
+      "id": "9wahfpj1sem9lvrf",
+      "face": 0,
+      "drawn": false,
+      "sort": 28,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "gnF4DtylsHsFoQit",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_10",
+      "faces": [
+        {
+          "name": "clubs_10",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "clubs",
+      "id": "tkyk8tsavytyh3w1",
+      "face": 0,
+      "drawn": false,
+      "sort": 13,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "sF8sfPmexjUn3Uhe",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_11",
+      "faces": [
+        {
+          "name": "clubs_11",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "clubs",
+      "id": "ql5x9d4kymwz3nbr",
+      "face": 0,
+      "drawn": false,
+      "sort": 5,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "1IqCyJvH7Id3xL0Y",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_12",
+      "faces": [
+        {
+          "name": "clubs_12",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "clubs",
+      "id": "5yb9b4f15mgu48b4",
+      "face": 0,
+      "drawn": false,
+      "sort": 9,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "BRYcXDHdjsFoQX7W",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_13",
+      "faces": [
+        {
+          "name": "clubs_13",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "clubs",
+      "id": "9o3tkwy9usdfhrp3",
+      "face": 0,
+      "drawn": false,
+      "sort": 12,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "4kutNXStTRZGvpGM",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_14",
+      "faces": [
+        {
+          "name": "clubs_14",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "clubs",
+      "id": "bgbokbh0z80o4ra6",
+      "face": 0,
+      "drawn": false,
+      "sort": 61,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "BdRLfjnwMEm8DEQN",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_00",
+      "faces": [
+        {
+          "name": "arcana_00",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_00.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "arcana",
+      "id": "vkzewi5kgo1mjgyh",
+      "face": 0,
+      "drawn": false,
+      "sort": 77,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "ayPljZpFQlAfBE9B",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_01",
+      "faces": [
+        {
+          "name": "arcana_01",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "arcana",
+      "id": "n94ib6zyyvkh988u",
+      "face": 0,
+      "drawn": false,
+      "sort": 3,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "FZO4ffxVw9nuhSYW",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_02",
+      "faces": [
+        {
+          "name": "arcana_02",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "arcana",
+      "id": "t1vi75zje68iuodo",
+      "face": 0,
+      "drawn": false,
+      "sort": 19,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "nptuGviBXmM7cV30",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_03",
+      "faces": [
+        {
+          "name": "arcana_03",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "arcana",
+      "id": "5ysxv1irrb6wyih7",
+      "face": 0,
+      "drawn": false,
+      "sort": 52,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "NDD6xYdjLV3Dotrr",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_04",
+      "faces": [
+        {
+          "name": "arcana_04",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "arcana",
+      "id": "73in34nw6inmnmnx",
+      "face": 0,
+      "drawn": false,
+      "sort": 46,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "BTYgAI2e7Z75CtqC",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_05",
+      "faces": [
+        {
+          "name": "arcana_05",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "arcana",
+      "id": "jh93nt5jvqqw7l6y",
+      "face": 0,
+      "drawn": false,
+      "sort": 36,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "LVZ85drFyxSqUAcG",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_06",
+      "faces": [
+        {
+          "name": "arcana_06",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "arcana",
+      "id": "d9x30ypolrkbrww2",
+      "face": 0,
+      "drawn": false,
+      "sort": 71,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "ELIDMEk0MhL6i4Hs",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_07",
+      "faces": [
+        {
+          "name": "arcana_07",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "arcana",
+      "id": "bwl1sma7b9sxjfge",
+      "face": 0,
+      "drawn": false,
+      "sort": 27,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "j8qnAXMN3DU9BjX5",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_08",
+      "faces": [
+        {
+          "name": "arcana_08",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "arcana",
+      "id": "pmbr0zoloopxfrj3",
+      "face": 0,
+      "drawn": false,
+      "sort": 67,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "1d3LG1zjlgwUioAg",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_09",
+      "faces": [
+        {
+          "name": "arcana_09",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "arcana",
+      "id": "d85m7r8gayi5ie6b",
+      "face": 0,
+      "drawn": false,
+      "sort": 76,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "AHL2MrqHqFcrQc0s",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_10",
+      "faces": [
+        {
+          "name": "arcana_10",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "arcana",
+      "id": "6o9ev4awa1fb6t61",
+      "face": 0,
+      "drawn": false,
+      "sort": 33,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "NSg3bIlN2VhAlcrE",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_11",
+      "faces": [
+        {
+          "name": "arcana_11",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "arcana",
+      "id": "jivl68ey0toouzo3",
+      "face": 0,
+      "drawn": false,
+      "sort": 30,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "Sw79gKHuf0vRsE3z",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_12",
+      "faces": [
+        {
+          "name": "arcana_12",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "arcana",
+      "id": "6lx7e6vv325fsvcb",
+      "face": 0,
+      "drawn": false,
+      "sort": 74,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "TJ9GWiSjDYVZwkbY",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_13",
+      "faces": [
+        {
+          "name": "arcana_13",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "arcana",
+      "id": "h4653rkrw6up4tr5",
+      "face": 0,
+      "drawn": false,
+      "sort": 51,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "gra0GJ4E6DmVSZPC",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_14",
+      "faces": [
+        {
+          "name": "arcana_14",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "arcana",
+      "id": "hunsxs2znplorej0",
+      "face": 0,
+      "drawn": false,
+      "sort": 1,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "mEmlqjRVCWbYzFch",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_15",
+      "faces": [
+        {
+          "name": "arcana_15",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_15.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 15,
+      "suit": "arcana",
+      "id": "cd45ksu3irb0wrm9",
+      "face": 0,
+      "drawn": false,
+      "sort": 37,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "gG3ImgRDSjQrUcai",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_16",
+      "faces": [
+        {
+          "name": "arcana_16",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_16.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 16,
+      "suit": "arcana",
+      "id": "98a7x67u0q2uft04",
+      "face": 0,
+      "drawn": false,
+      "sort": 31,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "BRxStPHJvsd1iCjD",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_17",
+      "faces": [
+        {
+          "name": "arcana_17",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_17.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 17,
+      "suit": "arcana",
+      "id": "q3qlfdw8x1ynw2y6",
+      "face": 0,
+      "drawn": false,
+      "sort": 54,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "zO7qnyGKkDUs34sw",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_18",
+      "faces": [
+        {
+          "name": "arcana_18",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_18.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 18,
+      "suit": "arcana",
+      "id": "7x0kpjca1l6qd6nx",
+      "face": 0,
+      "drawn": false,
+      "sort": 24,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "iU4j3aVsVYRDDl8k",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_19",
+      "faces": [
+        {
+          "name": "arcana_19",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_19.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 19,
+      "suit": "arcana",
+      "id": "5sbvus0ho5bgykza",
+      "face": 0,
+      "drawn": false,
+      "sort": 47,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "BKylKqx6gmiNQmrL",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_20",
+      "faces": [
+        {
+          "name": "arcana_20",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_20.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 20,
+      "suit": "arcana",
+      "id": "q21yyoej7buuxv44",
+      "face": 0,
+      "drawn": false,
+      "sort": 75,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "T94UtGikFtRp459S",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "arcana_21",
+      "faces": [
+        {
+          "name": "arcana_21",
+          "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_21.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 21,
+      "suit": "arcana",
+      "id": "b9grx4rraullnfrc",
+      "face": 0,
+      "drawn": false,
+      "sort": 59,
+      "back": {
+        "name": "Divine Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/divineTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "DGZQKWw1OmVHXmJe",
+      "_id": "LAoQFuaSZIKFmChW",
+      "description": "",
+      "flags": {}
+    }
+  ],
+  "width": 2,
+  "height": 4,
+  "rotation": 0,
+  "displayCount": true
+}

@@ -29,6 +29,16 @@
     "RTUCards.zodiac.pile.title": "Signes du zodiaque (Défausse)",
     "RTUCards.zodiac.pile.description": "Défausse pour les signes du zodiaque.",
 
+    "RTUCards.divineTarot.deck.title": "Tarot divinatoire (Deck)",
+    "RTUCards.divineTarot.deck.description": "78 cartes, dont les arcanes majeurs.",
+    "RTUCards.divineTarot.pile.title": "Tarot divinatoire (Défausse)",
+    "RTUCards.divineTarot.pile.description": "Défausse pour les cartes de tarot.",
+
+    "RTUCards.classicTarot.deck.title": "Tarot classique (Deck)",
+    "RTUCards.classicTarot.deck.description": "78 cartes, dont les atouts et les bouts",
+    "RTUCards.classicTarot.pile.title": "Tarot classique (Défausse)",
+    "RTUCards.classicTarot.pile.description": "Défausse pour les cartes de tarot.",
+
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",
     "RTUCards.user.hand.description": "Evènements piochés",

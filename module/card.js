@@ -9,12 +9,12 @@ export class CustomCard extends Card {
 
     get backIcon() {
         const coreRef = this.source.coreStackRef;
-        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/back.png';
+        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/back.webp';
     }
 
     get frontIcon() {
         const coreRef = this.source.coreStackRef;
-        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/front.png';
+        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/front.webp';
     }
 
     /**

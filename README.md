@@ -23,5 +23,8 @@ This module has been developped with the following mindset :
 
 ## Credits for card images used in the preconfigured decks : 
 
-- Zodiac signs : Designed by rawpixel.com. Downloaded on fr.freepik.com
-- Gangsta Poker : Designed by dgim-studio. Downloaded on fr.freepik.com
+- Zodiac signs : Designed by rawpixel.com. Downloaded from fr.freepik.com
+- Gangsta Poker : Designed by dgim-studio. Downloaded from fr.freepik.com
+- Divine Tarot : Source : Tarot de Marseille
+Edition Grimaud, Downloaded from https://insightfulvision.fr/gallery-arcanes1.php
+- Classic Tarot : Designed by Edition Grimaud, Downloaded from https://commons.wikimedia.org/wiki/Category:Tarot_nouveau_-_Grimaud_-_1898

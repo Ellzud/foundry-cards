@@ -1,0 +1,2743 @@
+{
+  "name": "Tarot cards",
+  "type": "deck",
+  "description": "78 crds with trumps and oudlers",
+  "img": "modules/ready-to-use-cards/resources/classicTarot/icons/back.webp",
+  "data": {},
+  "cards": [
+    {
+      "name": "hearts_01",
+      "faces": [
+        {
+          "name": "hearts_01",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "hearts",
+      "id": "6acpzt5bvlxxntzb",
+      "face": 0,
+      "drawn": false,
+      "sort": 29,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Bg2vO0zfoQJ2EASi",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_02",
+      "faces": [
+        {
+          "name": "hearts_02",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "hearts",
+      "id": "ahc3gx8em1jjmr4p",
+      "face": 0,
+      "drawn": false,
+      "sort": 18,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "T7BhqLwhDgNaf3gX",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_03",
+      "faces": [
+        {
+          "name": "hearts_03",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "hearts",
+      "id": "ba02kt3zefqipi6r",
+      "face": 0,
+      "drawn": false,
+      "sort": 49,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "unDRwrqyu4gV6qWR",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_04",
+      "faces": [
+        {
+          "name": "hearts_04",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "hearts",
+      "id": "p5itpjtkahmxg0kp",
+      "face": 0,
+      "drawn": false,
+      "sort": 38,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "GZf7xdbVQH8u830F",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_05",
+      "faces": [
+        {
+          "name": "hearts_05",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "hearts",
+      "id": "jkkqv4wxisd8zg82",
+      "face": 0,
+      "drawn": false,
+      "sort": 66,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "TZ3gIo94apoQxew5",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_06",
+      "faces": [
+        {
+          "name": "hearts_06",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "hearts",
+      "id": "xwamzto4bdpqjjrn",
+      "face": 0,
+      "drawn": false,
+      "sort": 65,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Kf5Ju5DP2NwxdOKS",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_07",
+      "faces": [
+        {
+          "name": "hearts_07",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "hearts",
+      "id": "9pkvsq7jhtn2ijns",
+      "face": 0,
+      "drawn": false,
+      "sort": 7,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "cQ8La1bl8eCutdIe",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_08",
+      "faces": [
+        {
+          "name": "hearts_08",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "hearts",
+      "id": "0rkyp2gogaze8aby",
+      "face": 0,
+      "drawn": false,
+      "sort": 60,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "iIOlusXf5rxLWeVY",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_09",
+      "faces": [
+        {
+          "name": "hearts_09",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "hearts",
+      "id": "ww8z0nolu6gkqna1",
+      "face": 0,
+      "drawn": false,
+      "sort": 41,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "IWOPO8JZHjdRvsYY",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_10",
+      "faces": [
+        {
+          "name": "hearts_10",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "hearts",
+      "id": "halh9mqfass2i3ba",
+      "face": 0,
+      "drawn": false,
+      "sort": 67,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "gfv9tVPvA963orcV",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_11",
+      "faces": [
+        {
+          "name": "hearts_11",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "hearts",
+      "id": "3qrjh8dhfr6psvsi",
+      "face": 0,
+      "drawn": false,
+      "sort": 54,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "rOrzwoqIUWnEH04F",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_12",
+      "faces": [
+        {
+          "name": "hearts_12",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "hearts",
+      "id": "kwyxol97nutlwq28",
+      "face": 0,
+      "drawn": false,
+      "sort": 69,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "4uqXND47iPrG0wlp",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_13",
+      "faces": [
+        {
+          "name": "hearts_13",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "hearts",
+      "id": "cptx3a7aq6osdqsi",
+      "face": 0,
+      "drawn": false,
+      "sort": 45,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "sed5MhU3U45XlNxi",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "hearts_14",
+      "faces": [
+        {
+          "name": "hearts_14",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "hearts",
+      "id": "3pnmodflyduezeqe",
+      "face": 0,
+      "drawn": false,
+      "sort": 72,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "a0wdzNWoKbMwshOP",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_01",
+      "faces": [
+        {
+          "name": "spades_01",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "spades",
+      "id": "zkbrzzz3v0f8ws6m",
+      "face": 0,
+      "drawn": false,
+      "sort": 20,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Yhaw0MfhdbRE12z3",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_02",
+      "faces": [
+        {
+          "name": "spades_02",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "spades",
+      "id": "lhf0eajjnwhvlhkj",
+      "face": 0,
+      "drawn": false,
+      "sort": 77,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "wW9PQd9ZmsyTUdZE",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_03",
+      "faces": [
+        {
+          "name": "spades_03",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "spades",
+      "id": "xib8f1o87cqrgfg6",
+      "face": 0,
+      "drawn": false,
+      "sort": 6,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "4TqEweP7UXe1T76V",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_04",
+      "faces": [
+        {
+          "name": "spades_04",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "spades",
+      "id": "gxu7un39k2goophx",
+      "face": 0,
+      "drawn": false,
+      "sort": 9,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "D8wbhsr0txCPL336",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_05",
+      "faces": [
+        {
+          "name": "spades_05",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "spades",
+      "id": "81ck5gf0o8nqfd69",
+      "face": 0,
+      "drawn": false,
+      "sort": 56,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "oTwvOF1g9t9nf9PD",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_06",
+      "faces": [
+        {
+          "name": "spades_06",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "spades",
+      "id": "we1ai88fx2ehinm2",
+      "face": 0,
+      "drawn": false,
+      "sort": 33,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Trme1mNoE06jVC8I",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_07",
+      "faces": [
+        {
+          "name": "spades_07",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "spades",
+      "id": "688qboa0v3o7vy2c",
+      "face": 0,
+      "drawn": false,
+      "sort": 27,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "1NFaRdTiPKhFtqpD",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_08",
+      "faces": [
+        {
+          "name": "spades_08",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "spades",
+      "id": "uhbb4v3cacxb5vuz",
+      "face": 0,
+      "drawn": false,
+      "sort": 14,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "aBrK3pA89R0ijAgv",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_09",
+      "faces": [
+        {
+          "name": "spades_09",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "spades",
+      "id": "7mvtlvbmeqpv2oq7",
+      "face": 0,
+      "drawn": false,
+      "sort": 53,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "gcca55Az0e0e1lsb",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_10",
+      "faces": [
+        {
+          "name": "spades_10",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "spades",
+      "id": "z83nu03j8gpcc7v0",
+      "face": 0,
+      "drawn": false,
+      "sort": 48,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "W57GnY2F80HWf01i",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_11",
+      "faces": [
+        {
+          "name": "spades_11",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "spades",
+      "id": "5iib9vkl5881ql16",
+      "face": 0,
+      "drawn": false,
+      "sort": 44,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "fO6wQPxEsMDtHJhS",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_12",
+      "faces": [
+        {
+          "name": "spades_12",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "spades",
+      "id": "hhckt0lhfjgdcm4d",
+      "face": 0,
+      "drawn": false,
+      "sort": 59,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "OfHw4Z9WsFJbalSY",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_13",
+      "faces": [
+        {
+          "name": "spades_13",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "spades",
+      "id": "d6d5w5cas1qqif2g",
+      "face": 0,
+      "drawn": false,
+      "sort": 34,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "iK6TkBvdNnwcOmgq",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "spades_14",
+      "faces": [
+        {
+          "name": "spades_14",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "spades",
+      "id": "hzwm6pxjwsflavjt",
+      "face": 0,
+      "drawn": false,
+      "sort": 12,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "A5iAdhSeu7UpzAXW",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_01",
+      "faces": [
+        {
+          "name": "diamonds_01",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "diamonds",
+      "id": "y8lvcxmt8e0mbi3m",
+      "face": 0,
+      "drawn": false,
+      "sort": 31,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "LG2LwkC8okGuiwiu",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_02",
+      "faces": [
+        {
+          "name": "diamonds_02",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "diamonds",
+      "id": "3r06bqqld82cxpwl",
+      "face": 0,
+      "drawn": false,
+      "sort": 19,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "nZ7Q2VKbeJrDYd3n",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_03",
+      "faces": [
+        {
+          "name": "diamonds_03",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "diamonds",
+      "id": "9fkx6dnbdfghfyss",
+      "face": 0,
+      "drawn": false,
+      "sort": 74,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "oJMWFmaPl53fi235",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_04",
+      "faces": [
+        {
+          "name": "diamonds_04",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "diamonds",
+      "id": "vkls6knt7gjb2ttz",
+      "face": 0,
+      "drawn": false,
+      "sort": 51,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "ySLgZwSE1XqSoWdI",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_05",
+      "faces": [
+        {
+          "name": "diamonds_05",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "diamonds",
+      "id": "o7oyxmciwyebbziz",
+      "face": 0,
+      "drawn": false,
+      "sort": 25,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "VTrkMKqSoeze6UxB",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_06",
+      "faces": [
+        {
+          "name": "diamonds_06",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "diamonds",
+      "id": "btbr8gxk4eo7kab8",
+      "face": 0,
+      "drawn": false,
+      "sort": 36,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Xbk3YCZa6OcG3BLK",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_07",
+      "faces": [
+        {
+          "name": "diamonds_07",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "diamonds",
+      "id": "aby1me9hipb3lcfh",
+      "face": 0,
+      "drawn": false,
+      "sort": 35,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "GWntK6x4QipYDflf",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_08",
+      "faces": [
+        {
+          "name": "diamonds_08",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "diamonds",
+      "id": "44wovu0sywxh98f3",
+      "face": 0,
+      "drawn": false,
+      "sort": 57,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "AD6quwuFeJvJSsVF",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_09",
+      "faces": [
+        {
+          "name": "diamonds_09",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "diamonds",
+      "id": "0d1vyhwcjjxai0vt",
+      "face": 0,
+      "drawn": false,
+      "sort": 30,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "oMQqi2Ftwynf4UWb",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_10",
+      "faces": [
+        {
+          "name": "diamonds_10",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "diamonds",
+      "id": "4avknm0s8e3lxp5o",
+      "face": 0,
+      "drawn": false,
+      "sort": 15,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "ZucpxDtJJSx62VBb",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_11",
+      "faces": [
+        {
+          "name": "diamonds_11",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "diamonds",
+      "id": "a08mive13y8mjct2",
+      "face": 0,
+      "drawn": false,
+      "sort": 46,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "vf87mCqjKz9Othbc",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_12",
+      "faces": [
+        {
+          "name": "diamonds_12",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "diamonds",
+      "id": "c68ix78yzbgtza9g",
+      "face": 0,
+      "drawn": false,
+      "sort": 1,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "0OQpSFOg8tsHy4KA",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_13",
+      "faces": [
+        {
+          "name": "diamonds_13",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "diamonds",
+      "id": "n2gebxgy94z1pd6b",
+      "face": 0,
+      "drawn": false,
+      "sort": 2,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Wx3ZlB4zy5mJ2oaR",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "diamonds_14",
+      "faces": [
+        {
+          "name": "diamonds_14",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "diamonds",
+      "id": "868edb8yuvgxh375",
+      "face": 0,
+      "drawn": false,
+      "sort": 37,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Wenwhv8kJVbzi43L",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_01",
+      "faces": [
+        {
+          "name": "clubs_01",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "clubs",
+      "id": "myv7y5907i82mugw",
+      "face": 0,
+      "drawn": false,
+      "sort": 62,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "3Aa7xKGknFjACUFo",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_02",
+      "faces": [
+        {
+          "name": "clubs_02",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "clubs",
+      "id": "cy84a45di9r8ia97",
+      "face": 0,
+      "drawn": false,
+      "sort": 3,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "tjlWL06HTjTN94bs",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_03",
+      "faces": [
+        {
+          "name": "clubs_03",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "clubs",
+      "id": "hx7e51c8uocdgmgt",
+      "face": 0,
+      "drawn": false,
+      "sort": 55,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "8oYRBtAyoEjkZR4W",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_04",
+      "faces": [
+        {
+          "name": "clubs_04",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "clubs",
+      "id": "dstdv224iedjh7p4",
+      "face": 0,
+      "drawn": false,
+      "sort": 13,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "wppYtyhyBW8sLvof",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_05",
+      "faces": [
+        {
+          "name": "clubs_05",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "clubs",
+      "id": "eig4sf4kpses0c0x",
+      "face": 0,
+      "drawn": false,
+      "sort": 42,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "yesbkuTBnhK4jhLP",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_06",
+      "faces": [
+        {
+          "name": "clubs_06",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "clubs",
+      "id": "u2eagnai77qh9td1",
+      "face": 0,
+      "drawn": false,
+      "sort": 40,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "gQkCqG8XDWRQ2nf5",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_07",
+      "faces": [
+        {
+          "name": "clubs_07",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "clubs",
+      "id": "pk373b81fv9473zq",
+      "face": 0,
+      "drawn": false,
+      "sort": 43,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "A00UPYnNqlJG5WJR",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_08",
+      "faces": [
+        {
+          "name": "clubs_08",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "clubs",
+      "id": "u7utz82ajqqb7uzp",
+      "face": 0,
+      "drawn": false,
+      "sort": 64,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "qfB7PE4yapigwMUr",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_09",
+      "faces": [
+        {
+          "name": "clubs_09",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "clubs",
+      "id": "gnzsb1a7whntm1ne",
+      "face": 0,
+      "drawn": false,
+      "sort": 21,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "faWYuhOfwypTabzP",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_10",
+      "faces": [
+        {
+          "name": "clubs_10",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "clubs",
+      "id": "oey0l3o50uhrlsg7",
+      "face": 0,
+      "drawn": false,
+      "sort": 76,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "eVEj1ub1KkszOdGL",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_11",
+      "faces": [
+        {
+          "name": "clubs_11",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "clubs",
+      "id": "8lwu9uwyrqxdqnbr",
+      "face": 0,
+      "drawn": false,
+      "sort": 16,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "XbcYFOHek5QgI7cG",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_12",
+      "faces": [
+        {
+          "name": "clubs_12",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "clubs",
+      "id": "ri38ken2ecfml0dl",
+      "face": 0,
+      "drawn": false,
+      "sort": 63,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "tvAIPppjB8YC14mo",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_13",
+      "faces": [
+        {
+          "name": "clubs_13",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "clubs",
+      "id": "r3okb6cxk4sly8yx",
+      "face": 0,
+      "drawn": false,
+      "sort": 24,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "0D7fEFuHaqLpTYj6",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "clubs_14",
+      "faces": [
+        {
+          "name": "clubs_14",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "clubs",
+      "id": "g4jou5yjmptdojs3",
+      "face": 0,
+      "drawn": false,
+      "sort": 17,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "q6iajkFkCu8KSCXB",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_00",
+      "faces": [
+        {
+          "name": "trumps_00",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_00.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "trumps",
+      "id": "yr9e6kegpbbg252o",
+      "face": 0,
+      "drawn": false,
+      "sort": 4,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Ads2PK3mYuRLmlqD",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_01",
+      "faces": [
+        {
+          "name": "trumps_01",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_01.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "trumps",
+      "id": "l8m53j12sebdjlyl",
+      "face": 0,
+      "drawn": false,
+      "sort": 71,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "1qkcXtdPIVw0DZBr",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_02",
+      "faces": [
+        {
+          "name": "trumps_02",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_02.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 2,
+      "suit": "trumps",
+      "id": "99el93o2sit1g0bf",
+      "face": 0,
+      "drawn": false,
+      "sort": 8,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "b36qXZ72QNbQV7nU",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_03",
+      "faces": [
+        {
+          "name": "trumps_03",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_03.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 3,
+      "suit": "trumps",
+      "id": "wz8yczx8iyx42nao",
+      "face": 0,
+      "drawn": false,
+      "sort": 47,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "XiLetY9AT2rYCpbu",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_04",
+      "faces": [
+        {
+          "name": "trumps_04",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_04.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 4,
+      "suit": "trumps",
+      "id": "8mbl1xgsmzu9scfj",
+      "face": 0,
+      "drawn": false,
+      "sort": 70,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "26VJt0dkI7BUknjm",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_05",
+      "faces": [
+        {
+          "name": "trumps_05",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_05.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 5,
+      "suit": "trumps",
+      "id": "cqbck4so3owgcttc",
+      "face": 0,
+      "drawn": false,
+      "sort": 11,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "x611AdfGerDEj6DF",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_06",
+      "faces": [
+        {
+          "name": "trumps_06",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_06.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 6,
+      "suit": "trumps",
+      "id": "n50ggh5p8ncdiab1",
+      "face": 0,
+      "drawn": false,
+      "sort": 5,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "yvYCoSC8Y21clWh0",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_07",
+      "faces": [
+        {
+          "name": "trumps_07",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_07.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "trumps",
+      "id": "0nyldhg0f4mn2fft",
+      "face": 0,
+      "drawn": false,
+      "sort": 0,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "aI5PSrlCO7Zuz8WJ",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_08",
+      "faces": [
+        {
+          "name": "trumps_08",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_08.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "trumps",
+      "id": "uct7oq7kmhjz1h1g",
+      "face": 0,
+      "drawn": false,
+      "sort": 28,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "FGPmKotTga2bZm6c",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_09",
+      "faces": [
+        {
+          "name": "trumps_09",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_09.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "trumps",
+      "id": "wqn4e5k7ljnxn8sf",
+      "face": 0,
+      "drawn": false,
+      "sort": 68,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "rGr1Q3pb8ZYlJzkL",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_10",
+      "faces": [
+        {
+          "name": "trumps_10",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_10.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "trumps",
+      "id": "oeoepyzo9c39wyfd",
+      "face": 0,
+      "drawn": false,
+      "sort": 32,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "rjJoa3lkDZl9U2f6",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_11",
+      "faces": [
+        {
+          "name": "trumps_11",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_11.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "trumps",
+      "id": "hfk52luhjavdugtu",
+      "face": 0,
+      "drawn": false,
+      "sort": 73,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "SD0LUzVdEMdKQH2M",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_12",
+      "faces": [
+        {
+          "name": "trumps_12",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_12.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "trumps",
+      "id": "4yo5ewrxje9yhwf2",
+      "face": 0,
+      "drawn": false,
+      "sort": 58,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "GZUUs5AEzxYAfutL",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_13",
+      "faces": [
+        {
+          "name": "trumps_13",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_13.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "trumps",
+      "id": "yh2dj1hzqju6ao8k",
+      "face": 0,
+      "drawn": false,
+      "sort": 52,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "HLM3uNPmgsofKU8H",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_14",
+      "faces": [
+        {
+          "name": "trumps_14",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_14.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 14,
+      "suit": "trumps",
+      "id": "gkmoktxm50opfx28",
+      "face": 0,
+      "drawn": false,
+      "sort": 75,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "rKL4JWWmMXDPdIyF",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_15",
+      "faces": [
+        {
+          "name": "trumps_15",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_15.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 15,
+      "suit": "trumps",
+      "id": "bgkr6r2o155ltjvr",
+      "face": 0,
+      "drawn": false,
+      "sort": 61,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "xQG3ydQ0DqbeRyS2",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_16",
+      "faces": [
+        {
+          "name": "trumps_16",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_16.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 16,
+      "suit": "trumps",
+      "id": "89yrqe27gqk3gkt1",
+      "face": 0,
+      "drawn": false,
+      "sort": 39,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "qLblSmUrrCKeXuvW",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_17",
+      "faces": [
+        {
+          "name": "trumps_17",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_17.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 17,
+      "suit": "trumps",
+      "id": "rpecwnc2v6p1k1ia",
+      "face": 0,
+      "drawn": false,
+      "sort": 10,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "I4YoUDhVGBsEix82",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_18",
+      "faces": [
+        {
+          "name": "trumps_18",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_18.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 18,
+      "suit": "trumps",
+      "id": "hhmjvr9ul9n5tjsd",
+      "face": 0,
+      "drawn": false,
+      "sort": 23,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "7IT7V0ATh3EXfJRd",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_19",
+      "faces": [
+        {
+          "name": "trumps_19",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_19.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 19,
+      "suit": "trumps",
+      "id": "4jfhs68rlsd056ol",
+      "face": 0,
+      "drawn": false,
+      "sort": 50,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "Rt6iRbWtWou9F2O8",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_20",
+      "faces": [
+        {
+          "name": "trumps_20",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_20.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 20,
+      "suit": "trumps",
+      "id": "nuvkcnnulc6bsh9s",
+      "face": 0,
+      "drawn": false,
+      "sort": 26,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "T39lgTqsYGCSsof5",
+      "description": "",
+      "flags": {}
+    },
+    {
+      "name": "trumps_21",
+      "faces": [
+        {
+          "name": "trumps_21",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_21.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 21,
+      "suit": "trumps",
+      "id": "67nwo2g39ybdmw8m",
+      "face": 0,
+      "drawn": false,
+      "sort": 22,
+      "back": {
+        "name": "Classic Tarot",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
+      },
+      "data": {
+        "event": {
+          "cost": "undefined"
+        },
+        "spirit": {}
+      },
+      "origin": "GhPJfekTpJveFoxU",
+      "_id": "X1XYYpAdzHHbbAh7",
+      "description": "",
+      "flags": {}
+    }
+  ],
+  "width": 2,
+  "height": 4,
+  "rotation": 0,
+  "displayCount": true
+}

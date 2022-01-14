@@ -28,6 +28,16 @@
     "RTUCards.zodiac.pile.title": "Zodiac signs (Discard)",
     "RTUCards.zodiac.pile.description": "Zodiac discard pile.",
 
+    "RTUCards.divineTarot.deck.title": "Tarot - Divinatory (Deck)",
+    "RTUCards.divineTarot.deck.description": "A 78 cards deck with major arcanas",
+    "RTUCards.divineTarot.pile.title": "Tarot - Divinatory (Discard)",
+    "RTUCards.divineTarot.pile.description": "Discard pile for tarot cards.",
+
+    "RTUCards.classicTarot.deck.title": "Tarot - Classic game (Deck)",
+    "RTUCards.classicTarot.deck.description": "A 78 cards deck with trumps and oulers",
+    "RTUCards.classicTarot.pile.title": "Tarot - Classic game (Discard)",
+    "RTUCards.classicTarot.pile.description": "Discard pile for tarot cards.",
+
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",
     "RTUCards.user.hand.description": "Drawn events",

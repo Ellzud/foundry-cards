@@ -326,6 +326,26 @@ export class CustomCardStackLoader {
                     availableOnHands: true,
                     availableOnRevealedCards: true
                 }
+            },
+            divineTarot: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.divineTarot.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/divineTarot',
+                preset: 'modules/ready-to-use-cards/resources/divineTarot/cards.json',
+                config: {
+                    availableOnHands: true,
+                    availableOnRevealedCards: true
+                }
+            },
+            classicTarot: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.classicTarot.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/classicTarot',
+                preset: 'modules/ready-to-use-cards/resources/classicTarot/cards.json',
+                config: {
+                    availableOnHands: true,
+                    availableOnRevealedCards: true
+                }
             }
         }
     }
