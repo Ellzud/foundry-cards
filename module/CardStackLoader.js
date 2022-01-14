@@ -108,8 +108,9 @@ const initCoreStackPreset = async (type, coreStack) => {
         if( coreStack.preset ) {
             const base = await fetch(coreStack.preset).then(r => r.json());
             preset.cards = base.cards;
-        } else if( coreStack.presetLoader )
-        preset.cards = await coreStack.presetLoader();
+        } else if( coreStack.presetLoader ) {
+            preset.cards = await coreStack.presetLoader();
+        }
     }
     return preset;
 }
@@ -275,6 +276,7 @@ const loadStackDefinition = (defaultStacks) => {
         const defaultCore = defaultStacks[coreKey];
         const stackDef = duplicate(defaultCore);
         stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
+        stackDef.presetLoader = defaultCore.presetLoader; // Duplicate doesn't copy function either
         stackDef.config = stackConf; // Config is replaced by the one in config.
         def.core[coreKey] = stackDef;
     });
@@ -310,6 +312,16 @@ export class CustomCardStackLoader {
                 labelBaseKey : 'RTUCards.pokerLight.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
                 preset: CONFIG.Cards.presets.pokerLight.src,
+                config: {
+                    availableOnHands: true,
+                    availableOnRevealedCards: true
+                }
+            },
+            zodiac: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.zodiac.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/zodiac',
+                preset: 'modules/ready-to-use-cards/resources/zodiac/cards.json',
                 config: {
                     availableOnHands: true,
                     availableOnRevealedCards: true

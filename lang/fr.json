@@ -24,6 +24,11 @@
     "RTUCards.pokerLight.pile.title": "Poker - Defausse (Couleurs)",
     "RTUCards.pokerLight.pile.description": "La défausse pour les cartes standard.",
 
+    "RTUCards.zodiac.deck.title": "Signes du zodiaque (Deck)",
+    "RTUCards.zodiac.deck.description": "12 cartes. Une pour chaque signe.",
+    "RTUCards.zodiac.pile.title": "Signes du zodiaque (Défausse)",
+    "RTUCards.zodiac.pile.description": "Défausse pour les signes du zodiaque.",
+
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",
     "RTUCards.user.hand.description": "Evènements piochés",

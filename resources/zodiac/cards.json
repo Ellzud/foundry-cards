@@ -1,0 +1,373 @@
+{
+  "name": "Zodiac signs",
+  "type": "deck",
+  "description": "12 cards.",
+  "img": "modules/ready-to-use-cards/resources/zodiac/icons/back.webp",
+  "data": {},
+  "cards": [
+    {
+      "name": "aquarius",
+      "faces": [
+        {
+          "name": "aquarius",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/aquarius.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "uc2svcwxvg9rlgov",
+      "face": 0,
+      "drawn": false,
+      "sort": 1,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "q88M1eYeZo7sLcFO",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "aries",
+      "faces": [
+        {
+          "name": "aries",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/aries.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "7ziz0owyoh4xpg8e",
+      "face": 0,
+      "drawn": false,
+      "sort": 4,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "6oDW5AffVtCISsey",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "cancer",
+      "faces": [
+        {
+          "name": "cancer",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/cancer.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "a6zwbcy2u5il7olw",
+      "face": 0,
+      "drawn": false,
+      "sort": 0,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "acU19cID6iyIGwG5",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "capricorn",
+      "faces": [
+        {
+          "name": "capricorn",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/capricorn.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "22nnw34qcb3h0i5p",
+      "face": 0,
+      "drawn": false,
+      "sort": 10,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "aXB7R1dgWJnEDuNY",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "gemini",
+      "faces": [
+        {
+          "name": "gemini",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/gemini.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "wa4gah2anchah9nl",
+      "face": 0,
+      "drawn": false,
+      "sort": 2,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "c8xB9EJrZ0nDkdL6",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "leo",
+      "faces": [
+        {
+          "name": "leo",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/leo.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "zqggwxkz1mqqcwl1",
+      "face": 0,
+      "drawn": false,
+      "sort": 8,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "skI1jnKquonP6KGG",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "libra",
+      "faces": [
+        {
+          "name": "libra",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/libra.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "otd18sh0xyqdbxn7",
+      "face": 0,
+      "drawn": false,
+      "sort": 5,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "d1bO69vgu4zKw8DF",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "pisces",
+      "faces": [
+        {
+          "name": "pisces",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/pisces.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "le679wuwv9ftou9v",
+      "face": 0,
+      "drawn": false,
+      "sort": 3,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "vXMqMDoQWP8c1N6r",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "sagittarius",
+      "faces": [
+        {
+          "name": "sagittarius",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/sagittarius.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "3bsi3ogxrcyvz2g9",
+      "face": 0,
+      "drawn": false,
+      "sort": 11,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "563C0BOOAmDUO1bZ",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "scorpio",
+      "faces": [
+        {
+          "name": "scorpio",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/scorpio.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "j6ekhbzu2gsxgiul",
+      "face": 0,
+      "drawn": false,
+      "sort": 9,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "mfnpAsF1peTWw9ff",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "taurus",
+      "faces": [
+        {
+          "name": "taurus",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/taurus.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "stlkf4wzrdgpl7e2",
+      "face": 0,
+      "drawn": false,
+      "sort": 6,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "blMs8vhXcezb0rLM",
+      "description": "",
+      "data": {},
+      "flags": {}
+    },
+    {
+      "name": "virgo",
+      "faces": [
+        {
+          "name": "virgo",
+          "img": "modules/ready-to-use-cards/resources/zodiac/cards/virgo.webp",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 4,
+      "rotation": 0,
+      "type": "base",
+      "value": 0,
+      "suit": "zodiac",
+      "id": "irnpmk6k1q7bcgjl",
+      "face": 0,
+      "drawn": false,
+      "sort": 7,
+      "back": {
+        "name": "Zodiac sign",
+        "text": "",
+        "img": "modules/ready-to-use-cards/resources/zodiac/background/back.webp"
+      },
+      "origin": "eBrs6p1HMJTlvJ68",
+      "_id": "fyci4onencLtHU5s",
+      "description": "",
+      "data": {},
+      "flags": {}
+    }
+  ],
+  "width": 2,
+  "height": 4,
+  "rotation": 0,
+  "displayCount": true
+}

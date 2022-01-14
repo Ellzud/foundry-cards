@@ -23,6 +23,11 @@
     "RTUCards.pokerLight.pile.title": "Poker discard (Light)",
     "RTUCards.pokerLight.pile.description": "Classic discard pile.",
 
+    "RTUCards.zodiac.deck.title": "Zodiac signs (Deck)",
+    "RTUCards.zodiac.deck.description": "A 12 cards deck. One for each sign.",
+    "RTUCards.zodiac.pile.title": "Zodiac signs (Discard)",
+    "RTUCards.zodiac.pile.description": "Zodiac discard pile.",
+
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",
     "RTUCards.user.hand.description": "Drawn events",

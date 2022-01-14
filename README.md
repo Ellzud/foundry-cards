@@ -16,3 +16,12 @@ This module has been developped with the following mindset :
 
 ### Method 1 : Via the configuration settings - No code needed -
 
+
+
+
+
+
+## Credits for card images used in the preconfigured decks : 
+
+- Zodiac signs : Designed by rawpixel.com. Downloaded on fr.freepik.com
+- Gangsta Poker : Designed by dgim-studio. Downloaded on fr.freepik.com
