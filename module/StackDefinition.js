@@ -4,7 +4,7 @@ import { CardActionsClasses } from './constants.js';
 export const CARD_STACKS_DEFINITION = {
     playerStacks: {
         folderNameKey: 'RTUCards.user.folder',
-        resourceBaseDir : 'modules/ready-to-use-cards/resources/base',
+        resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
         hand: {
             titleKey: 'RTUCards.user.hand.title',
             descriptionKey: 'RTUCards.user.hand.description'
@@ -16,7 +16,7 @@ export const CARD_STACKS_DEFINITION = {
     },
     gmStacks: {
         folderNameKey: 'RTUCards.gm.folder',
-        resourceBaseDir : 'modules/ready-to-use-cards/resources/base',
+        resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
         hand: {
             titleKey: 'RTUCards.gm.hand.title',
             descriptionKey: 'RTUCards.gm.hand.description'

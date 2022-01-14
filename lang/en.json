@@ -1,15 +1,27 @@
 {
-    "RTUCards.settings.GmNameLabel": "GM name",
-    "RTUCards.settings.GmNameHint": "Name displayed when GMs do actions on decks",
-    "RTUCards.settings.GmIconLabel": "GM icon",
-    "RTUCards.settings.GmIconHint": "Displayed when GMs do actions on decks",
+    "RTUCards.settings.gm.nameLabel": "GM name",
+    "RTUCards.settings.gm.nameHint": "Name displayed when GMs do actions on decks",
+    "RTUCards.settings.gm.iconLabel": "GM icon",
+    "RTUCards.settings.gm.iconHint": "Displayed when GMs do actions on decks",
+
+    "RTUCards.settings.sheet.menu": "Deck configuration menu",
+    "RTUCards.settings.sheet.title": "Setup which decks you want!",
+    "RTUCards.settings.sheet.hint": "Once set, cards stacks will be automatically created",
+    "RTUCards.settings.sheet.saveAndClose": "Save changes & Close",
+    "RTUCards.settings.sheet.labels.availableOnHands": "Can give cards to player hands",
+    "RTUCards.settings.sheet.labels.availableOnRevealedCards": "Can directly lay cards in front of players (revealed)",
 
     "RTUCards.sheet.template": "Unified GUI",
 
-    "RTUCards.base.deck.title": "Deck (Classic)",
-    "RTUCards.base.deck.description": "A classic 52 cards deck.",
-    "RTUCards.base.pile.title": "Discard pile (Classic)",
-    "RTUCards.base.pile.description": "Classic discard pile.",
+    "RTUCards.pokerDark.deck.title": "Poker deck (Dark)",
+    "RTUCards.pokerDark.deck.description": "A classic 52 cards deck.",
+    "RTUCards.pokerDark.pile.title": "Poker discard (Dark)",
+    "RTUCards.pokerDark.pile.description": "Classic discard pile.",
+
+    "RTUCards.pokerLight.deck.title": "Poker deck (Light)",
+    "RTUCards.pokerLight.deck.description": "A classic 52 cards deck.",
+    "RTUCards.pokerLight.pile.title": "Poker discard (Light)",
+    "RTUCards.pokerLight.pile.description": "Classic discard pile.",
 
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",

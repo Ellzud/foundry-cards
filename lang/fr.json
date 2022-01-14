@@ -1,15 +1,28 @@
 {
-    "RTUCards.settings.GmNameLabel": "Nom du MJ",
-    "RTUCards.settings.GmNameHint": "Nom affiché lorsque les MJ fait des actions sur les decks",
-    "RTUCards.settings.GmIconLabel": "Icone du MJ",
-    "RTUCards.settings.GmIconHint": "Icone affichée lorsque les MJ fait des actions sur les decks",
+
+    "RTUCards.settings.gm.NameLabel": "Nom du MJ",
+    "RTUCards.settings.gm.NameHint": "Nom affiché lorsque les MJ fait des actions sur les decks",
+    "RTUCards.settings.gm.IconLabel": "Icone du MJ",
+    "RTUCards.settings.gm.IconHint": "Icone affichée lorsque les MJ fait des actions sur les decks",
+
+    "RTUCards.settings.sheet.menu": "Configuration des jeux de carte",
+    "RTUCards.settings.sheet.title": "Choisissez vos decks!",
+    "RTUCards.settings.sheet.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
+    "RTUCards.settings.sheet.saveAndClose": "Sauvegarder les modifs & Fermeture",
+    "RTUCards.settings.sheet.labels.availableOnHands": "Donne des cartes dans les mains des joueurs",
+    "RTUCards.settings.sheet.labels.availableOnRevealedCards": "Pose des cartes faces visibles devant les joueurs",
 
     "RTUCards.sheet.template": "IHM unifiée",
 
-    "RTUCards.base.deck.title": "Deck (Classique)",
-    "RTUCards.base.deck.description": "Un jeu classique de 52 cartes.",
-    "RTUCards.base.pile.title": "Défausse (Classique)",
-    "RTUCards.base.pile.description": "La défausse pour les cartes standard.",
+    "RTUCards.pokerDark.deck.title": "Poker - Deck (Sombre)",
+    "RTUCards.pokerDark.deck.description": "Un jeu classique de 52 cartes.",
+    "RTUCards.pokerDark.pile.title": "Poker - Defausse (Sombre)",
+    "RTUCards.pokerDark.pile.description": "La défausse pour les cartes standard.",
+
+    "RTUCards.pokerLight.deck.title": "Poker - Deck (Couleurs)",
+    "RTUCards.pokerLight.deck.description": "Un jeu classique de 52 cartes.",
+    "RTUCards.pokerLight.pile.title": "Poker - Defausse (Couleurs)",
+    "RTUCards.pokerLight.pile.description": "La défausse pour les cartes standard.",
 
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",

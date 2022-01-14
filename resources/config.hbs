@@ -1,0 +1,45 @@
+{{#*inline "configLine"}}
+
+    <div class="flexrow deck-row content">
+        {{#if box.toggled}}
+            <i class="far fa-check-square toggle-button config" data-config="{{box.config}}"></i>
+        {{else}}
+            <i class="far fa-square toggle-button config" data-config="{{box.config}}"></i>
+        {{/if}}
+        <div>{{box.label}}</div>
+    </div>
+
+{{/inline}}
+
+<form>
+    <p class="notification info">{{localize 'RTUCards.settings.sheet.title'}}</p>
+
+    <div class="flexcol deck-list">
+        {{#each stacks as |stack| }}
+            <div class="flexcol" data-key={{stack.key}}>
+                <div class="flexrow deck-row">
+                    {{#if stack.gui.toggled}}
+                        <i class="far fa-check-square toggle-button deck"></i>
+                        {{#if stack.gui.detailsDisplayed}}
+                            <i class="fas fa-sort-down toggle-button show"></i>
+                        {{else}}
+                            <i class="fas fa-sort-up toggle-button show"></i>
+                        {{/if}}
+                    {{else}}
+                        <i class="far fa-square toggle-button deck"></i>
+                    {{/if}}
+                    <div>{{stack.gui.deck.name}}</div>
+                </div>
+                {{#if stack.gui.detailsDisplayed}}
+                    <div class="flexrow deck-row content">
+                        <div>{{stack.gui.deck.desc}}</div>
+                    </div>
+                    {{#each stack.configBoxes as |box| }}
+                        {{> configLine box=box }}
+                    {{/each}}
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+    <button class="save-stacks">{{localize "RTUCards.settings.sheet.saveAndClose"}}</button>
+</form>

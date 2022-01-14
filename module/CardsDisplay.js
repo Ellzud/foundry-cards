@@ -135,7 +135,7 @@ export class CustomCardsDisplay extends CardsConfig {
             }
 
         } else {
-            // Choosing background depending on the selected card. Or by default the one in xxx/background/back.png
+            // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
             let background = card?.data.back.img;
             if(!background) {
                 const owner = this._cards.stackOwner;
@@ -153,7 +153,7 @@ export class CustomCardsDisplay extends CardsConfig {
                 }
                 
                 const type = this._cards.type;
-                background = baseDir + '/background/' + (type=='pile'? 'front.png' : 'back.png');
+                background = baseDir + '/background/' + (type=='pile'? 'front.webp' : 'back.webp');
             }
 
             cardInfo.classes = 'cardback';

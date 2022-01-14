@@ -57,6 +57,28 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
 }
 
 /**
+ * Try to find card stacks which has the module flags but are not declared anymore in the config settings
+ * Doesn't touch stacks who where added manually via hooks.
+ * This is to avoid the case where the other module fails to launch and every custom card stacks are deleted.
+ * @param {object} defaultCoreStacks See CustomCardStackLoader.defaultCoreStacks (useful to determine if it was handled by settings or hooks)
+ * @returns {CustomCards[]} List of non deeclared stacks (those from hooks are not here)
+ */
+ const findNonDeclaredCoreStacks = ( defaultCoreStacks ) => {
+
+    return game.cards.filter( stack => {
+        const core = stack.getFlag('ready-to-use-cards', 'core');
+        if(!core) { return false; }
+
+        // Is it declared ?
+        if( CARD_STACKS_DEFINITION.core.hasOwnProperty(core) ) { return false; }
+
+        // Is it one of the defaultCoreStacks ? (Meaning no hooks)
+        const defaultOne = defaultCoreStacks.hasOwnProperty(core);
+        return defaultOne;
+    });
+}
+
+/**
  * Prepare the preset for creating a core stack.
  * @param {string} type 'deck' or 'pile'
  * @param {object} coreStack See CARD_STACKS_DEFINITION
@@ -68,14 +90,12 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Icon
     const imgPath = coreStack.resourceBaseDir + '/icons/';
-    const imgFile = imgPath + (type == 'pile' ? 'front.png' : 'back.png' );
+    const imgFile = imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' );
 
     // Flags
     const stackFlag = {};
     stackFlag["core"] = coreStack.key;
     stackFlag["owner"] = 'none';
-    stackFlag["onHand"] = coreStack.availableOnHands;
-    stackFlag["onRevealed"] = coreStack.availableOnRevealedCards;
 
     // Permissions
     const permission = {
@@ -109,7 +129,7 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Icon
     const imgPath = CARD_STACKS_DEFINITION.playerStacks.resourceBaseDir + '/icons/';
-    const imgFile = imgPath + (type == 'pile' ? 'front.png' : 'back.png' );
+    const imgFile = imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' );
 
     // Flags
     const stackFlag = {};
@@ -139,7 +159,7 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Icon
     const imgPath = CARD_STACKS_DEFINITION.gmStacks.resourceBaseDir + '/icons/';
-    const imgFile = imgPath + (type == 'pile' ? 'front.png' : 'back.png' );
+    const imgFile = imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' );
 
     // Flags
     const stackFlag = {};
@@ -242,20 +262,22 @@ const loadFolder = async (ownerId, folderName) => {
 /**
  * Fill CARD_STACKS_DEFINITION with necessary data
  * Once it is initialized, trigger a hok so that other modules/systems can complete it
+ * @param {object} defaultStacks Default definition for every classic card stack
  */
-const loadStackDefinition = () => {
+const loadStackDefinition = (defaultStacks) => {
 
     const def = CARD_STACKS_DEFINITION;
+    def.core = {};
 
-    // Add a default deck. FIXME : Should be configurable
-    def.core.base = {
-        cardClass: CustomCardSimple,
-        labelBaseKey : 'RTUCards.base.',
-        resourceBaseDir : 'modules/ready-to-use-cards/resources/base',
-        availableOnHands: true,
-        availableOnRevealedCards: true,
-        preset: CONFIG.Cards.presets.pokerDark.src,
-    }
+    // Retrieve config for every card stack toggled in configuration
+    const stacks = game.settings.get("ready-to-use-cards", "stacks") ?? {};
+    Object.entries(stacks).forEach( ([coreKey, stackConf]) => {
+        const defaultCore = defaultStacks[coreKey];
+        const stackDef = duplicate(defaultCore);
+        stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
+        stackDef.config = stackConf; // Config is replaced by the one in config.
+        def.core[coreKey] = stackDef;
+    });
 
     def.shared.cardClasses = {
         base: CustomCardBase,
@@ -269,6 +291,31 @@ const loadStackDefinition = () => {
 export class CustomCardStackLoader {
 
     constructor() {
+    }
+
+    get defaultCoreStacks() {
+        return {
+            pokerDark: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerDark.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
+                preset: CONFIG.Cards.presets.pokerDark.src,
+                config: {
+                    availableOnHands: true,
+                    availableOnRevealedCards: true
+                }
+            },
+            pokerLight: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerLight.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
+                preset: CONFIG.Cards.presets.pokerLight.src,
+                config: {
+                    availableOnHands: true,
+                    availableOnRevealedCards: true
+                }
+            }
+        }
     }
 
     /**
@@ -286,9 +333,9 @@ export class CustomCardStackLoader {
 
     async loadCardStacks() {
         
-        loadStackDefinition();
+        loadStackDefinition(this.defaultCoreStacks);
         await this.initMissingStacks();
-        await this.loadStackLinks();
+        this.loadStackLinks();
     }
 
     async initMissingStacks() {
@@ -296,21 +343,24 @@ export class CustomCardStackLoader {
         // Only GMs can create stacks
         if( !game.user.isGM ) { return; }
 
-        const cardStackPresets = [];
+        const toCreate = []; // only the id
+        const toRemove = []; // The whole card stack
 
-        // Card decks and discards
+        // Create new card decks and discards
         for( const coreStack of this.coreStackDefinitions ) {
 
             if( !findCoreStack('deck', coreStack) ) {
                 const preset = await initCoreStackPreset('deck', coreStack);
-                cardStackPresets.push(preset);
+                toCreate.push(preset);
             }
 
             if( !findCoreStack('pile', coreStack) ) {
                 const preset = await initCoreStackPreset('pile', coreStack);
-                cardStackPresets.push(preset);
+                toCreate.push(preset);
             }
         }
+        // And remove those which have been unchecked in the settings.
+        toRemove.push( ...findNonDeclaredCoreStacks(this.defaultCoreStacks) );
 
         // For each player : One hand, and One pile
         for( const u of game.users.contents.filter( u => !u.isGM ) ) {
@@ -320,13 +370,13 @@ export class CustomCardStackLoader {
             // The hand
             if( !findPlayerCardStack('hand', u) ) {
                 const preset = initPlayerStackPreset('hand', u, userFolder);
-                cardStackPresets.push(preset);
+                toCreate.push(preset);
             }
 
             // The pile
             if( !findPlayerCardStack('pile', u) ) {
                 const preset = initPlayerStackPreset('pile', u, userFolder);
-                cardStackPresets.push(preset);
+                toCreate.push(preset);
             }
         };
 
@@ -335,25 +385,34 @@ export class CustomCardStackLoader {
         const gmFolder = await loadGMFolder();
         if( !findGMCardStack('hand') ) {
             const preset = initGMStackPreset('hand', gmFolder);
-            cardStackPresets.push(preset);
+            toCreate.push(preset);
         }
 
         // - The GM pile
         if( !findGMCardStack('pile') ) {
             const preset = initGMStackPreset('pile', gmFolder);
-            cardStackPresets.push(preset);
+            toCreate.push(preset);
         }
 
         // Load missing card stacks
-        if( cardStackPresets.length > 0 ) {
-            const stacks = await Cards.createDocuments(cardStackPresets);
+        if( toCreate.length > 0 ) {
+            const stacks = await Cards.createDocuments(toCreate);
             for( const stack of stacks ) {
                 await stack.shuffle({chatNotification: false});
             }
         }
+
+        // Remove the ones which should not be here anymore (after reseting their content)
+        for( const cardStack of toRemove ) {
+            await cardStack.reset({chatNotification: false});
+        }
+        const toRemoveIds = toRemove.map( s => s.id );
+        if( toRemoveIds.length ) {
+            await Cards.deleteDocuments(toRemoveIds);
+        }
     }
 
-    async loadStackLinks() {
+    loadStackLinks() {
 
         // Load decks and discard piles
         this.decks = {};

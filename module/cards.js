@@ -86,12 +86,20 @@ export class CustomCards extends Cards {
         return result;
     }
 
+    confValue(confKey) {
+        const coreKey = this.coreStackRef;
+        if(coreKey) {
+            return CARD_STACKS_DEFINITION.core[coreKey].config[confKey];
+        }
+        return null;
+    }
+
     get cardsAllowedOnHands() {
-        return this.getFlag("ready-to-use-cards", "onHand") ?? false;
+        return this.confValue("availableOnHands");
     }
     
     get revealedCardsAllowed() {
-        return this.getFlag("ready-to-use-cards", "onRevealed") ?? false;
+        return this.confValue("availableOnRevealedCards");
     }
     
     get sortedAvailableCards() {
@@ -360,7 +368,7 @@ export class CustomCards extends Cards {
         const currentCard = this.cards.get(cardId);
         const original = await currentCard?.reset({chatNotification: false});
 
-        const coreKey = this.coreStackRef ?? 'base';
+        const coreKey = this.coreStackRef;
         await this.cardStacks.decks[coreKey]?.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', 1);
@@ -400,7 +408,7 @@ export class CustomCards extends Cards {
         const amount = this.availableCards.length;
         await this.reset({chatNotification: false});
 
-        const coreKey = this.coreStackRef ?? 'base';
+        const coreKey = this.coreStackRef;
         await this.cardStacks.decks[coreKey]?.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', amount);

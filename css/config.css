@@ -1,0 +1,29 @@
+/* ------------------------
+  Config panel for choosing decks
+  ------------------------*/
+.config-panel.rtucards-config .deck-list {
+  margin: 5px;
+  border: groove;
+}
+
+.config-panel.rtucards-config .deck-row {
+  padding: 3px;
+  line-height: 20px;
+}
+
+.config-panel.rtucards-config .deck-row.content {
+  margin-left: 20px;
+  border-left: solid darkgray;
+  font-style: italic;
+}
+
+.config-panel.rtucards-config .deck-row .toggle-button {
+  flex: unset;
+  padding-top: 2px;
+  margin-right: 3px;
+}
+
+.config-panel.rtucards-config .deck-row .toggle-button:hover {
+  cursor: pointer;
+  text-shadow: 0 0 4px darkblue;
+}
