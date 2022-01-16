@@ -95,6 +95,17 @@ export class CustomCards extends Cards {
             Object.values(StackConfiguration).forEach(confKey => { // By default all missing config are set to true
                 if( !config.hasOwnProperty(confKey) ) {  config[confKey] = true;}
             });
+
+            // If players hands have been removed, some confs are automatically set to false.
+            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand) ) {
+                config[StackConfiguration.fromDeckDealCardsToHand] = false;
+                config[StackConfiguration.fromRevealedBackToHand] = false;
+            }
+
+            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards) ) {
+                config[StackConfiguration.fromDeckDealRevealedCards] = false;
+                config[StackConfiguration.fromHandRevealCard] = false;
+            }
             return config;
 
         }

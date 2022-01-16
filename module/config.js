@@ -56,8 +56,8 @@ export class RTUCardsConfig extends FormApplication {
 		});
 	
 		game.settings.register("ready-to-use-cards", GlobalConfiguration.gmName, {
-			name: "RTUCards.settings.gm.nameLabel",
-			hint: "RTUCards.settings.gm.nameHint",
+			name: "RTUCards.settings.gmName.label",
+			hint: "RTUCards.settings.gmName.hint",
 			scope: "world",
 			type: String,
 			default: 'GM',
@@ -65,11 +65,29 @@ export class RTUCardsConfig extends FormApplication {
 		});
 	  
 		game.settings.register("ready-to-use-cards", GlobalConfiguration.gmIcon, {
-			name: "RTUCards.settings.gm.iconLabel",
-			hint: "RTUCards.settings.gm.iconHint",
+			name: "RTUCards.settings.gmIcon.label",
+			hint: "RTUCards.settings.gmIcon.hint",
 			scope: "world",
 			type: String,
 			default: 'modules/ready-to-use-cards/resources/gmIcon.png',
+			config: true
+		});
+	  
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand, {
+			name: "RTUCards.settings.stackForPlayerHand.label",
+			hint: "RTUCards.settings.stackForPlayerHand.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
+			config: true
+		});
+	  
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards, {
+			name: "RTUCards.settings.stackForPlayerRevealedCards.label",
+			hint: "RTUCards.settings.stackForPlayerRevealedCards.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
 			config: true
 		});
 	  

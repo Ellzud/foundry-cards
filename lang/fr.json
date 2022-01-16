@@ -1,21 +1,26 @@
 {
 
-    "RTUCards.settings.gm.nameLabel": "Nom du MJ",
-    "RTUCards.settings.gm.nameHint": "Nom affiché lorsque les MJ fait des actions sur les decks",
-    "RTUCards.settings.gm.iconLabel": "Icone du MJ",
-    "RTUCards.settings.gm.iconHint": "Icone affichée lorsque les MJ fait des actions sur les decks",
+    "RTUCards.settings.gmName.label": "Nom du MJ",
+    "RTUCards.settings.gmName.hint": "Nom affiché lorsque les MJ fait des actions sur les decks",
+    "RTUCards.settings.gmIcon.label": "Icone du MJ",
+    "RTUCards.settings.gmIcon.hint": "Icone affichée lorsque les MJ fait des actions sur les decks",
+
+    "RTUCards.settings.stackForPlayerHand.label": "Cartes en main",
+    "RTUCards.settings.stackForPlayerHand.hint": "Permet de savoir s'il faut créer une pile de carte pour les mains de chaque joueurs",
+    "RTUCards.settings.stackForPlayerRevealedCards.label": "Cartes faces visibles",
+    "RTUCards.settings.stackForPlayerRevealedCards.hint": "Permet de savoir s'il faut créer une pile pour les cartes faces visibles de chaque joueur",
+
+    "RTUCards.settings.everyHandsPeekOn.label": "Zieuter les mains adverses",
+    "RTUCards.settings.everyHandsPeekOn.hint": "Le MJ peut regarder les mains des joueurs (Ils seront avertis)",
+    "RTUCards.settings.everyHandsDiscardAll.label": "Défausser toute sa main",
+    "RTUCards.settings.everyHandsDiscardAll.hint": "Les joueurs peuvent défausser toute leur main d'un coup",
+    "RTUCards.settings.everyRevealedDiscardAll.label": "Défausser les cartes devant soi",
+    "RTUCards.settings.everyRevealedDiscardAll.hint": "Les joueurs peuvent défausser toutes les cartes faces visibles d'un coup",
 
     "RTUCards.settings.sheet.menu": "Configuration des jeux de carte",
     "RTUCards.settings.sheet.title": "Choisissez vos decks!",
     "RTUCards.settings.sheet.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
     "RTUCards.settings.sheet.saveAndClose": "Sauvegarder les modifs & Fermeture",
-
-    "RTUCards.settings.everyHandsPeekOn.label": "Zieuter les mains adverses",
-    "RTUCards.settings.everyHandsPeekOn.hint": "Le GM peut regarder les mains des joueurs (Ils seront avertis)",
-    "RTUCards.settings.everyHandsDiscardAll.label": "Défausser toute sa main",
-    "RTUCards.settings.everyHandsDiscardAll.hint": "Les joueurs peuvent défausser toute leur main d'un coup",
-    "RTUCards.settings.everyRevealedDiscardAll.label": "Défausser les cartes devant soi",
-    "RTUCards.settings.everyRevealedDiscardAll.hint": "Les joueurs peuvent défausser toutes les cartes faces visibles d'un coup",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Actions possibles depuis le deck : (MJ uniquement)",
     "RTUCards.settings.sheet.headers.fromHand": "Actions possibles depuis la main du joueur :",

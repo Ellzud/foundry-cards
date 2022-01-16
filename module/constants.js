@@ -66,6 +66,8 @@ export const GlobalConfiguration = {
     gmName: 'gmName',
     gmIcon: 'gmIcon',
     stacks: 'stacks',
+    stackForPlayerHand: 'stackForPlayerHand',
+    stackForPlayerRevealedCards: 'stackForPlayerRevealedCards',
     everyHandsPeekOn: 'everyHandsPeekOn',
     everyHandsDiscardAll: 'everyHandsDiscardAll',
     everyRevealedDiscardAll : 'everyRevealedDiscardAll'

@@ -1,8 +1,15 @@
 {
-    "RTUCards.settings.gm.nameLabel": "GM name",
-    "RTUCards.settings.gm.nameHint": "Name displayed when GMs do actions on decks",
-    "RTUCards.settings.gm.iconLabel": "GM icon",
-    "RTUCards.settings.gm.iconHint": "Displayed when GMs do actions on decks",
+    "RTUCards.settings.gmName.label": "GM name",
+    "RTUCards.settings.gmName.hint": "Name displayed when GMs do actions on decks",
+    "RTUCards.settings.gmIcon.label": "GM icon",
+    "RTUCards.settings.gmIcon.hint": "Displayed when GMs do actions on decks",
+
+    "RTUCards.settings.everyHandsPeekOn.label": "Peek on player's hand",
+    "RTUCards.settings.everyHandsPeekOn.hint": "GM can peek on player's hand (They will be warned)",
+    "RTUCards.settings.everyHandsDiscardAll.label": "Discard all hand",
+    "RTUCards.settings.everyHandsDiscardAll.hint": "Players can discard their whole hand in one go",
+    "RTUCards.settings.everyRevealedDiscardAll.label": "Discard all revealed cards",
+    "RTUCards.settings.everyRevealedDiscardAll.hint": "Players can discard all cards they have revealed in front of them in one go",
 
     "RTUCards.settings.sheet.menu": "Deck configuration menu",
     "RTUCards.settings.sheet.title": "Setup which decks you want!",

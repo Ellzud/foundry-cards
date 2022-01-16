@@ -114,7 +114,7 @@ export class CustomCardGUIWrapper {
             ref: this.card.name,
             icon: this.card.frontIcon,
             name: this.card.name,
-            type: this.card.data.type,
+            type: this.card.source.coreStackRef,
             rotated: 0,
             description: []
         };

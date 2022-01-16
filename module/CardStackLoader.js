@@ -62,7 +62,7 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
  * Doesn't touch stacks who where added manually via hooks.
  * This is to avoid the case where the other module fails to launch and every custom card stacks are deleted.
  * @param {object} defaultCoreStacks See CustomCardStackLoader.defaultCoreStacks (useful to determine if it was handled by settings or hooks)
- * @returns {CustomCards[]} List of non deeclared stacks (those from hooks are not here)
+ * @returns {CustomCards[]} List of non declared stacks (those from hooks are not here)
  */
  const findNonDeclaredCoreStacks = ( defaultCoreStacks ) => {
 
@@ -77,6 +77,57 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
         const defaultOne = defaultCoreStacks.hasOwnProperty(core);
         return defaultOne;
     });
+}
+
+/**
+ * Try to find card stacks which has the player flag but is not linked to an existing user.
+ * Or linked to an existing user, but a card type which is not allowed on configuration
+ * @returns {CustomCards[]} List of non declared stacks
+ */
+ const findNonDeclaredPlayerStacks = () => {
+
+    return game.cards.filter( stack => {
+        const owner = stack.getFlag('ready-to-use-cards', 'owner');
+        if(!owner) { return false; }
+
+        // Make sur we are on a player stack
+        if( owner == 'none' ) { return false; }
+
+        // Does the user still exists ?
+        if( owner != 'gm' ) {
+            const exists = game.users.some( u => u.id === owner && !u.isGM );
+            if( !exists ) { return true; } // => This is is not declared
+        }
+        
+        // Hand stacks
+        if( stack.type == 'hand' ) {
+            return !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand);
+        }
+
+        // Revealed card stacks
+        return !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards);
+    });
+}
+
+/**
+ * Remove folders which are not used anymore
+ */
+const removeUnusedFolders = async () => {
+    const unusedFolders = game.folders.filter(f => {
+        if( f.data.type != "Cards" ) { return false;} 
+        
+        const flag = f.data.flags['ready-to-use-cards'];
+        if(!flag) { return false; }
+
+        const used = game.cards.some( stack => {
+            return f.id === stack.folder?.id;
+        });
+        return !used;
+    });
+
+    if( unusedFolders.length > 0 ) {
+        await Folder.deleteDocuments(unusedFolders.map(f => f.id));
+    }
 }
 
 /**
@@ -146,7 +197,6 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
 }
-
 
 /**
  * Prepare the preset for creating the GMs stack.
@@ -382,33 +432,37 @@ export class CustomCardStackLoader {
         toRemove.push( ...findNonDeclaredCoreStacks(this.defaultCoreStacks) );
 
         // For each player : One hand, and One pile
+        const playersHaveHands = game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand);
+        const playersHaveRevealedCards = game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards);
         for( const u of game.users.contents.filter( u => !u.isGM ) ) {
 
             const userFolder = await loadPlayerFolder(u);
 
             // The hand
-            if( !findPlayerCardStack('hand', u) ) {
+            if( playersHaveHands && !findPlayerCardStack('hand', u) ) {
                 const preset = initPlayerStackPreset('hand', u, userFolder);
                 toCreate.push(preset);
             }
 
             // The pile
-            if( !findPlayerCardStack('pile', u) ) {
+            if( playersHaveRevealedCards && !findPlayerCardStack('pile', u) ) {
                 const preset = initPlayerStackPreset('pile', u, userFolder);
                 toCreate.push(preset);
             }
         };
+        // And remove those which have been unchecked in the settings.
+        toRemove.push( ...findNonDeclaredPlayerStacks() );
 
         // One hand and one stack shared by all GMs
         // - The GM hand
         const gmFolder = await loadGMFolder();
-        if( !findGMCardStack('hand') ) {
+        if( playersHaveHands && !findGMCardStack('hand') ) {
             const preset = initGMStackPreset('hand', gmFolder);
             toCreate.push(preset);
         }
 
         // - The GM pile
-        if( !findGMCardStack('pile') ) {
+        if( playersHaveRevealedCards && !findGMCardStack('pile') ) {
             const preset = initGMStackPreset('pile', gmFolder);
             toCreate.push(preset);
         }
@@ -429,6 +483,9 @@ export class CustomCardStackLoader {
         if( toRemoveIds.length ) {
             await Cards.deleteDocuments(toRemoveIds);
         }
+
+        // Finally removed folders which are not used anymore
+        await removeUnusedFolders();
     }
 
     loadStackLinks() {
