@@ -165,8 +165,8 @@ export class RTUCardsConfig extends FormApplication {
 				toggled: cardStacks.decks.hasOwnProperty( key ),
 				detailsDisplayed: false,
 				deck: {
-					name: game.i18n.localize(stackDef.labelBaseKey + 'deck.title'),
-					desc: game.i18n.localize(stackDef.labelBaseKey + 'deck.description')
+					name: game.i18n.localize(stackDef.labelBaseKey + 'title'),
+					desc: game.i18n.localize(stackDef.labelBaseKey + 'description')
 				},
 				labels: configLabels
 			};

@@ -35,30 +35,23 @@
 
     "RTUCards.sheet.template": "Unified GUI",
 
-    "RTUCards.pokerDark.deck.title": "Poker deck (Dark)",
-    "RTUCards.pokerDark.deck.description": "A classic 52 cards deck.",
-    "RTUCards.pokerDark.pile.title": "Poker discard (Dark)",
-    "RTUCards.pokerDark.pile.description": "Classic discard pile.",
+    "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
+    "RTUCards.pokerDark.coreStacks.suffix.pile": " - Discard",
 
-    "RTUCards.pokerLight.deck.title": "Poker deck (Light)",
-    "RTUCards.pokerLight.deck.description": "A classic 52 cards deck.",
-    "RTUCards.pokerLight.pile.title": "Poker discard (Light)",
-    "RTUCards.pokerLight.pile.description": "Classic discard pile.",
+    "RTUCards.pokerDark.title": "Poker, golden cards",
+    "RTUCards.pokerDark.description": "A classic 52 cards deck.",
 
-    "RTUCards.zodiac.deck.title": "Zodiac signs (Deck)",
-    "RTUCards.zodiac.deck.description": "A 12 cards deck. One for each sign.",
-    "RTUCards.zodiac.pile.title": "Zodiac signs (Discard)",
-    "RTUCards.zodiac.pile.description": "Zodiac discard pile.",
+    "RTUCards.pokerLight.title": "Poker, red and grey",
+    "RTUCards.pokerLight.description": "A classic 52 cards deck.",
 
-    "RTUCards.divineTarot.deck.title": "Tarot - Divinatory (Deck)",
-    "RTUCards.divineTarot.deck.description": "A 78 cards deck with major arcanas",
-    "RTUCards.divineTarot.pile.title": "Tarot - Divinatory (Discard)",
-    "RTUCards.divineTarot.pile.description": "Discard pile for tarot cards.",
+    "RTUCards.zodiac.title": "Zodiac signs",
+    "RTUCards.zodiac.description": "A 12 cards deck. One for each sign.",
 
-    "RTUCards.classicTarot.deck.title": "Tarot - Classic game (Deck)",
-    "RTUCards.classicTarot.deck.description": "A 78 cards deck with trumps and oulers",
-    "RTUCards.classicTarot.pile.title": "Tarot - Classic game (Discard)",
-    "RTUCards.classicTarot.pile.description": "Discard pile for tarot cards.",
+    "RTUCards.divineTarot.title": "Tarot - Divinatory",
+    "RTUCards.divineTarot.description": "A 78 cards deck with major arcanas",
+
+    "RTUCards.classicTarot.title": "Tarot - Classic game",
+    "RTUCards.classicTarot.description": "A 78 cards deck with trumps and oulers",
 
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",

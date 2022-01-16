@@ -87,8 +87,9 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
  * @returns {object} Preset data ready for creating a Cards document
  */
 const initCoreStackPreset = async (type, coreStack) => {
-    const name = game.i18n.localize(coreStack.labelBaseKey + type + '.title');
-    const description = game.i18n.localize(coreStack.labelBaseKey + type + '.description');
+    const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.' + type);
+    const name = game.i18n.localize(coreStack.labelBaseKey + 'title') + suffix;
+    const description = game.i18n.localize(coreStack.labelBaseKey + 'description');
 
     // Icon
     const imgPath = coreStack.resourceBaseDir + '/icons/';

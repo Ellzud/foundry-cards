@@ -43,30 +43,23 @@
 
     "RTUCards.sheet.template": "IHM unifiée",
 
-    "RTUCards.pokerDark.deck.title": "Poker - Deck (Sombre)",
-    "RTUCards.pokerDark.deck.description": "Un jeu classique de 52 cartes.",
-    "RTUCards.pokerDark.pile.title": "Poker - Defausse (Sombre)",
-    "RTUCards.pokerDark.pile.description": "La défausse pour les cartes standard.",
+    "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
+    "RTUCards.pokerDark.coreStacks.suffix.pile": " - Défausse",
 
-    "RTUCards.pokerLight.deck.title": "Poker - Deck (Couleurs)",
-    "RTUCards.pokerLight.deck.description": "Un jeu classique de 52 cartes.",
-    "RTUCards.pokerLight.pile.title": "Poker - Defausse (Couleurs)",
-    "RTUCards.pokerLight.pile.description": "La défausse pour les cartes standard.",
+    "RTUCards.pokerDark.title": "Poker, cartes dorées",
+    "RTUCards.pokerDark.description": "Un jeu classique de 52 cartes.",
 
-    "RTUCards.zodiac.deck.title": "Signes du zodiaque (Deck)",
-    "RTUCards.zodiac.deck.description": "12 cartes. Une pour chaque signe.",
-    "RTUCards.zodiac.pile.title": "Signes du zodiaque (Défausse)",
-    "RTUCards.zodiac.pile.description": "Défausse pour les signes du zodiaque.",
+    "RTUCards.pokerLight.title": "Poker, rouge et gris",
+    "RTUCards.pokerLight.description": "Un jeu classique de 52 cartes.",
 
-    "RTUCards.divineTarot.deck.title": "Tarot divinatoire (Deck)",
-    "RTUCards.divineTarot.deck.description": "78 cartes, dont les arcanes majeurs.",
-    "RTUCards.divineTarot.pile.title": "Tarot divinatoire (Défausse)",
-    "RTUCards.divineTarot.pile.description": "Défausse pour les cartes de tarot.",
+    "RTUCards.zodiac.title": "Signes du zodiaque",
+    "RTUCards.zodiac.description": "12 cartes. Une pour chaque signe.",
 
-    "RTUCards.classicTarot.deck.title": "Tarot classique (Deck)",
-    "RTUCards.classicTarot.deck.description": "78 cartes, dont les atouts et les bouts",
-    "RTUCards.classicTarot.pile.title": "Tarot classique (Défausse)",
-    "RTUCards.classicTarot.pile.description": "Défausse pour les cartes de tarot.",
+    "RTUCards.divineTarot.title": "Tarot divinatoire",
+    "RTUCards.divineTarot.description": "78 cartes, dont les arcanes majeurs.",
+
+    "RTUCards.classicTarot.title": "Tarot classique",
+    "RTUCards.classicTarot.description": "78 cartes, dont les atouts et les bouts",
 
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",
