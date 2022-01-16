@@ -6,10 +6,10 @@
   "data": {},
   "cards": [
     {
-      "name": "hearts_01",
+      "name": "Ace of hearts",
       "faces": [
         {
-          "name": "hearts_01",
+          "name": "Ace of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_01.webp",
           "text": ""
         }
@@ -41,10 +41,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_02",
+      "name": "Two of hearts",
       "faces": [
         {
-          "name": "hearts_02",
+          "name": "Two of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_02.webp",
           "text": ""
         }
@@ -76,10 +76,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_03",
+      "name": "Three of hearts",
       "faces": [
         {
-          "name": "hearts_03",
+          "name": "Three of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_03.webp",
           "text": ""
         }
@@ -111,10 +111,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_04",
+      "name": "Four of hearts",
       "faces": [
         {
-          "name": "hearts_04",
+          "name": "Four of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_04.webp",
           "text": ""
         }
@@ -146,10 +146,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_05",
+      "name": "Five of hearts",
       "faces": [
         {
-          "name": "hearts_05",
+          "name": "Five of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_05.webp",
           "text": ""
         }
@@ -181,10 +181,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_06",
+      "name": "Six of hearts",
       "faces": [
         {
-          "name": "hearts_06",
+          "name": "Six of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_06.webp",
           "text": ""
         }
@@ -216,10 +216,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_07",
+      "name": "Seven of hearts",
       "faces": [
         {
-          "name": "hearts_07",
+          "name": "Seven of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_07.webp",
           "text": ""
         }
@@ -251,10 +251,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_08",
+      "name": "Eight of hearts",
       "faces": [
         {
-          "name": "hearts_08",
+          "name": "Eight of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_08.webp",
           "text": ""
         }
@@ -286,10 +286,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_09",
+      "name": "Nine of hearts",
       "faces": [
         {
-          "name": "hearts_09",
+          "name": "Nine of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_09.webp",
           "text": ""
         }
@@ -321,10 +321,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_10",
+      "name": "Ten of hearts",
       "faces": [
         {
-          "name": "hearts_10",
+          "name": "Ten of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_10.webp",
           "text": ""
         }
@@ -356,10 +356,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_11",
+      "name": "Jack of hearts",
       "faces": [
         {
-          "name": "hearts_11",
+          "name": "Jack of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_11.webp",
           "text": ""
         }
@@ -391,10 +391,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_12",
+      "name": "Knight of hearts",
       "faces": [
         {
-          "name": "hearts_12",
+          "name": "Knight of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_12.webp",
           "text": ""
         }
@@ -426,10 +426,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_13",
+      "name": "Queen of hearts",
       "faces": [
         {
-          "name": "hearts_13",
+          "name": "Queen of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_13.webp",
           "text": ""
         }
@@ -461,10 +461,10 @@
       "flags": {}
     },
     {
-      "name": "hearts_14",
+      "name": "King of hearts",
       "faces": [
         {
-          "name": "hearts_14",
+          "name": "King of hearts",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_14.webp",
           "text": ""
         }
@@ -496,10 +496,10 @@
       "flags": {}
     },
     {
-      "name": "spades_01",
+      "name": "Ace of spades",
       "faces": [
         {
-          "name": "spades_01",
+          "name": "Ace of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_01.webp",
           "text": ""
         }
@@ -531,10 +531,10 @@
       "flags": {}
     },
     {
-      "name": "spades_02",
+      "name": "Two of spades",
       "faces": [
         {
-          "name": "spades_02",
+          "name": "Two of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_02.webp",
           "text": ""
         }
@@ -566,10 +566,10 @@
       "flags": {}
     },
     {
-      "name": "spades_03",
+      "name": "Three of spades",
       "faces": [
         {
-          "name": "spades_03",
+          "name": "Three of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_03.webp",
           "text": ""
         }
@@ -601,10 +601,10 @@
       "flags": {}
     },
     {
-      "name": "spades_04",
+      "name": "Four of spades",
       "faces": [
         {
-          "name": "spades_04",
+          "name": "Four of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_04.webp",
           "text": ""
         }
@@ -636,10 +636,10 @@
       "flags": {}
     },
     {
-      "name": "spades_05",
+      "name": "Five of spades",
       "faces": [
         {
-          "name": "spades_05",
+          "name": "Five of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_05.webp",
           "text": ""
         }
@@ -671,10 +671,10 @@
       "flags": {}
     },
     {
-      "name": "spades_06",
+      "name": "Six of spades",
       "faces": [
         {
-          "name": "spades_06",
+          "name": "Six of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_06.webp",
           "text": ""
         }
@@ -706,10 +706,10 @@
       "flags": {}
     },
     {
-      "name": "spades_07",
+      "name": "Seven of spades",
       "faces": [
         {
-          "name": "spades_07",
+          "name": "Seven of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_07.webp",
           "text": ""
         }
@@ -741,10 +741,10 @@
       "flags": {}
     },
     {
-      "name": "spades_08",
+      "name": "Eight of spades",
       "faces": [
         {
-          "name": "spades_08",
+          "name": "Eight of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_08.webp",
           "text": ""
         }
@@ -776,10 +776,10 @@
       "flags": {}
     },
     {
-      "name": "spades_09",
+      "name": "Nine of spades",
       "faces": [
         {
-          "name": "spades_09",
+          "name": "Nine of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_09.webp",
           "text": ""
         }
@@ -811,10 +811,10 @@
       "flags": {}
     },
     {
-      "name": "spades_10",
+      "name": "Ten of spades",
       "faces": [
         {
-          "name": "spades_10",
+          "name": "Ten of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_10.webp",
           "text": ""
         }
@@ -846,10 +846,10 @@
       "flags": {}
     },
     {
-      "name": "spades_11",
+      "name": "Jack of spades",
       "faces": [
         {
-          "name": "spades_11",
+          "name": "Jack of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_11.webp",
           "text": ""
         }
@@ -881,10 +881,10 @@
       "flags": {}
     },
     {
-      "name": "spades_12",
+      "name": "Knight of spades",
       "faces": [
         {
-          "name": "spades_12",
+          "name": "Knight of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_12.webp",
           "text": ""
         }
@@ -916,10 +916,10 @@
       "flags": {}
     },
     {
-      "name": "spades_13",
+      "name": "Queen of spades",
       "faces": [
         {
-          "name": "spades_13",
+          "name": "Queen of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_13.webp",
           "text": ""
         }
@@ -951,10 +951,10 @@
       "flags": {}
     },
     {
-      "name": "spades_14",
+      "name": "King of spades",
       "faces": [
         {
-          "name": "spades_14",
+          "name": "King of spades",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_14.webp",
           "text": ""
         }
@@ -986,10 +986,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_01",
+      "name": "Ace of diamonds",
       "faces": [
         {
-          "name": "diamonds_01",
+          "name": "Ace of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_01.webp",
           "text": ""
         }
@@ -1021,10 +1021,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_02",
+      "name": "Two of diamonds",
       "faces": [
         {
-          "name": "diamonds_02",
+          "name": "Two of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_02.webp",
           "text": ""
         }
@@ -1056,10 +1056,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_03",
+      "name": "Three of diamonds",
       "faces": [
         {
-          "name": "diamonds_03",
+          "name": "Three of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_03.webp",
           "text": ""
         }
@@ -1091,10 +1091,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_04",
+      "name": "Four of diamonds",
       "faces": [
         {
-          "name": "diamonds_04",
+          "name": "Four of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_04.webp",
           "text": ""
         }
@@ -1126,10 +1126,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_05",
+      "name": "Five of diamonds",
       "faces": [
         {
-          "name": "diamonds_05",
+          "name": "Five of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_05.webp",
           "text": ""
         }
@@ -1161,10 +1161,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_06",
+      "name": "Six of diamonds",
       "faces": [
         {
-          "name": "diamonds_06",
+          "name": "Six of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_06.webp",
           "text": ""
         }
@@ -1196,10 +1196,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_07",
+      "name": "Seven of diamonds",
       "faces": [
         {
-          "name": "diamonds_07",
+          "name": "Seven of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_07.webp",
           "text": ""
         }
@@ -1231,10 +1231,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_08",
+      "name": "Eight of diamonds",
       "faces": [
         {
-          "name": "diamonds_08",
+          "name": "Eight of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_08.webp",
           "text": ""
         }
@@ -1266,10 +1266,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_09",
+      "name": "Nine of diamonds",
       "faces": [
         {
-          "name": "diamonds_09",
+          "name": "Nine of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_09.webp",
           "text": ""
         }
@@ -1301,10 +1301,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_10",
+      "name": "Ten of diamonds",
       "faces": [
         {
-          "name": "diamonds_10",
+          "name": "Ten of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_10.webp",
           "text": ""
         }
@@ -1336,10 +1336,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_11",
+      "name": "Jack of diamonds",
       "faces": [
         {
-          "name": "diamonds_11",
+          "name": "Jack of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_11.webp",
           "text": ""
         }
@@ -1371,10 +1371,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_12",
+      "name": "Knight of diamonds",
       "faces": [
         {
-          "name": "diamonds_12",
+          "name": "Knight of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_12.webp",
           "text": ""
         }
@@ -1406,10 +1406,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_13",
+      "name": "Queen of diamonds",
       "faces": [
         {
-          "name": "diamonds_13",
+          "name": "Queen of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_13.webp",
           "text": ""
         }
@@ -1441,10 +1441,10 @@
       "flags": {}
     },
     {
-      "name": "diamonds_14",
+      "name": "King of diamonds",
       "faces": [
         {
-          "name": "diamonds_14",
+          "name": "King of diamonds",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_14.webp",
           "text": ""
         }
@@ -1476,10 +1476,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_01",
+      "name": "Ace of clubs",
       "faces": [
         {
-          "name": "clubs_01",
+          "name": "Ace of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_01.webp",
           "text": ""
         }
@@ -1511,10 +1511,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_02",
+      "name": "Two of clubs",
       "faces": [
         {
-          "name": "clubs_02",
+          "name": "Two of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_02.webp",
           "text": ""
         }
@@ -1546,10 +1546,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_03",
+      "name": "Three of clubs",
       "faces": [
         {
-          "name": "clubs_03",
+          "name": "Three of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_03.webp",
           "text": ""
         }
@@ -1581,10 +1581,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_04",
+      "name": "Four of clubs",
       "faces": [
         {
-          "name": "clubs_04",
+          "name": "Four of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_04.webp",
           "text": ""
         }
@@ -1616,10 +1616,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_05",
+      "name": "Five of clubs",
       "faces": [
         {
-          "name": "clubs_05",
+          "name": "Five of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_05.webp",
           "text": ""
         }
@@ -1651,10 +1651,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_06",
+      "name": "Six of clubs",
       "faces": [
         {
-          "name": "clubs_06",
+          "name": "Six of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_06.webp",
           "text": ""
         }
@@ -1686,10 +1686,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_07",
+      "name": "Seven of clubs",
       "faces": [
         {
-          "name": "clubs_07",
+          "name": "Seven of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_07.webp",
           "text": ""
         }
@@ -1721,10 +1721,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_08",
+      "name": "Eight of clubs",
       "faces": [
         {
-          "name": "clubs_08",
+          "name": "Eight of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_08.webp",
           "text": ""
         }
@@ -1756,10 +1756,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_09",
+      "name": "Nine of clubs",
       "faces": [
         {
-          "name": "clubs_09",
+          "name": "Nine of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_09.webp",
           "text": ""
         }
@@ -1791,10 +1791,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_10",
+      "name": "Ten of clubs",
       "faces": [
         {
-          "name": "clubs_10",
+          "name": "Ten of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_10.webp",
           "text": ""
         }
@@ -1826,10 +1826,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_11",
+      "name": "Jack of clubs",
       "faces": [
         {
-          "name": "clubs_11",
+          "name": "Jack of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_11.webp",
           "text": ""
         }
@@ -1861,10 +1861,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_12",
+      "name": "Knight of clubs",
       "faces": [
         {
-          "name": "clubs_12",
+          "name": "Knight of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_12.webp",
           "text": ""
         }
@@ -1896,10 +1896,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_13",
+      "name": "Queen of clubs",
       "faces": [
         {
-          "name": "clubs_13",
+          "name": "Queen of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_13.webp",
           "text": ""
         }
@@ -1931,10 +1931,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_14",
+      "name": "King of clubs",
       "faces": [
         {
-          "name": "clubs_14",
+          "name": "King of clubs",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_14.webp",
           "text": ""
         }
@@ -1966,10 +1966,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_00",
+      "name": "The Excuse",
       "faces": [
         {
-          "name": "trumps_00",
+          "name": "The Excuse",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_00.webp",
           "text": ""
         }
@@ -2001,10 +2001,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_01",
+      "name": "1 of trump (petit)",
       "faces": [
         {
-          "name": "trumps_01",
+          "name": "1 of trump (petit)",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_01.webp",
           "text": ""
         }
@@ -2036,10 +2036,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_02",
+      "name": "2 of trump",
       "faces": [
         {
-          "name": "trumps_02",
+          "name": "2 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_02.webp",
           "text": ""
         }
@@ -2071,10 +2071,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_03",
+      "name": "3 of trump",
       "faces": [
         {
-          "name": "trumps_03",
+          "name": "3 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_03.webp",
           "text": ""
         }
@@ -2106,10 +2106,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_04",
+      "name": "4 of trump",
       "faces": [
         {
-          "name": "trumps_04",
+          "name": "4 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_04.webp",
           "text": ""
         }
@@ -2141,10 +2141,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_05",
+      "name": "5 of trump",
       "faces": [
         {
-          "name": "trumps_05",
+          "name": "5 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_05.webp",
           "text": ""
         }
@@ -2176,10 +2176,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_06",
+      "name": "6 of trump",
       "faces": [
         {
-          "name": "trumps_06",
+          "name": "6 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_06.webp",
           "text": ""
         }
@@ -2211,10 +2211,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_07",
+      "name": "7 of trump",
       "faces": [
         {
-          "name": "trumps_07",
+          "name": "7 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_07.webp",
           "text": ""
         }
@@ -2246,10 +2246,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_08",
+      "name": "8 of trump",
       "faces": [
         {
-          "name": "trumps_08",
+          "name": "8 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_08.webp",
           "text": ""
         }
@@ -2281,10 +2281,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_09",
+      "name": "9 of trump",
       "faces": [
         {
-          "name": "trumps_09",
+          "name": "9 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_09.webp",
           "text": ""
         }
@@ -2316,10 +2316,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_10",
+      "name": "10 of trump",
       "faces": [
         {
-          "name": "trumps_10",
+          "name": "10 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_10.webp",
           "text": ""
         }
@@ -2351,10 +2351,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_11",
+      "name": "11 of trump",
       "faces": [
         {
-          "name": "trumps_11",
+          "name": "11 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_11.webp",
           "text": ""
         }
@@ -2386,10 +2386,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_12",
+      "name": "12 of trump",
       "faces": [
         {
-          "name": "trumps_12",
+          "name": "12 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_12.webp",
           "text": ""
         }
@@ -2421,10 +2421,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_13",
+      "name": "13 of trump",
       "faces": [
         {
-          "name": "trumps_13",
+          "name": "13 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_13.webp",
           "text": ""
         }
@@ -2456,10 +2456,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_14",
+      "name": "14 of trump",
       "faces": [
         {
-          "name": "trumps_14",
+          "name": "14 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_14.webp",
           "text": ""
         }
@@ -2491,10 +2491,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_15",
+      "name": "15 of trump",
       "faces": [
         {
-          "name": "trumps_15",
+          "name": "15 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_15.webp",
           "text": ""
         }
@@ -2526,10 +2526,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_16",
+      "name": "16 of trump",
       "faces": [
         {
-          "name": "trumps_16",
+          "name": "16 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_16.webp",
           "text": ""
         }
@@ -2561,10 +2561,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_17",
+      "name": "17 of trump",
       "faces": [
         {
-          "name": "trumps_17",
+          "name": "17 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_17.webp",
           "text": ""
         }
@@ -2596,10 +2596,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_18",
+      "name": "18 of trump",
       "faces": [
         {
-          "name": "trumps_18",
+          "name": "18 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_18.webp",
           "text": ""
         }
@@ -2631,10 +2631,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_19",
+      "name": "19 of trump",
       "faces": [
         {
-          "name": "trumps_19",
+          "name": "19 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_19.webp",
           "text": ""
         }
@@ -2666,10 +2666,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_20",
+      "name": "20 of trump",
       "faces": [
         {
-          "name": "trumps_20",
+          "name": "20 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_20.webp",
           "text": ""
         }
@@ -2701,10 +2701,10 @@
       "flags": {}
     },
     {
-      "name": "trumps_21",
+      "name": "21 of trump",
       "faces": [
         {
-          "name": "trumps_21",
+          "name": "21 of trump",
           "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_21.webp",
           "text": ""
         }
