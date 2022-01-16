@@ -4,6 +4,8 @@
 .config-panel.rtucards-config .deck-list {
   margin: 5px;
   border: groove;
+  max-height: 800px;
+  overflow: scroll;
 }
 
 .config-panel.rtucards-config .deck-row {
@@ -15,6 +17,16 @@
   margin-left: 20px;
   border-left: solid darkgray;
   font-style: italic;
+}
+
+.config-panel.rtucards-config .deck-row.content.header {
+  padding-top: 10px;
+  font-style: unset;
+  text-decoration: underline;
+}
+
+.config-panel.rtucards-config .deck-row.content.conf {
+  padding-left: 10px;
 }
 
 .config-panel.rtucards-config .deck-row .toggle-button {

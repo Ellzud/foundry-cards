@@ -1,5 +1,5 @@
 import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
-import { CardActionsClasses } from './constants.js';
+import { CardActionsClasses, StackConfiguration } from './constants.js';
 
 export const CARD_STACKS_DEFINITION = {
     playerStacks: {
@@ -31,6 +31,7 @@ export const CARD_STACKS_DEFINITION = {
     },
     shared: { // To share some const enums and some basic implems
         actionCss: CardActionsClasses,
+        configKeys: StackConfiguration,
         actionParametersClasses: {
             base: CardActionParametersBase,
             cardSelection: CardActionParametersForCardSelection,

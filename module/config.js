@@ -1,6 +1,7 @@
 import { CustomCard } from "./card.js";
 import { CustomCards } from "./cards.js";
 import { CustomCardsDisplay } from "./CardsDisplay.js";
+import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 
@@ -43,7 +44,7 @@ export class RTUCardsConfig extends FormApplication {
 		});
 
 		// Data will be stored inside 'stacks'
-		game.settings.register("ready-to-use-cards", "stacks", {
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.stacks, {
 			scope: "world",
 			config: false,
 			default: null,
@@ -54,7 +55,7 @@ export class RTUCardsConfig extends FormApplication {
 			}
 		});
 	
-		game.settings.register("ready-to-use-cards", "gmName", {
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.gmName, {
 			name: "RTUCards.settings.gm.nameLabel",
 			hint: "RTUCards.settings.gm.nameHint",
 			scope: "world",
@@ -63,12 +64,39 @@ export class RTUCardsConfig extends FormApplication {
 			config: true
 		});
 	  
-		game.settings.register("ready-to-use-cards", "gmIcon", {
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.gmIcon, {
 			name: "RTUCards.settings.gm.iconLabel",
 			hint: "RTUCards.settings.gm.iconHint",
 			scope: "world",
 			type: String,
 			default: 'modules/ready-to-use-cards/resources/gmIcon.png',
+			config: true
+		});
+	  
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn, {
+			name: "RTUCards.settings.everyHandsPeekOn.label",
+			hint: "RTUCards.settings.everyHandsPeekOn.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
+			config: true
+		});
+	  
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll, {
+			name: "RTUCards.settings.everyHandsDiscardAll.label",
+			hint: "RTUCards.settings.everyHandsDiscardAll.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
+			config: true
+		});
+	  
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll, {
+			name: "RTUCards.settings.everyRevealedDiscardAll.label",
+			hint: "RTUCards.settings.everyRevealedDiscardAll.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
 			config: true
 		});
 	  
@@ -105,25 +133,34 @@ export class RTUCardsConfig extends FormApplication {
 
 	initStacks( ) {
 
-		this.configBoxes = ['availableOnHands', 'availableOnRevealedCards'];
-
-		const labelBase = 'RTUCards.settings.sheet.labels.';
-		const labels = {};
+		// Prepare configBoxes
+		const configLabels = {};
+		this.configBoxes = Object.values(StackConfiguration);
 		this.configBoxes.forEach( key => {
-			labels[key] = game.i18n.localize(labelBase + key);
+			configLabels[key] = game.i18n.localize('RTUCards.settings.sheet.labels.' + key);
 		});
 
-		const cardStacks = this.module.cardStacks;
+		// List of the available configuration settings.
+		const defaultStackConfig = this.configBoxes.reduce( (_config, confKey) => {
+			_config[confKey] = true;
+			return _config;
+		}, {});
 
+		const cardStacks = this.module.cardStacks;
 		const actualDefinition = CARD_STACKS_DEFINITION;
 
 		this.object.stacks = Object.entries(cardStacks.defaultCoreStacks).map( ([key, stackDef]) => {
 
-			const config = actualDefinition.core.hasOwnProperty(key) ? actualDefinition.core[key].config : stackDef.config;
+			const config = duplicate(defaultStackConfig);
+			if( actualDefinition.core.hasOwnProperty(key) ) {
+				Object.entries( actualDefinition.core[key].config ).forEach( ([key, confValue]) => {
+					config[key] = confValue;
+				});
+			}
 
 			const data = {};
 			data.key = key;
-			data.config = duplicate(config);
+			data.config = config;
 			data.gui = {
 				toggled: cardStacks.decks.hasOwnProperty( key ),
 				detailsDisplayed: false,
@@ -131,7 +168,7 @@ export class RTUCardsConfig extends FormApplication {
 					name: game.i18n.localize(stackDef.labelBaseKey + 'deck.title'),
 					desc: game.i18n.localize(stackDef.labelBaseKey + 'deck.description')
 				},
-				labels: labels
+				labels: configLabels
 			};
 			return data;
 		});
@@ -141,6 +178,7 @@ export class RTUCardsConfig extends FormApplication {
 	async getData() {
 
 		const mapConfigLabels = (stack, configName) => {
+
 			return {
 				config: configName,
 				toggled: stack.config[configName],
@@ -148,13 +186,33 @@ export class RTUCardsConfig extends FormApplication {
 			};
 		};
 
+		// Add confboxes information for each stack
+		const stacks = this.object.stacks.map( stack => {
+
+			const headerParts = ['fromDeck', 'fromHand', 'fromRevealed', 'fromDiscard'].map( prefix => {
+				const relatedConfKeys = this.configBoxes.filter( key => key.startsWith(prefix) );
+				const confBoxes = relatedConfKeys.map( key => mapConfigLabels( stack, key ) );
+				confBoxes.sort( (a,b) => a.label.localeCompare(b.label) );
+				return {
+					header: { isHeader: true, label: game.i18n.localize('RTUCards.settings.sheet.headers.' + prefix) },
+					confBoxes: confBoxes
+				};
+			});
+
+			const allBoxes = headerParts.reduce( (_allBoxes, current) => {
+				_allBoxes.push(current.header);
+				_allBoxes.push(...current.confBoxes);
+				return _allBoxes;
+			}, []);
+
+			const data = {
+				configBoxes: allBoxes
+			}
+			return foundry.utils.mergeObject( data, stack );
+		});
+
 		return {
-			stacks: this.object.stacks.map( stack => {
-				const data = {
-					configBoxes: this.configBoxes.map( key => mapConfigLabels( stack, key ) )
-				}
-				return foundry.utils.mergeObject( data, stack );
-			})
+			stacks: stacks
 		};
 	}
 
@@ -178,7 +236,7 @@ export class RTUCardsConfig extends FormApplication {
 		this.object.stacks.filter( s => s.gui.toggled ).forEach( stack => {
 			decks[stack.key] = stack.config;
 		});
-		await game.settings.set("ready-to-use-cards", "stacks", decks);
+		await game.settings.set("ready-to-use-cards", GlobalConfiguration.stacks, decks);
 		await this.module.cardStacks.loadCardStacks();
 		this.close();
 	}

@@ -1,3 +1,4 @@
+import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 
 export class CardActionParametersBase {
     
@@ -143,9 +144,13 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
 
         const deck = this.sheet._cards;
         const defaultCriteria = (stack) => { 
+
+            const deckConfig = deck.stackConfig;
+            const keys = StackConfiguration;
+
             const isHandStack = stack.type == 'hand';
-            if( isHandStack ) { return deck.cardsAllowedOnHands; }
-            return deck.revealedCardsAllowed;
+            if( isHandStack ) { return deckConfig[keys.fromDeckDealCardsToHand]; }
+            return deckConfig[keys.fromDeckDealRevealedCards]; ;
         };
         const defaultCallback = async (selection, selectedStacks, amount) => { 
             await this.sheet._cards.dealCards(selectedStacks, amount);
@@ -202,8 +207,8 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
         const owner = stack.stackOwner;
         if( owner.forGMs ) {
             isHere = game.users.some( u => u.isGM && u.active );
-            result.name = game.settings.get("ready-to-use-cards", "gmName");
-            result.icon = game.settings.get("ready-to-use-cards", "gmIcon");
+            result.name = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
+            result.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
         } else {
             const user = game.users.get(stack.stackOwner.playerId);
             isHere = user.active ?? false;

@@ -1,6 +1,14 @@
+{{#*inline "configHeader"}}
+
+    <div class="flexrow deck-row content header">
+        <div>{{header.label}}</div>
+    </div>
+
+{{/inline}}
+
 {{#*inline "configLine"}}
 
-    <div class="flexrow deck-row content">
+    <div class="flexrow deck-row content conf">
         {{#if box.toggled}}
             <i class="far fa-check-square toggle-button config" data-config="{{box.config}}"></i>
         {{else}}
@@ -35,7 +43,12 @@
                         <div>{{stack.gui.deck.desc}}</div>
                     </div>
                     {{#each stack.configBoxes as |box| }}
-                        {{> configLine box=box }}
+
+                        {{#if box.isHeader }}
+                            {{> configHeader header=box }}
+                        {{else}}
+                            {{> configLine box=box }}
+                        {{/if}}
                     {{/each}}
                 {{/if}}
             </div>

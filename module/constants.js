@@ -29,5 +29,44 @@
     shuffleDeck: 'shuffle-deck',
     shuffleDiscard: 'shuffle-discard',
     discardHand: 'discard-hand',
+    discardRevealedCards: 'discard-revealed-cards',
     customAction: 'custom-action'
+};
+
+
+
+/**
+ * Config stored for core stack definition.
+ */
+export const StackConfiguration = {
+    fromDeckPeekOn: 'fromDeckPeekOn',
+    fromDeckDealCardsToHand: 'fromDeckDealCardsToHand',
+    fromDeckDealRevealedCards: 'fromDeckDealRevealedCards',
+    fromDeckDiscardDirectly: 'fromDeckDiscardDirectly',
+    fromDeckResetAll: 'fromDeckResetAll',
+    fromDeckShuffleRemainingCards: 'fromDeckShuffleRemainingCards',
+    fromDeckRotateCard: 'fromDeckRotateCard',
+    fromHandPlayCard: 'fromHandPlayCard',
+    fromHandRevealCard: 'fromHandRevealCard',
+    fromHandDiscardCard: 'fromHandDiscardCard',
+    fromHandRotateCard: 'fromHandRotateCard',
+    fromRevealedPlayCard: 'fromRevealedPlayCard',
+    fromRevealedBackToHand: 'fromRevealedBackToHand',
+    fromRevealedDiscardCard: 'fromRevealedDiscardCard', 
+    fromRevealedRotateCard: 'fromRevealedRotateCard',
+    fromDiscardBackToDeck: 'fromDiscardBackToDeck',
+    fromDiscardRotateCard: 'fromDiscardRotateCard',
+    fromDiscardResetAll: 'fromDiscardResetAll'
+};
+
+/**
+ * Configuration which is not link to a specific core stack
+ */
+export const GlobalConfiguration = {
+    gmName: 'gmName',
+    gmIcon: 'gmIcon',
+    stacks: 'stacks',
+    everyHandsPeekOn: 'everyHandsPeekOn',
+    everyHandsDiscardAll: 'everyHandsDiscardAll',
+    everyRevealedDiscardAll : 'everyRevealedDiscardAll'
 };

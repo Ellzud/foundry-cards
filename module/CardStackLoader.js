@@ -1,3 +1,5 @@
+import { GlobalConfiguration } from './constants.js';
+import { CustomCardActionTools } from './CustomCardActionTools.js';
 import { CustomCardBase } from './CustomCardBase.js';
 import { CustomCardSimple } from './CustomCardSimple.js';
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
@@ -271,7 +273,7 @@ const loadStackDefinition = (defaultStacks) => {
     def.core = {};
 
     // Retrieve config for every card stack toggled in configuration
-    const stacks = game.settings.get("ready-to-use-cards", "stacks") ?? {};
+    const stacks = game.settings.get("ready-to-use-cards", GlobalConfiguration.stacks) ?? {};
     Object.entries(stacks).forEach( ([coreKey, stackConf]) => {
         const defaultCore = defaultStacks[coreKey];
         const stackDef = duplicate(defaultCore);
@@ -281,11 +283,14 @@ const loadStackDefinition = (defaultStacks) => {
         def.core[coreKey] = stackDef;
     });
 
+    // Additional data are shared (Can't be put in the constant panel)
     def.shared.cardClasses = {
         base: CustomCardBase,
         simple: CustomCardSimple
     }
+    def.shared.actionTools = new CustomCardActionTools();
 
+    // For those who want to add some custom stacks
     Hooks.call("loadCardStacksDefinition", def);
 }
 
@@ -295,57 +300,40 @@ export class CustomCardStackLoader {
     constructor() {
     }
 
+    /**
+     * Available stack for settings panel.
+     */
     get defaultCoreStacks() {
         return {
             pokerDark: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.pokerDark.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
-                preset: CONFIG.Cards.presets.pokerDark.src,
-                config: {
-                    availableOnHands: true,
-                    availableOnRevealedCards: true
-                }
+                preset: CONFIG.Cards.presets.pokerDark.src
             },
             pokerLight: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.pokerLight.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
-                preset: CONFIG.Cards.presets.pokerLight.src,
-                config: {
-                    availableOnHands: true,
-                    availableOnRevealedCards: true
-                }
+                preset: CONFIG.Cards.presets.pokerLight.src
             },
             zodiac: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.zodiac.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/zodiac',
-                preset: 'modules/ready-to-use-cards/resources/zodiac/cards.json',
-                config: {
-                    availableOnHands: true,
-                    availableOnRevealedCards: true
-                }
+                preset: 'modules/ready-to-use-cards/resources/zodiac/cards.json'
             },
             divineTarot: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.divineTarot.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/divineTarot',
-                preset: 'modules/ready-to-use-cards/resources/divineTarot/cards.json',
-                config: {
-                    availableOnHands: true,
-                    availableOnRevealedCards: true
-                }
+                preset: 'modules/ready-to-use-cards/resources/divineTarot/cards.json'
             },
             classicTarot: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.classicTarot.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/classicTarot',
-                preset: 'modules/ready-to-use-cards/resources/classicTarot/cards.json',
-                config: {
-                    availableOnHands: true,
-                    availableOnRevealedCards: true
-                }
+                preset: 'modules/ready-to-use-cards/resources/classicTarot/cards.json'
             }
         }
     }

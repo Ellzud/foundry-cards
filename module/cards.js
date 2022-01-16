@@ -1,3 +1,4 @@
+import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 const assertStackIsNotADiscardPile = ( parent ) => {
@@ -86,22 +87,20 @@ export class CustomCards extends Cards {
         return result;
     }
 
-    confValue(confKey) {
+    get stackConfig() {
         const coreKey = this.coreStackRef;
-        if(coreKey) {
-            return CARD_STACKS_DEFINITION.core[coreKey].config[confKey];
+        if( coreKey ) {
+            const config = duplicate(CARD_STACKS_DEFINITION.core[coreKey].config); // Do not directly edit config. Read only
+
+            Object.values(StackConfiguration).forEach(confKey => { // By default all missing config are set to true
+                if( !config.hasOwnProperty(confKey) ) {  config[confKey] = true;}
+            });
+            return config;
+
         }
         return null;
     }
 
-    get cardsAllowedOnHands() {
-        return this.confValue("availableOnHands");
-    }
-    
-    get revealedCardsAllowed() {
-        return this.confValue("availableOnRevealedCards");
-    }
-    
     get sortedAvailableCards() {
         const cards = this.availableCards;
         cards.sort( (a,b) => {
@@ -192,7 +191,7 @@ export class CustomCards extends Cards {
                 const data = { id: s.id, name: s.name };
 
                 if( owner.forGMs ) {
-                    data.icon = game.settings.get("ready-to-use-cards", "gmIcon");
+                    data.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
                 } else {
                     const user = game.users.get( s.stackOwner.playerId );
                     data.icon = user?.character?.img ?? 'icons/svg/mystery-man.svg';
@@ -208,7 +207,7 @@ export class CustomCards extends Cards {
             content: html,
             user: game.user.id,
             speaker: {
-                alias: game.settings.get("ready-to-use-cards", "gmName")
+                alias: game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName)
             }
         }
         return ChatMessage.create(msgData);
@@ -260,7 +259,7 @@ export class CustomCards extends Cards {
             msgData.speaker.id = speakerActor?.id;
             msgData.speaker.alias = speakerActor?.name;
         } else {
-            msgData.speaker.alias = game.settings.get("ready-to-use-cards", "gmName");
+            msgData.speaker.alias = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
         }
         msgData.user = game.user.id;
 

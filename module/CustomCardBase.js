@@ -3,6 +3,7 @@
    It handle basic CustomCard behavior and can be extends for additional features
 -----------------------------------------------------------------------------------*/
 
+
 export class CustomCardBase {
 
     constructor(card, guiClass) {
@@ -110,24 +111,21 @@ export class CustomCardBase {
 
         const actions = [];
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const cl = def.shared.actionCss;
+        const css = def.shared.actionCss;
+
+        const deckConfig = this.card.source.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
 
         if( game.user.isGM ) { 
-            actions.push({ 
-                classes: cl.giveCard, 
-                label: this.card.localizedLabel('sheet.actions.giveCard') 
-            });
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.discardCard, 
-                label: this.card.localizedLabel('sheet.actions.discardCard') 
-            });
+            tools.addAvailableAction(actions, deckConfig, this.card, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]} );
+            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
+            tools.addCssOnLastAction(actions, css.separator);
         }
 
-        if( detailsHaveBeenForced && this.canBeRotated ) {
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.rotateCard, 
-                label: this.card.localizedLabel('sheet.actions.rotateCard') 
-            });
+        if( detailsHaveBeenForced ) {
+            tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
+            tools.addCssOnLastAction(actions, css.separator);
         }
         return actions;
     }
@@ -143,28 +141,23 @@ export class CustomCardBase {
 
         const actions = [];
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const cl = def.shared.actionCss;
+        const css = def.shared.actionCss;
+
+        const deckConfig = this.card.source.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
 
         if( stackOwnedByUser ) {
-            actions.push({ 
-                classes: cl.playCard, 
-                label: this.card.localizedLabel('sheet.actions.playCard') 
-            });
-            actions.push({ 
-                classes: cl.revealCard, 
-                label: this.card.localizedLabel('sheet.actions.revealCard') 
-            });
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.discardCard, 
-                label: this.card.localizedLabel('sheet.actions.discardCard') 
-            });
+            tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromHandPlayCard]} );
+            tools.addAvailableAction(actions, deckConfig, this.card, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
+            tools.addCssOnLastAction(actions, css.separator);
         }
 
-        if( detailsHaveBeenForced && this.canBeRotated ) {
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.rotateCard, 
-                label: this.card.localizedLabel('sheet.actions.rotateCard') 
-            });
+        const cardsAreVisible = detailsHaveBeenForced || stackOwnedByUser;
+        if( cardsAreVisible ) {
+            tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
+            tools.addCssOnLastAction(actions, css.separator);
         }
         return actions;
     }
@@ -179,22 +172,21 @@ export class CustomCardBase {
         
         const actions = [];
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const cl = def.shared.actionCss;
+        const css = def.shared.actionCss;
+
+        const deckConfig = this.card.source.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
 
         if( stackOwnedByUser ) {
-            actions.push({ 
-                classes: cl.playCard, 
-                label: this.card.localizedLabel('sheet.actions.playCard') 
-            });
-            actions.push({ 
-                classes: cl.backToHandCard, 
-                label: this.card.localizedLabel('sheet.actions.backToHand') 
-            });
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.discardCard, 
-                label: this.card.localizedLabel('sheet.actions.discardCard') 
-            });
+            tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
+            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
+            tools.addCssOnLastAction(actions, css.separator);
         }
+
+        tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
+        tools.addCssOnLastAction(actions, css.separator);
 
         return actions;
     }
@@ -207,21 +199,20 @@ export class CustomCardBase {
      loadActionsWhileInDiscard() {
         const actions = [];
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const cl = def.shared.actionCss;
+        const css = def.shared.actionCss;
 
-        if( this.canBeRotated ) {
-            actions.push({ 
-                classes: cl.separator + ' ' + cl.rotateCard, 
-                label: this.card.localizedLabel('sheet.actions.rotateCard') 
-            });
-        }
-    
+        const deckConfig = this.card.source.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
+
         if( game.user.isGM ) { 
-            actions.push({ 
-                classes: cl.backToDeckCard, 
-                label: this.card.localizedLabel('sheet.actions.backToDeck') 
-            });
+            tools.addAvailableAction(actions, deckConfig, this.card, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
+            tools.addCssOnLastAction(actions, css.separator);
         }
+
+        tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
+        tools.addCssOnLastAction(actions, css.separator);
+    
         return actions;
     }
 
