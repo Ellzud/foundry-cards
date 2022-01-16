@@ -31,13 +31,6 @@ export class CustomCardBase {
         return this._card.img;
     }
 
-    get givenToAPlayer() {
-        const parent = this._card.parent;
-        const owner = parent.getFlag('ready-to-use-cards','owner');
-        if( !owner ) { return false; }
-        return ! ['none', 'gm'].includes(owner);
-    }
-
     get ownedByCurrentPlayer() {
         return this._card.parent.ownedByCurrentPlayer;
     }
@@ -58,15 +51,28 @@ export class CustomCardBase {
     /**
      * May be overriden
      */
-     get canBeRotated() {
-        return true;
-    }
-
-    /**
-     * May be overriden
-     */
     shouldBeRotated( rotatingAsked ) {
-        return this.canBeRotated && rotatingAsked;
+
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const keys = def.shared.configKeys;
+        
+        // Choose the right rotate conf key
+        const stackOwner = this.card.parent.stackOwner;
+        let configKey;
+        if( stackOwner.forNobody ) {
+            if( this.card.parent.type == 'deck' ) {
+                configKey =  keys.fromDeckRotateCard;
+            } else {
+                configKey =  keys.fromDiscardRotateCard;
+            }
+        } else if( this.card.parent.type == 'hand' ) {
+            configKey =  keys.fromHandRotateCard;
+        } else {
+            configKey =  keys.fromRevealedRotateCard;
+        }
+
+        const allowed = this.card.source.stackConfig[configKey];
+        return allowed && rotatingAsked;
     }
 
     /**
