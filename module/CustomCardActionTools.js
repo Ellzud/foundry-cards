@@ -27,8 +27,9 @@ export class CustomCardActionTools {
      * @param {string} labelKey The localized label key
      * @param {string[]} [allKeys] If set, ask that all included keys have to be flagged to TRUE inside deckConfig
      * @param {string[]} [atLeastOne] If set, ask that at least one of the included keys have to be flagged to TRUE
+     * @param {string} [action] Add an addtionnal parameter to the action data (for custom actions)
      */
-    addAvailableAction(actions, deckConfig, translator, cssAction, labelKey, {allKeys=null, atLeastOne=null}={} ) {
+    addAvailableAction(actions, deckConfig, translator, cssAction, labelKey, {allKeys=null, atLeastOne=null, action=null}={} ) {
 
         if( allKeys != null ) { // Check all given keys. If one is false : exit
             for( const key of allKeys ) { 
@@ -43,7 +44,8 @@ export class CustomCardActionTools {
 
         actions.push({ 
             classes: cssAction, 
-            label: translator.localizedLabel(labelKey) 
+            label: translator.localizedLabel(labelKey), 
+            action: action
         });
     }
     

@@ -39,7 +39,6 @@ export const CARD_STACKS_DEFINITION = {
         },
         /** Will be added during load
         cardClasses: {
-            base: CustomCardBase,
             simple: CustomCardSimple
         } */
     }

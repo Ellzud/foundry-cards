@@ -226,7 +226,7 @@ export class CustomCards extends Cards {
         const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
         for( const card of cards ) {
-            const line = card.impl.buildCardInfoForListing(from, addCardDescription);
+            const line = card.forGUI.buildCardInfoForListing(from, addCardDescription);
             data.cards.push( line );
         }
 

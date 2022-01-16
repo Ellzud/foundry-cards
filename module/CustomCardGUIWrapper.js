@@ -4,11 +4,11 @@
 -----------------------------------------------------------------------------------*/
 
 
-export class CustomCardBase {
+export class CustomCardGUIWrapper {
 
-    constructor(card, guiClass) {
+    constructor(card) {
         this._card = card;
-        this._guiClass = guiClass;
+        this._wrapped = card.impl;
     }
 
     get card() {
@@ -72,7 +72,13 @@ export class CustomCardBase {
         }
 
         const allowed = this.card.source.stackConfig[configKey];
-        return allowed && rotatingAsked;
+        const result = allowed && rotatingAsked;
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterShouldBeRotated ) { // FIXME
+            return this._wrapped.alterShouldBeRotated(result, rotatingAsked);
+        }
+        return result;
     }
 
     /**
@@ -80,8 +86,15 @@ export class CustomCardBase {
      * @param {HTMLElement} htmlDiv 
      */
     fillCardContent(htmlDiv) {
+
+        const guiClass = this._wrapped.guiClass ?? 'basecard';
         // By default, card content only have its background. You can add additional content by overriding this method
-        htmlDiv.classList.replace('display-content', this._guiClass);
+        htmlDiv.classList.replace('display-content', guiClass);
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterFillCardContent ) { // FIXME
+            this._wrapped.alterFillCardContent(htmlDiv);
+        }
     }
 
     /**
@@ -96,7 +109,7 @@ export class CustomCardBase {
         const stackOwner = this.card.parent.stackOwner;
         const playerFlag = stackOwner.forPlayers ? stackOwner.playerId : 'gm';
 
-        return {
+        const result = {
             player: playerFlag,
             ref: this.card.name,
             icon: this.card.frontIcon,
@@ -105,6 +118,12 @@ export class CustomCardBase {
             rotated: 0,
             description: []
         };
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterBuildCardInfoForListing ) { // FIXME
+            this._wrapped.alterBuildCardInfoForListing(result, from, addCardDescription);
+        }
+        return result;
     }
 
     /**
@@ -133,6 +152,12 @@ export class CustomCardBase {
             tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
             tools.addCssOnLastAction(actions, css.separator);
         }
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterLoadActionsWhileInDeck ) { // FIXME
+            this._wrapped.alterLoadActionsWhileInDeck(actions, detailsHaveBeenForced);
+        }
+
         return actions;
     }
 
@@ -165,6 +190,11 @@ export class CustomCardBase {
             tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterLoadActionsWhileInHand ) { // FIXME
+            this._wrapped.alterLoadActionsWhileInHand(actions, stackOwnedByUser, detailsHaveBeenForced);
+        }
         return actions;
     }
 
@@ -194,6 +224,11 @@ export class CustomCardBase {
         tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
         tools.addCssOnLastAction(actions, css.separator);
 
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterLoadActionsWhileInRevealedCards ) { // FIXME
+            this._wrapped.alterLoadActionsWhileInRevealedCards(actions, stackOwnedByUser);
+        }
+
         return actions;
     }
 
@@ -219,6 +254,11 @@ export class CustomCardBase {
         tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
         tools.addCssOnLastAction(actions, css.separator);
     
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterLoadActionsWhileInDiscard ) { // FIXME
+            this._wrapped.alterLoadActionsWhileInDiscard(actions);
+        }
+
         return actions;
     }
 
@@ -228,5 +268,8 @@ export class CustomCardBase {
      * @param {string} action 
      */
     async onClickDoCustomAction(action) {
+        if( this._wrapped.onClickDoCustomAction ) {
+            return this._wrapped.onClickDoCustomAction(action);
+        }
     }
 }

@@ -118,7 +118,7 @@ export class CustomCardsDisplay extends CardsConfig {
         // Check if the content should be displayed or hidden
         if( card ) {
             cardInfo.id = card.id;
-            cardInfo.displayed = this.detailsForced || card.impl.detailsCanBeDisplayed;
+            cardInfo.displayed = this.detailsForced || card.forGUI.detailsCanBeDisplayed;
 
         } else {
             cardInfo.displayed = false;
@@ -130,7 +130,7 @@ export class CustomCardsDisplay extends CardsConfig {
             cardInfo.classes = 'display-content';
             cardInfo.cardBg = card.data.faces[0].img;
 
-            if( card.impl.shouldBeRotated( this.forceRotate ) ) {
+            if( card.forGUI.shouldBeRotated( this.forceRotate ) ) {
                 cardInfo.classes += ' rotated'; // Also rotate the card if needed
             }
 
@@ -178,7 +178,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.impl.loadActionsWhileInDeck(this.detailsForced);
+            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDeck(this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -214,7 +214,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.impl.loadActionsWhileInDiscard();
+            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDiscard();
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -241,7 +241,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.impl.loadActionsWhileInHand(owned, this.detailsForced);
+            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInHand(owned, this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -273,7 +273,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const owned = this._cards.ownedByCurrentPlayer;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.impl.loadActionsWhileInRevealedCards(owned);
+            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInRevealedCards(owned);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -369,7 +369,7 @@ export class CustomCardsDisplay extends CardsConfig {
             const cardId = htmlDiv.dataset.key;
             if(cardId) { 
                 const card = this._cards.cards.get(cardId);
-                card?.impl.fillCardContent(htmlDiv);
+                card?.forGUI.fillCardContent(htmlDiv);
             }
         }
     
@@ -495,7 +495,7 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickCustomAction(event) {
         event.preventDefault();
         const action = event.currentTarget.dataset.action;
-        await this.currentSelection.impl.onClickDoCustomAction(action);
+        await this.currentSelection.forGUI.onClickDoCustomAction(action);
     }
 
     async _onClickRecallAllCards(event) {

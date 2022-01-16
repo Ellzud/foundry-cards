@@ -1,3 +1,4 @@
+import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 import { SingleCardDisplay } from './SingleCardDisplay.js';
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 
@@ -35,6 +36,10 @@ export class CustomCard extends Card {
             this._impl = new cls(this);
         }
         return this._impl;
+    }
+
+    get forGUI() {
+        return new CustomCardGUIWrapper(this);
     }
 
     /**
