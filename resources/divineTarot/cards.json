@@ -6,10 +6,10 @@
   "data": {},
   "cards": [
     {
-      "name": "swords_01",
+      "name": "Ace of swords",
       "faces": [
         {
-          "name": "swords_01",
+          "name": "Ace of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_01.webp",
           "text": ""
         }
@@ -41,10 +41,10 @@
       "flags": {}
     },
     {
-      "name": "swords_02",
+      "name": "Two of swords",
       "faces": [
         {
-          "name": "swords_02",
+          "name": "Two of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_02.webp",
           "text": ""
         }
@@ -76,10 +76,10 @@
       "flags": {}
     },
     {
-      "name": "swords_03",
+      "name": "Three of swords",
       "faces": [
         {
-          "name": "swords_03",
+          "name": "Three of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_03.webp",
           "text": ""
         }
@@ -111,10 +111,10 @@
       "flags": {}
     },
     {
-      "name": "swords_04",
+      "name": "Four of swords",
       "faces": [
         {
-          "name": "swords_04",
+          "name": "Four of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_04.webp",
           "text": ""
         }
@@ -146,10 +146,10 @@
       "flags": {}
     },
     {
-      "name": "swords_05",
+      "name": "Five of swords",
       "faces": [
         {
-          "name": "swords_05",
+          "name": "Five of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_05.webp",
           "text": ""
         }
@@ -181,10 +181,10 @@
       "flags": {}
     },
     {
-      "name": "swords_06",
+      "name": "Six of swords",
       "faces": [
         {
-          "name": "swords_06",
+          "name": "Six of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_06.webp",
           "text": ""
         }
@@ -216,10 +216,10 @@
       "flags": {}
     },
     {
-      "name": "swords_07",
+      "name": "Seven of swords",
       "faces": [
         {
-          "name": "swords_07",
+          "name": "Seven of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_07.webp",
           "text": ""
         }
@@ -251,10 +251,10 @@
       "flags": {}
     },
     {
-      "name": "swords_08",
+      "name": "Eight of swords",
       "faces": [
         {
-          "name": "swords_08",
+          "name": "Eight of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_08.webp",
           "text": ""
         }
@@ -286,10 +286,10 @@
       "flags": {}
     },
     {
-      "name": "swords_09",
+      "name": "Nine of swords",
       "faces": [
         {
-          "name": "swords_09",
+          "name": "Nine of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_09.webp",
           "text": ""
         }
@@ -321,10 +321,10 @@
       "flags": {}
     },
     {
-      "name": "swords_10",
+      "name": "Ten of swords",
       "faces": [
         {
-          "name": "swords_10",
+          "name": "Ten of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_10.webp",
           "text": ""
         }
@@ -356,10 +356,10 @@
       "flags": {}
     },
     {
-      "name": "swords_11",
+      "name": "Knave of swords",
       "faces": [
         {
-          "name": "swords_11",
+          "name": "Knave of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_11.webp",
           "text": ""
         }
@@ -391,10 +391,10 @@
       "flags": {}
     },
     {
-      "name": "swords_12",
+      "name": "Knight of swords",
       "faces": [
         {
-          "name": "swords_12",
+          "name": "Knight of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_12.webp",
           "text": ""
         }
@@ -426,10 +426,10 @@
       "flags": {}
     },
     {
-      "name": "swords_13",
+      "name": "Queen of swords",
       "faces": [
         {
-          "name": "swords_13",
+          "name": "Queen of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_13.webp",
           "text": ""
         }
@@ -461,10 +461,10 @@
       "flags": {}
     },
     {
-      "name": "swords_14",
+      "name": "King of swords",
       "faces": [
         {
-          "name": "swords_14",
+          "name": "King of swords",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/swords_14.webp",
           "text": ""
         }
@@ -496,10 +496,10 @@
       "flags": {}
     },
     {
-      "name": "money_01",
+      "name": "Ace of money",
       "faces": [
         {
-          "name": "money_01",
+          "name": "Ace of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_01.webp",
           "text": ""
         }
@@ -531,10 +531,10 @@
       "flags": {}
     },
     {
-      "name": "money_02",
+      "name": "Two of money",
       "faces": [
         {
-          "name": "money_02",
+          "name": "Two of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_02.webp",
           "text": ""
         }
@@ -566,10 +566,10 @@
       "flags": {}
     },
     {
-      "name": "money_03",
+      "name": "Three of money",
       "faces": [
         {
-          "name": "money_03",
+          "name": "Three of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_03.webp",
           "text": ""
         }
@@ -601,10 +601,10 @@
       "flags": {}
     },
     {
-      "name": "money_04",
+      "name": "Four of money",
       "faces": [
         {
-          "name": "money_04",
+          "name": "Four of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_04.webp",
           "text": ""
         }
@@ -636,10 +636,10 @@
       "flags": {}
     },
     {
-      "name": "money_05",
+      "name": "Five of money",
       "faces": [
         {
-          "name": "money_05",
+          "name": "Five of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_05.webp",
           "text": ""
         }
@@ -671,10 +671,10 @@
       "flags": {}
     },
     {
-      "name": "money_06",
+      "name": "Six of money",
       "faces": [
         {
-          "name": "money_06",
+          "name": "Six of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_06.webp",
           "text": ""
         }
@@ -706,10 +706,10 @@
       "flags": {}
     },
     {
-      "name": "money_07",
+      "name": "Seven of money",
       "faces": [
         {
-          "name": "money_07",
+          "name": "Seven of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_07.webp",
           "text": ""
         }
@@ -741,10 +741,10 @@
       "flags": {}
     },
     {
-      "name": "money_08",
+      "name": "Eight of money",
       "faces": [
         {
-          "name": "money_08",
+          "name": "Eight of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_08.webp",
           "text": ""
         }
@@ -776,10 +776,10 @@
       "flags": {}
     },
     {
-      "name": "money_09",
+      "name": "Nine of money",
       "faces": [
         {
-          "name": "money_09",
+          "name": "Nine of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_09.webp",
           "text": ""
         }
@@ -811,10 +811,10 @@
       "flags": {}
     },
     {
-      "name": "money_10",
+      "name": "Ten of money",
       "faces": [
         {
-          "name": "money_10",
+          "name": "Ten of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_10.webp",
           "text": ""
         }
@@ -846,10 +846,10 @@
       "flags": {}
     },
     {
-      "name": "money_11",
+      "name": "Knave of money",
       "faces": [
         {
-          "name": "money_11",
+          "name": "Knave of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_11.webp",
           "text": ""
         }
@@ -881,10 +881,10 @@
       "flags": {}
     },
     {
-      "name": "money_12",
+      "name": "Knight of money",
       "faces": [
         {
-          "name": "money_12",
+          "name": "Knight of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_12.webp",
           "text": ""
         }
@@ -916,10 +916,10 @@
       "flags": {}
     },
     {
-      "name": "money_13",
+      "name": "Queen of money",
       "faces": [
         {
-          "name": "money_13",
+          "name": "Queen of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_13.webp",
           "text": ""
         }
@@ -951,10 +951,10 @@
       "flags": {}
     },
     {
-      "name": "money_14",
+      "name": "King of money",
       "faces": [
         {
-          "name": "money_14",
+          "name": "King of money",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/money_14.webp",
           "text": ""
         }
@@ -986,10 +986,10 @@
       "flags": {}
     },
     {
-      "name": "cups_01",
+      "name": "Ace of cups",
       "faces": [
         {
-          "name": "cups_01",
+          "name": "Ace of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_01.webp",
           "text": ""
         }
@@ -1021,10 +1021,10 @@
       "flags": {}
     },
     {
-      "name": "cups_02",
+      "name": "Two of cups",
       "faces": [
         {
-          "name": "cups_02",
+          "name": "Two of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_02.webp",
           "text": ""
         }
@@ -1056,10 +1056,10 @@
       "flags": {}
     },
     {
-      "name": "cups_03",
+      "name": "Three of cups",
       "faces": [
         {
-          "name": "cups_03",
+          "name": "Three of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_03.webp",
           "text": ""
         }
@@ -1091,10 +1091,10 @@
       "flags": {}
     },
     {
-      "name": "cups_04",
+      "name": "Four of cups",
       "faces": [
         {
-          "name": "cups_04",
+          "name": "Four of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_04.webp",
           "text": ""
         }
@@ -1126,10 +1126,10 @@
       "flags": {}
     },
     {
-      "name": "cups_05",
+      "name": "Five of cups",
       "faces": [
         {
-          "name": "cups_05",
+          "name": "Five of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_05.webp",
           "text": ""
         }
@@ -1161,10 +1161,10 @@
       "flags": {}
     },
     {
-      "name": "cups_06",
+      "name": "Six of cups",
       "faces": [
         {
-          "name": "cups_06",
+          "name": "Six of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_06.webp",
           "text": ""
         }
@@ -1196,10 +1196,10 @@
       "flags": {}
     },
     {
-      "name": "cups_07",
+      "name": "Seven of cups",
       "faces": [
         {
-          "name": "cups_07",
+          "name": "Seven of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_07.webp",
           "text": ""
         }
@@ -1231,10 +1231,10 @@
       "flags": {}
     },
     {
-      "name": "cups_08",
+      "name": "Eight of cups",
       "faces": [
         {
-          "name": "cups_08",
+          "name": "Eight of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_08.webp",
           "text": ""
         }
@@ -1266,10 +1266,10 @@
       "flags": {}
     },
     {
-      "name": "cups_09",
+      "name": "Nine of cups",
       "faces": [
         {
-          "name": "cups_09",
+          "name": "Nine of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_09.webp",
           "text": ""
         }
@@ -1301,10 +1301,10 @@
       "flags": {}
     },
     {
-      "name": "cups_10",
+      "name": "Ten of cups",
       "faces": [
         {
-          "name": "cups_10",
+          "name": "Ten of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_10.webp",
           "text": ""
         }
@@ -1336,10 +1336,10 @@
       "flags": {}
     },
     {
-      "name": "cups_11",
+      "name": "Knave of cups",
       "faces": [
         {
-          "name": "cups_11",
+          "name": "Knave of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_11.webp",
           "text": ""
         }
@@ -1371,10 +1371,10 @@
       "flags": {}
     },
     {
-      "name": "cups_12",
+      "name": "Knight of cups",
       "faces": [
         {
-          "name": "cups_12",
+          "name": "Knight of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_12.webp",
           "text": ""
         }
@@ -1406,10 +1406,10 @@
       "flags": {}
     },
     {
-      "name": "cups_13",
+      "name": "Queen of cups",
       "faces": [
         {
-          "name": "cups_13",
+          "name": "Queen of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_13.webp",
           "text": ""
         }
@@ -1441,10 +1441,10 @@
       "flags": {}
     },
     {
-      "name": "cups_14",
+      "name": "King of cups",
       "faces": [
         {
-          "name": "cups_14",
+          "name": "King of cups",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/cups_14.webp",
           "text": ""
         }
@@ -1476,10 +1476,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_01",
+      "name": "Ace of clubs",
       "faces": [
         {
-          "name": "clubs_01",
+          "name": "Ace of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_01.webp",
           "text": ""
         }
@@ -1511,10 +1511,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_02",
+      "name": "Two of clubs",
       "faces": [
         {
-          "name": "clubs_02",
+          "name": "Two of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_02.webp",
           "text": ""
         }
@@ -1546,10 +1546,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_03",
+      "name": "Three of clubs",
       "faces": [
         {
-          "name": "clubs_03",
+          "name": "Three of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_03.webp",
           "text": ""
         }
@@ -1581,10 +1581,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_04",
+      "name": "Four of clubs",
       "faces": [
         {
-          "name": "clubs_04",
+          "name": "Four of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_04.webp",
           "text": ""
         }
@@ -1616,10 +1616,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_05",
+      "name": "Five of clubs",
       "faces": [
         {
-          "name": "clubs_05",
+          "name": "Five of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_05.webp",
           "text": ""
         }
@@ -1651,10 +1651,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_06",
+      "name": "Six of clubs",
       "faces": [
         {
-          "name": "clubs_06",
+          "name": "Six of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_06.webp",
           "text": ""
         }
@@ -1686,10 +1686,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_07",
+      "name": "Seven of clubs",
       "faces": [
         {
-          "name": "clubs_07",
+          "name": "Seven of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_07.webp",
           "text": ""
         }
@@ -1721,10 +1721,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_08",
+      "name": "Eight of clubs",
       "faces": [
         {
-          "name": "clubs_08",
+          "name": "Eight of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_08.webp",
           "text": ""
         }
@@ -1756,10 +1756,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_09",
+      "name": "Nine of clubs",
       "faces": [
         {
-          "name": "clubs_09",
+          "name": "Nine of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_09.webp",
           "text": ""
         }
@@ -1791,10 +1791,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_10",
+      "name": "Ten of clubs",
       "faces": [
         {
-          "name": "clubs_10",
+          "name": "Ten of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_10.webp",
           "text": ""
         }
@@ -1826,10 +1826,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_11",
+      "name": "Knave of clubs",
       "faces": [
         {
-          "name": "clubs_11",
+          "name": "Knave of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_11.webp",
           "text": ""
         }
@@ -1861,10 +1861,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_12",
+      "name": "Knight of clubs",
       "faces": [
         {
-          "name": "clubs_12",
+          "name": "Knight of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_12.webp",
           "text": ""
         }
@@ -1896,10 +1896,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_13",
+      "name": "Queen of clubs",
       "faces": [
         {
-          "name": "clubs_13",
+          "name": "Queen of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_13.webp",
           "text": ""
         }
@@ -1931,10 +1931,10 @@
       "flags": {}
     },
     {
-      "name": "clubs_14",
+      "name": "King of clubs",
       "faces": [
         {
-          "name": "clubs_14",
+          "name": "King of clubs",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/clubs_14.webp",
           "text": ""
         }
@@ -1966,10 +1966,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_00",
+      "name": "The Fool",
       "faces": [
         {
-          "name": "arcana_00",
+          "name": "The Fool",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_00.webp",
           "text": ""
         }
@@ -2001,10 +2001,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_01",
+      "name": "The Magician",
       "faces": [
         {
-          "name": "arcana_01",
+          "name": "The Magician",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_01.webp",
           "text": ""
         }
@@ -2036,10 +2036,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_02",
+      "name": "The High Priestess",
       "faces": [
         {
-          "name": "arcana_02",
+          "name": "The High Priestess",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_02.webp",
           "text": ""
         }
@@ -2071,10 +2071,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_03",
+      "name": "The Empress",
       "faces": [
         {
-          "name": "arcana_03",
+          "name": "The Empress",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_03.webp",
           "text": ""
         }
@@ -2106,10 +2106,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_04",
+      "name": "The Emperor",
       "faces": [
         {
-          "name": "arcana_04",
+          "name": "The Emperor",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_04.webp",
           "text": ""
         }
@@ -2141,10 +2141,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_05",
+      "name": "The Pope",
       "faces": [
         {
-          "name": "arcana_05",
+          "name": "The Pope",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_05.webp",
           "text": ""
         }
@@ -2176,10 +2176,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_06",
+      "name": "The Lover",
       "faces": [
         {
-          "name": "arcana_06",
+          "name": "The Lover",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_06.webp",
           "text": ""
         }
@@ -2211,10 +2211,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_07",
+      "name": "The Chariot",
       "faces": [
         {
-          "name": "arcana_07",
+          "name": "The Chariot",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_07.webp",
           "text": ""
         }
@@ -2246,10 +2246,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_08",
+      "name": "Justice",
       "faces": [
         {
-          "name": "arcana_08",
+          "name": "Justice",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_08.webp",
           "text": ""
         }
@@ -2281,10 +2281,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_09",
+      "name": "The Hermit",
       "faces": [
         {
-          "name": "arcana_09",
+          "name": "The Hermit",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_09.webp",
           "text": ""
         }
@@ -2316,10 +2316,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_10",
+      "name": "The Wheel Of Fortune",
       "faces": [
         {
-          "name": "arcana_10",
+          "name": "The Wheel Of Fortune",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_10.webp",
           "text": ""
         }
@@ -2351,10 +2351,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_11",
+      "name": "Force",
       "faces": [
         {
-          "name": "arcana_11",
+          "name": "Force",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_11.webp",
           "text": ""
         }
@@ -2386,10 +2386,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_12",
+      "name": "The Hanged Man",
       "faces": [
         {
-          "name": "arcana_12",
+          "name": "The Hanged Man",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_12.webp",
           "text": ""
         }
@@ -2421,10 +2421,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_13",
+      "name": "Death",
       "faces": [
         {
-          "name": "arcana_13",
+          "name": "Death",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_13.webp",
           "text": ""
         }
@@ -2456,10 +2456,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_14",
+      "name": "Temperance",
       "faces": [
         {
-          "name": "arcana_14",
+          "name": "Temperance",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_14.webp",
           "text": ""
         }
@@ -2491,10 +2491,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_15",
+      "name": "The Devil",
       "faces": [
         {
-          "name": "arcana_15",
+          "name": "The Devil",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_15.webp",
           "text": ""
         }
@@ -2526,10 +2526,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_16",
+      "name": "The Tower Of Destruction",
       "faces": [
         {
-          "name": "arcana_16",
+          "name": "The Tower Of Destruction",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_16.webp",
           "text": ""
         }
@@ -2561,10 +2561,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_17",
+      "name": "The Star",
       "faces": [
         {
-          "name": "arcana_17",
+          "name": "The Star",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_17.webp",
           "text": ""
         }
@@ -2596,10 +2596,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_18",
+      "name": "The Moon",
       "faces": [
         {
-          "name": "arcana_18",
+          "name": "The Moon",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_18.webp",
           "text": ""
         }
@@ -2631,10 +2631,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_19",
+      "name": "The Sun",
       "faces": [
         {
-          "name": "arcana_19",
+          "name": "The Sun",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_19.webp",
           "text": ""
         }
@@ -2666,10 +2666,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_20",
+      "name": "Judgement",
       "faces": [
         {
-          "name": "arcana_20",
+          "name": "Judgement",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_20.webp",
           "text": ""
         }
@@ -2701,10 +2701,10 @@
       "flags": {}
     },
     {
-      "name": "arcana_21",
+      "name": "The World",
       "faces": [
         {
-          "name": "arcana_21",
+          "name": "The World",
           "img": "modules/ready-to-use-cards/resources/divineTarot/cards/arcana_21.webp",
           "text": ""
         }
