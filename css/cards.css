@@ -132,9 +132,14 @@
 }
 
 .rtucards.cards .parameters-cards .cards .card-slot:hover {
-    box-shadow: 0 0 100px darkblue;
     cursor: pointer;
+    box-shadow: 0 0 100px blanchedalmond;
 }
+
+.rtucards.cards .parameters-cards .cards .card-slot.selected:hover {
+    box-shadow: 0 0 100px white;
+}
+
 
 .rtucards.cards .parameters-cards .bellow-cards {
     margin-top: -550px;
@@ -185,7 +190,11 @@
 
 .rtucards.cards .parameters-stacks .stack:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px darkblue inset;
+    box-shadow: 0 0 10px blanchedalmond inset;
+}
+
+.rtucards.cards .parameters-stacks .stack.selected:hover {
+    box-shadow: 0 0 5px white inset;
 }
 
 .rtucards.cards .parameters-stacks .amount-edit {
@@ -267,7 +276,12 @@
 }
 
 .rtucards.cards .listing-panel .card-slot:hover {
-    box-shadow: 0 0 100px darkblue;
     cursor: pointer;
+    box-shadow: 0 0 100px blanchedalmond;
 }
+
+.rtucards.cards .listing-panel .card-slot.selected:hover {
+    box-shadow: 0 0 100px white;
+}
+
 
