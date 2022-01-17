@@ -250,7 +250,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
                 const cssAction = css.peekOnDeck + ' ' + css.separator + ' ' + css.coloredInRed;
-                tools.addAvailableAction(actions, null, this._cards, cssAction, 'sheet.actions.shuffleDiscard'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._cards, cssAction, 'sheet.actions.peekOn'); // No deckConfig condition needed
             }
         }
 
@@ -345,7 +345,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         html.find(css.dealCards).click(event => this._onClickDealCards(event) );
         html.find(css.recallCards).click(event => this._onClickRecallAllCards(event) );
-        html.find(css.peekOnDeck).click(event => this._onClickPeekOnSack(event) );
+        html.find(css.peekOnDeck).click(event => this._onClickPeekOnStack(event) );
         html.find(css.shuffleDeck).click(event => this._onClickShuffleDeck(event) );
         html.find(css.shuffleDiscard).click(event => this._onClickShuffleDiscard(event) );
         html.find(css.discardHand).click(event => this._onClickDiscardHand(event) );
@@ -455,7 +455,7 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
-    async _onClickPeekOnSack(event) {
+    async _onClickPeekOnStack(event) {
         event.preventDefault();
 
         const flavor = this._cards.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name);
