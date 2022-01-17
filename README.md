@@ -2,17 +2,31 @@
 
 ## Introduction
 
+### The mindset
 This module has been developped with the following mindset : 
 
-> You don't need to edit your card deck during the game. Once set, you only need to have easy acces to your cards and the related decks and discard piles.
+- You don't need to edit your card deck during the game. Once set, you only need to have easy acces to your cards and the related decks and discard piles.
+- Each player should be able to have cards in his hands (Only visible by him. Even GMs can't see them) and cards on front of him, visible by everyone. When adding this module, those two card stacks will be created for each player. (It's still possible to remove the Hand or Revealed cards stack inside settings)
+- GMs share only one Hand and Revealed cards stack
+- Multiple decks can be used. Each one comes with its related discard pile.
+- What is important is : For each card type, which action is available when handling decks, hands, revealed cards and discard piles. All this is customizable via settings.
 
-> Each player should be able to have cards in his hands (Only visible by him. Even GMs can't see them) and cards on front of him, visible by everyone. When adding this module, those two card stacks will be created for each player. (It's still possible to remove the Hand or Revealed cards stack inside settings)
+### Warnings
 
-> GMs share only one Hand and Revealed cards stack
+This module does many things, but it is more invasive that `Monarch` module.
 
-> Multiple decks can be used. Each one comes with its related discard pile.
+Even if it is only a module and not a game system, it overrides the following classes :
+~~~js
+static registerCardSystem() {
+    CONFIG.Cards.documentClass = CustomCards;
+    CONFIG.Card.documentClass = CustomCard;
+    CONFIG.ui.cards = CustomCardsDirectory;
+}
+~~~
 
-> What is important is : For each card type, which action is available when handling decks, hands, revealed cards and discard piles. All this is customizable via settings.
+If your system intends to also overrides those classes, it will comes into conflict.
+
+The most problematic one here is the `Card` document class. If you're doing a custom system, you can check the last chapters of this readme to adapt your code. (Your data will then be accessible via `card.impl`)
 
 ## Choose the decks you want
 

@@ -77,7 +77,7 @@ export class CustomCardGUIWrapper {
         const result = allowed && rotatingAsked;
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterShouldBeRotated ) { // FIXME
+        if( this._wrapped.alterShouldBeRotated ) {
             return this._wrapped.alterShouldBeRotated(result, rotatingAsked);
         }
         return result;
@@ -94,7 +94,7 @@ export class CustomCardGUIWrapper {
         htmlDiv.classList.replace('display-content', guiClass);
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterFillCardContent ) { // FIXME
+        if( this._wrapped.alterFillCardContent ) {
             this._wrapped.alterFillCardContent(htmlDiv);
         }
     }
@@ -126,7 +126,7 @@ export class CustomCardGUIWrapper {
         }
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterBuildCardInfoForListing ) { // FIXME
+        if( this._wrapped.alterBuildCardInfoForListing ) {
             this._wrapped.alterBuildCardInfoForListing(result, from, addCardDescription);
         }
         return result;
@@ -160,7 +160,7 @@ export class CustomCardGUIWrapper {
         }
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterLoadActionsWhileInDeck ) { // FIXME
+        if( this._wrapped.alterLoadActionsWhileInDeck ) {
             this._wrapped.alterLoadActionsWhileInDeck(actions, detailsHaveBeenForced);
         }
 
@@ -198,7 +198,7 @@ export class CustomCardGUIWrapper {
         }
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterLoadActionsWhileInHand ) { // FIXME
+        if( this._wrapped.alterLoadActionsWhileInHand ) {
             this._wrapped.alterLoadActionsWhileInHand(actions, stackOwnedByUser, detailsHaveBeenForced);
         }
         return actions;
@@ -231,7 +231,7 @@ export class CustomCardGUIWrapper {
         tools.addCssOnLastAction(actions, css.separator);
 
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterLoadActionsWhileInRevealedCards ) { // FIXME
+        if( this._wrapped.alterLoadActionsWhileInRevealedCards ) {
             this._wrapped.alterLoadActionsWhileInRevealedCards(actions, stackOwnedByUser);
         }
 
@@ -261,7 +261,7 @@ export class CustomCardGUIWrapper {
         tools.addCssOnLastAction(actions, css.separator);
     
         // Call the potential implementation inside wrapped impl
-        if( this._wrapped.alterLoadActionsWhileInDiscard ) { // FIXME
+        if( this._wrapped.alterLoadActionsWhileInDiscard ) {
             this._wrapped.alterLoadActionsWhileInDiscard(actions);
         }
 
