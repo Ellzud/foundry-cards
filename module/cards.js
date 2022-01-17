@@ -459,6 +459,35 @@ export class CustomCards extends Cards {
 
 
     /**
+     * Exchange some of your cards
+     * @param {CustomCards} withStack Card stack which have the receivedCardsId
+     * @param {string[]} myCardIds Cards you will be separated
+     * @param {string[]} receivedCardsId Cards you will get
+     * @returns {CustomCard[]} Received Cards
+     */
+     async exchangeCards(withStack, myCardIds, receivedCardsId) {
+
+        assertStackOwner(this, {forGMs: true, forPlayers:true});
+        assertStackType(this, {hands: true, piles:true});
+
+        const stackType = this.type;
+        const inHand = stackType == 'hand';
+
+        const givenCards = await this.pass( withStack, myCardIds, {chatNotification: false} );
+        const receivedCards = await withStack.pass( this, receivedCardsId, {chatNotification: false} );
+
+        const allCards = [];
+        allCards.push(...givenCards);
+        allCards.push(...receivedCards);
+
+        const flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+
+        await this.sendMessageForCards(flavor, allCards, {hideToStrangers: inHand});
+
+        return givenCards;
+    }
+
+    /**
      * Discard some cards.
      * Message will be grouped for each card type
      * @param {string[]} cardsIds cards Ids
@@ -614,8 +643,7 @@ export class CustomCards extends Cards {
 
         await this.deal(to, amount, {chatNotification: false});
 
-        const label = this.getCardMessageFlavor('deck', 'deal', amount);
-        const flavor = label.replace('AMOUNT', '' + amount);
+        const flavor = this.getCardMessageFlavor('deck', 'deal', amount);
         await this.sendMessageForStacks(flavor, to);
     }
 

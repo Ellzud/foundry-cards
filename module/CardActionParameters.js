@@ -33,13 +33,14 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      * Used to inform the GUI that the user needs to select some additional cards
      * @param {CustomCardsDisplay} sheet The sheet where those paramters will be chosen
      * @param {string} actionTitle What will be displayed on top of the selection
+     * @param {CustomCards} [from] From which stack, the cards would be displayed
      * @param {int} [minAmount] min amount of cards which needs to be selected before the 'OK' button becomes available
      * @param {int} [maxAmount] max amount
      * @param {string} [buttonLabel] What the say inside the ok button.
      * @param {*} [criteria] Applied to availableCards for filter. If null, all cards will be available
      * @param {*} [callBack] What to call once cards have been selected. If null, it will call playCards with all ids.
      */
-    constructor( sheet, actionTitle, {minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
+    constructor( sheet, actionTitle, {from=null, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
         super(sheet, actionTitle);
 
         const defaultCriteria = (c) => { return true; };
@@ -48,7 +49,8 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
             additionalCards.forEach( c => cardIds.push(c.id) );
             return this.sheet.cards.playCards(cardIds);
         };
-        
+
+        this.from = from ?? this.sheet._cards;
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.buttonLabel = buttonLabel;
@@ -58,7 +60,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
     }
 
     get filteredCards() {
-        return this.sheet._cards.sortedAvailableCards.filter( c => {
+        return this.from.sortedAvailableCards.filter( c => {
             return c.id != this.sheet.currentSelection?.id;
         }).filter( c => {
             return this.criteria(c);

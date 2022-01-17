@@ -1,4 +1,4 @@
-import { CardActionParametersForPlayerSelection } from './CardActionParameters.js';
+import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 
 export class CustomCardsDisplay extends CardsConfig {
@@ -338,7 +338,9 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(css.backToHandCard).click(event => this._onClickBackToHand(event) );
         html.find(css.discardCard).click(event => this._onClickDiscardCard(event) );
         html.find(css.giveCard).click(event => this._onClickGiveCard(event) );
+        html.find(css.exchangeCard).click(event => this._onClickExchangeCard(event) );
         html.find(css.playCard).click(event => this._onClickPlayCard(event) );
+        html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) );
         html.find(css.revealCard).click(event => this._onClickRevealCard(event) );
         html.find(css.rotateCard).click(event => this._onClickRotateCard(event) );
         html.find(css.customAction).click(event => this._onClickCustomAction(event) );
@@ -455,6 +457,32 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
+    async _onClickExchangeCard(event) {
+        event.preventDefault();
+
+        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        const coreKey = this.currentSelection.source.coreStackRef;
+        const discard = cardStacks.piles[coreKey];
+
+        const options = {
+            from: discard, 
+            buttonLabel: this._cards.localizedLabel('sheet.actions.exchangeCard') 
+        };
+
+        options.criteria = (card) => { 
+            return card.source.coreStackRef === coreKey; 
+        };
+        options.callBack = async (selection, additionalCards) => { 
+            const stack = this._cards;
+            await stack.exchangeCards(discard, [selection.id], additionalCards.map( c => c.id ) );
+        };
+
+        const selectTitle = this._cards.localizedLabel('sheet.parameters.stacks.exchangeTitle');
+        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        this.render();
+    }
+
     async _onClickPeekOnStack(event) {
         event.preventDefault();
 
@@ -468,6 +496,31 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickPlayCard(event) {
         event.preventDefault();
         await this._cards.playCards([this.currentSelection.id]);
+        this.render();
+    }
+
+    async _onClickPlayMultipleCards(event) {
+        event.preventDefault();
+
+        const coreKey = this.currentSelection.source.coreStackRef;
+        const maxCards = this._cards.sortedAvailableCards.filter(c => c.source.coreStackRef == coreKey).length;
+        const options = {
+            maxAmount: Math.max(1, maxCards-1),
+            buttonLabel: this._cards.localizedLabel('sheet.actions.playMultiple') 
+        };
+
+        options.criteria = (card) => { 
+            return card.source.coreStackRef === coreKey; 
+        };
+        options.callBack = async (selection, additionalCards) => { 
+            const cardIds = [selection.id];
+            cardIds.push(...additionalCards.map(c => c.id));
+            await this._cards.playCards(cardIds);
+        };
+
+        const selectTitle = this._cards.localizedLabel('sheet.parameters.stacks.playTitle');
+        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
         this.render();
     }
 

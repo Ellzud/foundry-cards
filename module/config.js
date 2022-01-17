@@ -1,6 +1,5 @@
 import { CustomCard } from "./card.js";
 import { CustomCards } from "./cards.js";
-import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";

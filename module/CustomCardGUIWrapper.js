@@ -186,7 +186,9 @@ export class CustomCardGUIWrapper {
 
         if( stackOwnedByUser ) {
             tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromHandPlayCard]} );
+            tools.addAvailableAction(actions, deckConfig, this.card, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromHandPlayMultiple]} );
             tools.addAvailableAction(actions, deckConfig, this.card, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromHandExchangeCard]});
             tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
@@ -222,6 +224,7 @@ export class CustomCardGUIWrapper {
 
         if( stackOwnedByUser ) {
             tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
             tools.addAvailableAction(actions, deckConfig, this.card, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
             tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
