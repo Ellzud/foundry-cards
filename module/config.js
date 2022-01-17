@@ -2,6 +2,7 @@ import { CustomCard } from "./card.js";
 import { CustomCards } from "./cards.js";
 import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 
@@ -12,18 +13,9 @@ import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 export class RTUCardsConfig extends FormApplication {
 
 	static registerCardSystem() {
-
 		CONFIG.Cards.documentClass = CustomCards;
 		CONFIG.Card.documentClass = CustomCard;
-	
-		DocumentSheetConfig.unregisterSheet(Cards, "core", CardsConfig);
-		DocumentSheetConfig.unregisterSheet(Cards, "core", CardsHand);
-		DocumentSheetConfig.unregisterSheet(Cards, "core", CardsPile);
-		DocumentSheetConfig.registerSheet(Cards, "ReadyToUseCards", CustomCardsDisplay, {
-			label: "RTUCards.sheet.template",
-			types: ["deck", "hand", "pile"],
-			makeDefault: true
-		});
+		CONFIG.ui.cards = CustomCardsDirectory;
 	}
 	
 	/* -------------------------------------------- */
@@ -38,7 +30,7 @@ export class RTUCardsConfig extends FormApplication {
 			name: "RTUCards.settings.sheet.menu",
 			label: "RTUCards.settings.sheet.title",
 			hint: "RTUCards.settings.sheet.hint",
-			icon: "fas fa-user-lock",
+			icon: "fas fa-cog",
 			type: RTUCardsConfig,
 			restricted: true
 		});
@@ -176,15 +168,20 @@ export class RTUCardsConfig extends FormApplication {
 				});
 			}
 
+			const registeredSuffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered');;
+			const deckName = stackDef.customName ?? game.i18n.localize(stackDef.labelBaseKey + 'title');
+			const deckDesc = stackDef.customDesc ?? game.i18n.localize(stackDef.labelBaseKey + 'description');
+
 			const data = {};
 			data.key = key;
 			data.config = config;
 			data.gui = {
 				toggled: cardStacks.decks.hasOwnProperty( key ),
+				toggleLocked: stackDef.isManuallyRegistered ?? false,
 				detailsDisplayed: false,
 				deck: {
-					name: game.i18n.localize(stackDef.labelBaseKey + 'title'),
-					desc: game.i18n.localize(stackDef.labelBaseKey + 'description')
+					name: deckName + (stackDef.isManuallyRegistered ? registeredSuffix : '' ),
+					desc: deckDesc
 				},
 				labels: configLabels
 			};

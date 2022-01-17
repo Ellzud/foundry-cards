@@ -6,9 +6,9 @@
     "RTUCards.settings.gmIcon.hint": "Icone affichée lorsque les MJ fait des actions sur les decks",
 
     "RTUCards.settings.stackForPlayerHand.label": "Cartes en main",
-    "RTUCards.settings.stackForPlayerHand.hint": "Permet de savoir s'il faut créer une pile de carte pour les mains de chaque joueurs",
+    "RTUCards.settings.stackForPlayerHand.hint": "Chaque joueur possède une main de cartes cachée aux autres joueurs",
     "RTUCards.settings.stackForPlayerRevealedCards.label": "Cartes faces visibles",
-    "RTUCards.settings.stackForPlayerRevealedCards.hint": "Permet de savoir s'il faut créer une pile pour les cartes faces visibles de chaque joueur",
+    "RTUCards.settings.stackForPlayerRevealedCards.hint": "Chaque joueur peut avoir des cartes visibles posées devant lui",
 
     "RTUCards.settings.everyHandsPeekOn.label": "Zieuter les mains adverses",
     "RTUCards.settings.everyHandsPeekOn.hint": "Le MJ peut regarder les mains des joueurs (Ils seront avertis)",
@@ -46,10 +46,15 @@
     "RTUCards.settings.sheet.labels.fromDiscardRotateCard": "Mettre la carte à l'envers",
     "RTUCards.settings.sheet.labels.fromDiscardResetAll": "Le MJ peut mélanger la défausse dans le paquet",
 
+    "RTUCards.sidebar.context.configActions": "Paramétrer les actions",
+    "RTUCards.sidebar.context.registerDeck": "Inclure le deck (RTU-Cards)",
+    "RTUCards.sidebar.context.unregisterDeck": "Exclure le deck (RTU-Cards)",
+
     "RTUCards.sheet.template": "IHM unifiée",
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Défausse",
+    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Personnalisé)",
 
     "RTUCards.pokerDark.title": "Poker, cartes dorées",
     "RTUCards.pokerDark.description": "Un jeu classique de 52 cartes.",

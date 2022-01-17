@@ -4,6 +4,11 @@
     "RTUCards.settings.gmIcon.label": "GM icon",
     "RTUCards.settings.gmIcon.hint": "Displayed when GMs do actions on decks",
 
+    "RTUCards.settings.stackForPlayerHand.label": "Cards in hand",
+    "RTUCards.settings.stackForPlayerHand.hint": "Each player has card in hands. Those cards are hidden from other players.",
+    "RTUCards.settings.stackForPlayerRevealedCards.label": "Revealed cards",
+    "RTUCards.settings.stackForPlayerRevealedCards.hint": "Each player can have some visible cards displayed in front on him",
+
     "RTUCards.settings.everyHandsPeekOn.label": "Peek on player's hand",
     "RTUCards.settings.everyHandsPeekOn.hint": "GM can peek on player's hand (They will be warned)",
     "RTUCards.settings.everyHandsDiscardAll.label": "Discard all hand",
@@ -40,10 +45,15 @@
     "RTUCards.settings.sheet.labels.fromDiscardRotateCard": "Rotate the card to see it upside down",
     "RTUCards.settings.sheet.labels.fromDiscardResetAll": "GM can shuffle all discard cards inside deck",
 
+    "RTUCards.sidebar.context.configActions": "Choose available actions",
+    "RTUCards.sidebar.context.registerDeck": "Add to Ready-To-Use-Cards decks",
+    "RTUCards.sidebar.context.unregisterDeck": "Remove from Ready-To-Use-Cards decks",
+
     "RTUCards.sheet.template": "Unified GUI",
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Discard",
+    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Custom)",
 
     "RTUCards.pokerDark.title": "Poker, golden cards",
     "RTUCards.pokerDark.description": "A classic 52 cards deck.",

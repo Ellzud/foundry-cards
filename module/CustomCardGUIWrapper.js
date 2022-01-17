@@ -24,6 +24,8 @@ export class CustomCardGUIWrapper {
     }
 
     get name() {
+        // WARNING : this._card.name exists but change depending on the current card face.
+        // Since we are not using the face system, directly take the base card name
         return this._card.data.name;
     }
 
@@ -111,13 +113,17 @@ export class CustomCardGUIWrapper {
 
         const result = {
             player: playerFlag,
-            ref: this.card.name,
+            ref: this.name,
             icon: this.card.frontIcon,
-            name: this.card.name,
+            name: this.name,
             type: this.card.source.coreStackRef,
             rotated: 0,
             description: []
         };
+
+        if( addCardDescription && this._card.data.description ) {
+            result.description.push(this._card.data.description);
+        }
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterBuildCardInfoForListing ) { // FIXME

@@ -138,12 +138,13 @@ const removeUnusedFolders = async () => {
  */
 const initCoreStackPreset = async (type, coreStack) => {
     const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.' + type);
-    const name = game.i18n.localize(coreStack.labelBaseKey + 'title') + suffix;
-    const description = game.i18n.localize(coreStack.labelBaseKey + 'description');
+    const baseName = coreStack.customName ?? game.i18n.localize(coreStack.labelBaseKey + 'title');
+    const name = baseName + suffix;
+    const description = coreStack.customDesc ?? game.i18n.localize(coreStack.labelBaseKey + 'description');
 
     // Icon
     const imgPath = coreStack.resourceBaseDir + '/icons/';
-    const imgFile = imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' );
+    const imgFile = coreStack.customIcon ?? ( imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' ) );
 
     // Flags
     const stackFlag = {};
@@ -353,7 +354,7 @@ export class CustomCardStackLoader {
      * Available stack for settings panel.
      */
     get defaultCoreStacks() {
-        return {
+        const coreStacks = {
             pokerDark: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.pokerDark.',
@@ -384,7 +385,23 @@ export class CustomCardStackLoader {
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/classicTarot',
                 preset: 'modules/ready-to-use-cards/resources/classicTarot/cards.json'
             }
-        }
+        };
+
+        // Add manually registered stacks
+        game.cards.filter(s => s.manuallyRegistered && s.type == 'deck').forEach(s => {
+            const core = s.getFlag("ready-to-use-cards", "core");
+            const registerFlag = s.getFlag("ready-to-use-cards", "registered-as");
+            coreStacks[core] = {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.default.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/default',
+                customName : registerFlag.name,
+                customDesc : registerFlag.desc,
+                customIcon : registerFlag.icon,
+                isManuallyRegistered: true
+            };
+        });
+        return coreStacks;
     }
 
     /**

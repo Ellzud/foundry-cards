@@ -1,3 +1,4 @@
+import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
@@ -45,6 +46,18 @@ export class CustomCards extends Cards {
      */
     get coreStackRef() {
         return this.getFlag("ready-to-use-cards", "core");
+    }
+
+    get backIcon() {
+        const coreRef = this.coreStackRef;
+        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
+        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/icons/back.webp');
+    }
+
+    get frontIcon() {
+        const coreRef = this.coreStackRef;
+        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
+        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/icons/front.webp');
     }
 
     /**
@@ -133,6 +146,119 @@ export class CustomCards extends Cards {
         }
     }
 
+    /* -------------------------------------------- 
+      Manual Registering management
+    /* -------------------------------------------- */
+
+    /**
+     * For cards handled by module, GUI is always CustomCardsDisplay
+     * Other stacks still can use other GUI
+     * @override
+     */
+    get sheet() {
+        if(!this.handledByModule) {
+            return super.sheet;
+        }
+
+        if ( !this._customSheet ) {
+            this._customSheet = new CustomCardsDisplay(this, {editable: this.isOwner});
+        }        
+        return this._customSheet;
+    }
+
+    /**
+     * Does the stack have the right flags to be handled correctly?
+     * @returns {boolean} TRUE if the flags are here
+     */
+    get handledByModule() {
+        return this.data.flags['ready-to-use-cards'] ? true : false;
+    }
+
+    /**
+     * Some custom stacks can be added manually.
+     * This is how we distinct them from others
+     * @returns {boolean} TRUE if it is a custom stack
+     */
+    get manuallyRegistered() {
+        return this.getFlag("ready-to-use-cards", "registered-as") ? true : false;
+    }
+
+    /**
+     * Add a new deck to the list of coreStacks handled by the module
+     * Deck will be modified so that it has the right name and flags.
+     * Then the related discard will be created.
+     */
+     async registerAsHandledByModule() {
+
+        // 0: Verifs
+        assertStackType(this, {decks:true});
+        if( this.handledByModule ) { throw this.name + ' is already handled by module'; }
+
+        // 1: Edit the deck
+        const updateData = {};
+        updateData['name'] = this.name + game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
+        updateData['permission'] = {
+            default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        };
+
+        const flags = {};
+        flags['registered-as'] = {
+            name: this.name,
+            desc: this.data.description,
+            icon: this.data.img
+        };
+
+        flags['core'] = this.id;
+        flags['owner'] = 'none';
+        updateData['flags.ready-to-use-cards'] = flags;
+        await this.update(updateData);
+
+        // 2: Flag this coreStack as chosen in settings
+        const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
+        chosenStacks[this.id] = {};
+        await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
+
+        // 3: Reload all stacks
+        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        await cardStacks.loadCardStacks();
+    }
+
+    /**
+     * Remove a maunally registered deck stack from the coreStacks handled by the module
+     */
+     async unregisterAsHandledByModule() {
+
+        // 0: Verifs
+        assertStackType(this, {decks:true});
+        if( !this.manuallyRegistered ) { throw this.name + ' was not manually registered'; }
+
+        // 1: Reset the deck
+        const coreKey = this.coreStackRef;
+        await this.resetDeck();
+
+        // 2: Rename deck and remove flag
+        const updateData = {};
+        const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
+        updateData['name'] = this.name.replace(suffix, '');
+        updateData['permission'] = {
+            default: CONST.DOCUMENT_PERMISSION_LEVELS.NONE
+        };
+
+        updateData['flags.ready-to-use-cards'] = null;
+        await this.update(updateData);
+
+        // 3: Unflag this coreStack as chosen in settings
+        const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
+        delete chosenStacks[this.id];
+        await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
+
+        // 4: Delete the related discard
+        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        await cardStacks.piles[coreKey].delete()
+
+        // 5: Reload links
+        await cardStacks.loadCardStacks();
+    }
 
     /* -------------------------------------------- 
       Capture cards movements and trigger custom hook

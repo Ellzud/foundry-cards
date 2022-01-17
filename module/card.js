@@ -9,13 +9,11 @@ export class CustomCard extends Card {
     }
 
     get backIcon() {
-        const coreRef = this.source.coreStackRef;
-        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/back.webp';
+        return this.source.backIcon;
     }
 
     get frontIcon() {
-        const coreRef = this.source.coreStackRef;
-        return CARD_STACKS_DEFINITION.core[coreRef].resourceBaseDir + '/icons/front.webp';
+        return this.source.frontIcon;
     }
 
     /**
@@ -46,7 +44,7 @@ export class CustomCard extends Card {
      * @override
      */
     get sheet() {
-        const defaultSheet = super.sheet;
+        if( !this.source.handledByModule ) { return super.sheet; }
         return new SingleCardDisplay(this, defaultSheet.options);
     }
 }

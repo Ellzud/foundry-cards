@@ -401,7 +401,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const selectTitle = this._cards.localizedLabel('sheet.parameters.players.dealTitle');
         this._actionParameters = new CardActionParametersForPlayerSelection(this, selectTitle, options );
-        this.render();
+        this.render(true);
     }
 
     async _onClickDisplayListing(event) {

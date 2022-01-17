@@ -10,9 +10,9 @@
 
     <div class="flexrow deck-row content conf">
         {{#if box.toggled}}
-            <i class="far fa-check-square toggle-button config" data-config="{{box.config}}"></i>
+            <i class="far fa-check-square toggle-button active config" data-config="{{box.config}}"></i>
         {{else}}
-            <i class="far fa-square toggle-button config" data-config="{{box.config}}"></i>
+            <i class="far fa-square toggle-button active config" data-config="{{box.config}}"></i>
         {{/if}}
         <div>{{box.label}}</div>
     </div>
@@ -27,14 +27,14 @@
             <div class="flexcol" data-key={{stack.key}}>
                 <div class="flexrow deck-row">
                     {{#if stack.gui.toggled}}
-                        <i class="far fa-check-square toggle-button deck"></i>
+                        <i class="far fa-check-square toggle-button {{#unless stack.gui.toggleLocked}}active deck{{/unless}}"></i>
                         {{#if stack.gui.detailsDisplayed}}
-                            <i class="fas fa-sort-down toggle-button show"></i>
+                            <i class="fas fa-sort-down toggle-button active show"></i>
                         {{else}}
-                            <i class="fas fa-sort-up toggle-button show"></i>
+                            <i class="fas fa-sort-up toggle-button active show"></i>
                         {{/if}}
                     {{else}}
-                        <i class="far fa-square toggle-button deck"></i>
+                        <i class="far fa-square toggle-button active deck"></i>
                     {{/if}}
                     <div>{{stack.gui.deck.name}}</div>
                 </div>

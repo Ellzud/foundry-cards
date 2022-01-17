@@ -35,7 +35,7 @@
   margin-right: 3px;
 }
 
-.config-panel.rtucards-config .deck-row .toggle-button:hover {
+.config-panel.rtucards-config .deck-row .toggle-button.active:hover {
   cursor: pointer;
   text-shadow: 0 0 4px darkblue;
 }

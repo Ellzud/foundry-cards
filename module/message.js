@@ -37,21 +37,21 @@ export const alterCardMessage = (message, html) => {
         for( const userStack of userStacks ) {
             if(card) { continue; }
             stack = userStack;
-            card = stack.cards.find(c => c.name === cardName);
+            card = stack.cards.find(c => c.data.name === cardName);
         }
 
         // Second : Card wasn't found on stack. Maybe it has already been played?
         // => Check the discard pile
         if(!card) {
             stack = cardStacks.piles[cardType];
-            card = stack?.cards.find(c => c.name === cardName);
+            card = stack?.cards.find(c => c.data.name === cardName);
         }
 
 
         // Lastly : Fallback on card definition (stack won't be navigated)
         if(!card) {
             stack = cardStacks.decks[cardType];
-            card = stack?.cards.find(c => c.name === cardName);
+            card = stack?.cards.find(c => c.data.name === cardName);
         }
 
         // If found, display the stack GUI and select current card
