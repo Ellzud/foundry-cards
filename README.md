@@ -78,6 +78,7 @@ Each checkbox allow an action from the main GUI.
 Did I say otherwise just several lines earlier ? By default, GM can't see a player hand, but there are some cases where it can be useful. Mainly for assisting a player who hasn't understood one of its cards.
 
 **If the GM choose to do so, players will be warned**
+
 ![Peeking on warning](docs/README_peek_on_hand_warning.webp?raw=true)
 
 This is what he will see by default :
@@ -104,9 +105,11 @@ Each action comes with a message sent to the chat log.
 Some messages such has the drawing card part are not displayed the same way depending on if you own the stack or not.
 
 What the other player will see : 
+
 ![Draw seen by other](docs/README_draw_card_otherView.webp?raw=true)
 
 What the player will see :
+
 ![Draw seen by player](docs/README_draw_card_playerView.webp?raw=true)
 
 And when he clicks on the link : 
