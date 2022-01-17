@@ -189,7 +189,7 @@ You just need to the right translation key in your translation files.
 
 Available keys can be deduced from all traslation key prefixed by `RTUCards.default.` in this module translation files
 
-Example : 
+Example (`labelBaseKey` = `AESYSTEM.cards.event.`) : 
 ~~~json
 {
     "AESYSTEM.cards.event.title": "Event & Spirit",
