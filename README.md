@@ -5,8 +5,8 @@
 ### The mindset
 This module has been developped with the following mindset : 
 
-- You don't need to edit your card deck during the game. Once set, you only need to have easy acces to your cards and the related decks and discard piles.
-- Each player should be able to have cards in his hands (Only visible by him. Even GMs can't see them) and cards on front of him, visible by everyone. When adding this module, those two card stacks will be created for each player. (It's still possible to remove the Hand or Revealed cards stack inside settings)
+- You don't need to edit your card deck during the game. Once set, you only need to have easy acces to your cards, related decks and discard piles.
+- Each player should be able to have cards in his hands (Only visible by him. Even GMs can't see them) and cards in front of him, visible by everyone. When adding this module, those two card stacks will be created for each player. (It's still possible to remove the Hand or Revealed cards stack inside settings)
 - GMs share only one Hand and Revealed cards stack
 - Multiple decks can be used. Each one comes with its related discard pile.
 - What is important is : For each card type, which action is available when handling decks, hands, revealed cards and discard piles. All this is customizable via settings.
@@ -129,8 +129,113 @@ What the player will see :
 And when he clicks on the link : 
 ![Draw details](docs/README_draw_card_clicked.webp?raw=true)
 
+## Additional configuration settings
+
+![Configuration settings](docs/README_additional_configuration.webp?raw=true)
+
+The first two ones are for the chatlog when GM is doing actions
+
+`Cards in hands` and `Revealed cards` can be toggled to delete players hands or revealed cards. That way, Players will only have one stack to manage. But the related actions won't be available anymore.
+
+`Peek on player's hand` : Uncheck it if you d'ont wan't to be tempted !
+
+`Discard all hand` and `Discard all revealed cards` : Thoses actions do not depends on a specific deck and are present even if no cards are selected.
+
 ## Advanced method for configuring your decks (only for developpers)
-TODO
+
+### Where to add code
+
+You need to add the following hooks
+~~~js
+Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
+	// Alter cardStacksDefinition here
+});
+~~~
+
+About `cardStacksDefinition`, you can have a complete detail [here](./module/StackDefinition.js).
+
+### Adding new decks
+
+You need to add childs to `cardStacksDefinition.core`. Make sur you don't use one of the values used by defaultCoreStacks.
+
+Each child should follow the CoreStackDefinition format, described in the [same file](./module/StackDefinition.js).
+
+Here is a summary of the default values :
+~~~js
+// Load default values
+Object.values(def.core).forEach( coreStrackDefinition => {
+    const c = coreStrackDefinition;
+    if( !c.cardClass ) { c.cardClass = CustomCardSimple; }
+    if( !c.labelBaseKey ) { c.labelBaseKey = 'RTUCards.default.'; }
+    if( !c.resourceBaseDir ) { c.resourceBaseDir = 'modules/ready-to-use-cards/resources/default'; }
+});
+~~~
+
+### Setting configuation
+
+Those decks won't be available in the configuration settings panel. You will need to choose which basic actions you want directly inside code.
+
+All basic action keys are referenced in `CardActionsClasses` decribed [here](./module/constants.js).
+
+Inside your code, `CardActionsClasses` can be obtained via `cardStacksDefinition.shared.actionCss`.
+
+You don't need to specify each actions, only those you don't wan't to have for your deck.
+
+### Using labelBaseKey
+
+The prefix can be pretty useful: It can help you redefine every labels for your custom decks.
+
+You just need to the right translation key in your translation files.
+
+Available keys can be deduced from all traslation key prefixed by `RTUCards.default.` in this module translation files
+
+Example : 
+~~~json
+{
+    "AESYSTEM.cards.event.title": "Event & Spirit",
+    "AESYSTEM.cards.event.description": "A 52 cards deck. Drawn as an event card or a spirit card",
+
+    "AESYSTEM.cards.event.message.draw.hand.one":  "One event card has been drawn",
+    "AESYSTEM.cards.event.message.draw.hand.many":  "NB event cards were drawn",
+    "AESYSTEM.cards.event.message.draw.pile.one":  "One spirit is answering your call",
+    "AESYSTEM.cards.event.message.draw.pile.many":  "NB spirits are answering your call",
+    
+    "AESYSTEM.cards.event.sheet.actions.playEvent.actionButton": "Play event",
+    "AESYSTEM.cards.event.sheet.actions.playEvent.selectTitle": "Cards to discard",
+}
+~~~
+
+### Using resourceBaseDir
+
+Define the base directory for your deck icons, background image and front image.
+
+Background image is used when no card are selected on the deck or if the selected card is not visible.
+
+Front image is used when no card are selected on the discard pile.
+
+Check `resources/default` for having more information on how it should be filled. 
+
+Image files should be on the `.webp` format.
+
+
+### Using cardClass
+
+> This is where all the fun (or nightmare) begins !
+
+By substituting the cardClass you can alter the default behavior and display.
+
+[CustomCardSimple](./module/CustomCardSimple.js) decribe in details which methods you can add to your implementation.
+
+You can find an example [here](./https://gitlab.com/adrien.schiehle/acariaempire/-/tree/release-1.0.0/src/card) for a custom implementation
+
+It's called inside my custom system via this: (Nothing more):
+~~~js
+Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
+
+	alterCardStacksDefinition(cardStacksDefinition);
+});
+~~~
+
 
 ## Credits for card images used in the preconfigured decks : 
 

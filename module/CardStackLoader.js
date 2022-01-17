@@ -342,6 +342,14 @@ const loadStackDefinition = (defaultStacks) => {
 
     // For those who want to add some custom stacks
     Hooks.call("loadCardStacksDefinition", def);
+
+    // Load default values
+    Object.values(def.core).forEach( coreStrackDefinition => {
+        const c = coreStrackDefinition;
+        if( !c.cardClass ) { c.cardClass = CustomCardSimple; }
+        if( !c.labelBaseKey ) { c.labelBaseKey = 'RTUCards.default.'; }
+        if( !c.resourceBaseDir ) { c.resourceBaseDir = 'modules/ready-to-use-cards/resources/default'; }
+    });
 }
 
 
