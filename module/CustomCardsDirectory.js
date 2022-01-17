@@ -46,8 +46,14 @@ export class CustomCardsDirectory extends CardsDirectory {
             icon: '<i class="fas fa-cog"></i>',
             condition: li => {
                 if( !game.user.isGM ) { return false; }
+                
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                return stack.stackOwner.forNobody;
+                if( !stack.stackOwner.forNobody ) { return false; }
+
+                // Do not allow this action for stacks which have been loaded by code via the custom hook 'loadCardStacksDefinition'
+                const coreKey = stack.coreStackRef;
+                const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+                return cardStacks.defaultCoreStacks.hasOwnProperty(coreKey);
             },
             callback: li => {
                 const stack = this.constructor.collection.get(li.data("documentId"));
