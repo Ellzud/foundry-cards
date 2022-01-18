@@ -272,6 +272,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const actions = [];
         const owned = this._cards.ownedByCurrentPlayer;
 
+        const tools = def.shared.actionTools;
+
         if( this.currentSelection ) {
             const selectionActions = this.currentSelection.forGUI.loadActionsWhileInRevealedCards(owned);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }

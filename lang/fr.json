@@ -37,7 +37,7 @@
     "RTUCards.settings.sheet.labels.fromHandPlayCard": "Jouer une carte",
     "RTUCards.settings.sheet.labels.fromHandPlayMultiple": "Jouer plusieurs cartes d'un coup",
     "RTUCards.settings.sheet.labels.fromHandRevealCard": "Poser une carte devant soi",
-    "RTUCards.settings.sheet.labels.fromHandExchangeCard": "Echange carte avec la défausse",
+    "RTUCards.settings.sheet.labels.fromHandExchangeCard": "Echanger une carte avec la défausse",
     "RTUCards.settings.sheet.labels.fromHandDiscardCard": "Défausser une carte",
     "RTUCards.settings.sheet.labels.fromHandRotateCard": "Mettre la carte à l'envers",
     "RTUCards.settings.sheet.labels.fromRevealedPlayCard": "Jouer la carte",
