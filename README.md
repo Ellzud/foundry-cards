@@ -28,6 +28,10 @@ If your system intends to also overrides those classes, it will comes into confl
 
 The most problematic one here is the `Card` document class. If you're doing a custom system, you can check the last chapters of this readme to adapt your code. (Your data will then be accessible via `card.impl`)
 
+### Supported languages
+
+This module is currently available in French and in English.
+
 ## Choose the decks you want
 
 ### Comes with Ready to use decks
