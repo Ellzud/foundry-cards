@@ -98,7 +98,7 @@
     "RTUCards.default.sheet.actions.giveCard": "La donner à quelqu'un",
     "RTUCards.default.sheet.actions.recallCards": "Réinitialiser le paquet",
     "RTUCards.default.sheet.actions.revealCard": "Révéler la carte",
-    "RTUCards.default.sheet.actions.rotateCard": "Retourner la carte",
+    "RTUCards.default.sheet.actions.rotateCard": "Tourner la carte",
     "RTUCards.default.sheet.actions.shuffleCards": "Mélanger les cartes restantes",
     "RTUCards.default.sheet.actions.shuffleDiscard": "Mélanger la défause dans le deck",
 

@@ -107,6 +107,12 @@ For this action, destination targets will differ depending on what has been conf
 
 ![Dealing cards](docs/README_deal_cards.webp?raw=true)
 
+### Action example : Play multiple cards
+
+For this action, you can select additionnal cards after selecting the first one :
+
+![Playing multiple cards](docs/README_play_multiple.webp?raw=true)
+
 ### Action example : Rotating selected card
 
 This on is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
