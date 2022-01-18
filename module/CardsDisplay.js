@@ -272,6 +272,9 @@ export class CustomCardsDisplay extends CardsConfig {
         const actions = [];
         const owned = this._cards.ownedByCurrentPlayer;
 
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const css = def.shared.actionCss;
+
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
