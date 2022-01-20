@@ -1,3 +1,5 @@
+import { CustomCardStack } from "./cards.js";
+
 /**
  * Class storing common methods for managing actions inside a CustomCardDisplay
  */
@@ -22,7 +24,7 @@ export class CustomCardActionTools {
      * Action will be added only if the corresponding deck config value is TRUE
      * @param {object[]} actions Actions which will be available when the card is selected in its current stack
      * @param {object} deckConfig Store all configs for this deck. One key for each one.
-     * @param {CustomCards} translator For translating he label
+     * @param {CustomCardStack} translator For translating he label
      * @param {string} cssAction css which will be captured onClick and trigger an action
      * @param {string} labelKey The localized label key
      * @param {string[]} [allKeys] If set, ask that all included keys have to be flagged to TRUE inside deckConfig

@@ -1,3 +1,4 @@
+import { CustomCardStack } from './cards.js';
 import { GlobalConfiguration } from './constants.js';
 import { CustomCardActionTools } from './CustomCardActionTools.js';
 import { CustomCardSimple } from './CustomCardSimple.js';
@@ -47,7 +48,7 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
     if( user ) { checkedOwner = user.id; }
     else if( gmStack ) { checkedOwner = 'gm'; }
 
-    return game.cards.find( stack => {
+    const cardStack = game.cards.find( stack => {
         const flag = stack.data.flags['ready-to-use-cards'] ?? {};
 
         if( flag['owner'] != checkedOwner ) { return false; }
@@ -55,6 +56,8 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
 
         return stack.type === type;
     });
+    if( !cardStack ) { return null; }
+    return new CustomCardStack(cardStack);
 }
 
 /**
@@ -76,7 +79,7 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
         // Is it one of the defaultCoreStacks ? (Meaning no hooks)
         const defaultOne = defaultCoreStacks.hasOwnProperty(core);
         return defaultOne;
-    });
+    }).map( stack => new CustomCardStack(stack) );
 }
 
 /**
@@ -106,7 +109,7 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
 
         // Revealed card stacks
         return !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards);
-    });
+    }).map( stack => new CustomCardStack(stack) );
 }
 
 /**
@@ -336,7 +339,8 @@ const loadStackDefinition = (defaultStacks) => {
 
     // Additional data are shared (Can't be put in the constant panel)
     def.shared.cardClasses = {
-        simple: CustomCardSimple
+        simple: CustomCardSimple,
+        customCardStack: CustomCardStack
     }
     def.shared.actionTools = new CustomCardActionTools();
 
@@ -396,7 +400,11 @@ export class CustomCardStackLoader {
         };
 
         // Add manually registered stacks
-        game.cards.filter(s => s.manuallyRegistered && s.type == 'deck').forEach(s => {
+        game.cards.filter(s => {
+            const custom = new CustomCardStack(s);
+            return custom.manuallyRegistered && s.type == 'deck';
+
+        }).forEach(s => {
             const core = s.getFlag("ready-to-use-cards", "core");
             const registerFlag = s.getFlag("ready-to-use-cards", "registered-as");
             coreStacks[core] = {

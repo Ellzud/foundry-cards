@@ -3,17 +3,17 @@ import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
-const assertStackIsNotADiscardPile = ( parent ) => {
+const assertStackIsNotADiscardPile = ( customCardStack ) => {
 
-    const discardPiles = Object.values(parent.cardStacks.piles);
-    if( discardPiles.find( p => p == parent ) ) {
+    const discardPiles = Object.values(customCardStack.cardStacks.piles);
+    if( discardPiles.find( p => p == customCardStack ) ) {
         throw 'Cards already in discard can\'t be discareded'; 
     }
 }
 
-const assertStackOwner = ( parent, {forGMs=false, forPlayers=false, forNobody=false}={} ) => {
+const assertStackOwner = ( customCardStack, {forGMs=false, forPlayers=false, forNobody=false}={} ) => {
 
-    const owner = parent.stackOwner;
+    const owner = customCardStack.stackOwner;
     if( !forGMs && owner.forGMs ) { 
         throw 'Card stacks forGMs can\'t do this action'; 
     }
@@ -25,15 +25,15 @@ const assertStackOwner = ( parent, {forGMs=false, forPlayers=false, forNobody=fa
     }
 }
 
-const assertStackType = ( parent, {decks=false, hands=false, piles=false}={} ) => {
+const assertStackType = ( customCardStack, {decks=false, hands=false, piles=false}={} ) => {
 
-    if( !decks && parent.type == 'deck' ) { 
+    if( !decks && customCardStack._stack.type == 'deck' ) { 
         throw 'Decks can\'t do this action'; 
     }
-    if( !hands && parent.type == 'hand' ) { 
+    if( !hands && customCardStack._stack.type == 'hand' ) { 
         throw 'Hands can\'t do this action'; 
     }
-    if( !piles && parent.type == 'pile' ) { 
+    if( !piles && customCardStack._stack.type == 'pile' ) { 
         throw 'Piles can\'t do this action'; 
     }
 }
@@ -41,12 +41,76 @@ const assertStackType = ( parent, {decks=false, hands=false, piles=false}={} ) =
 export class CustomCards extends Cards {
 
     /**
+     * CustomCards will delegate custom actions to CustomCardStack
+     * @returns {CustomCardStack}
+     */
+    get delegateTo() {
+        if( !this._delegateTo ) {
+            this._delegateTo = new CustomCardStack(this);
+        }
+        return this._delegateTo;
+    }
+
+    /**
+     * For cards handled by module, GUI is always CustomCardsDisplay
+     * Other stacks still can use other GUI
+     * @override
+     */
+     get sheet() {
+        if(!this.delegateTo.handledByModule) {
+            return super.sheet;
+        }
+
+        if ( !this._customSheet ) {
+            this._customSheet = new CustomCardsDisplay(this, {editable: this.isOwner});
+        }        
+        return this._customSheet;
+    }
+
+    /* -------------------------------------------- 
+      Capture cards movements and trigger custom hook
+    /* -------------------------------------------- */
+
+    /** @override */
+    _onUpdate(data, options, userId) {
+        super._onUpdate(data, options, userId);
+        Hooks.call('updateCustomCardsContent', this, options, userId);
+    }
+
+    /** @override */
+    _onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+        Hooks.call('updateCustomCardsContent', this, options, userId);
+    }
+
+    /** @override */
+    _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+        Hooks.call('updateCustomCardsContent', this, options, userId);
+    }
+
+    /** @override */
+    _onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
+        Hooks.call('updateCustomCardsContent', this, options, userId);
+    }
+}
+
+export class CustomCardStack {
+
+    constructor(stack) {
+        this._stack = stack;
+    }
+
+    get stack() { return this._stack; }
+
+    /**
      * Present in Decks and Discard piles.
      * Gives the unique reference key to this stack definition
      * @returns {string} One of the CARD_STACKS_DEFINITION.core keys
      */
     get coreStackRef() {
-        return this.getFlag("ready-to-use-cards", "core");
+        return this.stack.getFlag("ready-to-use-cards", "core");
     }
 
     get backIcon() {
@@ -84,7 +148,7 @@ export class CustomCards extends Cards {
     }
 
     get stackOwner() {
-        const value = this.getFlag("ready-to-use-cards", "owner");
+        const value = this.stack.getFlag("ready-to-use-cards", "owner");
         const forGMs = value == 'gm';
         const forNobody = (value == 'none' || ! value );
         const forPlayers = !forGMs && !forNobody;
@@ -127,7 +191,7 @@ export class CustomCards extends Cards {
     }
 
     get sortedAvailableCards() {
-        const cards = this.availableCards;
+        const cards = this.stack.availableCards;
         cards.sort( (a,b) => {
             if( a.data.type === b.data.type ) {
                 return a.data.sort - b.data.sort;
@@ -138,7 +202,7 @@ export class CustomCards extends Cards {
     }
 
     get ownedByCurrentPlayer() {
-        const owner = this.getFlag('ready-to-use-cards','owner');
+        const owner = this.stack.getFlag('ready-to-use-cards','owner');
 
         if( game.user.isGM ) {
             return owner == 'gm';
@@ -152,27 +216,11 @@ export class CustomCards extends Cards {
     /* -------------------------------------------- */
 
     /**
-     * For cards handled by module, GUI is always CustomCardsDisplay
-     * Other stacks still can use other GUI
-     * @override
-     */
-    get sheet() {
-        if(!this.handledByModule) {
-            return super.sheet;
-        }
-
-        if ( !this._customSheet ) {
-            this._customSheet = new CustomCardsDisplay(this, {editable: this.isOwner});
-        }        
-        return this._customSheet;
-    }
-
-    /**
      * Does the stack have the right flags to be handled correctly?
      * @returns {boolean} TRUE if the flags are here
      */
     get handledByModule() {
-        return this.data.flags['ready-to-use-cards'] ? true : false;
+        return this.stack.data.flags['ready-to-use-cards'] ? true : false;
     }
 
     /**
@@ -181,7 +229,7 @@ export class CustomCards extends Cards {
      * @returns {boolean} TRUE if it is a custom stack
      */
     get manuallyRegistered() {
-        return this.getFlag("ready-to-use-cards", "registered-as") ? true : false;
+        return this.stack.getFlag("ready-to-use-cards", "registered-as") ? true : false;
     }
 
     /**
@@ -193,30 +241,30 @@ export class CustomCards extends Cards {
 
         // 0: Verifs
         assertStackType(this, {decks:true});
-        if( this.handledByModule ) { throw this.name + ' is already handled by module'; }
+        if( this.handledByModule ) { throw this.stack.name + ' is already handled by module'; }
 
         // 1: Edit the deck
         const updateData = {};
-        updateData['name'] = this.name + game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
+        updateData['name'] = this.stack.name + game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
         updateData['permission'] = {
             default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
         };
 
         const flags = {};
         flags['registered-as'] = {
-            name: this.name,
-            desc: this.data.description,
-            icon: this.data.img
+            name: this.stack.name,
+            desc: this.stack.data.description,
+            icon: this.stack.data.img
         };
 
-        flags['core'] = this.id;
+        flags['core'] = this.stack.id;
         flags['owner'] = 'none';
         updateData['flags.ready-to-use-cards'] = flags;
-        await this.update(updateData);
+        await this.stack.update(updateData);
 
         // 2: Flag this coreStack as chosen in settings
         const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
-        chosenStacks[this.id] = {};
+        chosenStacks[this.stack.id] = {};
         await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
 
         // 3: Reload all stacks
@@ -231,7 +279,7 @@ export class CustomCards extends Cards {
 
         // 0: Verifs
         assertStackType(this, {decks:true});
-        if( !this.manuallyRegistered ) { throw this.name + ' was not manually registered'; }
+        if( !this.manuallyRegistered ) { throw this.stack.name + ' was not manually registered'; }
 
         // 1: Reset the deck
         const coreKey = this.coreStackRef;
@@ -240,53 +288,25 @@ export class CustomCards extends Cards {
         // 2: Rename deck and remove flag
         const updateData = {};
         const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
-        updateData['name'] = this.name.replace(suffix, '');
+        updateData['name'] = this.stack.name.replace(suffix, '');
         updateData['permission'] = {
             default: CONST.DOCUMENT_PERMISSION_LEVELS.NONE
         };
 
         updateData['flags.ready-to-use-cards'] = null;
-        await this.update(updateData);
+        await this.stack.update(updateData);
 
         // 3: Unflag this coreStack as chosen in settings
         const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
-        delete chosenStacks[this.id];
+        delete chosenStacks[this.stack.id];
         await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
 
         // 4: Delete the related discard
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
-        await cardStacks.piles[coreKey].delete()
+        await cardStacks.piles[coreKey].stack.delete()
 
         // 5: Reload links
         await cardStacks.loadCardStacks();
-    }
-
-    /* -------------------------------------------- 
-      Capture cards movements and trigger custom hook
-    /* -------------------------------------------- */
-
-    /** @override */
-    _onUpdate(data, options, userId) {
-        super._onUpdate(data, options, userId);
-        Hooks.call('updateCustomCardsContent', this, options, userId);
-    }
-
-    /** @override */
-    _onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-        Hooks.call('updateCustomCardsContent', this, options, userId);
-    }
-
-    /** @override */
-    _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-        Hooks.call('updateCustomCardsContent', this, options, userId);
-    }
-
-    /** @override */
-    _onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
-        Hooks.call('updateCustomCardsContent', this, options, userId);
     }
 
     /* -------------------------------------------- 
@@ -308,7 +328,7 @@ export class CustomCards extends Cards {
         
         const key = 'message.' + action + '.' + stackType + '.' +  amountSuffix;
         const label = this.localizedLabel(key, {alternativeCoreKey: coreKey});
-        return label.replace('NB', '' + amount).replace('STACK', this.name);
+        return label.replace('NB', '' + amount).replace('STACK', this.stack.name);
     }
 
     /**
@@ -320,13 +340,13 @@ export class CustomCards extends Cards {
 
         const preparedData = {
             from: {
-                icon: this.data.img,
+                icon: this.stack.data.img,
                 message: flavor
             },
             stacks: stacks.map( s => {
 
                 const owner = s.stackOwner;
-                const data = { id: s.id, name: s.name };
+                const data = { id: s.stack.id, name: s.stack.name };
 
                 if( owner.forGMs ) {
                     data.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
@@ -361,7 +381,7 @@ export class CustomCards extends Cards {
      */
      async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, letGMSpeak=false} = {}) {
 
-        const from = letGMSpeak? this.cardStacks.gmHand : this;
+        const from = letGMSpeak? this.cardStacks.gmHand : this; // FIXME
         const data = { cards: [] };
         for( const card of cards ) {
             const wrapper = new CustomCardGUIWrapper(card);
@@ -416,7 +436,7 @@ export class CustomCards extends Cards {
 
     /**
      * Draw some cards.
-     * @param {CustomCards} from The deck you will draw from
+     * @param {CustomCardStack} from The deck you will draw from
      * @param {int} amount Amount of drawn cards. By default: 1
      * @returns {Card[]} The discarded cards
      */
@@ -424,10 +444,10 @@ export class CustomCards extends Cards {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
 
-        const stackType = this.type;
+        const stackType = this.stack.type;
         const inHand = stackType == 'hand';
 
-        const drawnCards = await this.draw( from, amount, {chatNotification: false} );
+        const drawnCards = await this.stack.draw( from.stack, amount, {chatNotification: false} );
 
         const flavor = this.getCardMessageFlavor(stackType, 'draw', drawnCards.length);
 
@@ -438,7 +458,7 @@ export class CustomCards extends Cards {
 
     /**
      * Give some cards to a player
-     * @param {CustomCards} to The player which will receive the card
+     * @param {CustomCardStack} to The player which will receive the card
      * @param {string[]} cardIds The cards which should be transfered
      * @returns {Card[]} The transfered cards
      */
@@ -447,10 +467,10 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        const stackType = to.type;
+        const stackType = to.stack.type;
         const inHand = stackType == 'hand';
 
-        const givenCards = await this.pass( to, cardIds, {chatNotification: false} );
+        const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: false} );
 
         const flavor = to.getCardMessageFlavor(stackType, 'give', givenCards.length);
 
@@ -462,7 +482,7 @@ export class CustomCards extends Cards {
 
     /**
      * Exchange some of your cards
-     * @param {CustomCards} withStack Card stack which have the receivedCardsId
+     * @param {CustomCardStack} withStack Card stack which have the receivedCardsId
      * @param {string[]} myCardIds Cards you will be separated
      * @param {string[]} receivedCardsId Cards you will get
      * @returns {Card[]} Received Cards
@@ -472,11 +492,13 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forGMs: true, forPlayers:true});
         assertStackType(this, {hands: true, piles:true});
 
-        const stackType = this.type;
+        const stackType = this.stack.type;
         const inHand = stackType == 'hand';
 
-        const givenCards = await this.pass( withStack, myCardIds, {chatNotification: false} );
-        const receivedCards = await withStack.pass( this, receivedCardsId, {chatNotification: false} );
+        const target = withStack.stack;
+
+        const givenCards = await this.stack.pass( target, myCardIds, {chatNotification: false} );
+        const receivedCards = await target.pass( this.stack, receivedCardsId, {chatNotification: false} );
 
         const allCards = [];
         allCards.push(...givenCards);
@@ -499,16 +521,18 @@ export class CustomCards extends Cards {
 
         assertStackIsNotADiscardPile(this);
 
-        const stackType = this.type;
+        const stackType = this.stack.type;
 
         let discardCards = [];
         for( let [coreKey, pile] of Object.entries( this.cardStacks.piles ) ) {
             const ids = cardsIds.filter( id => {
-                const card = this.cards.get(id);
-
-                return card?.source.coreStackRef === coreKey;
+                const card = this.stack.cards.get(id);
+                if( card ) {
+                    const custom = new CustomCardStack(card.source);
+                    return custom.coreStackRef === coreKey;
+                }
             });
-            const cards = await this.pass( pile, ids, {chatNotification: false});
+            const cards = await this.stack.pass( pile.stack, ids, {chatNotification: false});
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
@@ -532,11 +556,11 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {piles: true});
 
-        const currentCard = this.cards.get(cardId);
+        const currentCard = this.stack.cards.get(cardId);
         const original = await currentCard?.reset({chatNotification: false});
 
         const coreKey = this.coreStackRef;
-        await this.cardStacks.decks[coreKey]?.shuffle({chatNotification: false});
+        await this.cardStacks.decks[coreKey]?.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', 1);
         await this.sendMessageForCards(flavor,  [original], {letGMSpeak:true} );
@@ -556,7 +580,7 @@ export class CustomCards extends Cards {
         const owner = this.stackOwner;
         const hand = owner.forGMs ? this.cardStacks.gmHand
                                   : this.cardStacks.findPlayerHand( game.users.get(owner.playerId) );
-        const cards = await this.pass( hand, cardIds, {chatNotification: false});
+        const cards = await this.stack.pass( hand.stack, cardIds, {chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('pile', 'backToHand', cardIds.length);
         await this.sendMessageForCards(flavor,  cards );
@@ -572,11 +596,11 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {piles: true});
 
-        const amount = this.availableCards.length;
-        await this.reset({chatNotification: false});
+        const amount = this.stack.availableCards.length;
+        await this.stack.reset({chatNotification: false});
 
         const coreKey = this.coreStackRef;
-        await this.cardStacks.decks[coreKey]?.shuffle({chatNotification: false});
+        await this.cardStacks.decks[coreKey]?.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', amount);
         await this.sendMessageForCards(flavor,  [], {letGMSpeak:true} );
@@ -596,10 +620,13 @@ export class CustomCards extends Cards {
         const playedCards = [];
         for( let [coreKey, pile] of Object.entries( this.cardStacks.piles ) ) {
             const ids = cardsIds.filter( id => {
-                const card = this.cards.get(id);
-                return card?.source.coreStackRef === coreKey;
+                const card = this.stack.cards.get(id);
+                if( card ) {
+                    const custom = new CustomCardStack(card.source);
+                    return custom.coreStackRef === coreKey;
+                }
             });
-            const cards = await this.pass( pile, ids, {action: 'play', chatNotification: false});
+            const cards = await this.stack.pass( pile.stack, ids, {action: 'play', chatNotification: false});
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor('hand', 'play', cards.length, {alternativeCoreKey: coreKey});
@@ -626,7 +653,7 @@ export class CustomCards extends Cards {
         const owner = this.stackOwner;
         const pile = owner.forGMs ? this.cardStacks.gmRevealedCards
                                   : this.cardStacks.findRevealedCards( game.users.get(owner.playerId) );
-        const cards = await this.pass( pile, cardIds, {chatNotification: false});
+        const cards = await this.stack.pass( pile.stack, cardIds, {chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('hand', 'reveal', cardIds.length);
         await this.sendMessageForCards(flavor, cards, {addCardDescription: true} );
@@ -635,7 +662,7 @@ export class CustomCards extends Cards {
 
     /**
      * Deal some cards to player hands or revealed cards
-     * @param {CustomCards[]} to Stack destinations
+     * @param {CustomCardStack[]} to Stack destinations
      * @param {int} amount  amount of cards which should be dealt
      */
     async dealCards(to, amount) {
@@ -643,7 +670,7 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        await this.deal(to, amount, {chatNotification: false});
+        await this.stack.deal( to.map( ccs => ccs.stack ), amount, {chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'deal', amount);
         await this.sendMessageForStacks(flavor, to);
@@ -657,7 +684,7 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        await this.shuffle({chatNotification: false});
+        await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'shuffle', 1);
         await this.sendMessageForStacks(flavor, []);
@@ -671,8 +698,8 @@ export class CustomCards extends Cards {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        await this.reset({chatNotification: false});
-        await this.shuffle({chatNotification: false});
+        await this.stack.reset({chatNotification: false});
+        await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'reset', 1);
         await this.sendMessageForStacks(flavor, []);

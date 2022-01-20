@@ -1,3 +1,4 @@
+import { CustomCardStack } from "./cards.js";
 import { SingleCardDisplay } from "./SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
@@ -30,41 +31,40 @@ export const alterCardMessage = (message, html) => {
         const isGMCard = playerId == 'gm';
 
         // First :Try to look inside player hand and revealed cards
-        const userStacks = isGMCard ? [cardStacks.gmHand, cardStacks.gmRevealedCards]
+        const customPool = isGMCard ? [cardStacks.gmHand, cardStacks.gmRevealedCards]
                                     : [cardStacks.findPlayerHand(player), cardStacks.findRevealedCards(player) ];
 
+        let custom = null;
         let card = null;
-        let stack = null;
-        for( const userStack of userStacks ) {
+        for( const current of customPool ) {
             if(card) { continue; }
-            stack = userStack;
-            card = stack.cards.find(c => c.data.name === cardName);
+            custom = current;
+            card = current.stack.cards.find(c => c.data.name === cardName);
         }
 
         // Second : Card wasn't found on stack. Maybe it has already been played?
         // => Check the discard pile
         if(!card) {
-            stack = cardStacks.piles[cardType];
-            card = stack?.cards.find(c => c.data.name === cardName);
+            custom = cardStacks.piles[cardType];
+            card = custom?.stack.cards.find(c => c.data.name === cardName);
         }
 
 
         // Lastly : Fallback on card definition (stack won't be navigated)
         if(!card) {
-            stack = cardStacks.decks[cardType];
-            card = stack?.cards.find(c => c.data.name === cardName);
+            custom = cardStacks.decks[cardType];
+            card = custom?.stack.cards.find(c => c.data.name === cardName);
         }
 
         // If found, display the stack GUI and select current card
         if( card ) {
 
             // Action will differ if the card can't be visible in its current stack
-            const stack = card.parent;
             let wholeStackCanBeSeen = true;
-            if( stack.type === 'deck' ) { 
+            if( custom.stack.type === 'deck' ) { 
                 wholeStackCanBeSeen = false; 
-            } else if( stack.type === 'hand' ) {
-                wholeStackCanBeSeen = stack.stackOwner.playerId === game.user.id;
+            } else if( custom.stack.type === 'hand' ) {
+                wholeStackCanBeSeen = custom.stackOwner.playerId === game.user.id;
             }
 
             // Classic stack display or single card display
