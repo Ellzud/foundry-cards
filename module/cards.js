@@ -1,5 +1,6 @@
 import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 const assertStackIsNotADiscardPile = ( parent ) => {
@@ -313,7 +314,7 @@ export class CustomCards extends Cards {
     /**
      * Convenience method to send a message when stacks are modified
      * @param {string} flavor message flavor
-     * @param {CustomCards[]} stacks List of stacks which should be listed
+     * @param {Cards[]} stacks List of stacks which should be listed
      */
      async sendMessageForStacks(flavor, stacks) {
 
@@ -353,7 +354,7 @@ export class CustomCards extends Cards {
     /**
      * Convenience method to send a message when cards are gained or discarded
      * @param {string} flavor message flavor
-     * @param {CustomCard[]} cards List of cards which should be listed
+     * @param {Card[]} cards List of cards which should be listed
      * @param {boolean} [addCardDescription] : If description should be added for each card
      * @param {boolean} [hideToStrangers] : If message should be hidden to strangers
      * @param {boolean} [letGMSpeak] : If true, message will be formated as if it came from gmHand manipulaition
@@ -363,7 +364,8 @@ export class CustomCards extends Cards {
         const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
         for( const card of cards ) {
-            const line = card.forGUI.buildCardInfoForListing(from, addCardDescription);
+            const wrapper = new CustomCardGUIWrapper(card);
+            const line = wrapper.buildCardInfoForListing(from, addCardDescription);
             data.cards.push( line );
         }
 
@@ -416,7 +418,7 @@ export class CustomCards extends Cards {
      * Draw some cards.
      * @param {CustomCards} from The deck you will draw from
      * @param {int} amount Amount of drawn cards. By default: 1
-     * @returns {CustomCard[]} The discarded cards
+     * @returns {Card[]} The discarded cards
      */
      async drawCards(from, amount = 1) {
 
@@ -438,7 +440,7 @@ export class CustomCards extends Cards {
      * Give some cards to a player
      * @param {CustomCards} to The player which will receive the card
      * @param {string[]} cardIds The cards which should be transfered
-     * @returns {CustomCard[]} The transfered cards
+     * @returns {Card[]} The transfered cards
      */
      async giveCards(to, cardIds) {
 
@@ -463,7 +465,7 @@ export class CustomCards extends Cards {
      * @param {CustomCards} withStack Card stack which have the receivedCardsId
      * @param {string[]} myCardIds Cards you will be separated
      * @param {string[]} receivedCardsId Cards you will get
-     * @returns {CustomCard[]} Received Cards
+     * @returns {Card[]} Received Cards
      */
      async exchangeCards(withStack, myCardIds, receivedCardsId) {
 
@@ -491,7 +493,7 @@ export class CustomCards extends Cards {
      * Discard some cards.
      * Message will be grouped for each card type
      * @param {string[]} cardsIds cards Ids
-     * @returns {CustomCard[]} The discarded cards
+     * @returns {Card[]} The discarded cards
      */
      async discardCards(cardsIds) {
 
@@ -544,7 +546,7 @@ export class CustomCards extends Cards {
      * Try to put some cards back in its hand.
      * Cards should currently be in revealed cards
      * @param {string[]} cardsIds cards Ids
-     * @returns {CustomCard[]} The returned cards
+     * @returns {Card[]} The returned cards
      */
      async backToHand(cardIds) {
 
@@ -584,7 +586,7 @@ export class CustomCards extends Cards {
      * Play some cards from your hand.
      * It will go to the discard pile.
      * @param {string[]} cardsIds cards Ids
-     * @returns {CustomCard[]} The played cards (now in discard pile)
+     * @returns {Card[]} The played cards (now in discard pile)
      */
      async playCards(cardsIds) {
 
@@ -614,7 +616,7 @@ export class CustomCards extends Cards {
      * Put some card in front of you. Visible to everybody
      * Cards should currently be in hand
      * @param {string[]} cardsIds cards Ids
-     * @returns {CustomCard[]} The revealed cards
+     * @returns {Card[]} The revealed cards
      */
      async revealCards(cardIds) {
 

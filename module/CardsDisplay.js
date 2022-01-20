@@ -1,5 +1,6 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
+import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 
 export class CustomCardsDisplay extends CardsConfig {
 
@@ -114,11 +115,12 @@ export class CustomCardsDisplay extends CardsConfig {
     _buildCardInfo(card) {
 
         const cardInfo = {};
+        const wrapper = card ? new CustomCardGUIWrapper(card) : null;
 
         // Check if the content should be displayed or hidden
         if( card ) {
             cardInfo.id = card.id;
-            cardInfo.displayed = this.detailsForced || card.forGUI.detailsCanBeDisplayed;
+            cardInfo.displayed = this.detailsForced || wrapper.detailsCanBeDisplayed;
 
         } else {
             cardInfo.displayed = false;
@@ -130,7 +132,7 @@ export class CustomCardsDisplay extends CardsConfig {
             cardInfo.classes = 'display-content';
             cardInfo.cardBg = card.data.faces[0].img;
 
-            if( card.forGUI.shouldBeRotated( this.forceRotate ) ) {
+            if( wrapper.shouldBeRotated( this.forceRotate ) ) {
                 cardInfo.classes += ' rotated'; // Also rotate the card if needed
             }
 
@@ -178,7 +180,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDeck(this.detailsForced);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDeck(this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -214,7 +217,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDiscard();
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDiscard();
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -241,7 +245,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInHand(owned, this.detailsForced);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -278,7 +283,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInRevealedCards(owned);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInRevealedCards(owned);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -376,7 +382,11 @@ export class CustomCardsDisplay extends CardsConfig {
             const cardId = htmlDiv.dataset.key;
             if(cardId) { 
                 const card = this._cards.cards.get(cardId);
-                card?.forGUI.fillCardContent(htmlDiv);
+                if( card ) {
+                    const wrapper = new CustomCardGUIWrapper(card);
+                    wrapper.fillCardContent(htmlDiv);
+                }
+                
             }
         }
     
@@ -553,7 +563,8 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickCustomAction(event) {
         event.preventDefault();
         const action = event.currentTarget.dataset.action;
-        await this.currentSelection.forGUI.onClickDoCustomAction(action);
+        const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+        await wrapper.onClickDoCustomAction(action);
     }
 
     async _onClickRecallAllCards(event) {

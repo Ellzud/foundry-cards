@@ -1,4 +1,3 @@
-import { CustomCard } from "./card.js";
 import { CustomCards } from "./cards.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
@@ -13,7 +12,6 @@ export class RTUCardsConfig extends FormApplication {
 
 	static registerCardSystem() {
 		CONFIG.Cards.documentClass = CustomCards;
-		CONFIG.Card.documentClass = CustomCard;
 		CONFIG.ui.cards = CustomCardsDirectory;
 	}
 	

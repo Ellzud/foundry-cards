@@ -4,7 +4,7 @@ export class CustomCardSimple {
         this._card = card;
     }
 
-    get card() { // Mandatory
+    get card() {
         return this._card;
     }
 

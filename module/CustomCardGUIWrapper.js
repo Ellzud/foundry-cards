@@ -3,12 +3,17 @@
    It handle basic CustomCard behavior and can be extends for additional features
 -----------------------------------------------------------------------------------*/
 
+import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
+
 
 export class CustomCardGUIWrapper {
 
     constructor(card) {
         this._card = card;
-        this._wrapped = card.impl;
+
+        const coreKey = card.source.coreStackRef;
+        const cls = CARD_STACKS_DEFINITION.core[coreKey].cardClass;
+        this._wrapped = new cls(card);
     }
 
     get card() {
@@ -32,6 +37,12 @@ export class CustomCardGUIWrapper {
     get img() {
         return this._card.img;
     }
+
+
+    get forGUI() {
+        return new CustomCardGUIWrapper(this);
+    }
+
 
     get ownedByCurrentPlayer() {
         return this._card.parent.ownedByCurrentPlayer;
@@ -114,7 +125,7 @@ export class CustomCardGUIWrapper {
         const result = {
             player: playerFlag,
             ref: this.name,
-            icon: this.card.frontIcon,
+            icon: this.card.source.frontIcon,
             name: this.name,
             type: this.card.source.coreStackRef,
             rotated: 0,
@@ -149,13 +160,13 @@ export class CustomCardGUIWrapper {
         const tools = def.shared.actionTools;
 
         if( game.user.isGM ) { 
-            tools.addAvailableAction(actions, deckConfig, this.card, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]} );
-            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
             tools.addCssOnLastAction(actions, css.separator);
         }
 
         if( detailsHaveBeenForced ) {
-            tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
             tools.addCssOnLastAction(actions, css.separator);
         }
 
@@ -185,17 +196,17 @@ export class CustomCardGUIWrapper {
         const tools = def.shared.actionTools;
 
         if( stackOwnedByUser ) {
-            tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromHandPlayCard]} );
-            tools.addAvailableAction(actions, deckConfig, this.card, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromHandPlayMultiple]} );
-            tools.addAvailableAction(actions, deckConfig, this.card, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
-            tools.addAvailableAction(actions, deckConfig, this.card, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromHandExchangeCard]});
-            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromHandPlayCard]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromHandPlayMultiple]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromHandExchangeCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
         const cardsAreVisible = detailsHaveBeenForced || stackOwnedByUser;
         if( cardsAreVisible ) {
-            tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
@@ -223,14 +234,14 @@ export class CustomCardGUIWrapper {
         const tools = def.shared.actionTools;
 
         if( stackOwnedByUser ) {
-            tools.addAvailableAction(actions, deckConfig, this.card, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]});
-            tools.addAvailableAction(actions, deckConfig, this.card, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
-            tools.addAvailableAction(actions, deckConfig, this.card, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
-            tools.addAvailableAction(actions, deckConfig, this.card, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
+        tools.addAvailableAction(actions, deckConfig, this.card.source, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
         tools.addCssOnLastAction(actions, css.separator);
 
         // Call the potential implementation inside wrapped impl
@@ -256,11 +267,11 @@ export class CustomCardGUIWrapper {
         const tools = def.shared.actionTools;
 
         if( game.user.isGM ) { 
-            tools.addAvailableAction(actions, deckConfig, this.card, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
+            tools.addAvailableAction(actions, deckConfig, this.card.source, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        tools.addAvailableAction(actions, deckConfig, this.card, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
+        tools.addAvailableAction(actions, deckConfig, this.card.source, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
         tools.addCssOnLastAction(actions, css.separator);
     
         // Call the potential implementation inside wrapped impl
