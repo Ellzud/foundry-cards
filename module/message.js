@@ -1,3 +1,4 @@
+import { SingleCardDisplay } from "./SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
     const flags = message.data.flags;
@@ -56,7 +57,18 @@ export const alterCardMessage = (message, html) => {
 
         // If found, display the stack GUI and select current card
         if( card ) {
-            const sheet = card.parent.sheet;
+
+            // Action will differ if the card can't be visible in its current stack
+            const stack = card.parent;
+            let wholeStackCanBeSeen = true;
+            if( stack.type === 'deck' ) { 
+                wholeStackCanBeSeen = false; 
+            } else if( stack.type === 'hand' ) {
+                wholeStackCanBeSeen = stack.stackOwner.playerId === game.user.id;
+            }
+
+            // Classic stack display or single card display
+            const sheet = wholeStackCanBeSeen ? card.parent.sheet :  new SingleCardDisplay(card);
             sheet._currentSelection = card;
             sheet.forceRotate = rotated;
             sheet.render(true);
