@@ -1,5 +1,6 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CustomCardStack } from './cards.js';
+import { RTUCardsConfig } from './config.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 
@@ -72,6 +73,69 @@ export class CustomCardsDisplay extends CardsConfig {
         this._forceRotate = value;
     }
 
+    /* -------------------------------------------- */
+
+    /**
+     * This allow to register / unregister the stacks inside the module
+     * Same method as the one triggered inside CustomCardsDirectory. 
+     * But only available one for those who have unchecked the 'Invasive code' settings
+     * @override 
+     * */
+    _getHeaderButtons() {
+        const buttons = super._getHeaderButtons();
+
+        // Only GM Actions
+        if( game.user.isGM ) {
+
+            // Access to action configuration
+            if( this._custom.handledByModule && this._custom.stackOwner.forNobody ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.configActions",
+                    class: "configure-actions",
+                    icon: "fas fa-cog",
+                    onclick: async () => {
+                        const coreKey = this._custom.coreStackRef;
+                        // Prepare the sheet
+                        const sheet = new RTUCardsConfig();
+                        sheet.object.stacks.forEach( s => {
+                            s.gui.detailsDisplayed = ( s.key === coreKey );
+                        });
+                        // And render it
+                        sheet.render(true);
+                        this.close();
+                    }
+                });
+            }
+
+            // Allow registering of new modules
+            if( this._cards.type == 'deck' && !this._custom.handledByModule ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.registerDeck",
+                    class: "register-deck",
+                    icon: "far fa-plus-square",
+                    onclick: async () => {
+                        await this._custom.registerAsHandledByModule();
+                        this.close();
+                    }
+                });
+            }
+
+            // Allow unregistering of custom modules
+            if( this._cards.type == 'deck' && this._custom.manuallyRegistered ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.unregisterDeck",
+                    class: "unregister-deck",
+                    icon: "far fa-minus-square",
+                    onclick: async () => {
+                        await this._custom.unregisterAsHandledByModule();
+                        this.close();
+                    }
+                });
+            }
+        }
+
+        return buttons
+    }
 
     /* -------------------------------------------- */
 
@@ -117,12 +181,18 @@ export class CustomCardsDisplay extends CardsConfig {
     _buildCardInfo(card) {
 
         const cardInfo = {};
-        const wrapper = card ? new CustomCardGUIWrapper(card) : null;
+        let wrapper;
+        try { 
+            wrapper = new CustomCardGUIWrapper(card);
+        } catch( e ) {
+            // Either : No cards, or an unregistered card stack
+            wrapper = null;
+        }
 
         // Check if the content should be displayed or hidden
         if( card ) {
             cardInfo.id = card.id;
-            cardInfo.displayed = this.detailsForced || wrapper.detailsCanBeDisplayed;
+            cardInfo.displayed = this.detailsForced || wrapper?.detailsCanBeDisplayed;
 
         } else {
             cardInfo.displayed = false;
@@ -143,6 +213,7 @@ export class CustomCardsDisplay extends CardsConfig {
             let background = card?.data.back.img;
             if(!background) {
                 const owner = this._custom.stackOwner;
+                const coreRef = this._custom.coreStackRef;
                 const def = game.modules.get('ready-to-use-cards').stacksDefinition;
                 let baseDir;
                 if( owner.forPlayers ) {
@@ -151,9 +222,11 @@ export class CustomCardsDisplay extends CardsConfig {
                 } else if (owner.forGMs ) {
                     baseDir = def.gmStacks.resourceBaseDir;
 
-                } else {
-                    const coreRef = this._custom.coreStackRef;
+                } else if( def.core.hasOwnProperty(coreRef) ) { // Registered decks and discard piles
                     baseDir = def.core[coreRef].resourceBaseDir;
+
+                } else {
+                    baseDir = 'modules/ready-to-use-cards/resources/default';
                 }
                 
                 const type = this._cards.type;

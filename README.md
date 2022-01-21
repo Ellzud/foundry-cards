@@ -11,22 +11,25 @@ This module has been developped with the following mindset :
 - Multiple decks can be used. Each one comes with its related discard pile.
 - What is important is : For each card type, which action is available when handling decks, hands, revealed cards and discard piles. All this is customizable via settings.
 
-### Warnings
+### Invasive code - or not
 
-This module does many things, but it is more invasive that `Monarch` module.
+![Invasive code](docs/README_invasive_code.webp?raw=true)
 
-Even if it is only a module and not a game system, it overrides the following classes :
+By default, this module override those two classes : 
 ~~~js
 static registerCardSystem() {
     CONFIG.Cards.documentClass = CustomCards;
-    CONFIG.Card.documentClass = CustomCard;
     CONFIG.ui.cards = CustomCardsDirectory;
 }
 ~~~
+It allows automatic detection of card stack handled by the module and switch to the right UI.
 
-If your system intends to also overrides those classes, it will comes into conflict.
+It also comes with a custom context menu when clicking on them inside the card stack list.
 
-The most problematic one here is the `Card` document class. If you're doing a custom system, you can check the last chapters of this readme to adapt your code. (Your data will then be accessible via `card.impl`)
+> If those overrides bother you or comes into conflict with your custom system, you can choose to uncheck it.
+
+By doing so, the custom context becomes disabled and the card GUI will be registered as any other sheet. See next chapter for more details about those two functions.
+
 
 ### Supported languages
 
@@ -46,15 +49,29 @@ Inside the settings, you will be able to toggle those decks :
 For those decks, on click in the settings and all is ready to use !
 ![Setting panel](docs/README_choosing_decks_button.webp?raw=true)
 
+Alternative: 
+
+![Regiter deck alternative](docs/README_choosing_action_alternative.webp?raw=true)
+
+And then uncheck actions you don't want to have :
+
 ![Choosing decks](docs/README_choosing_decks.webp?raw=true)
 
 ### Add custom decks
 
-You can still create other decks. The same way you did it before. GUI won't change as long as the stack is not registered inside this module decks.
+You can still create other decks. The same way you did it before. 
+
+> If you've chosen to keep the `Invasive code` setting, the GUI won't change as long as the stack is not registered inside this module decks.
+
+> Otherwise, you will need to manually put the classic sheet back.
 
 Once you're done, you can add the deck to the registered ones :
 
 ![Regiter deck](docs/README_register_deck.webp?raw=true)
+
+Alternative: 
+
+![Regiter deck alternative](docs/README_register_deck_alternative.webp?raw=true)
 
 By doing so, a second stack for the discard will automatically be created. And now you will have access to this module GUI !
 
@@ -104,6 +121,7 @@ This is what he will see by default :
 
 And once he clicks on the `Peek on content` button :
 ![After peeking on](docs/README_peek_on_hand_after.webp?raw=true)
+
 
 ### Action example : Dealing cards
 

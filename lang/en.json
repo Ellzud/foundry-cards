@@ -4,6 +4,9 @@
     "RTUCards.settings.gmIcon.label": "GM icon",
     "RTUCards.settings.gmIcon.hint": "Displayed when GMs do actions on decks",
 
+    "RTUCards.settings.invasiveCode.label": "Invasive code",
+    "RTUCards.settings.invasiveCode.hint": "No code override if unchecked. Disable access to action configuration from card stack list. Enrolling new decks will be more difficult.",
+
     "RTUCards.settings.stackForPlayerHand.label": "Cards in hand",
     "RTUCards.settings.stackForPlayerHand.hint": "Each player has card in hands. Those cards are hidden from other players.",
     "RTUCards.settings.stackForPlayerRevealedCards.label": "Revealed cards",
@@ -51,6 +54,8 @@
     "RTUCards.sidebar.context.configActions": "Choose available actions",
     "RTUCards.sidebar.context.registerDeck": "Include in Ready-To-Use-Cards decks",
     "RTUCards.sidebar.context.unregisterDeck": "Exclude from Ready-To-Use-Cards decks",
+
+    "RTUCards.card.sheet.name": "RTUCards sheet",
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Discard",

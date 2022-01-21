@@ -35,11 +35,12 @@ export class CustomCardActionTools {
 
         if( allKeys != null ) { // Check all given keys. If one is false : exit
             for( const key of allKeys ) { 
-                if( !deckConfig[key] ) { return; }
+                if( !deckConfig || !deckConfig[key] ) { return; }
             }
         }
 
         if( atLeastOne != null ) { // If at least one of the keys is ok, continue
+            if( !deckConfig ) { return; } // Unregistered decks can ask for actions => ignore
             const some = atLeastOne.some( key => deckConfig[key] );
             if( !some ) { return; }
         }

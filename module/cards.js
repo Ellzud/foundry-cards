@@ -134,7 +134,7 @@ export class CustomCardStack {
      */
     localizedLabel(labelPath, {alternativeCoreKey=null}={}) {
         const coreKey = alternativeCoreKey ?? this.coreStackRef;
-        if(coreKey) { 
+        if(CARD_STACKS_DEFINITION.core.hasOwnProperty(coreKey) ) { 
             // Some stack have no coreKey stored. Such as player hands
             const fullPath = CARD_STACKS_DEFINITION.core[coreKey].labelBaseKey + labelPath;
             const label = game.i18n.localize(fullPath);

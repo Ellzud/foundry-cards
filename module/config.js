@@ -1,4 +1,5 @@
 import { CustomCards } from "./cards.js";
+import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
@@ -11,8 +12,16 @@ import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 export class RTUCardsConfig extends FormApplication {
 
 	static registerCardSystem() {
-		CONFIG.Cards.documentClass = CustomCards;
-		CONFIG.ui.cards = CustomCardsDirectory;
+		if( game.settings.get("ready-to-use-cards", GlobalConfiguration.invasiveCode ) ) {
+			CONFIG.Cards.documentClass = CustomCards;
+			CONFIG.ui.cards = CustomCardsDirectory;
+		} else {
+			DocumentSheetConfig.registerSheet(Cards, "ready-to-use-cards", CustomCardsDisplay, {
+				label: "RTUCards.card.sheet.name",
+				types: ["deck", "hand", "pile"],
+				makeDefault: true
+			});
+		}
 	}
 	
 	/* -------------------------------------------- */
@@ -44,6 +53,15 @@ export class RTUCardsConfig extends FormApplication {
 			}
 		});
 	
+		game.settings.register("ready-to-use-cards", GlobalConfiguration.invasiveCode, {
+			name: "RTUCards.settings.invasiveCode.label",
+			hint: "RTUCards.settings.invasiveCode.hint",
+			scope: "world",
+			type: Boolean,
+			default: true,
+			config: true
+		});
+	  
 		game.settings.register("ready-to-use-cards", GlobalConfiguration.gmName, {
 			name: "RTUCards.settings.gmName.label",
 			hint: "RTUCards.settings.gmName.hint",
