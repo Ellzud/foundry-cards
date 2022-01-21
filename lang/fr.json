@@ -89,6 +89,10 @@
     "RTUCards.gm.pile.title": "Faces visibles (MJ)",
     "RTUCards.gm.pile.description": "Esprits appelés et Dérangements de l'esprit gardien",
 
+    "RTUCards.default.sheet.contentHidden": "NB carte(s)",
+    "RTUCards.default.sheet.headers.defaultActions": "Actions par défaut",
+    "RTUCards.default.sheet.headers.selectedCardActions": "Actions pour la carte sélectionnée",
+
     "RTUCards.default.sheet.actions.backToDeck": "Remettre dans le deck",
     "RTUCards.default.sheet.actions.backToHand": "Remettre dans la main",
     "RTUCards.default.sheet.actions.dealCards": "Distribuer des cartes",

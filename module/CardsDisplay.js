@@ -165,7 +165,15 @@ export class CustomCardsDisplay extends CardsConfig {
             return cardInfo;
         });
 
-        data.actions = this._loadAvailableActions();
+        const actions = this._loadAvailableActions();
+        data.onLeft = {
+            header: this._custom.localizedLabel('sheet.headers.defaultActions'),
+            actions: actions.filter(a => a.onLeft)
+        }
+        data.onRight = {
+            header: this._custom.localizedLabel('sheet.headers.selectedCardActions'),
+            actions: actions.filter(a => !a.onLeft)
+        }
         data.parameters = this._actionParameters?.loadParameters() ?? {none: true};
         return data;
     }
@@ -271,14 +279,14 @@ export class CustomCardsDisplay extends CardsConfig {
             if( cardsLeft ) {
                 const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
                 const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
-                tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn]});
-                tools.addCssOnLastAction(actions, css.separator);
+                tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn], onLeft:true});
+                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
             }
 
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll]});
-            tools.addCssOnLastAction(actions, css.separator);
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards], onLeft:true});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards], onLeft:true});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll], onLeft:true});
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
         }
 
         return actions;
@@ -306,8 +314,8 @@ export class CustomCardsDisplay extends CardsConfig {
 
         // On main discards, default actions are reserved to the GM
         if( game.user.isGM ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll]});
-            tools.addCssOnLastAction(actions, css.separator);
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll], onLeft:true});
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
         }
 
         return actions;
@@ -340,15 +348,15 @@ export class CustomCardsDisplay extends CardsConfig {
                 const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
                 const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
     
-                tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel); // No deckConfig condition needed
-                tools.addCssOnLastAction(actions, css.separator);
+                tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel, {onLeft:true}); // No deckConfig condition needed
+                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
             }
         }
 
         // The hand can be totally discarded
         if( owned ) {
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand', {onLeft:true}); // No deckConfig condition needed
             }
         }
 
@@ -377,7 +385,7 @@ export class CustomCardsDisplay extends CardsConfig {
         // The revealed cards be totally discarded
         if( owned ) {
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards', {onLeft:true}); // No deckConfig condition needed
             }
         }
 

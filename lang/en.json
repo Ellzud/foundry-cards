@@ -89,6 +89,8 @@
     "RTUCards.gm.pile.description": "Called spirits and guardian spirit troubles",
 
     "RTUCards.default.sheet.contentHidden": "NB card(s)",
+    "RTUCards.default.sheet.headers.defaultActions": "Default actions",
+    "RTUCards.default.sheet.headers.selectedCardActions": "Actions for selected card",
 
     "RTUCards.default.sheet.actions.backToDeck": "Put it back in the deck",
     "RTUCards.default.sheet.actions.backToHand": "Put it back in your hand",
