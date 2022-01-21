@@ -5,7 +5,6 @@ export class SingleCardDisplay extends CustomCardsDisplay {
     constructor(card) {
         super(card.parent, card.sheet.options);
         this._currentSelection = card;
-        this._forceRotate = false;
 
         // See if the listing is allowed :
         const owner = this._cards.getFlag('ready-to-use-cards', 'owner');

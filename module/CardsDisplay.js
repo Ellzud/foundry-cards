@@ -207,7 +207,8 @@ export class CustomCardsDisplay extends CardsConfig {
             cardInfo.classes = 'display-content';
             cardInfo.cardBg = card.data.faces[0].img;
 
-            if( wrapper.shouldBeRotated( this.forceRotate ) ) {
+            const rotateAsked = this.forceRotate && card.id === this.currentSelection?.id;
+            if( wrapper.shouldBeRotated( rotateAsked ) ) {
                 cardInfo.classes += ' rotated'; // Also rotate the card if needed
             }
 
