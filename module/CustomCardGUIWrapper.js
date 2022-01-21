@@ -116,7 +116,7 @@ export class CustomCardGUIWrapper {
     /**
      * Used when lisiting cards inside chat message.
      * Those info will be added inside the listing-card template
-     * @param {CustomCards} from : Where the card was previously
+     * @param {CustomCardStack} from : Where the card was previously
      * @param {boolean} addCardDescription : If description should be added for each card
      * @returns {object} Card data wich will be added to the listing-card-template
      */

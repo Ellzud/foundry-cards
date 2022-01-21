@@ -1,6 +1,7 @@
 import { CustomCardStack } from './cards.js';
 import { GlobalConfiguration } from './constants.js';
 import { CustomCardActionTools } from './CustomCardActionTools.js';
+import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 import { CustomCardSimple } from './CustomCardSimple.js';
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 
@@ -340,7 +341,8 @@ const loadStackDefinition = (defaultStacks) => {
     // Additional data are shared (Can't be put in the constant panel)
     def.shared.cardClasses = {
         simple: CustomCardSimple,
-        customCardStack: CustomCardStack
+        customCardStack: CustomCardStack,
+        cardGUIWrapper: CustomCardGUIWrapper
     }
     def.shared.actionTools = new CustomCardActionTools();
 

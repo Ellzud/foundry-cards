@@ -9,3 +9,5 @@ During the split, I failed to see that clas overrides will be badly seen by most
 No more overrides on the Card class. And the two other ones can be removed by settings without loosing much from the functionnalities.
 
 More details in the `README`, section `Invasive code - or not`
+
+For those who started to implement custom actions : `impl.alterBuildCardInfoForListing` changed its signature. (it now pass a CustomCardStack in the `from` argument)
