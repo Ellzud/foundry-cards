@@ -516,7 +516,7 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickDiscardHand(event) {
         event.preventDefault();
 
-        const cardIds = this._custom.availableCards.map( c => c.id );
+        const cardIds = this._cards.availableCards.map( c => c.id );
         await this._custom.discardCards(cardIds),
 
         this.render();

@@ -512,9 +512,9 @@ export class CustomCardStackLoader {
 
         // Remove the ones which should not be here anymore (after reseting their content)
         for( const cardStack of toRemove ) {
-            await cardStack.reset({chatNotification: false});
+            await cardStack.stack.reset({chatNotification: false});
         }
-        const toRemoveIds = toRemove.map( s => s.id );
+        const toRemoveIds = toRemove.map( s => s.stack.id );
         if( toRemoveIds.length ) {
             await Cards.deleteDocuments(toRemoveIds);
         }
