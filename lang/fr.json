@@ -5,6 +5,9 @@
     "RTUCards.settings.gmIcon.label": "Icone du MJ",
     "RTUCards.settings.gmIcon.hint": "Icone affichée lorsque les MJ fait des actions sur les decks",
 
+    "RTUCards.settings.invasiveCode.label": "Code invasif",
+    "RTUCards.settings.invasiveCode.hint": "Aucune surchage de code si décoché. Rends impossible l'accès à l'écran de conf depuis la liste des jeux de carte. L'enrollement de cartes est aussi plus difficile.",
+
     "RTUCards.settings.stackForPlayerHand.label": "Cartes en main",
     "RTUCards.settings.stackForPlayerHand.hint": "Chaque joueur possède une main de cartes cachée aux autres joueurs",
     "RTUCards.settings.stackForPlayerRevealedCards.label": "Cartes faces visibles",
@@ -52,6 +55,8 @@
     "RTUCards.sidebar.context.configActions": "Paramétrer les actions",
     "RTUCards.sidebar.context.registerDeck": "Inclure le deck (RTU-Cards)",
     "RTUCards.sidebar.context.unregisterDeck": "Exclure le deck (RTU-Cards)",
+
+    "RTUCards.card.sheet.name": "Feuille RTUCards",
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Défausse",

@@ -70,10 +70,11 @@ export const StackConfiguration = {
 export const GlobalConfiguration = {
     gmName: 'gmName',
     gmIcon: 'gmIcon',
+    everyHandsPeekOn: 'everyHandsPeekOn',
+    everyHandsDiscardAll: 'everyHandsDiscardAll',
+    everyRevealedDiscardAll : 'everyRevealedDiscardAll',
     stacks: 'stacks',
     stackForPlayerHand: 'stackForPlayerHand',
     stackForPlayerRevealedCards: 'stackForPlayerRevealedCards',
-    everyHandsPeekOn: 'everyHandsPeekOn',
-    everyHandsDiscardAll: 'everyHandsDiscardAll',
-    everyRevealedDiscardAll : 'everyRevealedDiscardAll'
+    invasiveCode: 'invasiveCode'
 };

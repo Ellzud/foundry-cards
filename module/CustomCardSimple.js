@@ -4,7 +4,7 @@ export class CustomCardSimple {
         this._card = card;
     }
 
-    get card() { // Mandatory
+    get card() {
         return this._card;
     }
 
@@ -44,7 +44,7 @@ export class CustomCardSimple {
      * Will be used on several actions, like play, discard or reveal.
      * You should directly alter the result param if you want to add changes. (returns nothing)
      * @param {object} result What will be used if you change nothing.
-     * @param {CustomCards} from Where the card was previously
+     * @param {CustomCardStack} from Where the card was previously
      * @param {boolean} addCardDescription : If description should be added for each card
      */
     alterBuildCardInfoForListing(result, from, addCardDescription) {}

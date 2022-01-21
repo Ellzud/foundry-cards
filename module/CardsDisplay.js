@@ -1,5 +1,8 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
+import { CustomCardStack } from './cards.js';
+import { RTUCardsConfig } from './config.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
+import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 
 export class CustomCardsDisplay extends CardsConfig {
 
@@ -7,6 +10,7 @@ export class CustomCardsDisplay extends CardsConfig {
         super(cards, options);
 
         this._cards = cards;
+        this._custom = new CustomCardStack(cards);
         this._currentSelection = null;
         this._listingOpened = true;
         this._forceRotate = false;
@@ -28,7 +32,7 @@ export class CustomCardsDisplay extends CardsConfig {
     get title() {
 
         let result = this._cards.name;
-        const cards = this._cards.sortedAvailableCards;
+        const cards = this._custom.sortedAvailableCards;
         if( this.currentSelection && cards.length != 0 ) {
             const readableIndex = cards.findIndex( c => c.id === this.currentSelection.id ) + 1;
             result += ' ' + readableIndex + ' / ' + cards.length;
@@ -69,6 +73,72 @@ export class CustomCardsDisplay extends CardsConfig {
         this._forceRotate = value;
     }
 
+    /* -------------------------------------------- */
+
+    /**
+     * This allow to register / unregister the stacks inside the module
+     * Same method as the one triggered inside CustomCardsDirectory. 
+     * But only available one for those who have unchecked the 'Invasive code' settings
+     * @override 
+     * */
+    _getHeaderButtons() {
+        const buttons = super._getHeaderButtons();
+
+        // Only GM Actions
+        if( game.user.isGM ) {
+
+            // Access to action configuration
+            const coreKey = this._custom.coreStackRef;
+            const config = game.settings.get("ready-to-use-cards", GlobalConfiguration.stacks) ?? {};
+            const knownInConf = config.hasOwnProperty(coreKey);
+            if( this._custom.handledByModule && knownInConf && this._custom.stackOwner.forNobody ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.configActions",
+                    class: "configure-actions",
+                    icon: "fas fa-cog",
+                    onclick: async () => {
+                        const coreKey = this._custom.coreStackRef;
+                        // Prepare the sheet
+                        const sheet = new RTUCardsConfig();
+                        sheet.object.stacks.forEach( s => {
+                            s.gui.detailsDisplayed = ( s.key === coreKey );
+                        });
+                        // And render it
+                        sheet.render(true);
+                        this.close();
+                    }
+                });
+            }
+
+            // Allow registering of new modules
+            if( this._cards.type == 'deck' && !this._custom.handledByModule ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.registerDeck",
+                    class: "register-deck",
+                    icon: "far fa-plus-square",
+                    onclick: async () => {
+                        await this._custom.registerAsHandledByModule();
+                        this.close();
+                    }
+                });
+            }
+
+            // Allow unregistering of custom modules
+            if( this._cards.type == 'deck' && this._custom.manuallyRegistered ) {
+                buttons.unshift({
+                    label: "RTUCards.sidebar.context.unregisterDeck",
+                    class: "unregister-deck",
+                    icon: "far fa-minus-square",
+                    onclick: async () => {
+                        await this._custom.unregisterAsHandledByModule();
+                        this.close();
+                    }
+                });
+            }
+        }
+
+        return buttons
+    }
 
     /* -------------------------------------------- */
 
@@ -79,7 +149,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         data.currentSelection = this._buildCardInfo(this.currentSelection);
         if( !data.currentSelection.contentDisplayed ) {
-            const msg = this._cards.localizedLabel('sheet.contentHidden').replace('NB', '' + this._cards.availableCards.length);
+            const msg = this._custom.localizedLabel('sheet.contentHidden').replace('NB', '' + this._cards.availableCards.length);
             data.currentSelection.summary = msg;
         }
 
@@ -87,7 +157,7 @@ export class CustomCardsDisplay extends CardsConfig {
             allowed: this.listingAllowed,
             opened: this.listingOpened,
         };
-        data.listing.cards = this._cards.sortedAvailableCards.map( c => {
+        data.listing.cards = this._custom.sortedAvailableCards.map( c => {
             const cardInfo = this._buildCardInfo(c);
             if( cardInfo.id === this.currentSelection?.id ) {
                 cardInfo.classes += ' selected';
@@ -114,11 +184,18 @@ export class CustomCardsDisplay extends CardsConfig {
     _buildCardInfo(card) {
 
         const cardInfo = {};
+        let wrapper;
+        try { 
+            wrapper = new CustomCardGUIWrapper(card);
+        } catch( e ) {
+            // Either : No cards, or an unregistered card stack
+            wrapper = null;
+        }
 
         // Check if the content should be displayed or hidden
         if( card ) {
             cardInfo.id = card.id;
-            cardInfo.displayed = this.detailsForced || card.forGUI.detailsCanBeDisplayed;
+            cardInfo.displayed = this.detailsForced || wrapper?.detailsCanBeDisplayed;
 
         } else {
             cardInfo.displayed = false;
@@ -130,7 +207,8 @@ export class CustomCardsDisplay extends CardsConfig {
             cardInfo.classes = 'display-content';
             cardInfo.cardBg = card.data.faces[0].img;
 
-            if( card.forGUI.shouldBeRotated( this.forceRotate ) ) {
+            const rotateAsked = this.forceRotate && card.id === this.currentSelection?.id;
+            if( wrapper.shouldBeRotated( rotateAsked ) ) {
                 cardInfo.classes += ' rotated'; // Also rotate the card if needed
             }
 
@@ -138,7 +216,8 @@ export class CustomCardsDisplay extends CardsConfig {
             // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
             let background = card?.data.back.img;
             if(!background) {
-                const owner = this._cards.stackOwner;
+                const owner = this._custom.stackOwner;
+                const coreRef = this._custom.coreStackRef;
                 const def = game.modules.get('ready-to-use-cards').stacksDefinition;
                 let baseDir;
                 if( owner.forPlayers ) {
@@ -147,9 +226,11 @@ export class CustomCardsDisplay extends CardsConfig {
                 } else if (owner.forGMs ) {
                     baseDir = def.gmStacks.resourceBaseDir;
 
-                } else {
-                    const coreRef = this._cards.coreStackRef;
+                } else if( def.core.hasOwnProperty(coreRef) ) { // Registered decks and discard piles
                     baseDir = def.core[coreRef].resourceBaseDir;
+
+                } else {
+                    baseDir = 'modules/ready-to-use-cards/resources/default';
                 }
                 
                 const type = this._cards.type;
@@ -173,12 +254,13 @@ export class CustomCardsDisplay extends CardsConfig {
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
 
-        const deckConfig = this._cards.stackConfig;
+        const deckConfig = this._custom.stackConfig;
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDeck(this.detailsForced);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDeck(this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -187,12 +269,12 @@ export class CustomCardsDisplay extends CardsConfig {
 
             if( !this.detailsForced ) {
                 const cssAction = css.peekOnDeck + ' ' + css.coloredInRed + ' ' + css.separator;
-                tools.addAvailableAction(actions, deckConfig, this._cards, cssAction, 'sheet.actions.peekOn', {allKeys:[keys.fromDeckPeekOn]});
+                tools.addAvailableAction(actions, deckConfig, this._custom, cssAction, 'sheet.actions.peekOn', {allKeys:[keys.fromDeckPeekOn]});
             }
 
-            tools.addAvailableAction(actions, deckConfig, this._cards, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]});
-            tools.addAvailableAction(actions, deckConfig, this._cards, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards]});
-            tools.addAvailableAction(actions, deckConfig, this._cards, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
@@ -209,18 +291,19 @@ export class CustomCardsDisplay extends CardsConfig {
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
 
-        const deckConfig = this._cards.stackConfig;
+        const deckConfig = this._custom.stackConfig;
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInDiscard();
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDiscard();
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
         // On main discards, default actions are reserved to the GM
         if( game.user.isGM ) {
-            tools.addAvailableAction(actions, deckConfig, this._cards, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
@@ -233,7 +316,7 @@ export class CustomCardsDisplay extends CardsConfig {
      */
      _loadHandActions() {
         const actions = [];
-        const owned = this._cards.ownedByCurrentPlayer;
+        const owned = this._custom.ownedByCurrentPlayer;
 
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
@@ -241,7 +324,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInHand(owned, this.detailsForced);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
@@ -250,14 +334,14 @@ export class CustomCardsDisplay extends CardsConfig {
 
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
                 const cssAction = css.peekOnDeck + ' ' + css.separator + ' ' + css.coloredInRed;
-                tools.addAvailableAction(actions, null, this._cards, cssAction, 'sheet.actions.peekOn'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._custom, cssAction, 'sheet.actions.peekOn'); // No deckConfig condition needed
             }
         }
 
         // The hand can be totally discarded
         if( owned ) {
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._cards, css.discardHand, 'sheet.actions.discardHand'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand'); // No deckConfig condition needed
             }
         }
 
@@ -270,7 +354,7 @@ export class CustomCardsDisplay extends CardsConfig {
      */
      _loadRevealedCardsActions() {
         const actions = [];
-        const owned = this._cards.ownedByCurrentPlayer;
+        const owned = this._custom.ownedByCurrentPlayer;
 
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
@@ -278,14 +362,15 @@ export class CustomCardsDisplay extends CardsConfig {
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
-            const selectionActions = this.currentSelection.forGUI.loadActionsWhileInRevealedCards(owned);
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInRevealedCards(owned);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
 
         // The revealed cards be totally discarded
         if( owned ) {
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._cards, css.discardRevealedCards, 'sheet.actions.discardRevealedCards'); // No deckConfig condition needed
+                tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards'); // No deckConfig condition needed
             }
         }
 
@@ -305,11 +390,11 @@ export class CustomCardsDisplay extends CardsConfig {
         const mainDiscards = Object.values( cardStacks.piles );
 
         // Main decks specificactions
-        if( mainDecks.find( d => d == this._cards ) ) {
+        if( mainDecks.find( d => d.stack == this._custom.stack ) ) {
             return this._loadDeckActions();
 
         // Discard piles
-        } else if( mainDiscards.find( d => d == this._cards ) ) { 
+        } else if( mainDiscards.find( d => d.stack == this._custom.stack ) ) { 
             return this._loadDiscardActions();
 
         // For player and GM hands
@@ -376,7 +461,11 @@ export class CustomCardsDisplay extends CardsConfig {
             const cardId = htmlDiv.dataset.key;
             if(cardId) { 
                 const card = this._cards.cards.get(cardId);
-                card?.forGUI.fillCardContent(htmlDiv);
+                if( card ) {
+                    const wrapper = new CustomCardGUIWrapper(card);
+                    wrapper.fillCardContent(htmlDiv);
+                }
+                
             }
         }
     
@@ -384,7 +473,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickBackToDeck(event) {
         event.preventDefault();
-        await this._cards.backToDeck(this.currentSelection?.id);
+        await this._custom.backToDeck(this.currentSelection?.id);
         this.selectAvailableCard(null);
 
         this.render();
@@ -392,7 +481,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickBackToHand(event) {
         event.preventDefault();
-        await this._cards.backToHand([this.currentSelection?.id]);
+        await this._custom.backToHand([this.currentSelection?.id]);
         this.selectAvailableCard(null);
 
         this.render();
@@ -403,10 +492,10 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const options = {
             specifyAmount: true,
-            buttonLabel: this._cards.localizedLabel('sheet.actions.dealCards')
+            buttonLabel: this._custom.localizedLabel('sheet.actions.dealCards')
         };
 
-        const selectTitle = this._cards.localizedLabel('sheet.parameters.players.dealTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.players.dealTitle');
         this._actionParameters = new CardActionParametersForPlayerSelection(this, selectTitle, options );
         this.render(true);
     }
@@ -419,7 +508,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickDiscardCard(event) {
         event.preventDefault();
-        await this._cards.discardCards([this.currentSelection.id]);
+        await this._custom.discardCards([this.currentSelection.id]);
 
         this.render();
     }
@@ -428,7 +517,7 @@ export class CustomCardsDisplay extends CardsConfig {
         event.preventDefault();
 
         const cardIds = this._cards.availableCards.map( c => c.id );
-        await this._cards.discardCards(cardIds),
+        await this._custom.discardCards(cardIds),
 
         this.render();
     }
@@ -437,7 +526,7 @@ export class CustomCardsDisplay extends CardsConfig {
         event.preventDefault();
 
         const cardIds = this._cards.availableCards.map( c => c.id );
-        await this._cards.discardCards(cardIds),
+        await this._custom.discardCards(cardIds),
 
         this.render();
     }
@@ -447,16 +536,16 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const options = {
             onlyOne: true,
-            buttonLabel: this._cards.localizedLabel('sheet.actions.giveCard') 
+            buttonLabel: this._custom.localizedLabel('sheet.actions.giveCard') 
         };
 
         options.callBack = async (selection, selectedStacks, amount) => { 
-            const deck = this._cards;
+            const deck = this._custom;
             const receiver = selectedStacks[0];
             await deck.giveCards(receiver, [selection.id] );
         };
 
-        const selectTitle = this._cards.localizedLabel('sheet.parameters.players.giveTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.players.giveTitle');
         this._actionParameters = new CardActionParametersForPlayerSelection(this, selectTitle, options );
 
         this.render();
@@ -466,23 +555,25 @@ export class CustomCardsDisplay extends CardsConfig {
         event.preventDefault();
 
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
-        const coreKey = this.currentSelection.source.coreStackRef;
+        const custom = new CustomCardStack(this.currentSelection.source);
+        const coreKey = custom.coreStackRef;
         const discard = cardStacks.piles[coreKey];
 
         const options = {
             from: discard, 
-            buttonLabel: this._cards.localizedLabel('sheet.actions.exchangeCard') 
+            buttonLabel: this._custom.localizedLabel('sheet.actions.exchangeCard') 
         };
 
         options.criteria = (card) => { 
-            return card.source.coreStackRef === coreKey; 
+            const custom = new CustomCardStack(card.source);
+            return custom.coreStackRef === coreKey; 
         };
         options.callBack = async (selection, additionalCards) => { 
-            const stack = this._cards;
+            const stack = this._custom;
             await stack.exchangeCards(discard, [selection.id], additionalCards.map( c => c.id ) );
         };
 
-        const selectTitle = this._cards.localizedLabel('sheet.parameters.stacks.exchangeTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.stacks.exchangeTitle');
         this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
 
         this.render();
@@ -491,8 +582,8 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickPeekOnStack(event) {
         event.preventDefault();
 
-        const flavor = this._cards.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name);
-        await this._cards.sendMessageForStacks(flavor, []);
+        const flavor = this._custom.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name);
+        await this._custom.sendMessageForStacks(flavor, []);
 
         this._peekOn = true;
         this.render();
@@ -500,30 +591,35 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickPlayCard(event) {
         event.preventDefault();
-        await this._cards.playCards([this.currentSelection.id]);
+        await this._custom.playCards([this.currentSelection.id]);
         this.render();
     }
 
     async _onClickPlayMultipleCards(event) {
         event.preventDefault();
 
-        const coreKey = this.currentSelection.source.coreStackRef;
-        const maxCards = this._cards.sortedAvailableCards.filter(c => c.source.coreStackRef == coreKey).length;
+        const custom = new CustomCardStack(this.currentSelection.source);
+        const coreKey = custom.coreStackRef;
+        const maxCards = this._custom.sortedAvailableCards.filter(c => {
+            const ccs = new CustomCardStack(c.source);
+            return ccs.coreStackRef == coreKey;
+        }).length;
         const options = {
             maxAmount: Math.max(1, maxCards-1),
-            buttonLabel: this._cards.localizedLabel('sheet.actions.playMultiple') 
+            buttonLabel: this._custom.localizedLabel('sheet.actions.playMultiple') 
         };
 
         options.criteria = (card) => { 
-            return card.source.coreStackRef === coreKey; 
+            const ccs = new CustomCardStack(card.source);
+            return ccs.coreStackRef === coreKey; 
         };
         options.callBack = async (selection, additionalCards) => { 
             const cardIds = [selection.id];
             cardIds.push(...additionalCards.map(c => c.id));
-            await this._cards.playCards(cardIds);
+            await this._custom.playCards(cardIds);
         };
 
-        const selectTitle = this._cards.localizedLabel('sheet.parameters.stacks.playTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.stacks.playTitle');
         this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
 
         this.render();
@@ -531,14 +627,14 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickRevealCard(event) {
         event.preventDefault();
-        await this._cards.revealCards([this.currentSelection.id]);
+        await this._custom.revealCards([this.currentSelection.id]);
         this.render();
     }
 
     async _onClickShuffleDeck(event) {
         event.preventDefault();
         this.selectAvailableCard(null);
-        await this._cards.shuffleDeck();
+        await this._custom.shuffleDeck();
     }
 
     async _onClickToggleSelection(event) {
@@ -553,13 +649,14 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickCustomAction(event) {
         event.preventDefault();
         const action = event.currentTarget.dataset.action;
-        await this.currentSelection.forGUI.onClickDoCustomAction(action);
+        const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+        await wrapper.onClickDoCustomAction(action);
     }
 
     async _onClickRecallAllCards(event) {
         event.preventDefault();
         this.selectAvailableCard(null);
-        await this._cards.resetDeck();
+        await this._custom.resetDeck();
     }
 
     async _onClickRotateCard(event) {
@@ -570,7 +667,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickShuffleDiscard(event) {
         event.preventDefault();
-        await this._cards.shuffleDiscardIntoDeck();
+        await this._custom.shuffleDiscardIntoDeck();
     }
 
 }

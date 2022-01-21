@@ -1,3 +1,4 @@
+import { CustomCardStack } from "./cards.js";
 import { RTUCardsConfig } from "./config.js";
 
 /**
@@ -34,8 +35,9 @@ export class CustomCardsDirectory extends CardsDirectory {
             if( currentCondition && !currentCondition(li) ) { return false; }
     
             const stack = this.constructor.collection.get(li.data("documentId"));
-            if( flagShouldBeHere ) { return stack.handledByModule; }
-            return !stack.handledByModule;
+            const custom = new CustomCardStack(stack);
+            if( flagShouldBeHere ) { return custom.handledByModule; }
+            return !custom.handledByModule;
         }
         return newCondition;
     }
@@ -48,16 +50,18 @@ export class CustomCardsDirectory extends CardsDirectory {
                 if( !game.user.isGM ) { return false; }
                 
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                if( !stack.stackOwner.forNobody ) { return false; }
+                const custom = new CustomCardStack(stack);
+                if( !custom.stackOwner.forNobody ) { return false; }
 
                 // Do not allow this action for stacks which have been loaded by code via the custom hook 'loadCardStacksDefinition'
-                const coreKey = stack.coreStackRef;
+                const coreKey = custom.coreStackRef;
                 const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
                 return cardStacks.defaultCoreStacks.hasOwnProperty(coreKey);
             },
             callback: li => {
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                const coreKey = stack.coreStackRef;
+                const custom = new CustomCardStack(stack);
+                const coreKey = custom.coreStackRef;
                 // Prepare the sheet
                 const sheet = new RTUCardsConfig();
                 sheet.object.stacks.forEach( s => {
@@ -83,7 +87,8 @@ export class CustomCardsDirectory extends CardsDirectory {
             callback: async li => {
                 console.log('RTU-Cards | Registering ' + document.name + ' as a deck handled inside the Ready-To-Use-Cards module');
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                await stack.registerAsHandledByModule();
+                const custom = new CustomCardStack(stack);
+                await custom.registerAsHandledByModule();
             }
         };
         entry.condition = this._appendRTUCardsFlagCondition(entry.condition, false);
@@ -97,12 +102,14 @@ export class CustomCardsDirectory extends CardsDirectory {
             condition: li => {
                 if( !game.user.isGM ) { return false; }
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                return stack.type == 'deck' && stack.manuallyRegistered;
+                const custom = new CustomCardStack(stack);
+                return stack.type == 'deck' && custom.manuallyRegistered;
             },
             callback: async li => {
                 console.log('RTU-Cards | Unregistering ' + document.name);
                 const stack = this.constructor.collection.get(li.data("documentId"));
-                await stack.unregisterAsHandledByModule();
+                const custom = new CustomCardStack(stack);
+                await custom.unregisterAsHandledByModule();
             }
         };
         entry.condition = this._appendRTUCardsFlagCondition(entry.condition, true);
