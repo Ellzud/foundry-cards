@@ -254,7 +254,7 @@ By substituting the cardClass you can alter the default behavior and display.
 
 [CustomCardSimple](./module/CustomCardSimple.js) decribe in details which methods you can add to your implementation.
 
-You can find an example [here](https://gitlab.com/adrien.schiehle/acariaempire/-/tree/release-1.0.0/src/card) for a custom implementation
+You can find an example [here](https://gitlab.com/adrien.schiehle/acariaempire/-/tree/release-1.0.1/src/card) for a custom implementation
 
 It's called inside my custom system via this: (Nothing more):
 ~~~js
