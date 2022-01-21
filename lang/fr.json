@@ -98,6 +98,8 @@
     "RTUCards.default.sheet.actions.exchangeCard": "Echange un carte avec la défausse",
     "RTUCards.default.sheet.actions.peekOn": "Inspecter le contenu",
     "RTUCards.default.sheet.actions.peekOnWarning": " regarde les cartes de 'STACK'",
+    "RTUCards.default.sheet.actions.peekStop": "Ne plus inspecter",
+    "RTUCards.default.sheet.actions.peekStopWarning": " a arrêté de regarder les cartes de 'STACK'",
     "RTUCards.default.sheet.actions.playCard": "Jouer la carte",
     "RTUCards.default.sheet.actions.playMultiple": "Jouer plusieurs cartes",
     "RTUCards.default.sheet.actions.giveCard": "La donner à quelqu'un",

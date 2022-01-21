@@ -99,6 +99,8 @@
     "RTUCards.default.sheet.actions.exchangeCard": "Exchange a card with the discard",
     "RTUCards.default.sheet.actions.peekOn": "Peek on content",
     "RTUCards.default.sheet.actions.peekOnWarning": " is peeking on 'STACK' content",
+    "RTUCards.default.sheet.actions.peekStop": "Stop peeking",
+    "RTUCards.default.sheet.actions.peekStopWarning": " has stopped peeking on 'STACK'",
     "RTUCards.default.sheet.actions.playCard": "Play card",
     "RTUCards.default.sheet.actions.playMultiple": "Play multiples cards",
     "RTUCards.default.sheet.actions.giveCard": "Give it to someone",

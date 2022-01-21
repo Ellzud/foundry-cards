@@ -267,9 +267,12 @@ export class CustomCardsDisplay extends CardsConfig {
         // On decks, default actions are reserved to the GM
         if( game.user.isGM ) {
 
-            if( !this.detailsForced ) {
-                const cssAction = css.peekOnDeck + ' ' + css.coloredInRed + ' ' + css.separator;
-                tools.addAvailableAction(actions, deckConfig, this._custom, cssAction, 'sheet.actions.peekOn', {allKeys:[keys.fromDeckPeekOn]});
+            const cardsLeft = this._cards.availableCards.length > 0;
+            if( cardsLeft ) {
+                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+                tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn]});
+                tools.addCssOnLastAction(actions, css.separator);
             }
 
             tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]});
@@ -330,11 +333,15 @@ export class CustomCardsDisplay extends CardsConfig {
         }
 
         // GM can peek on player hand. But they will be informed he is doing it
-        if( !owned && game.user.isGM && !this.detailsForced ) {
+        if( !owned && game.user.isGM ) {
 
-            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
-                const cssAction = css.peekOnDeck + ' ' + css.separator + ' ' + css.coloredInRed;
-                tools.addAvailableAction(actions, null, this._custom, cssAction, 'sheet.actions.peekOn'); // No deckConfig condition needed
+            const cardsLeft = this._cards.availableCards.length > 0;
+            if( cardsLeft && game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
+                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+    
+                tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel); // No deckConfig condition needed
+                tools.addCssOnLastAction(actions, css.separator);
             }
         }
 
@@ -582,10 +589,13 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickPeekOnStack(event) {
         event.preventDefault();
 
-        const flavor = this._custom.localizedLabel('sheet.actions.peekOnWarning').replace('STACK', this._cards.name);
+        const wasPeeking = this._peekOn;
+
+        const labelKey = wasPeeking ? 'sheet.actions.peekStopWarning' : 'sheet.actions.peekOnWarning';
+        const flavor = this._custom.localizedLabel(labelKey).replace('STACK', this._cards.name);
         await this._custom.sendMessageForStacks(flavor, []);
 
-        this._peekOn = true;
+        this._peekOn = !wasPeeking;
         this.render();
     }
 
