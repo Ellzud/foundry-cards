@@ -24,6 +24,8 @@
     "RTUCards.settings.sheet.title": "Choisissez vos decks!",
     "RTUCards.settings.sheet.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
     "RTUCards.settings.sheet.saveAndClose": "Sauvegarder les modifs & Fermeture",
+    "RTUCards.settings.sheet.filter.title": "Filtre préliminaire sur les actions disponibles",
+    "RTUCards.settings.sheet.filter.details": "Toutes les actions décochées seront automatiquent indisponible pour tout vos decks. Elles n'apparaitront plus dans les details de chaque decks",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Actions possibles depuis le deck : (MJ uniquement)",
     "RTUCards.settings.sheet.headers.fromHand": "Actions possibles depuis la main du joueur :",

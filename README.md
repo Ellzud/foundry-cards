@@ -35,6 +35,8 @@ By doing so, the custom context becomes disabled and the card GUI will be regist
 
 This module is currently available in French and in English.
 
+
+
 ## Choose the decks you want
 
 ### Comes with Ready to use decks
@@ -86,7 +88,11 @@ It can allow to automatically create decks without the need to have static prese
 Since it's a little complicated, this will be described in details at the end of this readme.
 
 
-## Choose which actions you want for your cards
+
+
+## Choosing which actions you want for your cards
+
+### The config panel
 
 The conf panel for choosing them is available by two methods :
 - Directly inside the Configure Settings window
@@ -96,16 +102,28 @@ The conf panel for choosing them is available by two methods :
 
 If you choose the second method, config panel will directly be set on the click stack.
 
-![Choosing actions access](docs/README_choosing_action_result.webp?raw=true)
+![Choosing actions result](docs/README_choosing_action_result.webp?raw=true)
 
-Each checkbox allow an action from the main GUI.
+Each checkbox is linked to a possible action in the main GUI.
+
+### Filtering choice pool
+
+There are many available actions. When you have many decks, it can becomes pretty difficult to see if you have done the right configuration for each one.
+
+To solve this, a prior filtering is available. By using it, you can greatly reduce your choice pool inside each deck :
+
+![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
+
+
 
 ## Understanding the GUI
 
-**One rule for player card stacks :**
+### Rules
+
+**Player card stacks rules :**
 - Hand is visible only by owner. Revealed cards are visible by everybody. It's the same for the GM card stacks.
 
-**One rule for decks and discard piles :**
+**Decks and Discard piles rules :**
 - Only the GM can do actions on them.
 
 ### Action example : GM peeks on a player card hands
