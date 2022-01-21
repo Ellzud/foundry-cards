@@ -9,12 +9,12 @@ import * as message  from './module/message.js';
  Hooks.once("init", () => {
 
   console.log('Ready-To-Use Cards | Module initializing ...');
+  RTUCardsConfig.loadCardSettings();
   RTUCardsConfig.registerCardSystem();
 
   const module = game.modules.get('ready-to-use-cards');
   module.cardStacks = new CustomCardStackLoader();
   module.stacksDefinition = CARD_STACKS_DEFINITION;
-  RTUCardsConfig.loadCardSettings();
 });
 
 /**
