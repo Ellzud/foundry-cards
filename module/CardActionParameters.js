@@ -1,3 +1,4 @@
+import { CustomCardStack } from "./cards.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 
 export class CardActionParametersBase {
@@ -33,7 +34,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      * Used to inform the GUI that the user needs to select some additional cards
      * @param {CustomCardsDisplay} sheet The sheet where those paramters will be chosen
      * @param {string} actionTitle What will be displayed on top of the selection
-     * @param {CustomCards} [from] From which stack, the cards would be displayed
+     * @param {CustomCardStack} [from] From which stack, the cards would be displayed
      * @param {int} [minAmount] min amount of cards which needs to be selected before the 'OK' button becomes available
      * @param {int} [maxAmount] max amount
      * @param {string} [buttonLabel] What the say inside the ok button.
@@ -50,7 +51,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
             return this.sheet.cards.playCards(cardIds);
         };
 
-        this.from = from ?? this.sheet._cards;
+        this.from = from ?? new CustomCardStack(this.sheet._cards);
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.buttonLabel = buttonLabel;
@@ -144,18 +145,18 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
     constructor( sheet, actionTitle, {specifyAmount = false, onlyOne = false, gmIncluded = true, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
         super(sheet, actionTitle);
 
-        const deck = this.sheet._cards;
-        const defaultCriteria = (stack) => { 
+        const deck = new CustomCardStack( this.sheet._cards );
+        const deckConfig = deck.stackConfig;
+        const keys = StackConfiguration;
+    
+        const defaultCriteria = (ccs) => { 
 
-            const deckConfig = deck.stackConfig;
-            const keys = StackConfiguration;
-
-            const isHandStack = stack.type == 'hand';
+            const isHandStack = ccs.stack.type == 'hand';
             if( isHandStack ) { return deckConfig[keys.fromDeckDealCardsToHand]; }
             return deckConfig[keys.fromDeckDealRevealedCards]; ;
         };
         const defaultCallback = async (selection, selectedStacks, amount) => { 
-            await this.sheet._cards.dealCards(selectedStacks, amount);
+            await deck.dealCards(selectedStacks, amount);
         };
 
         this.buttonLabel = buttonLabel;
@@ -174,8 +175,11 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
 
     get filteredStacks() {
 
-        const result = game.cards.filter( stack => {
-            const owner = stack.stackOwner;
+        const result = game.cards.map( stack => {
+            return new CustomCardStack(stack);
+
+        }).filter( ccs => {
+            const owner = ccs.stackOwner;
 
             if( owner.forGMs ) {
                 if( !this.gmIncluded ) { 
@@ -192,27 +196,27 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
                 return false; 
             }
 
-            return this.criteria(stack);
+            return this.criteria(ccs);
         });
 
         return result;
     }
 
-    _loadStackData(stack) {
+    _loadStackData(ccs) {
 
         const result = {
-            id: stack.id,
+            id: ccs.stack.id,
             classes: ''
         };
 
         let isHere;
-        const owner = stack.stackOwner;
+        const owner = ccs.stackOwner;
         if( owner.forGMs ) {
             isHere = game.users.some( u => u.isGM && u.active );
             result.name = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
             result.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
         } else {
-            const user = game.users.get(stack.stackOwner.playerId);
+            const user = game.users.get(ccs.stackOwner.playerId);
             isHere = user.active ?? false;
             result.name = user.name;
             result.icon = user.character?.img ?? 'icons/svg/mystery-man.svg';
@@ -222,7 +226,7 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
             result.classes += ' not-here';
         }
 
-        const selected = this.selectedStackIds.includes(stack.id);
+        const selected = this.selectedStackIds.includes(ccs.stack.id);
         if( selected ) { 
             result.classes += ' selected';
         }
@@ -240,21 +244,22 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
         parameters.specifyAmount = this.specifyAmount;
         parameters.amount = this.amount;
         
+        const custom = new CustomCardStack(this.sheet._cards);
         parameters.labels = {
-            headerHands: this.sheet._cards.localizedLabel('sheet.parameters.stacks.hands'),
-            headerRevealed: this.sheet._cards.localizedLabel('sheet.parameters.stacks.revealed'),
-            headerAmount: this.sheet._cards.localizedLabel('sheet.parameters.stacks.amount'),
+            headerHands: custom.localizedLabel('sheet.parameters.stacks.hands'),
+            headerRevealed: custom.localizedLabel('sheet.parameters.stacks.revealed'),
+            headerAmount: custom.localizedLabel('sheet.parameters.stacks.amount'),
             button: this.buttonLabel
         };
 
         const base = this.filteredStacks;
 
-        const handsInfo = base.filter( s => s.type == 'hand' ).map( s => this._loadStackData(s) );
+        const handsInfo = base.filter( ccs => ccs.stack.type == 'hand' ).map( ccs => this._loadStackData(ccs) );
         handsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.hands = handsInfo;
         parameters.handsDisplayed = handsInfo.length > 0;
 
-        const revealedCardsInfo = base.filter( s => s.type == 'pile' ).map( s => this._loadStackData(s) );
+        const revealedCardsInfo = base.filter( ccs => ccs.stack.type == 'pile' ).map( ccs => this._loadStackData(ccs) );
         revealedCardsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.revealedCards = revealedCardsInfo;
         parameters.revealedCardsDisplayed = revealedCardsInfo.length > 0;
@@ -303,7 +308,7 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
 
     async onClickPerformAction(event) {
         event.preventDefault();
-        const selectedStacks = this.filteredStacks.filter( c => this.selectedStackIds.includes(c.id) );
+        const selectedStacks = this.filteredStacks.filter( c => this.selectedStackIds.includes(c.stack.id) );
         await this.callBack(this.sheet.currentSelection, selectedStacks, this.amount);
         this.resumeAction();
     }
