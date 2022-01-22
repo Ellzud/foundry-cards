@@ -142,10 +142,13 @@ export class CustomCardStack {
     get sortedAvailableCards() {
         const cards = this.stack.availableCards;
         cards.sort( (a,b) => {
-            if( a.data.type === b.data.type ) {
-                return a.data.sort - b.data.sort;
+            const aCore = ( new CustomCardStack(a.source) ).coreStackRef ?? '';
+            const bCore = ( new CustomCardStack(b.source) ).coreStackRef ?? '';
+            let sort = aCore.localeCompare(bCore);
+            if(!sort) {
+                sort = a.data.sort - b.data.sort;
             }
-            return a.data.type.localeCompare(b.data.type);
+            return sort;
         });
         return cards;
     }

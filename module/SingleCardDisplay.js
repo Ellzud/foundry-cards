@@ -24,4 +24,28 @@ export class SingleCardDisplay extends CustomCardsDisplay {
     get detailsForced() {
         return true;
     }
+
+    /**
+     * No default actions 
+     * @override 
+     * */
+    _loadDeckActionsByDefault(actions) {}
+
+    /**
+     * No default actions 
+     * @override 
+     * */
+     _loadDiscardActionsByDefault(actions) {}
+    
+    /**
+     * No default actions 
+     * @override 
+     * */
+     _loadHandActionsByDefault(actions) {}
+    
+    /**
+     * No default actions 
+     * @override 
+     * */
+     _loadRevealedCardsActionsByDefault(actions) {}
 }
