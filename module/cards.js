@@ -134,13 +134,21 @@ export class CustomCardStack {
      */
     localizedLabel(labelPath, {alternativeCoreKey=null}={}) {
         const coreKey = alternativeCoreKey ?? this.coreStackRef;
+        const coreStack = CARD_STACKS_DEFINITION.core[coreKey];
+        const coreTitle = coreStack?.customName ?? game.i18n.localize(coreStack?.labelBaseKey + 'title');
+
+        let label;
         if(CARD_STACKS_DEFINITION.core.hasOwnProperty(coreKey) ) { 
             // Some stack have no coreKey stored. Such as player hands
-            const fullPath = CARD_STACKS_DEFINITION.core[coreKey].labelBaseKey + labelPath;
-            const label = game.i18n.localize(fullPath);
-            if( label != fullPath ) { return label; }
+            const fullPath = coreStack.labelBaseKey + labelPath;
+            label = game.i18n.localize(fullPath);
+            if( label === fullPath ) { label = null; }
         }
-        return game.i18n.localize("RTUCards.default." + labelPath);
+        if( !label ) { 
+            label = game.i18n.localize("RTUCards.default." + labelPath);
+        }
+
+        return label.replace('STACK', this.stack.name).replace('CORE', coreTitle);
     }
     
     get cardStacks() {
@@ -328,7 +336,7 @@ export class CustomCardStack {
         
         const key = 'message.' + action + '.' + stackType + '.' +  amountSuffix;
         const label = this.localizedLabel(key, {alternativeCoreKey: coreKey});
-        return label.replace('NB', '' + amount).replace('STACK', this.stack.name);
+        return label.replace('NB', '' + amount);
     }
 
     /**

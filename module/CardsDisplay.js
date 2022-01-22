@@ -331,7 +331,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
-
+        const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
@@ -339,10 +339,22 @@ export class CustomCardsDisplay extends CardsConfig {
             const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
+        
+        if( owned ) {
+            // Drawing cards from each deck
+            Object.values(this._custom.cardStacks.decks).forEach( deck => {
+                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                            {allKeys:[keys.fromHandDrawCard], action:deck.coreStackRef, onLeft:true} );
+            });
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+    
+            // Discard all cards
+            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
+                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand', {onLeft:true}); // No deckConfig condition needed
+            }
 
-        // GM can peek on player hand. But they will be informed he is doing it
-        if( !owned && game.user.isGM ) {
-
+        } else if( game.user.isGM ) { 
+            // GM can peek on player hand. But they will be informed he is doing it
             const cardsLeft = this._cards.availableCards.length > 0;
             if( cardsLeft && game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
                 const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
@@ -350,13 +362,6 @@ export class CustomCardsDisplay extends CardsConfig {
     
                 tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel, {onLeft:true}); // No deckConfig condition needed
                 tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-            }
-        }
-
-        // The hand can be totally discarded
-        if( owned ) {
-            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand', {onLeft:true}); // No deckConfig condition needed
             }
         }
 
@@ -373,7 +378,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const def = game.modules.get('ready-to-use-cards').stacksDefinition;
         const css = def.shared.actionCss;
-
+        const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
         if( this.currentSelection ) {
@@ -383,7 +388,16 @@ export class CustomCardsDisplay extends CardsConfig {
         }
 
         // The revealed cards be totally discarded
+        tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
         if( owned ) {
+            // Drawing cards from each deck
+            Object.values(this._custom.cardStacks.decks).forEach( deck => {
+                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                            {allKeys:[keys.fromRevealedDrawCard], action:deck.coreStackRef, onLeft:true} );
+            });
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+    
+            // Discard all cards
             if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll)  ) {
                 tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards', {onLeft:true}); // No deckConfig condition needed
             }
@@ -441,6 +455,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         html.find(css.backToDeckCard).click(event => this._onClickBackToDeck(event) );
         html.find(css.backToHandCard).click(event => this._onClickBackToHand(event) );
+        html.find(css.drawCard).click(event => this._onClickDrawCard(event) );
         html.find(css.discardCard).click(event => this._onClickDiscardCard(event) );
         html.find(css.giveCard).click(event => this._onClickGiveCard(event) );
         html.find(css.exchangeCard).click(event => this._onClickExchangeCard(event) );
@@ -518,6 +533,18 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickDisplayListing(event) {
         event.preventDefault();
         this._listingOpened = !this._listingOpened;
+        this.render();
+    }
+
+    async _onClickDrawCard(event) {
+        event.preventDefault();
+        const coreKey = event.currentTarget.dataset.action;
+
+        const deck = this._custom.cardStacks.decks[coreKey];
+        const deckCards = deck.sortedAvailableCards;
+
+        const cardIds = deckCards.length > 0 ? [deckCards[0].id] : [];
+        await deck.giveCards(this._custom, cardIds );
         this.render();
     }
 
@@ -600,7 +627,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const wasPeeking = this._peekOn;
 
         const labelKey = wasPeeking ? 'sheet.actions.peekStopWarning' : 'sheet.actions.peekOnWarning';
-        const flavor = this._custom.localizedLabel(labelKey).replace('STACK', this._cards.name);
+        const flavor = this._custom.localizedLabel(labelKey);
         await this._custom.sendMessageForStacks(flavor, []);
 
         this._peekOn = !wasPeeking;

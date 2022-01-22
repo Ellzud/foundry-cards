@@ -168,7 +168,7 @@ export class CustomCardGUIWrapper {
         }
 
         if( game.user.isGM ) { 
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards]} );
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand ,keys.fromDeckDealRevealedCards]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
             tools.addCssOnLastAction(actions, css.separator);
         }
@@ -240,7 +240,7 @@ export class CustomCardGUIWrapper {
         tools.addCssOnLastAction(actions, css.separator);
 
         if( stackOwnedByUser ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
