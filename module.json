@@ -30,6 +30,6 @@
   "packs": [],
   "system": [],
   "dependencies": [],
-  "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/release-1.2.0/module.json",
+  "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/master/module.json",
   "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.2.0/ready-to-use-cards-release-1.2.0.zip"
 }
