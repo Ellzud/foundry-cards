@@ -1,11 +1,11 @@
 {
   "name": "ready-to-use-cards",
   "title": "Ready To Use Cards",
-  "description": "Allow automatic card stack creation for every players. On fir its hand. The other revealed in front of him. Comes with some custom GUI",
+  "description": "<p>Allow automatic card stack creation for every players.<ul><li>One for its hand.</li><li>The other revealed in front of him.</li></ul></p><p>For every decks, you will be able do edit which actions you want to allow.<br/><br/>Comes with some custom GUI</p>",
   "author": "Adrien Schiehle",
   "authors": [],
   "url": "https://gitlab.com/adrien.schiehle/ready-to-use-cards",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "minimumCoreVersion": "9",
   "compatibleCoreVersion": "9",
   "scripts": [],
@@ -30,6 +30,6 @@
   "packs": [],
   "system": [],
   "dependencies": [],
-  "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/release-1.2.0/module.json",
-  "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.2.0/ready-to-use-cards-release-1.2.0.zip"
+  "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/release-1.2.1/module.json",
+  "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.2.1/ready-to-use-cards-release-1.2.1.zip"
 }
