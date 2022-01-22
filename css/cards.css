@@ -213,9 +213,17 @@
 .rtucards.cards .current-selection .action-panel {
     color: blanchedalmond;
     align-self: flex-start;
-    margin: 50px 10px 340px 10px;
+    margin: 30px 10px 340px 10px;
     overflow: auto;
 }
+
+.rtucards.cards .action-panel .headers {
+    flex: unset;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
 
 .rtucards.cards .action-panel .card-action {
     min-height: 30px;

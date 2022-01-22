@@ -9,10 +9,13 @@ export class CustomCardActionTools {
      * If no actions or if last one already has the css value : Do nothing
      * @param {object[]} actions Actions which will be available when the card is selected in its current stack
      * @param {string} css The css value which should be added on currently last action.
+     * @param {string} [onLeft] If it should be added to the last action for the left side or right side
      */
-    addCssOnLastAction(actions, css) {
-        if(actions.length == 0 ) { return; }
-        const lastAction = actions[actions.length-1];
+    addCssOnLastAction(actions, css, {onLeft=false}={}) {
+        const sideActions = actions.filter(a => a.onLeft == onLeft);
+        if(sideActions.length == 0 ) { return; }
+
+        const lastAction = sideActions[sideActions.length-1];
         const toAdd = ' ' + css;
         if(! lastAction.classes.includes(toAdd) ) {
             lastAction.classes += toAdd;
@@ -30,8 +33,9 @@ export class CustomCardActionTools {
      * @param {string[]} [allKeys] If set, ask that all included keys have to be flagged to TRUE inside deckConfig
      * @param {string[]} [atLeastOne] If set, ask that at least one of the included keys have to be flagged to TRUE
      * @param {string} [action] Add an addtionnal parameter to the action data (for custom actions)
+     * @param {string} [onLeft] If this action is designed to be displayed on the left side
      */
-    addAvailableAction(actions, deckConfig, translator, cssAction, labelKey, {allKeys=null, atLeastOne=null, action=null}={} ) {
+    addAvailableAction(actions, deckConfig, translator, cssAction, labelKey, {allKeys=null, atLeastOne=null, action=null, onLeft=false}={} ) {
 
         if( allKeys != null ) { // Check all given keys. If one is false : exit
             for( const key of allKeys ) { 
@@ -48,7 +52,8 @@ export class CustomCardActionTools {
         actions.push({ 
             classes: cssAction, 
             label: translator.localizedLabel(labelKey), 
-            action: action
+            action: action,
+            onLeft: onLeft
         });
     }
     

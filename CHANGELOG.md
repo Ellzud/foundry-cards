@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Release 1.2.0
+
+### GUI changes
+Splitting action on card stack and on selected card:
+- On the left side : Actions on card stack
+- On the right side : Actions on selected card
+
+### Actions modifications
+- Rotating card action now only turn the selected card.
+- Peeking action can now be stopped without having to press F5
+
+### New actions
+- Draw cards can now be done by player via their hand and revealed cards stack
+
+
 ## Release 1.1.0
 
 Initially this module was part of my own system and I chose to split it to let other benefit from it.

@@ -18,6 +18,7 @@
     coloredInRed: 'red',    // If added, the frame will be red when hovering it
     backToDeckCard: 'back-to-deck',
     backToHandCard: 'back-to-hand',
+    drawCard: 'draw-card',
     exchangeCard: 'exchange-card',
     discardCard: 'discard-card',
     giveCard: 'give-card',
@@ -48,6 +49,7 @@ export const StackConfiguration = {
     fromDeckResetAll: 'fromDeckResetAll',
     fromDeckShuffleRemainingCards: 'fromDeckShuffleRemainingCards',
     fromDeckRotateCard: 'fromDeckRotateCard',
+    fromHandDrawCard: 'fromHandDrawCard',
     fromHandPlayCard: 'fromHandPlayCard',
     fromHandPlayMultiple: 'fromHandPlayMultiple',
     fromRevealedPlayMultiple: 'fromRevealedPlayMultiple',
@@ -55,6 +57,7 @@ export const StackConfiguration = {
     fromHandExchangeCard: 'fromHandExchangeCard',
     fromHandDiscardCard: 'fromHandDiscardCard',
     fromHandRotateCard: 'fromHandRotateCard',
+    fromRevealedDrawCard: 'fromRevealedDrawCard',
     fromRevealedPlayCard: 'fromRevealedPlayCard',
     fromRevealedBackToHand: 'fromRevealedBackToHand',
     fromRevealedDiscardCard: 'fromRevealedDiscardCard', 
