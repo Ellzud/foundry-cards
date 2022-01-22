@@ -86,7 +86,8 @@ export class RTUCardsConfig extends FormApplication {
 			scope: "world",
 			type: Boolean,
 			default: true,
-			config: true
+			config: true,
+			onChange: () => game.modules.get('ready-to-use-cards').cardStacks.loadCardStacks()
 		});
 	  
 		game.settings.register("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards, {
@@ -95,7 +96,8 @@ export class RTUCardsConfig extends FormApplication {
 			scope: "world",
 			type: Boolean,
 			default: true,
-			config: true
+			config: true,
+			onChange: () => game.modules.get('ready-to-use-cards').cardStacks.loadCardStacks()
 		});
 	  
 		game.settings.register("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn, {
@@ -154,6 +156,7 @@ export class RTUCardsConfig extends FormApplication {
 		super(object, options);
 		this.module = game.modules.get('ready-to-use-cards');
 		this.initStacks();
+		this.initFilter();
 	}
 
 	initStacks( ) {
@@ -203,12 +206,55 @@ export class RTUCardsConfig extends FormApplication {
 			return data;
 		});
 	}
+	
+	initFilter() {
+		this.filter = {
+			detailsDisplayed: false,
+			title: game.i18n.localize('RTUCards.settings.sheet.filter.title'),
+			details: game.i18n.localize('RTUCards.settings.sheet.filter.details'),
+			configUsage: []
+		};
+		this.reloadFilter();
+	}
 
-	/** @override */
-	async getData() {
+	reloadFilter() {
+		const usedStacks = this.object.stacks.filter( stack => stack.gui.toggled );
+		this.filter.configUsage = this.configBoxes.map( key => {
+			const used = usedStacks.some( stack => {
+				return stack.config[key];
+			});
+
+			return {
+				config: key,
+				toggled: used,
+				label: game.i18n.localize('RTUCards.settings.sheet.labels.' + key)
+			};
+		});
+	}
+
+	_addHeadersToConfigBoxes(configBoxes) {
+
+		const result = [];
+		['fromDeck', 'fromHand', 'fromRevealed', 'fromDiscard'].forEach( header => {
+
+			const relatedConfs = configBoxes.filter( cb => cb.config.startsWith(header) );
+			if( relatedConfs.length > 0 ) {
+
+				result.push({ // Header line
+					isHeader: true, 
+					label: game.i18n.localize('RTUCards.settings.sheet.headers.' + header) 
+				});
+
+				relatedConfs.sort( (a,b) => a.label.localeCompare(b.label) );
+				result.push(...relatedConfs);
+			}
+		});
+		return result;
+	}
+
+	_prepareStackList() {
 
 		const mapConfigLabels = (stack, configName) => {
-
 			return {
 				config: configName,
 				toggled: stack.config[configName],
@@ -218,39 +264,54 @@ export class RTUCardsConfig extends FormApplication {
 
 		// Add confboxes information for each stack
 		const stacks = this.object.stacks.map( stack => {
-
-			const headerParts = ['fromDeck', 'fromHand', 'fromRevealed', 'fromDiscard'].map( prefix => {
-				const relatedConfKeys = this.configBoxes.filter( key => key.startsWith(prefix) );
-				const confBoxes = relatedConfKeys.map( key => mapConfigLabels( stack, key ) );
-				confBoxes.sort( (a,b) => a.label.localeCompare(b.label) );
-				return {
-					header: { isHeader: true, label: game.i18n.localize('RTUCards.settings.sheet.headers.' + prefix) },
-					confBoxes: confBoxes
-				};
-			});
-
-			const allBoxes = headerParts.reduce( (_allBoxes, current) => {
-				_allBoxes.push(current.header);
-				_allBoxes.push(...current.confBoxes);
-				return _allBoxes;
-			}, []);
-
 			const data = {
-				configBoxes: allBoxes
+				configBoxes: this.configBoxes.map( confKey => mapConfigLabels( stack, confKey ) )
 			}
 			return foundry.utils.mergeObject( data, stack );
 		});
+		return stacks;
+	}
+
+	_prepareFilteringWithStacks(stacks) {
+
+		// Retrieve confs which are never used
+		const unusedKeys = this.filter.configUsage.filter( c => !c.toggled).map( c => c.config );
+
+		// Reduce confboxes on each stack by removing those elements
+		stacks.forEach( stack => {
+			stack.configBoxes = stack.configBoxes.filter( cb => cb.isHeader || !unusedKeys.includes(cb.config) );
+		});
+
+		const result = { configBoxes: this.filter.configUsage };
+		return foundry.utils.mergeObject(result, this.filter);
+	}
+
+	/** @override */
+	async getData() {
+
+		const stacks = this._prepareStackList();
+		const filter = this._prepareFilteringWithStacks(stacks);
+
+		// Add headers at the end (wait until entries have been filtered)
+		stacks.forEach(stack => {
+			stack.configBoxes = this._addHeadersToConfigBoxes(stack.configBoxes);
+		});
+		filter.configBoxes = this._addHeadersToConfigBoxes(filter.configBoxes);
 
 		return {
-			stacks: stacks
+			stacks: stacks,
+			filter: filter
 		};
 	}
 
 	/** @override */
     activateListeners(html) {
-		html.find('.toggle-button.deck').click(event => this._onClickToggleDeck(event) );
-		html.find('.toggle-button.show').click(event => this._onClickToggleDetails(event) );
-		html.find('.toggle-button.config').click(event => this._onClickToggleConfigBox(event) );
+		html.find('.filter .toggle-button.show').click(event => this._onClickToggleFilter(event) );
+		html.find('.filter .toggle-button.config').click(event => this._onClickToggleFilterBox(event) );
+
+		html.find('.declared-deck .toggle-button.deck').click(event => this._onClickToggleDeck(event) );
+		html.find('.declared-deck .toggle-button.show').click(event => this._onClickToggleDetails(event) );
+		html.find('.declared-deck .toggle-button.config').click(event => this._onClickToggleConfigBox(event) );
 		html.find('.save-stacks').click(event => this._onClickSaveConfig(event) );
 	}
 
@@ -266,9 +327,16 @@ export class RTUCardsConfig extends FormApplication {
 		this.object.stacks.filter( s => s.gui.toggled ).forEach( stack => {
 			decks[stack.key] = stack.config;
 		});
+
 		await game.settings.set("ready-to-use-cards", GlobalConfiguration.stacks, decks);
 		await this.module.cardStacks.loadCardStacks();
 		this.close();
+	}
+
+	async _onClickToggleFilter(event) {
+		event.preventDefault();
+		this.filter.detailsDisplayed = !this.filter.detailsDisplayed;
+		this.render();
 	}
 
 	async _onClickToggleDeck(event) {
@@ -301,6 +369,22 @@ export class RTUCardsConfig extends FormApplication {
 
 		const stack = this.object.stacks.find( s =>s.key === deckKey );
 		stack.config[configKey] = !stack.config[configKey];
+		this.render();
+	}
+
+	async _onClickToggleFilterBox(event) {
+		const a = event.currentTarget;
+		const configKey = a.dataset.config;
+
+		const relatedConfig = this.filter.configUsage.find( c => c.config === configKey );
+		const wasChecked = relatedConfig.toggled;
+		relatedConfig.toggled = !wasChecked;
+
+		if( wasChecked ) { // Uncheck box on all stacks
+			this.object.stacks.forEach( stack => {
+				stack.config[configKey] = false;
+			});
+		}
 		this.render();
 	}
 }

@@ -1,5 +1,4 @@
 {{#*inline "cardDisplay"}}
-
     <div class="flexcol card-slot {{card.classes}}" 
          style="background-image: url('{{card.cardBg}}');" 
          data-key="{{card.id}}">
@@ -7,11 +6,9 @@
             <p class="summary">{{card.summary}}</p>
         {{/unless}}
     </div>
-
 {{/inline}}
 
 {{#*inline "selectCardsParameters"}}
-
     <div class="parameters-cards">
         <div class="flexrow cards">
             {{#each param.availableCards as |card|}}
@@ -30,7 +27,6 @@
 {{/inline}}
 
 {{#*inline "selectStacksParameters"}}
-
     <div class="flexcol parameters-stacks">
         {{#if param.handsDisplayed}}
             <div class="headers">{{param.labels.headerHands}}</div>
@@ -73,29 +69,33 @@
             </div>
         {{/if}}
     </div>
-
 {{/inline}}
 
+{{#*inline "actionListing"}}
+    <div class="flexcol action-panel">
+        {{#if onSide.actions.length}}
+            <div class="headers">{{onSide.header}}</div>
+        {{/if}}
+        {{#each onSide.actions as |action|}}
+            <div class="card-action {{action.classes}}" data-action="{{action.action}}">
+                {{action.label}}
+            </div>
+        {{/each}}
+    </div>
+{{/inline}}
 
 <form class="{{cssClass}}" autocomplete="off">
 
     <div class="flexrow current-selection">
 
         {{#if parameters.none}}
-            <div class="flexcol"></div>
+            {{> actionListing onSide=onLeft}}
         {{/if}}
 
         {{> cardDisplay card=currentSelection}}
 
         {{#if parameters.none}}
-            <div class="flexcol action-panel">
-                {{#each actions as |action|}}
-                    <div class="card-action {{action.classes}}"
-                        data-action="{{action.action}}">
-                        {{action.label}}
-                    </div>
-                {{/each}}
-            </div>
+            {{> actionListing onSide=onRight}}
         {{else}}
             <div class="flexcol parameters-panel">
                 <div class="flexrow headers">
