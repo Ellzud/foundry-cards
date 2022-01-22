@@ -1,4 +1,4 @@
-import { CustomCardStack } from './cards.js';
+import { CustomCardStack } from './CustomCardStack.js';
 import { GlobalConfiguration } from './constants.js';
 import { CustomCardActionTools } from './CustomCardActionTools.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';

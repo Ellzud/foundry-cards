@@ -1,6 +1,6 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
-import { CustomCardStack } from './cards.js';
-import { RTUCardsConfig } from './config.js';
+import { CustomCardStack } from './CustomCardStack.js';
+import { ConfigSheetForActions } from './ConfigSheetForActions.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 
@@ -99,7 +99,7 @@ export class CustomCardsDisplay extends CardsConfig {
                     onclick: async () => {
                         const coreKey = this._custom.coreStackRef;
                         // Prepare the sheet
-                        const sheet = new RTUCardsConfig();
+                        const sheet = new ConfigSheetForActions();
                         sheet.object.stacks.forEach( s => {
                             s.gui.detailsDisplayed = ( s.key === coreKey );
                         });
@@ -277,8 +277,8 @@ export class CustomCardsDisplay extends CardsConfig {
 
             const cardsLeft = this._cards.availableCards.length > 0;
             if( cardsLeft ) {
-                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
-                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+                const peekCss = css.peekOnDeck + ( this._peekOn ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this._peekOn ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
                 tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn], onLeft:true});
                 tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
             }
@@ -357,8 +357,8 @@ export class CustomCardsDisplay extends CardsConfig {
             // GM can peek on player hand. But they will be informed he is doing it
             const cardsLeft = this._cards.availableCards.length > 0;
             if( cardsLeft && game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
-                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
-                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+                const peekCss = css.peekOnDeck + ( this._peekOn ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this._peekOn ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
     
                 tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel, {onLeft:true}); // No deckConfig condition needed
                 tools.addCssOnLastAction(actions, css.separator, {onLeft:true});

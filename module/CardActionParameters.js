@@ -1,4 +1,4 @@
-import { CustomCardStack } from "./cards.js";
+import { CustomCardStack } from "./CustomCardStack.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 
 export class CardActionParametersBase {

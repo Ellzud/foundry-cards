@@ -1,6 +1,6 @@
-import { CustomCardStackLoader } from './module/CardStackLoader.js';
+import { CustomCardStackLoader } from './module/CustomCardStackLoader.js';
 import { CARD_STACKS_DEFINITION } from './module/StackDefinition.js';
-import { RTUCardsConfig }  from './module/config.js';
+import * as config  from './module/config.js';
 import * as message  from './module/message.js';
 
 /**
@@ -9,8 +9,8 @@ import * as message  from './module/message.js';
  Hooks.once("init", () => {
 
   console.log('Ready-To-Use Cards | Module initializing ...');
-  RTUCardsConfig.loadCardSettings();
-  RTUCardsConfig.registerCardSystem();
+  config.loadCardSettings();
+  config.registerCardSystem();
 
   const module = game.modules.get('ready-to-use-cards');
   module.cardStacks = new CustomCardStackLoader();
