@@ -22,6 +22,7 @@ export class CustomCardsDisplay extends CardsConfig {
         this.options.classes.push('rtucards');
         this.options.classes.push('cards');
         this.options.template = "modules/ready-to-use-cards/resources/sheet/card-display.hbs";
+        this.options.scrollY = [".all-cards", ".parameters-stacks .stacks", ".parameters-cards .cards"];
         this.options.width = 1200;
         this.options.height = 920;
         this.position.width = 1200;
@@ -519,6 +520,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     /** @override */
     activateListeners(html) {
+        super.activateListeners(html);
 
         // Before mapping listeners, add content inside each cardSlot
         this.addAdditionnalContentOnCards(html);

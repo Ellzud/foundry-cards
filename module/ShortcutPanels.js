@@ -3,7 +3,7 @@ import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 
 const HEIGHT_FOR_ONE_CARD = 772;
 const WIDTH_FOR_ONE_CARD = 510;
-const ADDTIONNAL_FRAME_WIDTH = 530;
+const ADDITIONNAL_FRAME_WIDTH = 530;
 
 /**
  * For hand and shortcut panels
@@ -13,7 +13,9 @@ class ShortcutPanel extends Application {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             template: 'modules/ready-to-use-cards/resources/sheet/shortcuts.hbs',
-            popOut: false
+            popOut: false,
+            scrollY: [".card-list"],
+            dragDrop: [{ dragSelector: ".shortcut-icon"}]
         });
     }
 
@@ -21,6 +23,8 @@ class ShortcutPanel extends Application {
         super(options);
 		this.module = game.modules.get('ready-to-use-cards');
         this._currentSettings = this.loadSettings();
+        this._cardIndex = 0;
+        this._exceedMaxPerLine = false;
     }
 
     /**
@@ -39,6 +43,13 @@ class ShortcutPanel extends Application {
     loadSettings() {
         return {};
     }
+
+    /**
+     * Used to set update game settings when changes occurs inside the panel (like a movement)
+     * Should be overriden
+     * @returns {object}
+     */
+     async updateSettings() { }
 
     /**
      * Config has changed => See if there is a need to reload the sheet
@@ -76,12 +87,45 @@ class ShortcutPanel extends Application {
         }
     }
 
-    /**
-     * @override
-     */
+    /** @override */
     async getData() {
 
-        const cards = this.customStack.sortedAvailableCards.map( card => {
+        const customStack = this.customStack;
+        const allCards = customStack.sortedAvailableCards;
+        const displayedCards = this._chooseCardsToDisplay(allCards);
+
+        const navigation = {
+            displayed: this._exceedMaxPerLine && displayedCards.length > 0,
+            left: this._cardIndex > 0,
+            right: this._cardIndex < (allCards.length - displayedCards.length)
+        };
+
+        const summary = {
+            displayed: displayedCards.length == 0,
+            text: '' + allCards.length
+        };
+
+        const data = {
+            style: this._computeFrameStyle(displayedCards, navigation.displayed, summary.displayed),
+            lineStyle: this._computeLineStyle(displayedCards, navigation.displayed, summary.displayed), 
+            cards: displayedCards,
+            icon: this._currentSettings.icon,
+            navigation: navigation,
+            summary: summary
+        };
+
+        return data;
+    }
+
+    /**
+     * Filter amoung the stack cards, and chose at most _currentSettings.maxPerLine cards to display
+     * _exceedMaxPerLine and _cardIndex are updated inside this function
+     * @param {Card[]} allCards All this stack cards (ordered)
+     * @returns {object[]} Cards data to used in getData
+     */
+    _chooseCardsToDisplay(allCards) {
+
+        const cardPool = allCards.map( card => {
             const wrapper = new CustomCardGUIWrapper(card);
             return  {
                 id: card.id, 
@@ -90,20 +134,30 @@ class ShortcutPanel extends Application {
              };
         });
 
-        const data = {
-            style: this._computeFrameStyle(),
-            lineStyle: this._computeLineStyle(), 
-            cards: cards,
-            icon: this._currentSettings.icon
-        };
 
-        return data;
+        let amount = cardPool.length;
+        this._exceedMaxPerLine = amount > this._currentSettings.maxPerLine;
+        if( this._exceedMaxPerLine ) {
+            amount = this._currentSettings.maxPerLine;
+        }
+
+        // Stack size can change => update _cardIndex so that it always display the maximum number of cards
+        if( this._cardIndex + amount > cardPool.length ) {
+            this._cardIndex = Math.max(0, cardPool.length - amount);
+        }
+
+        // Just retrieve cards we want to display
+        return cardPool.filter( (card, index) => {
+            return index >= this._cardIndex && index < this._cardIndex + amount;
+        });
     }
 
-    _computeFrameStyle() {
-        const customStack = this.customStack;
+    _computeFrameStyle(cards, navigationColumn, summaryColumn) {
+
         let height = HEIGHT_FOR_ONE_CARD;
-        let width = ADDTIONNAL_FRAME_WIDTH + WIDTH_FOR_ONE_CARD * Math.min( customStack.stack.availableCards.length, this._currentSettings.maxPerLine );
+        let width = ADDITIONNAL_FRAME_WIDTH + WIDTH_FOR_ONE_CARD * cards.length;
+        if( navigationColumn ) { width += 120; }
+        if( summaryColumn ) { width += 190; }
 
         height = Math.ceil( this._currentSettings.scale * height ) + 14; // 14 : border and padding
         width = Math.ceil( this._currentSettings.scale * width ) + 14;
@@ -113,9 +167,10 @@ class ShortcutPanel extends Application {
         return style;
     }
 
-    _computeLineStyle() {
-        const customStack = this.customStack;
-        const width = ADDTIONNAL_FRAME_WIDTH + WIDTH_FOR_ONE_CARD * Math.min( customStack.stack.availableCards.length, this._currentSettings.maxPerLine );
+    _computeLineStyle(cards, navigationColumn, summaryColumn) {
+        let width = ADDITIONNAL_FRAME_WIDTH + WIDTH_FOR_ONE_CARD * cards.length;
+        if( navigationColumn ) { width += 120; }
+        if( summaryColumn ) { width += 190; }
 
         let style = "transform: scale(" + this._currentSettings.scale + ");";
         style += "min-width: " + width + "px;";
@@ -127,8 +182,14 @@ class ShortcutPanel extends Application {
 
     /** @override */
     activateListeners(html) {
+        super.activateListeners(html);
+
         // Before mapping listeners, add content inside each cardSlot
         this.addAdditionnalContentOnCards(html);
+
+        html.find('.card-slot').click(event => this._onClickDisplayCard(event) );
+        html.find('.action-panel .index-change').click(event => this._onClickChangeCardIndex(event) );
+        html.find('.action-panel .show').click(event => this._onClickShowStack(event) );
     }
 
     addAdditionnalContentOnCards(html) {
@@ -148,7 +209,58 @@ class ShortcutPanel extends Application {
                 
             }
         }
+    }
+
+    async _onClickDisplayCard(event) {
+        event.preventDefault();
+        const cardId = event.currentTarget.dataset.key;
+        const sheet = this.customStack.stack.sheet;
+        if( sheet.selectAvailableCard ) { // When invasive code unchecked, sheet my not be CardsDisplay at some time.
+            sheet.selectAvailableCard(cardId);
+        }
+        sheet.render(true);
+    }
+
+    async _onClickChangeCardIndex(event) {
+        event.preventDefault();
+        const minus = event.currentTarget.dataset.action == 'minus';
+        if( minus ) {
+            this._cardIndex = Math.max(0, this._cardIndex-1);
+        } else {
+            this._cardIndex++;
+        }
+        this.render();
+    }
+
+    async _onClickShowStack(event) {
+        event.preventDefault();
+        this.customStack.stack.sheet.render(true);
+    }
+
     
+    /** @override */
+    _onDragStart(event) {
+        event.preventDefault();
+        this.mouseIntialPos = {
+            x: event.clientX,
+            y: event.clientY
+        };
+
+        const wholeView = event.currentTarget.parentElement.parentElement.parentElement;
+        wholeView.addEventListener("mouseup", e => this.moveShortcuts(e), {once: true});
+    }
+
+    moveShortcuts(event) {
+        event.preventDefault();
+
+        const movement = {
+            x: event.clientX - this.mouseIntialPos.x,
+            y: event.clientY - this.mouseIntialPos.y
+        };
+
+        this._currentSettings.left += movement.x;
+        this._currentSettings.bottom -= movement.y;
+        this.updateSettings();
     }
 }
 
@@ -163,10 +275,8 @@ export class ShortcutForHand extends ShortcutPanel {
         });
     }
 
-    /**
-     * @override
-     */
-     get customStack() {
+    /** @override */
+    get customStack() {
         if( game.user.isGM ) {
             return this.module.cardStacks.gmHand;
         } else {
@@ -174,16 +284,26 @@ export class ShortcutForHand extends ShortcutPanel {
         }
     }
 
-    /**
-     * @override
-     */
-     loadSettings() {
+    /** @override */
+    loadSettings() {
         const wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
         if( !wholeSettings || wholeSettings == '') {
             return DEFAULT_SHORTCUT_SETTINGS.hands;
         } else {
             return wholeSettings.hands;
         }
+    }
+
+    /** @override */
+    async updateSettings() {
+        let wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
+        if( !wholeSettings || wholeSettings == '') {
+            wholeSettings = duplicate(DEFAULT_SHORTCUT_SETTINGS);
+        }
+
+        wholeSettings.hands = this._currentSettings;
+        await game.settings.set('ready-to-use-cards', GlobalConfiguration.shortcuts, wholeSettings);
+        this.reload();
     }
 }
 
@@ -198,10 +318,8 @@ export class ShortcutForHand extends ShortcutPanel {
         });
     }
 
-    /**
-     * @override
-     */
-     get customStack() {
+    /** @override */
+    get customStack() {
         if( game.user.isGM ) {
             return this.module.cardStacks.gmRevealedCards;
         } else {
@@ -209,16 +327,26 @@ export class ShortcutForHand extends ShortcutPanel {
         }
     }
 
-    /**
-     * @override
-     */
-     loadSettings() {
+    /** @override */
+    loadSettings() {
         const wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
         if( !wholeSettings || wholeSettings == '') {
             return DEFAULT_SHORTCUT_SETTINGS.revealed;
         } else {
             return wholeSettings.revealed;
         }
+    }
+
+    /** @override */
+    async updateSettings() {
+        let wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
+        if( !wholeSettings || wholeSettings == '') {
+            wholeSettings = duplicate(DEFAULT_SHORTCUT_SETTINGS);
+        }
+
+        wholeSettings.revealed = this._currentSettings;
+        await game.settings.set('ready-to-use-cards', GlobalConfiguration.shortcuts, wholeSettings);
+        this.reload();
     }
 }
 

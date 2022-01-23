@@ -89,7 +89,7 @@ export const DEFAULT_SHORTCUT_SETTINGS = {
         scale: 0.1,
         left: 800,
         bottom: 8, 
-        maxPerLine: 5,
+        maxPerLine: 15,
         icon: 'modules/ready-to-use-cards/resources/hands-icon.webp'
     },
     revealed: {
@@ -97,7 +97,7 @@ export const DEFAULT_SHORTCUT_SETTINGS = {
         scale: 0.1,
         left: 800,
         bottom: 110,
-        maxPerLine: 5, // FIXME : If configurable, will need to make max-width of .rtucards.shortcut .card-list configurable too
+        maxPerLine: 5,
         icon: 'modules/ready-to-use-cards/resources/revealed-icon.webp'
     }
 };
