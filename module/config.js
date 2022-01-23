@@ -1,6 +1,7 @@
 import { CustomCards } from "./cards.js";
 import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
+import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
 import { GlobalConfiguration } from "./constants.js";
 import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
 
@@ -25,11 +26,12 @@ export const registerCardSystem = () => {
  */
 export const loadCardSettings = () => {
 
-	// A separate window to define decks
-	game.settings.registerMenu("ready-to-use-cards", "config", {
-		name: "RTUCards.settings.sheet.menu",
-		label: "RTUCards.settings.sheet.title",
-		hint: "RTUCards.settings.sheet.hint",
+	// First menu : Choose your decks!
+	//------------------------------------
+	game.settings.registerMenu("ready-to-use-cards", "config-actions", {
+		name: "RTUCards.settings.config-actions.menu",
+		label: "RTUCards.settings.config-actions.title",
+		hint: "RTUCards.settings.config-actions.hint",
 		icon: "fas fa-cog",
 		type: ConfigSheetForActions,
 		restricted: true
@@ -46,6 +48,31 @@ export const loadCardSettings = () => {
 			if ( app ) app.render();
 		}
 	});
+
+	// Second menu : Configure your shortcuts
+	//--------------------------------------
+	game.settings.registerMenu("ready-to-use-cards", "config-shortcuts", {
+		name: "RTUCards.settings.config-shortcuts.menu",
+		label: "RTUCards.settings.config-shortcuts.title",
+		hint: "RTUCards.settings.config-shortcuts.hint",
+		icon: "fas fa-mouse-pointer",
+		type: ConfigSheetForShortcuts,
+		restricted: true
+	});
+
+	// Data will be stored inside 'shortcuts'
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.shortcuts, {
+		scope: "client",
+		config: false,
+		default: null,
+		type: Object,
+		onChange: async c => {
+			const app = Object.values(ui.windows).find(a => a.constructor === ConfigSheetForShortcuts);
+			if ( app ) app.render();
+		}
+	});
+
+
 
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.invasiveCode, {
 		name: "RTUCards.settings.invasiveCode.label",

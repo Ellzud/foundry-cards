@@ -1,4 +1,16 @@
 {
+    "RTUCards.settings.config-actions.menu": "Deck configuration menu",
+    "RTUCards.settings.config-actions.title": "Setup which decks you want!",
+    "RTUCards.settings.config-actions.hint": "Once set, cards stacks will be automatically created",
+    "RTUCards.settings.config-actions.saveAndClose": "Save changes & Close",
+    "RTUCards.settings.config-actions.filter.title": "Prior filtering on available actions",
+    "RTUCards.settings.config-actions.filter.details": "Unchecked actions will be automatically disable for all of your decks. They won't appear it deck details",
+
+    "RTUCards.settings.config-shortcuts.menu": "Shortcuts configuration menu",
+    "RTUCards.settings.config-shortcuts.title": "Configure your shortcuts",
+    "RTUCards.settings.config-shortcuts.hint": "Choose where to display shortcuts of your hand and revealed cards",
+    "RTUCards.settings.config-shortcuts.update": "Update",
+
     "RTUCards.settings.gmName.label": "GM name",
     "RTUCards.settings.gmName.hint": "Name displayed when GMs do actions on decks",
     "RTUCards.settings.gmIcon.label": "GM icon",
@@ -18,13 +30,6 @@
     "RTUCards.settings.everyHandsDiscardAll.hint": "Players can discard their whole hand in one go",
     "RTUCards.settings.everyRevealedDiscardAll.label": "Discard all revealed cards",
     "RTUCards.settings.everyRevealedDiscardAll.hint": "Players can discard all cards they have revealed in front of them in one go",
-
-    "RTUCards.settings.sheet.menu": "Deck configuration menu",
-    "RTUCards.settings.sheet.title": "Setup which decks you want!",
-    "RTUCards.settings.sheet.hint": "Once set, cards stacks will be automatically created",
-    "RTUCards.settings.sheet.saveAndClose": "Save changes & Close",
-    "RTUCards.settings.sheet.filter.title": "Prior filtering on available actions",
-    "RTUCards.settings.sheet.filter.details": "Unchecked actions will be automatically disable for all of your decks. They won't appear it deck details",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Available actions on deck display : (GM only)",
     "RTUCards.settings.sheet.headers.fromHand": "Available actions on user hand display :",

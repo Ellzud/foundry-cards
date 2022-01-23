@@ -289,3 +289,5 @@ Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
 - Divine Tarot : Source : Tarot de Marseille
 Edition Grimaud, Downloaded from https://insightfulvision.fr/gallery-arcanes1.php
 - Classic Tarot : Designed by Edition Grimaud, Downloaded from https://commons.wikimedia.org/wiki/Category:Tarot_nouveau_-_Grimaud_-_1898
+- Shortcut icon for player hand : https://icon-library.com/icon/playing-cards-icon-0.html
+- Shortcut icon for player revealed cards : https://icon-library.com/icon/playing-cards-icon-18.html

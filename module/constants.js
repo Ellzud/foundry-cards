@@ -76,8 +76,28 @@ export const GlobalConfiguration = {
     everyHandsPeekOn: 'everyHandsPeekOn',
     everyHandsDiscardAll: 'everyHandsDiscardAll',
     everyRevealedDiscardAll : 'everyRevealedDiscardAll',
+    shortcuts: 'shortcuts',
     stacks: 'stacks',
     stackForPlayerHand: 'stackForPlayerHand',
     stackForPlayerRevealedCards: 'stackForPlayerRevealedCards',
     invasiveCode: 'invasiveCode'
+};
+
+export const DEFAULT_SHORTCUT_SETTINGS = {
+    hands: {
+        diplayed: true,
+        scale: 0.1,
+        left: 800,
+        bottom: 8, 
+        maxPerLine: 5,
+        icon: 'modules/ready-to-use-cards/resources/hands-icon.webp'
+    },
+    revealed: {
+        diplayed: true,
+        scale: 0.1,
+        left: 800,
+        bottom: 110,
+        maxPerLine: 5, // FIXME : If configurable, will need to make max-width of .rtucards.shortcut .card-list configurable too
+        icon: 'modules/ready-to-use-cards/resources/revealed-icon.webp'
+    }
 };

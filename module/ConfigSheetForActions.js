@@ -2,7 +2,7 @@ import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 /**
- * A configuration sheet FormApplication to configure the Ready To Use Cards module
+ * A configuration sheet to configure available actions for each declared deck
  * @extends {FormApplication}
  */
 export class ConfigSheetForActions extends FormApplication {
@@ -11,9 +11,9 @@ export class ConfigSheetForActions extends FormApplication {
 	/** @override */
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			id: "rtucards-config",
-			classes: ["config-panel", "rtucards-config"],
-			template: "modules/ready-to-use-cards/resources/config.hbs",
+			id: "rtucards-config-actions",
+			classes: ["rtucards-config-actions"],
+			template: "modules/ready-to-use-cards/resources/config-actions.hbs",
 			width: 600,
 			height: "auto",
 			closeOnSubmit: false
@@ -24,7 +24,7 @@ export class ConfigSheetForActions extends FormApplication {
 
 	/** @override */
 	get title() {
-		return game.i18n.localize("RTUCards.settings.sheet.menu");
+		return game.i18n.localize("RTUCards.settings.config-actions.menu");
 	}
 
 	/* -------------------------------------------- */
@@ -87,8 +87,8 @@ export class ConfigSheetForActions extends FormApplication {
 	initFilter() {
 		this.filter = {
 			detailsDisplayed: false,
-			title: game.i18n.localize('RTUCards.settings.sheet.filter.title'),
-			details: game.i18n.localize('RTUCards.settings.sheet.filter.details'),
+			title: game.i18n.localize('RTUCards.settings.config-actions.filter.title'),
+			details: game.i18n.localize('RTUCards.settings.config-actions.filter.details'),
 			configUsage: []
 		};
 		this.reloadFilter();

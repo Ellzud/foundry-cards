@@ -1,0 +1,47 @@
+/* ------------------------
+  Config panel for choosing decks
+  ------------------------*/
+.rtucards.shortcut {
+  position: fixed;
+  z-index: 71;
+  padding: 4px;
+  border: 3px groove;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.rtucards.shortcut .shortcut-line {
+  overflow: hidden;
+  transform-origin: top left;
+}
+
+.rtucards.shortcut .shortcut-icon {
+  flex: unset;
+  border: none;
+  width: 500px;
+  height: 772px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.rtucards.shortcut .card-list {
+  overflow: auto;
+  max-width: 2550px;
+  max-height: 772px;
+}
+
+.rtucards.shortcut .card-slot {
+  min-width: 470px;
+  max-width: 470px;
+  height: 772px;
+  padding: 20px 55px 20px 55px;
+  margin-left: 30px;
+  color: #000000cc;
+  background-repeat: no-repeat;
+  background-size: 470px 772px;
+  overflow: hidden;
+}
+
+.rtucards.shortcut .card-slot.rotated {
+  transform: scale(-1);
+}

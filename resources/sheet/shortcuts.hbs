@@ -1,0 +1,16 @@
+<div class="rtucards shortcut"  style="{{style}}">
+    <div class="flexrow shortcut-line" style="{{lineStyle}}">
+        <img class="shortcut-icon" 
+             src="{{icon}}">
+             
+        <div class="flexrow card-list">
+            {{#each cards as |card| }}
+                <div class="flexcol card-slot {{card.classes}}" 
+                     style="background-image: url('{{card.cardBg}}');"
+                     data-key="{{card.id}}">
+
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

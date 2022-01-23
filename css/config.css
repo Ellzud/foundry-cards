@@ -1,41 +1,41 @@
 /* ------------------------
   Config panel for choosing decks
   ------------------------*/
-.config-panel.rtucards-config .deck-list {
+.rtucards-config-actions .deck-list {
   margin: 5px;
   border: groove;
   max-height: 800px;
   overflow: scroll;
 }
 
-.config-panel.rtucards-config .deck-row {
+.rtucards-config-actions .deck-row {
   padding: 3px;
   line-height: 20px;
 }
 
-.config-panel.rtucards-config .deck-row.content {
+.rtucards-config-actions .deck-row.content {
   margin-left: 20px;
   border-left: solid darkgray;
   font-style: italic;
 }
 
-.config-panel.rtucards-config .deck-row.content.header {
+.rtucards-config-actions .deck-row.content.header {
   padding-top: 10px;
   font-style: unset;
   text-decoration: underline;
 }
 
-.config-panel.rtucards-config .deck-row.content.conf {
+.rtucards-config-actions .deck-row.content.conf {
   padding-left: 10px;
 }
 
-.config-panel.rtucards-config .deck-row .toggle-button {
+.rtucards-config-actions .deck-row .toggle-button {
   flex: unset;
   padding-top: 2px;
   margin-right: 3px;
 }
 
-.config-panel.rtucards-config .deck-row .toggle-button.active:hover {
+.rtucards-config-actions .deck-row .toggle-button.active:hover {
   cursor: pointer;
   text-shadow: 0 0 4px darkblue;
 }
