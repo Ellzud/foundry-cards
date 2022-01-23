@@ -37,7 +37,7 @@ export class CustomCards extends Cards {
     /** @override */
     _onUpdate(data, options, userId) {
         super._onUpdate(data, options, userId);
-        Hooks.call('updateCustomCardsContent', this, options, userId); // FIXME Need to move it inside CustomCardStack
+        Hooks.call('updateCustomCardsContent', this, options, userId);
     }
 
     /** @override */
