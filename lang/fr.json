@@ -1,4 +1,20 @@
 {
+    "RTUCards.settings.config-actions.menu": "Configuration des jeux de carte",
+    "RTUCards.settings.config-actions.title": "Choisissez vos decks!",
+    "RTUCards.settings.config-actions.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
+    "RTUCards.settings.config-actions.saveAndClose": "Sauvegarder les modifs & Fermeture",
+    "RTUCards.settings.config-actions.filter.title": "Filtre préliminaire sur les actions disponibles",
+    "RTUCards.settings.config-actions.filter.details": "Toutes les actions décochées seront automatiquent indisponible pour tout vos decks. Elles n'apparaitront plus dans les details de chaque decks",
+
+    "RTUCards.settings.config-shortcuts.menu": "Configuration des raccourcis",
+    "RTUCards.settings.config-shortcuts.title": "Configurer vos raccourcis",
+    "RTUCards.settings.config-shortcuts.headers.shortcutIcon": "Icone utilisée:",
+    "RTUCards.settings.config-shortcuts.headers.maxPerLine": "Nombre de cartes affichés:",
+    "RTUCards.settings.config-shortcuts.headers.cardScale": "Proportion des cartes:",
+    "RTUCards.settings.config-shortcuts.hint": "Permet de positionner proprement les raccourcis vers sa main et ses cartes faces visibles",
+    "RTUCards.settings.config-shortcuts.reset": "Remettre les valeurs par défaut",
+    "RTUCards.settings.config-shortcuts.stack.hands": "Votre main de cartes est affichée",
+    "RTUCards.settings.config-shortcuts.stack.revealed": "Les cartes devant vous sont affichées",
 
     "RTUCards.settings.gmName.label": "Nom du MJ",
     "RTUCards.settings.gmName.hint": "Nom affiché lorsque les MJ fait des actions sur les decks",
@@ -19,13 +35,6 @@
     "RTUCards.settings.everyHandsDiscardAll.hint": "Les joueurs peuvent défausser toute leur main d'un coup",
     "RTUCards.settings.everyRevealedDiscardAll.label": "Défausser les cartes devant soi",
     "RTUCards.settings.everyRevealedDiscardAll.hint": "Les joueurs peuvent défausser toutes les cartes faces visibles d'un coup",
-
-    "RTUCards.settings.sheet.menu": "Configuration des jeux de carte",
-    "RTUCards.settings.sheet.title": "Choisissez vos decks!",
-    "RTUCards.settings.sheet.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
-    "RTUCards.settings.sheet.saveAndClose": "Sauvegarder les modifs & Fermeture",
-    "RTUCards.settings.sheet.filter.title": "Filtre préliminaire sur les actions disponibles",
-    "RTUCards.settings.sheet.filter.details": "Toutes les actions décochées seront automatiquent indisponible pour tout vos decks. Elles n'apparaitront plus dans les details de chaque decks",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Actions possibles depuis le deck : (MJ uniquement)",
     "RTUCards.settings.sheet.headers.fromHand": "Actions possibles depuis la main du joueur :",

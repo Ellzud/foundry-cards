@@ -1,4 +1,3 @@
-import { CustomCardStack } from "./cards.js";
 import { SingleCardDisplay } from "./SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
@@ -64,7 +63,12 @@ export const alterCardMessage = (message, html) => {
             if( custom.stack.type === 'deck' ) { 
                 wholeStackCanBeSeen = false; 
             } else if( custom.stack.type === 'hand' ) {
-                wholeStackCanBeSeen = custom.stackOwner.playerId === game.user.id;
+                const owner = custom.stackOwner;
+                if( owner.forGMs ) {
+                    wholeStackCanBeSeen = game.user.isGM;
+                } else {
+                    wholeStackCanBeSeen = custom.stackOwner.playerId === game.user.id;
+                }
             }
 
             // Classic stack display or single card display
