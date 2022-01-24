@@ -85,18 +85,18 @@ export const GlobalConfiguration = {
 
 export const DEFAULT_SHORTCUT_SETTINGS = {
     hands: {
-        diplayed: true,
+        displayed: true,
         scale: 0.1,
         left: 800,
-        bottom: 8, 
-        maxPerLine: 15,
+        bottom: 110, 
+        maxPerLine: 5,
         icon: 'modules/ready-to-use-cards/resources/hands-icon.webp'
     },
     revealed: {
-        diplayed: true,
+        displayed: true,
         scale: 0.1,
         left: 800,
-        bottom: 110,
+        bottom: 8,
         maxPerLine: 5,
         icon: 'modules/ready-to-use-cards/resources/revealed-icon.webp'
     }

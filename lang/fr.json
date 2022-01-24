@@ -8,7 +8,13 @@
 
     "RTUCards.settings.config-shortcuts.menu": "Configuration des raccourcis",
     "RTUCards.settings.config-shortcuts.title": "Configurer vos raccourcis",
+    "RTUCards.settings.config-shortcuts.headers.shortcutIcon": "Icone utilisée:",
+    "RTUCards.settings.config-shortcuts.headers.maxPerLine": "Nombre de cartes affichés:",
+    "RTUCards.settings.config-shortcuts.headers.cardScale": "Proportion des cartes:",
     "RTUCards.settings.config-shortcuts.hint": "Permet de positionner proprement les raccourcis vers sa main et ses cartes faces visibles",
+    "RTUCards.settings.config-shortcuts.reset": "Remettre les valeurs par défaut",
+    "RTUCards.settings.config-shortcuts.stack.hands": "Votre main de cartes est affichée",
+    "RTUCards.settings.config-shortcuts.stack.revealed": "Les cartes devant vous sont affichées",
 
     "RTUCards.settings.gmName.label": "Nom du MJ",
     "RTUCards.settings.gmName.hint": "Nom affiché lorsque les MJ fait des actions sur les decks",

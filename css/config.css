@@ -39,3 +39,34 @@
   cursor: pointer;
   text-shadow: 0 0 4px darkblue;
 }
+
+/* ------------------------
+  Config panel for choosing decks
+  ------------------------*/
+.rtucards-config-shortcuts .stack-panel {
+  margin-top: 10px;
+  padding: 5px;
+  border: groove;
+}
+
+.rtucards-config-shortcuts .stack-panel .title-line {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  line-height: 30px;
+}
+
+.rtucards-config-shortcuts .stack-panel .header {
+  flex: unset;
+  line-height: 26px;
+  margin-right: 10px;
+}
+
+.rtucards-config-shortcuts .stack-panel .toggle-button {
+  flex: unset;
+  padding-top: 6px;
+  margin-right: 10px;
+}
+
+.rtucards-config-shortcuts .reset-stacks {
+  margin-top: 10px;
+}

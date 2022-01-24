@@ -1,3 +1,5 @@
+import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "./constants.js";
+
 /**
  * A configuration sheet to configure shortcuts GUI
  * @extends {FormApplication}
@@ -36,14 +38,46 @@ export class ConfigSheetForShortcuts extends FormApplication {
 		}
 	}
 
+	get currentSettings() {
+		const settings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
+		if( settings && settings != '') { 
+			return settings;
+		}
+		return duplicate(DEFAULT_SHORTCUT_SETTINGS);
+
+	}
+
 
 	/** @override */
 	async getData() {
-		return {}
+		
+		const stacks = Object.entries(this.currentSettings).map( ([key, value]) => {
+			const stack = {
+				key: key,
+				title: game.i18n.localize('RTUCards.settings.config-shortcuts.stack.' + key),
+				used: value.displayed,
+				icon: value.icon,
+				maxPerLine: value.maxPerLine,
+				scaleByThousand: value.scale * 1000.0,
+				scalePercent: Math.round(value.scale * 100.0),
+			};
+			return stack;
+		});
+
+		return {
+			stacks: stacks
+		};
 	}
 
 	/** @override */
     activateListeners(html) {
+		super.activateListeners(html);
+
+        html.find('.toggle-button').click(event => this._onClickToggleStack(event) );
+        html.find('.icon-input').change(event => this._onClickChanceIcon(event) );
+        html.find('.max-cards').change(event => this._onClickUpdateMaxCards(event) );
+        html.find('.card-scale').change(event => this._onClickUpdateScale(event) );
+        html.find('.reset-stacks').click(event => this._onClickRestoreDefault(event) );
 	}
 
 	/** @override */
@@ -51,10 +85,63 @@ export class ConfigSheetForShortcuts extends FormApplication {
 		// Not used
 	}
 
+	async updateSettings(settings) {
+		await game.settings.set('ready-to-use-cards', GlobalConfiguration.shortcuts, settings);
+		this.module.shortcuts.hand.someSettingsHaveChanged();
+		this.module.shortcuts.revealed.someSettingsHaveChanged();
+		this.render();
+	}
+
 	/* -------------------------------------------- */
 
-	async _onClickSaveConfig(event) {
-		this.close();
+	async _onClickToggleStack(event) {
+		event.preventDefault();
+		const a = event.currentTarget;
+		const stack = a.parentElement.parentElement.dataset.stack;
+
+		const settings = this.currentSettings;
+		settings[stack].displayed = !settings[stack].displayed;
+		await this.updateSettings(settings);
 	}
+
+	async _onClickRestoreDefault(event) {
+		event.preventDefault();
+		await this.updateSettings(DEFAULT_SHORTCUT_SETTINGS);
+	}
+
+	async _onClickChanceIcon(event) {
+		event.preventDefault();
+		const a = event.currentTarget;
+		const iconPath = a.value;
+		const stack = a.parentElement.parentElement.dataset.stack;
+
+		const settings = this.currentSettings;
+		settings[stack].icon = iconPath;
+		await this.updateSettings(settings);
+	}
+
+	async _onClickUpdateMaxCards(event) {
+		event.preventDefault();
+		const a = event.currentTarget;
+		const newValue = parseInt(a.value);
+		const stack = a.parentElement.parentElement.dataset.stack;
+
+		const settings = this.currentSettings;
+		settings[stack].maxPerLine = newValue;
+		await this.updateSettings(settings);
+	}
+
+	async _onClickUpdateScale(event) {
+		event.preventDefault();
+		const a = event.currentTarget;
+		const newValue = parseInt(a.value);
+		const stack = a.parentElement.parentElement.dataset.stack;
+
+		const settings = this.currentSettings;
+		settings[stack].scale = newValue / 1000.0;
+		await this.updateSettings(settings);
+	}
+
+
 }
 

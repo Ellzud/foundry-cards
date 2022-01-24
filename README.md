@@ -158,6 +158,42 @@ For this action, you can select additionnal cards after selecting the first one 
 This on is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
 Mainly useful for cards who can be read from the two ways.
 
+
+## Using the shortcuts
+
+When you add the module, two panels will be displayed on your canvas :
+
+![Shortcut display](docs/README_shortcut_display.webp?raw=true)
+
+### Configuring your shortcuts
+
+This configuration is available for each player.
+
+The configure panel can be opened via the module settings panels, or directly via a right click on the left icon of one of the two shortcuts.
+
+![Shortcut config](docs/README_shortcut_configuration.webp?raw=true)
+
+In it, you can:
+- Hide unwanted shortcuts
+- Change their left icon
+- Change the amount of displayed cards
+- Make the shortcuts really small, or really big
+
+If you choose to display 0 cards, the shortcut will instead display the summary of the stack :
+
+![Shortcut zero cards](docs/README_shortcut_zero_cards.webp?raw=true)
+
+### Moving your shortcuts
+
+The left icon of each shortcut is draggable. Use them to move your shortcuts where you want.
+
+### Available actions on shortcut
+
+- Clicking on a card will make the stack display pop out, with the given card selected
+- Left and right brackets can help you see what you have (Lopp through cards)
+- The eye icon in the summary simply open the stack display
+
+
 ## Following the actions on the chat message
 
 Each action comes with a message sent to the chat log.

@@ -1,3 +1,4 @@
+import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
 import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 
@@ -55,7 +56,7 @@ class ShortcutPanel extends Application {
      * Config has changed => See if there is a need to reload the sheet
      */
     someSettingsHaveChanged() {
-        const newSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
+        const newSettings = this.loadSettings();
         if( JSON.stringify(this._currentSettings) != JSON.stringify(newSettings) ) {
             this._currentSettings = newSettings;
             this.reload();
@@ -80,7 +81,7 @@ class ShortcutPanel extends Application {
      * Will close it if option unchecked
      */
     reload() {
-        if( !this.customStack || !this._currentSettings.diplayed ) {
+        if( !this.customStack || !this._currentSettings.displayed ) {
             this.close();
         } else {
             this.render(true);
@@ -190,6 +191,7 @@ class ShortcutPanel extends Application {
         html.find('.card-slot').click(event => this._onClickDisplayCard(event) );
         html.find('.action-panel .index-change').click(event => this._onClickChangeCardIndex(event) );
         html.find('.action-panel .show').click(event => this._onClickShowStack(event) );
+        html.find('.shortcut-icon').contextmenu(event => this._onRightClickShowConfig(event) );
     }
 
     addAdditionnalContentOnCards(html) {
@@ -235,6 +237,12 @@ class ShortcutPanel extends Application {
     async _onClickShowStack(event) {
         event.preventDefault();
         this.customStack.stack.sheet.render(true);
+    }
+
+    async _onRightClickShowConfig(event) {
+        event.preventDefault();
+        const sheet = new ConfigSheetForShortcuts();
+        sheet.render(true);
     }
 
     

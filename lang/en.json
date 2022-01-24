@@ -8,8 +8,13 @@
 
     "RTUCards.settings.config-shortcuts.menu": "Shortcuts configuration menu",
     "RTUCards.settings.config-shortcuts.title": "Configure your shortcuts",
+    "RTUCards.settings.config-shortcuts.headers.shortcutIcon": "Shortcut icon:",
+    "RTUCards.settings.config-shortcuts.headers.maxPerLine": "Amount of displayed cards:",
+    "RTUCards.settings.config-shortcuts.headers.cardScale": "Card scale:",
     "RTUCards.settings.config-shortcuts.hint": "Choose where to display shortcuts of your hand and revealed cards",
-    "RTUCards.settings.config-shortcuts.update": "Update",
+    "RTUCards.settings.config-shortcuts.reset": "Restore default settings",
+    "RTUCards.settings.config-shortcuts.stack.hands": "Display cards in your hands",
+    "RTUCards.settings.config-shortcuts.stack.revealed": "Display your revealed cards",
 
     "RTUCards.settings.gmName.label": "GM name",
     "RTUCards.settings.gmName.hint": "Name displayed when GMs do actions on decks",
