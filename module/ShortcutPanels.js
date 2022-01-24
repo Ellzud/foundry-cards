@@ -245,7 +245,8 @@ class ShortcutPanel extends Application {
         sheet.render(true);
     }
 
-    
+    /* -------------------------------------------- */
+
     /** @override */
     _onDragStart(event) {
         event.preventDefault();
@@ -257,6 +258,11 @@ class ShortcutPanel extends Application {
         const wholeView = event.currentTarget.parentElement.parentElement.parentElement;
         wholeView.addEventListener("mouseup", e => this.moveShortcuts(e), {once: true});
     }
+
+    /** @override */
+    _canDragStart(selector) {
+        return true;
+    }    
 
     moveShortcuts(event) {
         event.preventDefault();

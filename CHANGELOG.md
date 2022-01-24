@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.3.1
+
+### Bugfix: 
+- Player could not move their shortcuts
+
 ## Release 1.3.0
 
 ### GUI changes: 

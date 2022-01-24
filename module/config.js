@@ -57,7 +57,7 @@ export const loadCardSettings = () => {
 		hint: "RTUCards.settings.config-shortcuts.hint",
 		icon: "fas fa-mouse-pointer",
 		type: ConfigSheetForShortcuts,
-		restricted: true
+		restricted: false
 	});
 
 	// Data will be stored inside 'shortcuts'
@@ -69,7 +69,8 @@ export const loadCardSettings = () => {
 		onChange: async c => {
 			const app = Object.values(ui.windows).find(a => a.constructor === ConfigSheetForShortcuts);
 			if ( app ) app.render();
-		}
+		},
+		config: false
 	});
 
 
