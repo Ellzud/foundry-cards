@@ -1,5 +1,5 @@
-import { CustomCardStack } from "./cards.js";
-import { RTUCardsConfig } from "./config.js";
+import { CustomCardStack } from "./CustomCardStack.js";
+import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 
 /**
  * Extends CardsDirectory by having different context menu choices for the decks
@@ -63,7 +63,7 @@ export class CustomCardsDirectory extends CardsDirectory {
                 const custom = new CustomCardStack(stack);
                 const coreKey = custom.coreStackRef;
                 // Prepare the sheet
-                const sheet = new RTUCardsConfig();
+                const sheet = new ConfigSheetForActions();
                 sheet.object.stacks.forEach( s => {
                     s.gui.detailsDisplayed = ( s.key === coreKey );
                 });

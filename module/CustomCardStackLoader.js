@@ -1,4 +1,4 @@
-import { CustomCardStack } from './cards.js';
+import { CustomCardStack } from './CustomCardStack.js';
 import { GlobalConfiguration } from './constants.js';
 import { CustomCardActionTools } from './CustomCardActionTools.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
@@ -551,6 +551,24 @@ export class CustomCardStackLoader {
 
     findRevealedCards(user) {
         return findPlayerCardStack('pile', user);
+    }
+
+    get allPlayerHands() {
+        return game.users.reduce( (_result, user) => {
+            if( !user.isGM ) {
+                _result.push( findPlayerCardStack('hand', user) );
+            }
+            return _result;
+        }, []);
+    }
+
+    get allPlayerRevealedCards() {
+        return game.users.reduce( (_result, user) => {
+            if( !user.isGM ) {
+                _result.push( findPlayerCardStack('pile', user) );
+            }
+            return _result;
+        }, []);
     }
 
 }

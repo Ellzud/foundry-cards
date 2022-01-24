@@ -1,6 +1,6 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
-import { CustomCardStack } from './cards.js';
-import { RTUCardsConfig } from './config.js';
+import { CustomCardStack } from './CustomCardStack.js';
+import { ConfigSheetForActions } from './ConfigSheetForActions.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 
@@ -22,6 +22,7 @@ export class CustomCardsDisplay extends CardsConfig {
         this.options.classes.push('rtucards');
         this.options.classes.push('cards');
         this.options.template = "modules/ready-to-use-cards/resources/sheet/card-display.hbs";
+        this.options.scrollY = [".all-cards", ".parameters-stacks .stacks", ".parameters-cards .cards"];
         this.options.width = 1200;
         this.options.height = 920;
         this.position.width = 1200;
@@ -99,7 +100,7 @@ export class CustomCardsDisplay extends CardsConfig {
                     onclick: async () => {
                         const coreKey = this._custom.coreStackRef;
                         // Prepare the sheet
-                        const sheet = new RTUCardsConfig();
+                        const sheet = new ConfigSheetForActions();
                         sheet.object.stacks.forEach( s => {
                             s.gui.detailsDisplayed = ( s.key === coreKey );
                         });
@@ -252,161 +253,7 @@ export class CustomCardsDisplay extends CardsConfig {
         return cardInfo;
     }
 
-    /**
-     * Load available actions if the current stack is a deck
-     * @returns {CardActionData[]}
-     */
-    _loadDeckActions() {
-        const actions = [];
-
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
-
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
-
-        if( this.currentSelection ) {
-            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInDeck(this.detailsForced);
-            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
-        }
-
-        // On decks, default actions are reserved to the GM
-        if( game.user.isGM ) {
-
-            const cardsLeft = this._cards.availableCards.length > 0;
-            if( cardsLeft ) {
-                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
-                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
-                tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn], onLeft:true});
-                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-            }
-
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards], onLeft:true});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards], onLeft:true});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll], onLeft:true});
-            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-        }
-
-        return actions;
-    }
-
-    /**
-     * Load available actions if the current stack is a discard pile
-     * @returns {CardActionData[]}
-     */
-     _loadDiscardActions() {
-        const actions = [];
-
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
-
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
-
-        if( this.currentSelection ) {
-            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInDiscard();
-            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
-        }
-
-        // On main discards, default actions are reserved to the GM
-        if( game.user.isGM ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll], onLeft:true});
-            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-        }
-
-        return actions;
-    }
-
-    /**
-     * Load available actions if the current stack is a player/gm hand
-     * @returns {CardActionData[]}
-     */
-     _loadHandActions() {
-        const actions = [];
-        const owned = this._custom.ownedByCurrentPlayer;
-
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
-
-        if( this.currentSelection ) {
-            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
-            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
-        }
-        
-        if( owned ) {
-            // Drawing cards from each deck
-            Object.values(this._custom.cardStacks.decks).forEach( deck => {
-                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
-                                            {allKeys:[keys.fromHandDrawCard], action:deck.coreStackRef, onLeft:true} );
-            });
-            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-    
-            // Discard all cards
-            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand', {onLeft:true}); // No deckConfig condition needed
-            }
-
-        } else if( game.user.isGM ) { 
-            // GM can peek on player hand. But they will be informed he is doing it
-            const cardsLeft = this._cards.availableCards.length > 0;
-            if( cardsLeft && game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
-                const peekCss = css.peekOnDeck + ( this.detailsForced ? '' : ' ' + css.coloredInRed );
-                const peekLabel = this.detailsForced ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
-    
-                tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel, {onLeft:true}); // No deckConfig condition needed
-                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-            }
-        }
-
-        return actions;
-    }
-
-    /**
-     * Load available actions if the current stack is a player/gm reveal cards stack
-     * @returns {CardActionData[]}
-     */
-     _loadRevealedCardsActions() {
-        const actions = [];
-        const owned = this._custom.ownedByCurrentPlayer;
-
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
-
-        if( this.currentSelection ) {
-            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInRevealedCards(owned);
-            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
-        }
-
-        // The revealed cards be totally discarded
-        tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-        if( owned ) {
-            // Drawing cards from each deck
-            Object.values(this._custom.cardStacks.decks).forEach( deck => {
-                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
-                                            {allKeys:[keys.fromRevealedDrawCard], action:deck.coreStackRef, onLeft:true} );
-            });
-            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
-    
-            // Discard all cards
-            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll)  ) {
-                tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards', {onLeft:true}); // No deckConfig condition needed
-            }
-        }
-
-
-        return actions;
-    }
-
+    /* -------------------------------------------- */
 
     /**
      * Load available actions wich will be displayed inside GUI.
@@ -435,11 +282,245 @@ export class CustomCardsDisplay extends CardsConfig {
             return this._loadRevealedCardsActions();
         }
     }
+
+    /**
+     * Load available actions if the current stack is a deck
+     * @returns {CardActionData[]}
+     */
+    _loadDeckActions() {
+        const actions = [];
+        this._loadDeckActionsForSelectedCard(actions);
+        this._loadDeckActionsByDefault(actions);
+
+        return actions;
+    }
+
+    /**
+     * Add actions on the right side corresponding to the selected card in the deck
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadDeckActionsForSelectedCard(actions) {
+
+        if( this.currentSelection ) {
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDeck(this.detailsForced);
+            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
+        }
+    }
+
+    
+    /**
+     * Default actions when handling decks
+     * Overriden by SingleCardDisplay so that deck actions are not available when simply seeing a card
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadDeckActionsByDefault(actions) {
+
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const css = def.shared.actionCss;
+
+        const deckConfig = this._custom.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
+
+        // On decks, default actions are reserved to the GM
+        if( game.user.isGM ) {
+
+            const cardsLeft = this._cards.availableCards.length > 0;
+            if( cardsLeft ) {
+                const peekCss = css.peekOnDeck + ( this._peekOn ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this._peekOn ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+                tools.addAvailableAction(actions, deckConfig, this._custom, peekCss, peekLabel, {allKeys:[keys.fromDeckPeekOn], onLeft:true});
+                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+            }
+
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards], onLeft:true});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards], onLeft:true});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll], onLeft:true});
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+        }
+    }
+
+    /**
+     * Load available actions if the current stack is a discard pile
+     * @returns {CardActionData[]}
+     */
+     _loadDiscardActions() {
+        const actions = [];
+        this._loadDiscardActionsForSelectedCard(actions);
+        this._loadDiscardActionsByDefault(actions);
+
+        return actions;
+    }
+
+    /**
+     * Add actions on the right side corresponding to the selected card in the discard
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadDiscardActionsForSelectedCard(actions) {
+        if( this.currentSelection ) {
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInDiscard();
+            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
+        }
+    }
+
+    /**
+     * Default actions when handling discards
+     * Overriden by SingleCardDisplay so that deck actions are not available when simply seeing a card
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadDiscardActionsByDefault(actions) {
+
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const css = def.shared.actionCss;
+
+        const deckConfig = this._custom.stackConfig;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
+
+        // On main discards, default actions are reserved to the GM
+        if( game.user.isGM ) {
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll], onLeft:true});
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+        }
+    }
+
+    /**
+     * Load available actions if the current stack is a player/gm hand
+     * @returns {CardActionData[]}
+     */
+     _loadHandActions()  {
+        const actions = [];
+        this._loadHandActionsForSelectedCard(actions);
+        this._loadHandActionsByDefault(actions);
+
+        return actions;
+    }
+
+    /**
+     * Add actions on the right side corresponding to the selected card in someone hand
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadHandActionsForSelectedCard(actions) {
+
+        const owned = this._custom.ownedByCurrentPlayer;
+        if( this.currentSelection ) {
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
+            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
+        }
+    }
+
+    /**
+     * Default actions when handling player hands
+     * Overriden by SingleCardDisplay so that deck actions are not available when simply seeing a card
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadHandActionsByDefault(actions) {
+
+        const owned = this._custom.ownedByCurrentPlayer;
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const css = def.shared.actionCss;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
+
+        if( owned ) {
+            // Drawing cards from each deck
+            Object.values(this._custom.cardStacks.decks).forEach( deck => {
+                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                            {allKeys:[keys.fromHandDrawCard], action:deck.coreStackRef, onLeft:true} );
+            });
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+    
+            // Discard all cards
+            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll)  ) {
+                tools.addAvailableAction(actions, null, this._custom, css.discardHand, 'sheet.actions.discardHand', {onLeft:true}); // No deckConfig condition needed
+            }
+
+        } else if( game.user.isGM ) { 
+            // GM can peek on player hand. But they will be informed he is doing it
+            const cardsLeft = this._cards.availableCards.length > 0;
+            if( cardsLeft && game.settings.get("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn)  ) {
+                const peekCss = css.peekOnDeck + ( this._peekOn ? '' : ' ' + css.coloredInRed );
+                const peekLabel = this._peekOn ? 'sheet.actions.peekStop' : 'sheet.actions.peekOn';
+    
+                tools.addAvailableAction(actions, null, this._custom, peekCss, peekLabel, {onLeft:true}); // No deckConfig condition needed
+                tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+            }
+        }
+    }
+
+
+    /**
+     * Load available actions if the current stack is a player/gm reveal cards stack
+     * @returns {CardActionData[]}
+     */
+     _loadRevealedCardsActions()  {
+        const actions = [];
+        this._loadRevealedCardsActionsForSelectedCard(actions);
+        this._loadRevealedCardsActionsByDefault(actions);
+
+        return actions;
+    }
+
+    /**
+     * Add actions on the right side corresponding to the selected card in someone revealed cards
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadRevealedCardsActionsForSelectedCard(actions) {
+        const owned = this._custom.ownedByCurrentPlayer;
+        if( this.currentSelection ) {
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            const selectionActions = wrapper.loadActionsWhileInRevealedCards(owned);
+            if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
+        }
+    }
+
+    /**
+     * Default actions when handling player revealed cards
+     * Overriden by SingleCardDisplay so that deck actions are not available when simply seeing a card
+     * @param {object[]} actions Action list currently in built
+     * @returns {CardActionData[]}
+     */
+     _loadRevealedCardsActionsByDefault(actions) {
+        const owned = this._custom.ownedByCurrentPlayer;
+
+        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+        const css = def.shared.actionCss;
+        const keys = def.shared.configKeys;
+        const tools = def.shared.actionTools;
+
+        // The revealed cards be totally discarded
+        tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+        if( owned ) {
+            // Drawing cards from each deck
+            Object.values(this._custom.cardStacks.decks).forEach( deck => {
+                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                            {allKeys:[keys.fromRevealedDrawCard], action:deck.coreStackRef, onLeft:true} );
+            });
+            tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
+    
+            // Discard all cards
+            if( game.settings.get("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll)  ) {
+                tools.addAvailableAction(actions, null, this._custom, css.discardRevealedCards, 'sheet.actions.discardRevealedCards', {onLeft:true}); // No deckConfig condition needed
+            }
+        }
+    }
+
     
     /* -------------------------------------------- */
 
     /** @override */
     activateListeners(html) {
+        super.activateListeners(html);
 
         // Before mapping listeners, add content inside each cardSlot
         this.addAdditionnalContentOnCards(html);
