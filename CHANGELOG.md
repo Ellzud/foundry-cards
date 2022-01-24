@@ -14,13 +14,6 @@ This version comes with some new GUI for qucik access of you hand card and your 
 More details in the `README`, section `Using the shortcuts`
 
 
-### Actions modifications
-- Rotating card action now only turn the selected card.
-- Peeking action can now be stopped without having to press F5
-
-### New actions
-- Draw cards can now be done by player via their hand and revealed cards stack
-
 ## Release 1.2.0
 
 ### GUI changes
