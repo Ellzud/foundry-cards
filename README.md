@@ -217,9 +217,11 @@ And when he clicks on the link :
 
 The first two ones are for the chatlog when GM is doing actions
 
+`Smaller window` : Each player can choose if he wants the classic card stack display or if he prefers a smaller one. Smaller one may be mandatory if you use a laptop screen which is most of the time smaller.
+
 `Cards in hands` and `Revealed cards` can be toggled to delete players hands or revealed cards. That way, Players will only have one stack to manage. But the related actions won't be available anymore.
 
-`Peek on player's hand` : Uncheck it if you d'ont wan't to be tempted !
+`Peek on player's hand` : Uncheck it if you don't want to be tempted !
 
 `Discard all hand` and `Discard all revealed cards` : Thoses actions do not depends on a specific deck and are present even if no cards are selected.
 

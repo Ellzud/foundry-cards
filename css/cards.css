@@ -1,6 +1,4 @@
 .rtucards.cards {
-    min-width: 460px;
-    min-height: 400px;
     background: unset;
 }
 .rtucards.cards .window-content {
@@ -34,6 +32,14 @@
     background-size: 470px 772px;
     overflow: hidden;
 }
+.rtucards.cards.resized .card-slot {
+    min-width: 376px;
+    max-width: 376px;
+    height: 617px;
+    margin: 16px;
+    padding: 16px 44px 16px 44px;
+    background-size: 376px 617px;
+}
 
 .rtucards.cards .card-slot.rotated {
     transform: scale(-1);
@@ -49,6 +55,9 @@
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
+.rtucards.cards.resized .card-slot .summary {
+    padding-top: 80px;
+}
 
 /*---------------------------------
   Current selection
@@ -58,7 +67,10 @@
     min-height: 500px;
     max-height: 500px;
 }
-
+.rtucards.cards.resized .current-selection {
+    min-height: 400px;
+    max-height: 400px;
+}
 
 /*---------------------------------
   Parameters panel
@@ -69,12 +81,19 @@
     overflow: hidden;
     max-height: 850px;
 }
+.rtucards.cards.resized .current-selection .parameters-panel {
+    max-height: 680px;
+}
 
 .rtucards.cards .parameters-panel .headers {
     flex: unset;
     margin-top: 20px;
     text-align: center;
 }
+.rtucards.cards.resized .parameters-panel .headers {
+    margin-top: 16px;
+}
+
 .rtucards.cards .parameters-panel .title {
     font-size: 1.2em;
     text-align: center;
@@ -85,6 +104,10 @@
     flex: unset;
     margin-right: 10px;
 }
+.rtucards.cards.resized .parameters-panel .cancel {
+    margin-right: 8px;
+}
+
 .rtucards.cards .parameters-panel .cancel:hover {
     cursor: pointer;
     text-shadow: 0 0 4px white;
@@ -92,7 +115,6 @@
 
 .rtucards.cards .parameters-panel .action-button {
     min-height: 30px;
-    max-height: 30px;
     line-height: 24px;
     text-align: center;
     border: 3px groove blanchedalmond;
@@ -113,6 +135,8 @@
  ----------------------------------*/
  .rtucards.cards .parameters-cards .cards{
     transform: scale(0.4);
+    transform-origin: top left;
+    margin-bottom: -1100px;
     background-color: rgba(0, 0, 0, 0.7);
     border: groove blanchedalmond;
     border-radius: 30px;
@@ -122,9 +146,11 @@
     max-width: 1600px;
     min-height: 1850px;
     max-height: 1850px;
-    margin-top: -546px;
-    margin-left: -480px;
     overflow-y: scroll;
+}
+.rtucards.cards.resized .parameters-cards .cards {
+    transform: scale(0.32);
+    margin-bottom: -1250px;
 }
 
 .rtucards.cards .parameters-cards .cards .card-slot.selected {
@@ -227,7 +253,6 @@
 
 .rtucards.cards .action-panel .card-action {
     min-height: 30px;
-    max-height: 30px;
     line-height: 24px;
     text-align: center;
     border: 3px groove blanchedalmond;
@@ -254,6 +279,13 @@
 /*---------------------------------
   Card listing
  ----------------------------------*/
+.rtucards.cards .listing-panel {
+    margin-top: -210px;
+}
+.rtucards.cards.resized .listing-panel {
+    margin-top: -168px;
+}
+
 .rtucards.cards .listing-panel .listing-toggle {
     min-width: 50px;
     max-width: 50px;
@@ -269,15 +301,24 @@
 .rtucards.cards .listing-panel .all-cards {
     justify-content: center;
     align-items: center;
+    transform: scale(0.4);
+    transform-origin: top left;
     min-height: 840px;
     max-height: 840px;
-    margin: -220px -745px 0px -800px;
-    transform: scale(0.4);
+    min-width: 2950px;
     overflow: scroll;
     background-color: rgba(0, 0, 0, 0.7);
     border: groove;
     border-radius: 30px;
 }
+
+.rtucards.cards.resized .listing-panel .all-cards {
+    transform: scale(0.32);
+    min-height: 672px;
+    max-height: 672px;
+}
+
+
 
 .rtucards.cards .listing-panel .card-slot.selected {
     box-shadow: 0 0 100px white;

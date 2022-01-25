@@ -17,16 +17,21 @@ export class CustomCardsDisplay extends CardsConfig {
         this._peekOn = false;
 
         this._actionParameters = null;
+        const resized = game.settings.get('ready-to-use-cards', GlobalConfiguration.smallDisplay);
+        const configScale = resized ? 0.8 : 1;
 
         // Sheet options
         this.options.classes.push('rtucards');
         this.options.classes.push('cards');
+        if( resized ) {
+            this.options.classes.push('resized');
+        }
         this.options.template = "modules/ready-to-use-cards/resources/sheet/card-display.hbs";
         this.options.scrollY = [".all-cards", ".parameters-stacks .stacks", ".parameters-cards .cards"];
-        this.options.width = 1200;
-        this.options.height = 920;
-        this.position.width = 1200;
-        this.position.height = 920;
+        this.options.width = 1200 * configScale;
+        this.options.height = 920 * configScale;
+        this.position.width = 1200 * configScale;
+        this.position.height = 920 * configScale;
     }
 
     /** @override */

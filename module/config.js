@@ -84,6 +84,16 @@ export const loadCardSettings = () => {
 		config: true
 	});
   
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.smallDisplay, {
+		name: "RTUCards.settings.smallDisplay.label",
+		hint: "RTUCards.settings.smallDisplay.hint",
+		scope: "client",
+		type: Boolean,
+		default: false,
+		config: true,
+		onChange: () => window.location.reload()
+	});
+  
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.gmName, {
 		name: "RTUCards.settings.gmName.label",
 		hint: "RTUCards.settings.gmName.hint",

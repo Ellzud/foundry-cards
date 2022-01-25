@@ -76,11 +76,12 @@ export const GlobalConfiguration = {
     everyHandsPeekOn: 'everyHandsPeekOn',
     everyHandsDiscardAll: 'everyHandsDiscardAll',
     everyRevealedDiscardAll : 'everyRevealedDiscardAll',
+    invasiveCode: 'invasiveCode',
     shortcuts: 'shortcuts',
+    smallDisplay: 'smallDisplay',
     stacks: 'stacks',
     stackForPlayerHand: 'stackForPlayerHand',
-    stackForPlayerRevealedCards: 'stackForPlayerRevealedCards',
-    invasiveCode: 'invasiveCode'
+    stackForPlayerRevealedCards: 'stackForPlayerRevealedCards'
 };
 
 export const DEFAULT_SHORTCUT_SETTINGS = {

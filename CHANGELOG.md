@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.3.2
+
+### Issue: 
+- Laptop form error:  https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/issues/1
+
 ## Release 1.3.1
 
 ### Bugfix: 
