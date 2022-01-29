@@ -333,7 +333,7 @@ export class CustomCardStack {
      */
      async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, letGMSpeak=false} = {}) {
 
-        const from = letGMSpeak? this.cardStacks.gmHand : this; // FIXME
+        const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
         for( const card of cards ) {
             const wrapper = new CustomCardGUIWrapper(card);
