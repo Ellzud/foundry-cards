@@ -92,7 +92,9 @@
             {{> actionListing onSide=onLeft}}
         {{/if}}
 
-        {{> cardDisplay card=currentSelection}}
+        <div class="flexrow main-card-slot" >
+            {{> cardDisplay card=currentSelection}}
+        </div>
 
         {{#if parameters.none}}
             {{> actionListing onSide=onRight}}

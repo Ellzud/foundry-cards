@@ -20,8 +20,18 @@
 /*---------------------------------
   Card slot template
  ----------------------------------*/
+.rtucards.cards .main-card-slot {
+    flex: unset;
+}
 
- .rtucards.cards .card-slot {
+.rtucards.cards.resized .main-card-slot {
+    transform: scale(0.8);
+    transform-origin: top left;
+    max-width: 510px;
+    margin-right: -100px;
+}
+
+.rtucards.cards .card-slot {
     min-width: 470px;
     max-width: 470px;
     height: 772px;
@@ -31,14 +41,6 @@
     background-repeat: no-repeat;
     background-size: 470px 772px;
     overflow: hidden;
-}
-.rtucards.cards.resized .card-slot {
-    min-width: 376px;
-    max-width: 376px;
-    height: 617px;
-    margin: 16px;
-    padding: 16px 44px 16px 44px;
-    background-size: 376px 617px;
 }
 
 .rtucards.cards .card-slot.rotated {
@@ -283,7 +285,7 @@
     margin-top: -210px;
 }
 .rtucards.cards.resized .listing-panel {
-    margin-top: -168px;
+    margin-top: -220px;
 }
 
 .rtucards.cards .listing-panel .listing-toggle {
@@ -314,8 +316,8 @@
 
 .rtucards.cards.resized .listing-panel .all-cards {
     transform: scale(0.32);
-    min-height: 672px;
-    max-height: 672px;
+    min-height: 815px;
+    max-height: 815px;
 }
 
 
