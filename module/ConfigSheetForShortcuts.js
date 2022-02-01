@@ -58,7 +58,6 @@ export class ConfigSheetForShortcuts extends FormApplication {
 				used: value.displayed,
 				icon: value.icon,
 				maxPerLine: value.maxPerLine,
-				scaleByThousand: value.scale * 1000.0,
 				scalePercent: Math.round(value.scale * 100.0),
 			};
 			return stack;
@@ -138,7 +137,7 @@ export class ConfigSheetForShortcuts extends FormApplication {
 		const stack = a.parentElement.parentElement.dataset.stack;
 
 		const settings = this.currentSettings;
-		settings[stack].scale = newValue / 1000.0;
+		settings[stack].scale = newValue / 100.0;
 		await this.updateSettings(settings);
 	}
 
