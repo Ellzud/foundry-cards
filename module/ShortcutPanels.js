@@ -26,6 +26,12 @@ class ShortcutPanel extends Application {
         this._currentSettings = this.loadSettings();
         this._cardIndex = 0;
         this._exceedMaxPerLine = false;
+        this._move = {
+            moving: false,
+            currentPos: { x: 0, y: 0 },
+            listener: e => this._onMouseMove(e),
+            wholeView : null
+        };
     }
 
     /**
@@ -112,7 +118,8 @@ class ShortcutPanel extends Application {
             cards: displayedCards,
             icon: this._currentSettings.icon,
             navigation: navigation,
-            summary: summary
+            summary: summary,
+            contentDisplayed: !this._move.moving
         };
 
         return data;
@@ -250,30 +257,45 @@ class ShortcutPanel extends Application {
     /** @override */
     _onDragStart(event) {
         event.preventDefault();
-        this.mouseIntialPos = {
-            x: event.clientX,
-            y: event.clientY
-        };
+        this._move.currentPos.x = event.clientX;
+        this._move.currentPos.y = event.clientY;
+        this._move.moving = true;
+        this._move.wholeView = event.currentTarget.parentElement.parentElement.parentElement;
 
-        const wholeView = event.currentTarget.parentElement.parentElement.parentElement;
-        wholeView.addEventListener("mouseup", e => this.moveShortcuts(e), {once: true});
+        this._move.wholeView.addEventListener("mousemove", this._move.listener );
+        this._move.wholeView.addEventListener("mouseup", e => this.moveHasEnded(e), {once: true});
+
+        this.render();
     }
 
     /** @override */
     _canDragStart(selector) {
         return true;
-    }    
+    }
 
-    moveShortcuts(event) {
+    async _onMouseMove(event) {
+
+        if( !this._move.moving ) { return; }
+
         event.preventDefault();
-
         const movement = {
-            x: event.clientX - this.mouseIntialPos.x,
-            y: event.clientY - this.mouseIntialPos.y
+            x: event.clientX - this._move.currentPos.x,
+            y: event.clientY - this._move.currentPos.y
         };
+        this._move.currentPos.x = event.clientX;
+        this._move.currentPos.y = event.clientY;
+
 
         this._currentSettings.left += movement.x;
         this._currentSettings.bottom -= movement.y;
+        this.render()
+    }
+
+    moveHasEnded(event) {
+        event.preventDefault();
+
+        this._move.moving = false;
+        this._move.wholeView.removeEventListener("mousemove", this._move.listener);
         this.updateSettings();
     }
 }
