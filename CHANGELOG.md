@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Release 1.3.3
+
+### Issue: 
+- With smaller GUI, scale transformation on card display didn't work well for custom implem. (Only the background was correctly resized)
+- Shortcuts panels are now moving in a better way and their configuration sliders are more easily useable.
+
 ## Release 1.3.2
 
 ### Issue: 
