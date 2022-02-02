@@ -215,7 +215,8 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         // 2: Flag this coreStack as chosen in settings
-        const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
+        let chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
+        if( chosenStacks == '' ) { chosenStacks = {}; }
         chosenStacks[this.stack.id] = {};
         await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
 

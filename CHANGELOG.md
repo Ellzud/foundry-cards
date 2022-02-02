@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.3.4
+
+### Issue: 
+- Critical bug where custom card stack enrollment were not working on new worlds
+
 ## Release 1.3.3
 
 ### Issue: 
