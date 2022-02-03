@@ -4,7 +4,14 @@
     "RTUCards.settings.config-actions.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
     "RTUCards.settings.config-actions.saveAndClose": "Sauvegarder les modifs & Fermeture",
     "RTUCards.settings.config-actions.filter.title": "Filtre préliminaire sur les actions disponibles",
-    "RTUCards.settings.config-actions.filter.details": "Toutes les actions décochées seront automatiquent indisponible pour tout vos decks. Elles n'apparaitront plus dans les details de chaque decks",
+    "RTUCards.settings.config-actions.filter.details": "Toutes les actions décochées seront automatiquent indisponible pour tout vos decks. Elles n'apparaitront plus dans les details de chaque decks. A utiliser pour réduire le pool d'actions disponibles pour vos decks",
+
+    "RTUCards.settings.config-actions.additionalData.headerFilter": "A quoi il sert ?",
+    "RTUCards.settings.config-actions.additionalData.headerDeck": "Informations supplémentaires sur le deck",
+    "RTUCards.settings.config-actions.additionalData.warnImplem": "Ce deck utilise une implémentation spécifique pour afficher les cartes. Il est possible qu'une partie des actions ci-dessous soit directement ignorée dans l'implémentation et ne sons pas gérées par ce panneau de configuration.",
+    "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Préfixe pour les libellés: ",
+    "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Répertoire pour les images: ",
+    "RTUCards.settings.config-actions.additionalData.overrideConf": "Si déverrouillé, permet de modifier les actions disponibles pour ce deck. A ne faire que si vous êtes certains que le code permettant la déclaration de ce deck n'évoluera plus en terme d'actions disponibles. Vérouillez le à nouveau si vous voulez repasser sur les actions par défaut.",
 
     "RTUCards.settings.config-shortcuts.menu": "Configuration des raccourcis",
     "RTUCards.settings.config-shortcuts.title": "Configurer vos raccourcis",
@@ -76,7 +83,8 @@
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Défausse",
-    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Personnalisé)",
+    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Inclus manuellement)",
+    "RTUCards.pokerDark.coreStacks.suffix.viaCode": " (Inclus par du Code)",
 
     "RTUCards.pokerDark.title": "Poker, cartes dorées",
     "RTUCards.pokerDark.description": "Un jeu classique de 52 cartes.",

@@ -4,7 +4,14 @@
     "RTUCards.settings.config-actions.hint": "Once set, cards stacks will be automatically created",
     "RTUCards.settings.config-actions.saveAndClose": "Save changes & Close",
     "RTUCards.settings.config-actions.filter.title": "Prior filtering on available actions",
-    "RTUCards.settings.config-actions.filter.details": "Unchecked actions will be automatically disable for all of your decks. They won't appear it deck details",
+    "RTUCards.settings.config-actions.filter.details": "Unchecked actions will be automatically disable for all of your decks. They won't appear it deck details. Use this to reduce the action pool for your decks.",
+
+    "RTUCards.settings.config-actions.additionalData.headerFilter": "What is it for ?",
+    "RTUCards.settings.config-actions.additionalData.headerDeck": "Additional data for this deck",
+    "RTUCards.settings.config-actions.additionalData.warnImplem": "This deck uses a custom implementation for card display. Some of the following actions may have been directly removed inside the implementation and won't be managed here.",
+    "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Used prefix for labels: ",
+    "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Image root directory: ",
+    "RTUCards.settings.config-actions.additionalData.overrideConf": "If unlocked, you can define which actions should be available. Do it only if you're sure that this stack declaration won't evolve anymore. Lock it again to restore default values.",
 
     "RTUCards.settings.config-shortcuts.menu": "Shortcuts configuration menu",
     "RTUCards.settings.config-shortcuts.title": "Configure your shortcuts",
@@ -76,7 +83,8 @@
 
     "RTUCards.pokerDark.coreStacks.suffix.deck": " - Deck",
     "RTUCards.pokerDark.coreStacks.suffix.pile": " - Discard",
-    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Custom)",
+    "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Manually included)",
+    "RTUCards.pokerDark.coreStacks.suffix.viaCode": " (Included via code)",
 
     "RTUCards.pokerDark.title": "Poker, golden cards",
     "RTUCards.pokerDark.description": "A classic 52 cards deck.",

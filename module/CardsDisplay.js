@@ -94,10 +94,7 @@ export class CustomCardsDisplay extends CardsConfig {
         if( game.user.isGM ) {
 
             // Access to action configuration
-            const coreKey = this._custom.coreStackRef;
-            const config = game.settings.get("ready-to-use-cards", GlobalConfiguration.stacks) ?? {};
-            const knownInConf = config.hasOwnProperty(coreKey);
-            if( this._custom.handledByModule && knownInConf && this._custom.stackOwner.forNobody ) {
+            if( this._custom.handledByModule && this._custom.stackOwner.forNobody ) {
                 buttons.unshift({
                     label: "RTUCards.sidebar.context.configActions",
                     class: "configure-actions",

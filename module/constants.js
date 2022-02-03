@@ -68,6 +68,15 @@ export const StackConfiguration = {
 };
 
 /**
+ * Other parameters for each deck, outside available action configuration
+ */
+export const DeckParameters = {
+	overrideConf : 'overrideConf',
+	labelBaseKey: 'labelBaseKey',
+	resourceBaseDir: 'resourceBaseDir',
+}
+
+/**
  * Configuration which is not link to a specific core stack
  */
 export const GlobalConfiguration = {

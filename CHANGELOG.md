@@ -1,9 +1,13 @@
 # CHANGELOG
 
-## Release 1.3.4
+## Release 1.4.0
 
-### Issue: 
-- Critical bug where custom card stack enrollment were not working on new worlds
+### Conf panel : 
+- It's now possible to modify card back via the config panel. You can also modify labels for actions and messages
+
+![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
+
+More details in the `README`, section `Other available parameters for the deck`
 
 ## Release 1.3.3
 
@@ -28,7 +32,7 @@
 - There was a problem while displaying a single card from the deck: Default deck actions were available.
 
 ### Shortcuts on canvas
-This version comes with some new GUI for qucik access of you hand card and your revealed cards.
+This version comes with some new GUI for quick access of you hand card and your revealed cards.
 
 ![Shortcut display](docs/README_shortcut_display.webp?raw=true)
 

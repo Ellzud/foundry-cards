@@ -114,7 +114,28 @@ To solve this, a prior filtering is available. By using it, you can greatly redu
 
 ![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
 
+### Other available parameters for the deck
 
+Depending on how the deck was declared, you may have some additional parameters or informations in this section. Those are the most classic ones :
+
+![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
+
+`Used prefix for labels` : Labels for deck name, actions or chat messages are constructed with a prefix depending from the deck. (It will try with the given prefix, and fallback to `RTUCards.default.` if not found ).
+
+> If you want to change the name of some labels, you can put them inside a new [translation file](./lang/en.json) and change this prefix.
+
+`Image root directory` : By default, deck icons and the card back are defined from this directory. It follows this structure : 
+
+~~~sh
+./background/back.webp
+./background/front.webp
+./icons/back.webp
+./icons/front.webp
+~~~
+
+> If you want to change those images, you can create a new directory in your world and put the image you want by following the previous structure. Then edit this directory path.
+
+> If the deck was already created in your world, the icon won't be changed. You will need to delete it, and recreate it with the correct value.
 
 ## Understanding the GUI
 

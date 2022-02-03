@@ -1,9 +1,10 @@
 import { CustomCardStack } from './CustomCardStack.js';
-import { GlobalConfiguration } from './constants.js';
+import { DeckParameters, GlobalConfiguration, StackConfiguration } from './constants.js';
 import { CustomCardActionTools } from './CustomCardActionTools.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 import { CustomCardSimple } from './CustomCardSimple.js';
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
+import { cardStackSettings } from './tools.js';
 
 /**
  * Try to find a card Pile.
@@ -63,23 +64,16 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
 
 /**
  * Try to find card stacks which has the module flags but are not declared anymore in the config settings
- * Doesn't touch stacks who where added manually via hooks.
- * This is to avoid the case where the other module fails to launch and every custom card stacks are deleted.
- * @param {object} defaultCoreStacks See CustomCardStackLoader.defaultCoreStacks (useful to determine if it was handled by settings or hooks)
  * @returns {CustomCards[]} List of non declared stacks (those from hooks are not here)
  */
- const findNonDeclaredCoreStacks = ( defaultCoreStacks ) => {
+ const findNonDeclaredCoreStacks = () => {
 
     return game.cards.filter( stack => {
         const core = stack.getFlag('ready-to-use-cards', 'core');
         if(!core) { return false; }
 
         // Is it declared ?
-        if( CARD_STACKS_DEFINITION.core.hasOwnProperty(core) ) { return false; }
-
-        // Is it one of the defaultCoreStacks ? (Meaning no hooks)
-        const defaultOne = defaultCoreStacks.hasOwnProperty(core);
-        return defaultOne;
+        return !CARD_STACKS_DEFINITION.core.hasOwnProperty(core);
     }).map( stack => new CustomCardStack(stack) );
 }
 
@@ -328,14 +322,17 @@ const loadStackDefinition = (defaultStacks) => {
     def.core = {};
 
     // Retrieve config for every card stack toggled in configuration
-    const stacks = game.settings.get("ready-to-use-cards", GlobalConfiguration.stacks) ?? {};
+    const stacks = cardStackSettings();
     Object.entries(stacks).forEach( ([coreKey, stackConf]) => {
-        const defaultCore = defaultStacks[coreKey];
-        const stackDef = duplicate(defaultCore);
-        stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
-        stackDef.presetLoader = defaultCore.presetLoader; // Duplicate doesn't copy function either
-        stackDef.config = stackConf; // Config is replaced by the one in config.
-        def.core[coreKey] = stackDef;
+
+        if( defaultStacks.hasOwnProperty(coreKey) ) { // Card stacks registered by code will be handled later
+            const defaultCore = defaultStacks[coreKey];
+            const stackDef = duplicate(defaultCore);
+            stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
+            stackDef.presetLoader = defaultCore.presetLoader; // Duplicate doesn't copy function either
+            stackDef.config = stackConf; // Config is replaced by the one in config.
+            def.core[coreKey] = stackDef;
+        }
     });
 
     // Additional data are shared (Can't be put in the constant panel)
@@ -348,6 +345,34 @@ const loadStackDefinition = (defaultStacks) => {
 
     // For those who want to add some custom stacks
     Hooks.call("loadCardStacksDefinition", def);
+
+    // Retrieve potential custom parameters for each deck (for everyones : core, manually registered and via code)
+    Object.entries(stacks).forEach( ([coreKey, stackConf]) => {
+
+        const parameters = stackConf.parameters;
+        if( !parameters || !def.core.hasOwnProperty(coreKey) ) { return; }
+
+        const stackDef = def.core[coreKey];
+
+        let param = parameters[DeckParameters.resourceBaseDir];
+        if( param ) { stackDef.resourceBaseDir = param; }
+
+        param = parameters[DeckParameters.labelBaseKey];
+        if( param ) { stackDef.labelBaseKey = param; }
+
+        param = parameters[DeckParameters.overrideConf];
+        stackDef.overrideConf = param ?? false;
+        if( stackDef.overrideConf ) {
+            const newConf = {};
+            Object.values(StackConfiguration).forEach(key => {
+                if( stackConf.hasOwnProperty(key) ) {
+                    newConf[key] = stackConf[key];
+                }
+            });
+            stackDef.config = newConf;
+        }
+    });
+
 
     // Load default values
     Object.values(def.core).forEach( coreStrackDefinition => {
@@ -464,7 +489,7 @@ export class CustomCardStackLoader {
             }
         }
         // And remove those which have been unchecked in the settings.
-        toRemove.push( ...findNonDeclaredCoreStacks(this.defaultCoreStacks) );
+        toRemove.push( ...findNonDeclaredCoreStacks() );
 
         // For each player : One hand, and One pile
         const playersHaveHands = game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand);
