@@ -438,6 +438,7 @@ export class CustomCardStack {
      * @param {CustomCardStack} withStack Card stack which have the receivedCardsId
      * @param {string[]} myCardIds Cards you will be separated
      * @param {string[]} receivedCardsId Cards you will get
+     * @param {string[]} receivedCardsId Cards you will get
      * @returns {Card[]} Received Cards
      */
      async exchangeCards(withStack, myCardIds, receivedCardsId) {
@@ -457,7 +458,8 @@ export class CustomCardStack {
         allCards.push(...givenCards);
         allCards.push(...receivedCards);
 
-        const flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+        let flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+        flavor = flavor.replace('FROM', target.name );
 
         await this.sendMessageForCards(flavor, allCards, {hideToStrangers: inHand});
 

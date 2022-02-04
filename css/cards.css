@@ -133,9 +133,53 @@
 }
 
 /*---------------------------------
-  Parameters panel - Card selection
+  Parameters panel, common components
  ----------------------------------*/
- .rtucards.cards .parameters-cards .cards{
+
+ .rtucards.cards .parameters-panel .frame {
+    justify-content: center;
+    margin: 10px 0px;
+    padding: 5px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: groove blanchedalmond;
+    border-radius: 8px;
+}
+
+.rtucards.cards .parameters-panel .stack {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 75px;
+    max-height: 100px;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    background-position-x: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.rtucards.cards .parameters-panel .stack.not-here {
+    opacity: 0.8;
+}
+
+.rtucards.cards .parameters-panel .stack.selected {
+    box-shadow: 0 0 5px white inset;
+}
+
+.rtucards.cards .parameters-panel .stack:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px blanchedalmond inset;
+}
+
+.rtucards.cards .parameters-panel .stack.selected:hover {
+    box-shadow: 0 0 5px white inset;
+}
+
+
+
+/*---------------------------------
+  Parameters panel - Card selection only
+ ----------------------------------*/
+.rtucards.cards .parameters-cards .cards{
     transform: scale(0.4);
     transform-origin: top left;
     margin-bottom: -1100px;
@@ -173,56 +217,23 @@
     margin-top: -550px;
     margin-right: 50px;
     margin-left: 10px;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .rtucards.cards .parameters-cards .bellow-cards .action-button {
-    padding: 0px 100px;
+    min-width: 160px;
+}
+
+.rtucards.cards .parameters-cards .bellow-cards .action-button.change-stack {
+    color: firebrick;
+    border-color: firebrick;
 }
 
 /*---------------------------------
-  Parameters panel - Stack selection
+  Parameters panel - Stack selection only
  ----------------------------------*/
  .rtucards.cards .parameters-stacks {
     align-items: center;
-}
-
-.rtucards.cards .parameters-stacks .frame {
-    justify-content: center;
-    margin: 10px 0px;
-    padding: 5px 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: groove blanchedalmond;
-    border-radius: 8px;
-}
-
-.rtucards.cards .parameters-stacks .stack {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 75px;
-    max-height: 100px;
-    background-repeat: no-repeat;
-    background-size: 50px 50px;
-    background-position-x: center;
-    text-align: center;
-    padding-top: 50px;
-}
-
-.rtucards.cards .parameters-stacks .stack.not-here {
-    opacity: 0.8;
-}
-
-.rtucards.cards .parameters-stacks .stack.selected {
-    box-shadow: 0 0 5px white inset;
-}
-
-.rtucards.cards .parameters-stacks .stack:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px blanchedalmond inset;
-}
-
-.rtucards.cards .parameters-stacks .stack.selected:hover {
-    box-shadow: 0 0 5px white inset;
 }
 
 .rtucards.cards .parameters-stacks .amount-edit {

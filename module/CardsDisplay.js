@@ -542,6 +542,7 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(css.discardCard).click(event => this._onClickDiscardCard(event) );
         html.find(css.giveCard).click(event => this._onClickGiveCard(event) );
         html.find(css.exchangeCard).click(event => this._onClickExchangeCard(event) );
+        html.find(css.exchangePlayer).click(event => this._onClickExchangePlayer(event) );
         html.find(css.playCard).click(event => this._onClickPlayCard(event) );
         html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) );
         html.find(css.revealCard).click(event => this._onClickRevealCard(event) );
@@ -676,6 +677,9 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
+    /**
+     * Exchange a card with the discard
+     */
     async _onClickExchangeCard(event) {
         event.preventDefault();
 
@@ -685,7 +689,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const discard = cardStacks.piles[coreKey];
 
         const options = {
-            from: discard, 
+            fromStacks: [discard], 
             buttonLabel: this._custom.localizedLabel('sheet.actions.exchangeCard') 
         };
 
@@ -693,12 +697,53 @@ export class CustomCardsDisplay extends CardsConfig {
             const custom = new CustomCardStack(card.source);
             return custom.coreStackRef === coreKey; 
         };
-        options.callBack = async (selection, additionalCards) => { 
+        options.callBack = async (selection, from, additionalCards) => { 
             const stack = this._custom;
-            await stack.exchangeCards(discard, [selection.id], additionalCards.map( c => c.id ) );
+            await stack.exchangeCards(from, [selection.id], additionalCards.map( c => c.id ) );
         };
 
-        const selectTitle = this._custom.localizedLabel('sheet.parameters.stacks.exchangeTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.exchangeTitle');
+        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        this.render();
+    }
+
+    /**
+     * Exchange a card with another player
+     */
+     async _onClickExchangePlayer(event) {
+        event.preventDefault();
+
+        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        const deck = new CustomCardStack(this.currentSelection.source);
+        const coreKey = deck.coreStackRef;
+
+        // User will have to choose among all player stacks of the same type
+        const isHand = this._cards.type == 'hand';
+        const allStacks = [];
+        if( isHand ) {
+            allStacks.push(cardStacks.gmHand);
+            allStacks.push(...cardStacks.allPlayerHands);
+        } else {
+            allStacks.push(cardStacks.gmRevealedCards);
+            allStacks.push(...cardStacks.allPlayerRevealedCards);
+        }
+
+        const options = {
+            fromStacks: allStacks.filter(s => s.stack.id != this._cards.id ), 
+            buttonLabel: this._custom.localizedLabel('sheet.actions.exchangePlayer') 
+        };
+
+        options.criteria = (card) => { 
+            const custom = new CustomCardStack(card.source);
+            return custom.coreStackRef === coreKey; 
+        };
+        options.callBack = async (selection, from, additionalCards) => { 
+            const stack = this._custom;
+            await stack.exchangeCards(from, [selection.id], additionalCards.map( c => c.id ) );
+        };
+
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.exchangeTitle');
         this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
 
         this.render();
@@ -741,13 +786,13 @@ export class CustomCardsDisplay extends CardsConfig {
             const ccs = new CustomCardStack(card.source);
             return ccs.coreStackRef === coreKey; 
         };
-        options.callBack = async (selection, additionalCards) => { 
+        options.callBack = async (selection, from, additionalCards) => { 
             const cardIds = [selection.id];
             cardIds.push(...additionalCards.map(c => c.id));
             await this._custom.playCards(cardIds);
         };
 
-        const selectTitle = this._custom.localizedLabel('sheet.parameters.stacks.playTitle');
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.playTitle');
         this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
 
         this.render();

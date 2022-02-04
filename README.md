@@ -229,7 +229,7 @@ What the player will see :
 
 ![Draw seen by player](docs/README_draw_card_playerView.webp?raw=true)
 
-And when he clicks on the link : 
+And when they clicks on the link : 
 ![Draw details](docs/README_draw_card_clicked.webp?raw=true)
 
 ## Additional configuration settings

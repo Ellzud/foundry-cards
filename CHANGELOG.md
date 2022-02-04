@@ -2,12 +2,25 @@
 
 ## Release 1.4.0
 
+### New actions
+- Ability to exchange a card with another player
+
 ### Conf panel : 
 - It's now possible to modify card back via the config panel. You can also modify labels for actions and messages
 
 ![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
 
 More details in the `README`, section `Other available parameters for the deck`
+
+### Warning : API Change
+> Signature of CardActionParametersForCardSelection class has changed. 
+
+Now it takes a `CustomCardStack[] fromStacks` instead of a `CustomCardStack from` in its constructor. 
+
+In addition, callback now has a `CustomCardStack from` additional argument.
+
+This change was motivated by the need of selecting a card stack before choosing the card.
+
 
 ## Release 1.3.3
 
