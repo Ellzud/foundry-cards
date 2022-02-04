@@ -25,6 +25,10 @@ In addition, callback now has a `CustomCardStack from` additional argument.
 
 This change was motivated by the need of selecting a card stack before choosing the card.
 
+## Release 1.3.4
+
+### Issue: 
+- Critical bug where custom card stack enrollment were not working on new worlds
 
 ## Release 1.3.3
 
