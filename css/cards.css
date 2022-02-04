@@ -157,6 +157,12 @@
     padding-top: 50px;
 }
 
+.rtucards.cards.resized .parameters-panel .stack {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+
 .rtucards.cards .parameters-panel .stack.not-here {
     opacity: 0.8;
 }
