@@ -8,50 +8,64 @@
     </div>
 {{/inline}}
 
+{{#*inline "paramPartStackSelection"}}
+    {{#if header}}
+        <div class="headers">{{header}}</div>
+    {{/if}}
+
+    <div class="flexrow frame stacks">
+        {{#each stacks as |stack|}}
+            <div class="stack {{stack.classes}}"
+                style="background-image: url('{{stack.icon}}');"
+                data-key="{{stack.id}}">
+                {{stack.name}}
+            </div>
+        {{/each}}
+    </div>
+{{/inline}}
+
+
 {{#*inline "selectCardsParameters"}}
     <div class="parameters-cards">
-        <div class="flexrow cards">
-            {{#each param.availableCards as |card|}}
-                {{> cardDisplay card=card}}
-            {{/each}}
-        </div>
 
-        {{#if param.isReady}}
-            <div class="flexrow bellow-cards">
-                <div class="action-button selection-ok">
-                    {{param.buttonLabel}}
-                </div>
+        {{#if param.displayStacks}}
+            {{> paramPartStackSelection stacks=param.availableStacks}}
+
+        {{else}}
+            <div class="flexrow cards">
+                {{#each param.availableCards as |card|}}
+                    {{> cardDisplay card=card}}
+                {{/each}}
             </div>
+
+            <div class="flexrow bellow-cards">
+                {{#if param.changeStack.displayed}}
+                    <div class="action-button change-stack">
+                        <i class="fas fa-undo"></i>
+                        {{param.changeStack.label}}
+                    </div>
+                {{/if}}
+                {{#if param.isReady}}
+                    <div class="action-button selection-ok">
+                        <i class="fas fa-check"></i>
+                        {{param.buttonLabel}}
+                    </div>
+                {{/if}}
+            </div>
+
         {{/if}}
+
     </div>
 {{/inline}}
 
 {{#*inline "selectStacksParameters"}}
     <div class="flexcol parameters-stacks">
         {{#if param.handsDisplayed}}
-            <div class="headers">{{param.labels.headerHands}}</div>
-            <div class="flexrow frame stacks">
-                {{#each param.hands as |stack|}}
-                    <div class="stack {{stack.classes}}"
-                        style="background-image: url('{{stack.icon}}');"
-                        data-key="{{stack.id}}">
-                        {{stack.name}}
-                    </div>
-                {{/each}}
-            </div>
+            {{> paramPartStackSelection header=param.labels.headerHands stacks=param.hands}}
         {{/if}}
 
         {{#if param.revealedCardsDisplayed}}
-            <div class="headers">{{param.labels.headerRevealed}}</div>
-            <div class="flexrow frame stacks">
-                {{#each param.revealedCards as |stack|}}
-                    <div class="stack {{stack.classes}}"
-                        style="background-image: url('{{stack.icon}}');"
-                        data-key="{{stack.id}}">
-                        {{stack.name}}
-                    </div>
-                {{/each}}
-            </div>
+            {{> paramPartStackSelection stacks=param.revealedCards}}
         {{/if}}
 
         {{#if param.specifyAmount}}

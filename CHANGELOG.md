@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## Release 1.4.0
+
+### New actions
+- Ability to exchange a card with another player
+
+More details in the `README`, section `Action example : Exchanging card with another player`
+
+> This action may evolve in future patchs de pending on people returns. Don't hesitate to leave a message in the issue section if this or another action doesn't match you needs.
+
+### Conf panel : 
+- It's now possible to modify card back via the config panel. You can also modify labels for actions and messages
+
+![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
+
+More details in the `README`, section `Other available parameters for the deck`
+
+### Warning : API Change
+> Signature of CardActionParametersForCardSelection class has changed. 
+
+Now it takes a `CustomCardStack[] fromStacks` instead of a `CustomCardStack from` in its constructor. 
+
+In addition, callback now has a `CustomCardStack from` additional argument.
+
+This change was motivated by the need of selecting a card stack before choosing the card.
+
 ## Release 1.3.4
 
 ### Issue: 
@@ -28,7 +53,7 @@
 - There was a problem while displaying a single card from the deck: Default deck actions were available.
 
 ### Shortcuts on canvas
-This version comes with some new GUI for qucik access of you hand card and your revealed cards.
+This version comes with some new GUI for quick access of you hand card and your revealed cards.
 
 ![Shortcut display](docs/README_shortcut_display.webp?raw=true)
 
