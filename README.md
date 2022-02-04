@@ -174,6 +174,14 @@ For this action, you can select additionnal cards after selecting the first one 
 
 ![Playing multiple cards](docs/README_play_multiple.webp?raw=true)
 
+### Action example : Exchanging card with another player
+
+For this action, you need to choose two things :
+- With who you want to exchange cards
+- Selecting the card to exchange with inside his hand or revealed cards
+
+![Exchange cards](docs/README_exchange_cards.webp?raw=true)
+
 ### Action example : Rotating selected card
 
 This on is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.

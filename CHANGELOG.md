@@ -5,6 +5,10 @@
 ### New actions
 - Ability to exchange a card with another player
 
+More details in the `README`, section `Action example : Exchanging card with another player`
+
+> This action may evolve in future patchs de pending on people returns. Don't hesitate to leave a message in the issue section if this or another action doesn't match you needs.
+
 ### Conf panel : 
 - It's now possible to modify card back via the config panel. You can also modify labels for actions and messages
 
