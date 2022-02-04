@@ -1,3 +1,4 @@
+import { cardStackSettings, updateCardStackSettings } from "./tools.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
@@ -215,10 +216,9 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         // 2: Flag this coreStack as chosen in settings
-        let chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
-        if( chosenStacks == '' ) { chosenStacks = {}; }
+        let chosenStacks = cardStackSettings();
         chosenStacks[this.stack.id] = {};
-        await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
+        await updateCardStackSettings(chosenStacks);
 
         // 3: Reload all stacks
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
@@ -250,9 +250,9 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         // 3: Unflag this coreStack as chosen in settings
-        const chosenStacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.stacks);
+        const chosenStacks = cardStackSettings();
         delete chosenStacks[this.stack.id];
-        await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, chosenStacks);
+        await updateCardStackSettings(chosenStacks);
 
         // 4: Delete the related discard
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
@@ -438,6 +438,7 @@ export class CustomCardStack {
      * @param {CustomCardStack} withStack Card stack which have the receivedCardsId
      * @param {string[]} myCardIds Cards you will be separated
      * @param {string[]} receivedCardsId Cards you will get
+     * @param {string[]} receivedCardsId Cards you will get
      * @returns {Card[]} Received Cards
      */
      async exchangeCards(withStack, myCardIds, receivedCardsId) {
@@ -457,7 +458,8 @@ export class CustomCardStack {
         allCards.push(...givenCards);
         allCards.push(...receivedCards);
 
-        const flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+        let flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+        flavor = flavor.replace('FROM', target.name );
 
         await this.sendMessageForCards(flavor, allCards, {hideToStrangers: inHand});
 

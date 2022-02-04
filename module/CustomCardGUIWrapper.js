@@ -209,6 +209,7 @@ export class CustomCardGUIWrapper {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromHandPlayMultiple]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
             tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromHandExchangeCard]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangePlayer, 'sheet.actions.exchangePlayer', {allKeys:[keys.fromHandExchangeWithPlayer]});
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
@@ -243,6 +244,8 @@ export class CustomCardGUIWrapper {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromRevealedExchangeCard]});
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangePlayer, 'sheet.actions.exchangePlayer', {allKeys:[keys.fromRevealedExchangeWithPlayer]});
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }

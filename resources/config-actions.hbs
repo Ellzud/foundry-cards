@@ -1,7 +1,12 @@
 {{#* inline "listConfigs" }}
-    <div class="flexrow deck-row content">
-        <div>{{details}}</div>
-    </div>
+
+    {{#each actions as |action| }}
+        {{#if action.isHeader }}
+            {{> configHeader header=action }}
+        {{else}}
+            {{> actionLine action=action }}
+        {{/if}}
+    {{/each}}
 
     {{#each boxes as |box| }}
         {{#if box.isHeader }}
@@ -20,14 +25,21 @@
 
 {{#*inline "configLine"}}
     <div class="flexrow deck-row content conf">
-        {{#if box.toggled}}
-            <i class="far fa-check-square toggle-button active config" data-config="{{box.config}}"></i>
-        {{else}}
-            <i class="far fa-square toggle-button active config" data-config="{{box.config}}"></i>
-        {{/if}}
+        <i class="toggle-button config {{box.classes}}" data-config="{{box.config}}"></i>
         <div>{{box.label}}</div>
     </div>
 {{/inline}}
+
+{{#*inline "actionLine"}}
+    <div class="flexrow deck-row content action" data-param="{{action.param}}">
+        <i class="toggle-button action {{action.classes}}"></i>
+        <div>{{action.label}}</div>
+        {{#if action.input.displayed}}
+            <input type="text" class="param-input" value="{{action.input.text}}" >
+        {{/if}}
+    </div>
+{{/inline}}
+
 
 <form>
     <p class="notification info">{{localize 'RTUCards.settings.config-actions.title'}}</p>
@@ -46,7 +58,7 @@
                 <div>{{filter.title}}</div>
             </div>
             {{#if filter.detailsDisplayed}}
-                {{> listConfigs boxes=filter.configBoxes details=filter.details }}
+                {{> listConfigs boxes=filter.configBoxes actions=filter.actions }}
             {{/if}}
         </div>
 
@@ -66,7 +78,7 @@
                     <div>{{stack.gui.deck.name}}</div>
                 </div>
                 {{#if stack.gui.detailsDisplayed}}
-                    {{> listConfigs boxes=stack.configBoxes details=stack.gui.deck.desc }}
+                    {{> listConfigs boxes=stack.configBoxes actions=stack.actions }}
                 {{/if}}
             </div>
         {{/each}}

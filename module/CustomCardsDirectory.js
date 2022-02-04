@@ -51,12 +51,7 @@ export class CustomCardsDirectory extends CardsDirectory {
                 
                 const stack = this.constructor.collection.get(li.data("documentId"));
                 const custom = new CustomCardStack(stack);
-                if( !custom.stackOwner.forNobody ) { return false; }
-
-                // Do not allow this action for stacks which have been loaded by code via the custom hook 'loadCardStacksDefinition'
-                const coreKey = custom.coreStackRef;
-                const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
-                return cardStacks.defaultCoreStacks.hasOwnProperty(coreKey);
+                return custom.stackOwner.forNobody;
             },
             callback: li => {
                 const stack = this.constructor.collection.get(li.data("documentId"));

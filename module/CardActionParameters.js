@@ -1,6 +1,47 @@
 import { CustomCardStack } from "./CustomCardStack.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 
+const loadStackDataInfos = ( customStack, selectedStackIds ) => { 
+
+    const result = {
+        id: customStack.stack.id,
+        classes: ''
+    };
+
+    let isHere;
+    const owner = customStack.stackOwner;
+    if( owner.forGMs ) {
+        isHere = game.users.some( u => u.isGM && u.active );
+        result.name = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
+        result.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
+
+    } else if( owner.forPlayers ) {
+        const user = game.users.get(customStack.stackOwner.playerId);
+        isHere = user.active ?? false;
+        result.name = user.name;
+        result.icon = user.character?.img ?? 'icons/svg/mystery-man.svg';
+
+    } else {
+        isHere = true;
+        result.name = customStack.stack.name;
+        result.icon = customStack.stack.data.img;
+    }
+
+    if( !isHere ) { 
+        result.classes += ' not-here';
+    }
+
+    const selected = selectedStackIds.includes(customStack.stack.id);
+    if( selected ) { 
+        result.classes += ' selected';
+    }
+
+    return result;
+}
+
+
+
+
 export class CardActionParametersBase {
     
     constructor( sheet, actionTitle ) {
@@ -34,24 +75,31 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      * Used to inform the GUI that the user needs to select some additional cards
      * @param {CustomCardsDisplay} sheet The sheet where those paramters will be chosen
      * @param {string} actionTitle What will be displayed on top of the selection
-     * @param {CustomCardStack} [from] From which stack, the cards would be displayed
+     * @param {CustomCardStack[]} [fromStacks] Available stacks from which the cards could be displayed. null means it will be the cards of the current deck
      * @param {int} [minAmount] min amount of cards which needs to be selected before the 'OK' button becomes available
      * @param {int} [maxAmount] max amount
      * @param {string} [buttonLabel] What the say inside the ok button.
      * @param {*} [criteria] Applied to availableCards for filter. If null, all cards will be available
      * @param {*} [callBack] What to call once cards have been selected. If null, it will call playCards with all ids.
      */
-    constructor( sheet, actionTitle, {from=null, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
+    constructor( sheet, actionTitle, {fromStacks=null, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
         super(sheet, actionTitle);
 
         const defaultCriteria = (c) => { return true; };
-        const defaultCallback = async (selection, additionalCards) => { 
+        const defaultCallback = async (selection, from, additionalCards) => { 
             const cardIds = [selection.id];
             additionalCards.forEach( c => cardIds.push(c.id) );
             return this.sheet.cards.playCards(cardIds);
         };
 
-        this.from = from ?? new CustomCardStack(this.sheet._cards);
+        if( !fromStacks || fromStacks.length == 0 ) {
+            this.from = new CustomCardStack(this.sheet._cards);
+            this.availableStacks = [this.from];
+        } else {
+            this.from = fromStacks.length > 1 ? null : fromStacks[0];
+            this.availableStacks = fromStacks;
+        }
+
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.buttonLabel = buttonLabel;
@@ -77,6 +125,28 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
         parameters.needCards = true;
         parameters.buttonLabel = this.buttonLabel;
 
+        if( !this.from ) {
+            this._loadParametersWhileSelectingStack(parameters);
+        } else {
+            this._loadParametersWhileChoosingCards(parameters);
+        }
+        return parameters;
+    }
+
+    _loadParametersWhileSelectingStack(parameters) {
+
+        // Stack selection
+        const availableStacksInfo = this.availableStacks.map( ccs => loadStackDataInfos(ccs, []) );
+        parameters.availableStacks = availableStacksInfo;
+        parameters.displayStacks = true;
+
+        // Title 
+        parameters.title = this.sheet._custom.localizedLabel('sheet.parameters.cards.firstStep')
+    }
+
+    _loadParametersWhileChoosingCards(parameters) {
+
+        // Card listing
         let selectedAmount = 0;
         const availableCardsInfo = this.filteredCards.map(c => {
             const cardInfo = this.sheet._buildCardInfo(c);
@@ -88,13 +158,17 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
         });
         parameters.availableCards = availableCardsInfo;
 
+        // Title and ok button
         const suffix = ' (' + selectedAmount + '/' + this.maxAmount + ')';
         parameters.title = parameters.title + suffix;
 
+        parameters.changeStack = {
+            displayed: this.from && this.availableStacks.length > 1,
+            label: this.sheet._custom.localizedLabel('sheet.parameters.cards.changeStack')
+        };
         parameters.isReady =   selectedAmount >= this.minAmount 
                             && selectedAmount <= this.maxAmount;
         
-        return parameters;
     }
 
     /**
@@ -102,8 +176,18 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      */
     addListeners(html) {
         super.addListeners(html);
+        html.find(".parameters-panel .stacks .stack").click(event => this.onClickChooseStack(event) );
         html.find(".parameters-panel .cards .card-slot").click(event => this.onClickToggleSelection(event) );
+        html.find(".parameters-panel .change-stack").click(event => this.onClickChangeStack(event) );
         html.find(".parameters-panel .selection-ok").click(event => this.onClickPerformAction(event) );
+    }
+
+    async onClickChooseStack(event) {
+        event.preventDefault();
+        const key = event.currentTarget.dataset.key;
+        this.from = this.availableStacks.find( s => s.stack.id === key );
+
+        this.sheet.render();
     }
 
     async onClickToggleSelection(event) {
@@ -120,10 +204,17 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
         this.sheet.render();
     }
 
+    async onClickChangeStack(event) {
+        event.preventDefault();
+        this.from = null;
+
+        this.sheet.render();
+    }
+
     async onClickPerformAction(event) {
         event.preventDefault();
         const selectedCards = this.filteredCards.filter( c => this.selectedCardIds.includes(c.id) );
-        await this.callBack(this.sheet.currentSelection, selectedCards);
+        await this.callBack(this.sheet.currentSelection, this.from, selectedCards);
         this.resumeAction();
     }
 }
@@ -202,38 +293,6 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
         return result;
     }
 
-    _loadStackData(ccs) {
-
-        const result = {
-            id: ccs.stack.id,
-            classes: ''
-        };
-
-        let isHere;
-        const owner = ccs.stackOwner;
-        if( owner.forGMs ) {
-            isHere = game.users.some( u => u.isGM && u.active );
-            result.name = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
-            result.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
-        } else {
-            const user = game.users.get(ccs.stackOwner.playerId);
-            isHere = user.active ?? false;
-            result.name = user.name;
-            result.icon = user.character?.img ?? 'icons/svg/mystery-man.svg';
-        };
-
-        if( !isHere ) { 
-            result.classes += ' not-here';
-        }
-
-        const selected = this.selectedStackIds.includes(ccs.stack.id);
-        if( selected ) { 
-            result.classes += ' selected';
-        }
-
-        return result;
-    }
-
     /**
      * Prepare data to display other available cards for selection
      * @override
@@ -254,12 +313,12 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
 
         const base = this.filteredStacks;
 
-        const handsInfo = base.filter( ccs => ccs.stack.type == 'hand' ).map( ccs => this._loadStackData(ccs) );
+        const handsInfo = base.filter( ccs => ccs.stack.type == 'hand' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
         handsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.hands = handsInfo;
         parameters.handsDisplayed = handsInfo.length > 0;
 
-        const revealedCardsInfo = base.filter( ccs => ccs.stack.type == 'pile' ).map( ccs => this._loadStackData(ccs) );
+        const revealedCardsInfo = base.filter( ccs => ccs.stack.type == 'pile' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
         revealedCardsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.revealedCards = revealedCardsInfo;
         parameters.revealedCardsDisplayed = revealedCardsInfo.length > 0;
