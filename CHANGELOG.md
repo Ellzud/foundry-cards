@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.4.1
+
+### Fix for Swade system
+- `CONFIG.Cards.presets.pokerDark` and `CONFIG.Cards.presets.pokerDark` can be removed by the game system, making the module crash. Those constants are not used anymore. (presets have been retrieved inside module)
+
 ## Release 1.4.0
 
 ### New actions
