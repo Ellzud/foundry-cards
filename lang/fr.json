@@ -28,9 +28,6 @@
     "RTUCards.settings.gmIcon.label": "Icone du MJ",
     "RTUCards.settings.gmIcon.hint": "Icone affichée lorsque les MJ fait des actions sur les decks",
 
-    "RTUCards.settings.invasiveCode.label": "Code invasif",
-    "RTUCards.settings.invasiveCode.hint": "Aucune surchage de code si décoché. Rends impossible l'accès à l'écran de conf depuis la liste des jeux de carte. L'enrollement de cartes est aussi plus difficile.",
-
     "RTUCards.settings.smallDisplay.label": "Taille réduite",
     "RTUCards.settings.smallDisplay.hint": "L'affichage classique peut prendre trop de place si vous utilisez un pc portable",
 

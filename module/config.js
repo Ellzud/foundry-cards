@@ -1,22 +1,59 @@
-import { CustomCards } from "./cards.js";
 import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
 import { GlobalConfiguration } from "./constants.js";
-import { CustomCardsDirectory } from "./CustomCardsDirectory.js";
-
+import { CustomCardStack } from "./CustomCardStack.js";
 
 export const registerCardSystem = () => {
-	if( game.settings.get("ready-to-use-cards", GlobalConfiguration.invasiveCode ) ) {
-		CONFIG.Cards.documentClass = CustomCards;
-		CONFIG.ui.cards = CustomCardsDirectory;
-	} else {
-		DocumentSheetConfig.registerSheet(Cards, "ready-to-use-cards", CustomCardsDisplay, {
-			label: "RTUCards.card.sheet.name",
-			types: ["deck", "hand", "pile"],
-			makeDefault: true
-		});
+
+	const previousCls = CONFIG.Cards.documentClass;
+	class CustomCards extends previousCls {
+		constructor(data, context) {
+			super(data, context);
+		}
+
+		get sheet() {
+			const custom = new CustomCardStack(this);
+			if(!custom.handledByModule) {
+				return super.sheet;
+			}
+	
+			if ( !this._customSheet ) {
+				this._customSheet = new CustomCardsDisplay(this, {editable: this.isOwner});
+			}        
+			return this._customSheet;
+		}
+
+		/* -------------------------------------------- 
+		    Capture cards movements and trigger custom hook
+		/* -------------------------------------------- */
+
+		/** @override */
+		_onUpdate(data, options, userId) {
+			super._onUpdate(data, options, userId);
+			Hooks.call('updateCustomCardsContent', this, options, userId);
+		}
+
+		/** @override */
+		_onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+			super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+			Hooks.call('updateCustomCardsContent', this, options, userId);
+		}
+
+		/** @override */
+		_onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+			super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+			Hooks.call('updateCustomCardsContent', this, options, userId);
+		}
+
+		/** @override */
+		_onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+			super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
+			Hooks.call('updateCustomCardsContent', this, options, userId);
+		}
 	}
+
+	CONFIG.Cards.documentClass = CustomCards;
 }
 
 /* -------------------------------------------- */
@@ -75,15 +112,6 @@ export const loadCardSettings = () => {
 
 
 
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.invasiveCode, {
-		name: "RTUCards.settings.invasiveCode.label",
-		hint: "RTUCards.settings.invasiveCode.hint",
-		scope: "world",
-		type: Boolean,
-		default: true,
-		config: true
-	});
-  
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.smallDisplay, {
 		name: "RTUCards.settings.smallDisplay.label",
 		hint: "RTUCards.settings.smallDisplay.hint",

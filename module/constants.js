@@ -89,7 +89,6 @@ export const GlobalConfiguration = {
     everyHandsPeekOn: 'everyHandsPeekOn',
     everyHandsDiscardAll: 'everyHandsDiscardAll',
     everyRevealedDiscardAll : 'everyRevealedDiscardAll',
-    invasiveCode: 'invasiveCode',
     shortcuts: 'shortcuts',
     smallDisplay: 'smallDisplay',
     stacks: 'stacks',

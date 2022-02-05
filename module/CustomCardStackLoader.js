@@ -462,6 +462,15 @@ export class CustomCardStackLoader {
             }
         };
 
+        // Add stacks in the available card stacks
+        Object.entries( coreStacks ).forEach( ([key, value]) => {
+            CONFIG.Cards.presets[key] = {
+                label: value.labelBaseKey + 'title',
+                src: value.preset,
+                type: 'deck',
+            };
+        });
+
         // Add manually registered stacks
         game.cards.filter(s => {
             const custom = new CustomCardStack(s);
