@@ -398,13 +398,13 @@ export class CustomCardStackLoader {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.pokerDark.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
-                preset: CONFIG.Cards.presets.pokerDark.src
+                preset: 'modules/ready-to-use-cards/resources/pokerDark/cards.json'
             },
             pokerLight: {
                 cardClass: CustomCardSimple,
                 labelBaseKey : 'RTUCards.pokerLight.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
-                preset: CONFIG.Cards.presets.pokerLight.src
+                preset: 'modules/ready-to-use-cards/resources/pokerLight/cards.json'
             },
             pixelFantasy: {
                 cardClass: CustomCardSimple,
