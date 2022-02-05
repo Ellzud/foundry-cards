@@ -406,11 +406,41 @@ export class CustomCardStackLoader {
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
                 preset: CONFIG.Cards.presets.pokerLight.src
             },
-            zodiac: {
+            pixelFantasy: {
                 cardClass: CustomCardSimple,
-                labelBaseKey : 'RTUCards.zodiac.',
-                resourceBaseDir : 'modules/ready-to-use-cards/resources/zodiac',
-                preset: 'modules/ready-to-use-cards/resources/zodiac/cards.json'
+                labelBaseKey : 'RTUCards.pixelFantasy.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pixelFantasy',
+                preset: 'modules/ready-to-use-cards/resources/pixelFantasy/cards.json'
+            },
+            pokerClassic: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerClassic.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerClassic',
+                preset: 'modules/ready-to-use-cards/resources/pokerClassic/cards.json'
+            },
+            pokerDark32: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerDark32.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
+                preset: 'modules/ready-to-use-cards/resources/pokerDark/cards32.json'
+            },
+            pokerLight32: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerLight32.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerLight',
+                preset: 'modules/ready-to-use-cards/resources/pokerLight/cards32.json'
+            },
+            pixelFantasy32: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pixelFantasy32.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pixelFantasy',
+                preset: 'modules/ready-to-use-cards/resources/pixelFantasy/cards32.json'
+            },
+            pokerClassic32: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.pokerClassic32.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerClassic',
+                preset: 'modules/ready-to-use-cards/resources/pokerClassic/cards32.json'
             },
             divineTarot: {
                 cardClass: CustomCardSimple,
@@ -423,6 +453,12 @@ export class CustomCardStackLoader {
                 labelBaseKey : 'RTUCards.classicTarot.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/classicTarot',
                 preset: 'modules/ready-to-use-cards/resources/classicTarot/cards.json'
+            },
+            zodiac: {
+                cardClass: CustomCardSimple,
+                labelBaseKey : 'RTUCards.zodiac.',
+                resourceBaseDir : 'modules/ready-to-use-cards/resources/zodiac',
+                preset: 'modules/ready-to-use-cards/resources/zodiac/cards.json'
             }
         };
 

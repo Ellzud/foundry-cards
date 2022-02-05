@@ -355,6 +355,8 @@ Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
 - Zodiac signs : Designed by rawpixel.com. Downloaded from fr.freepik.com
 - Divine Tarot : Source : Tarot de Marseille
 Edition Grimaud, Downloaded from https://insightfulvision.fr/gallery-arcanes1.php
+- Classic Poker : LGPL, Downloaded from https://fr.wikipedia.org/wiki/Jeu_de_cartes_fran%C3%A7ais
 - Classic Tarot : Designed by Edition Grimaud, Downloaded from https://commons.wikimedia.org/wiki/Category:Tarot_nouveau_-_Grimaud_-_1898
+- Pixel Fantasy : Designed by Caz (https://cazwolf.itch.io/), Downloaded from https://cazwolf.itch.io/pixel-fantasy-cards?download 
 - Shortcut icon for player hand : https://icon-library.com/icon/playing-cards-icon-0.html
 - Shortcut icon for player revealed cards : https://icon-library.com/icon/playing-cards-icon-18.html

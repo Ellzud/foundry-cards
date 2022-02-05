@@ -89,20 +89,38 @@
     "RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered": " (Inclus manuellement)",
     "RTUCards.pokerDark.coreStacks.suffix.viaCode": " (Inclus par du Code)",
 
-    "RTUCards.pokerDark.title": "Poker, cartes dorées",
+    "RTUCards.pokerDark.title": "Poker (doré)",
     "RTUCards.pokerDark.description": "Un jeu classique de 52 cartes.",
 
-    "RTUCards.pokerLight.title": "Poker, rouge et gris",
+    "RTUCards.pokerLight.title": "Poker (rouge et noir)",
     "RTUCards.pokerLight.description": "Un jeu classique de 52 cartes.",
+
+    "RTUCards.pixelFantasy.title": "Poker (pixel Fantasy)",
+    "RTUCards.pixelFantasy.description": "Un jeu classique de 52 cartes.",
+
+    "RTUCards.pokerClassic.title": "Poker (classique)",
+    "RTUCards.pokerClassic.description": "Un jeu classique de 52 cartes.",
+
+    "RTUCards.pokerDark32.title": "Belote (doré)",
+    "RTUCards.pokerDark32.description": "Un jeu classique de 32 cartes.",
+
+    "RTUCards.pokerLight32.title": "Belote (rouge et noir)",
+    "RTUCards.pokerLight32.description": "Un jeu classique de 32 cartes.",
+
+    "RTUCards.pixelFantasy32.title": "Belote (pixel Fantasy)",
+    "RTUCards.pixelFantasy32.description": "Un jeu classique de 32 cartes.",
+
+    "RTUCards.pokerClassic32.title": "Belote (classique)",
+    "RTUCards.pokerClassic32.description": "Un jeu classique de 32 cartes.",
+
+    "RTUCards.divineTarot.title": "Tarot (arcanes)",
+    "RTUCards.divineTarot.description": "78 cartes, dont les arcanes majeurs.",
+
+    "RTUCards.classicTarot.title": "Tarot (classique)",
+    "RTUCards.classicTarot.description": "78 cartes, dont les atouts et les bouts",
 
     "RTUCards.zodiac.title": "Signes du zodiaque",
     "RTUCards.zodiac.description": "12 cartes. Une pour chaque signe.",
-
-    "RTUCards.divineTarot.title": "Tarot divinatoire",
-    "RTUCards.divineTarot.description": "78 cartes, dont les arcanes majeurs.",
-
-    "RTUCards.classicTarot.title": "Tarot classique",
-    "RTUCards.classicTarot.description": "78 cartes, dont les atouts et les bouts",
 
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",
