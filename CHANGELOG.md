@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Release 1.5.0
+
+### No more invasive code
+- Everything that was done via overrides are now done via hooks. Setting `invasive code` has been removed.
+
+### Some new decks
+- Added new visuals for 52 card decks : pixel fantasy and french style
+- Added 32 cards decks with same visuals
+
+Decks are now available via preset if you want to do some slight changes to them before including them to the module.
+
 ## Release 1.4.1
 
 ### Fix for Swade system

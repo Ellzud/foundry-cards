@@ -11,30 +11,9 @@ This module has been developped with the following mindset :
 - Multiple decks can be used. Each one comes with its related discard pile.
 - What is important is : For each card type, which action is available when handling decks, hands, revealed cards and discard piles. All this is customizable via settings.
 
-### Invasive code - or not
-
-![Invasive code](docs/README_invasive_code.webp?raw=true)
-
-By default, this module override those two classes : 
-~~~js
-static registerCardSystem() {
-    CONFIG.Cards.documentClass = CustomCards;
-    CONFIG.ui.cards = CustomCardsDirectory;
-}
-~~~
-It allows automatic detection of card stack handled by the module and switch to the right UI.
-
-It also comes with a custom context menu when clicking on them inside the card stack list.
-
-> If those overrides bother you or comes into conflict with your custom system, you can choose to uncheck it.
-
-By doing so, the custom context becomes disabled and the card GUI will be registered as any other sheet. See next chapter for more details about those two functions.
-
-
 ### Supported languages
 
 This module is currently available in French and in English.
-
 
 
 ## Choose the decks you want
@@ -61,34 +40,28 @@ And then uncheck actions you don't want to have :
 
 ### Add custom decks
 
+> The GUI won't change as long as the stack is not registered inside this module decks.
+
 You can still create other decks. The same way you did it before. 
-
-> If you've chosen to keep the `Invasive code` setting, the GUI won't change as long as the stack is not registered inside this module decks.
-
-> Otherwise, you will need to manually put the classic sheet back.
 
 Once you're done, you can add the deck to the registered ones :
 
 ![Regiter deck](docs/README_register_deck.webp?raw=true)
 
-Alternative: 
-
-![Regiter deck alternative](docs/README_register_deck_alternative.webp?raw=true)
-
 By doing so, a second stack for the discard will automatically be created. And now you will have access to this module GUI !
 
 ![Regiter deck result](docs/README_register_deck_result.webp?raw=true)
+
+If you want to make slight changes (like adding Jokers) from preconfigured decks, presets are available :
+
+![Available presets](docs/README_register_deck_presets.webp?raw=true)
+
 
 ### Advanced method (only for developpers)
 
 There exists an advanced method allowing you to do far more configuration for your custom decks. It uses a hooks named `loadCardStacksDefinition`. You will need to add some code in you custom module/system to manage it.
 
 It can allow to automatically create decks without the need to have static preset files. But above all, it allows you to implement custom actions and custom display for your cards.
-
-Since it's a little complicated, this will be described in details at the end of this readme.
-
-
-
 
 ## Choosing which actions you want for your cards
 
@@ -355,6 +328,8 @@ Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
 - Zodiac signs : Designed by rawpixel.com. Downloaded from fr.freepik.com
 - Divine Tarot : Source : Tarot de Marseille
 Edition Grimaud, Downloaded from https://insightfulvision.fr/gallery-arcanes1.php
+- Classic Poker : LGPL, Downloaded from https://fr.wikipedia.org/wiki/Jeu_de_cartes_fran%C3%A7ais
 - Classic Tarot : Designed by Edition Grimaud, Downloaded from https://commons.wikimedia.org/wiki/Category:Tarot_nouveau_-_Grimaud_-_1898
+- Pixel Fantasy : Designed by Caz (https://cazwolf.itch.io/), Downloaded from https://cazwolf.itch.io/pixel-fantasy-cards?download 
 - Shortcut icon for player hand : https://icon-library.com/icon/playing-cards-icon-0.html
 - Shortcut icon for player revealed cards : https://icon-library.com/icon/playing-cards-icon-18.html
