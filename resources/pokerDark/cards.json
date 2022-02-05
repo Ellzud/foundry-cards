@@ -1,8 +1,8 @@
 {
-  "name": "Poker Deck - Dark",
+  "name": "Poker (gold)",
   "type": "deck",
-  "description": "A standard 52-card deck of playing cards.",
-  "img": "cards/backs/dark-gold.webp",
+  "description": "A classic 52 cards deck.",
+  "img": "modules/ready-to-use-cards/resources/pokerDark/icons/back.webp",
   "data": {},
   "cards": [
     {

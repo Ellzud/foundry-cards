@@ -1,7 +1,7 @@
 {
-  "name": "Tarot cards",
+  "name": "Tarot (french style)",
   "type": "deck",
-  "description": "78 crds with trumps and oudlers",
+  "description": "A 78 cards deck with trumps and oudlers",
   "img": "modules/ready-to-use-cards/resources/classicTarot/icons/back.webp",
   "data": {},
   "cards": [

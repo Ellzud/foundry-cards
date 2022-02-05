@@ -1,7 +1,7 @@
 {
-  "name": "Divinatory Tarot",
+  "name": "Tarot (arcanes)",
   "type": "deck",
-  "description": "78 cards with major arcana.",
+  "description": "A 78 cards deck with major arcanas.",
   "img": "modules/ready-to-use-cards/resources/divineTarot/icons/back.webp",
   "data": {},
   "cards": [

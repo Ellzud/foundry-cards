@@ -1,8 +1,8 @@
 {
-  "name": "Poker Deck - Light",
+  "name": "Poker (red and grey)",
   "type": "deck",
-  "description": "A standard 52-card deck of playing cards.",
-  "img": "cards/backs/light-soft.webp",
+  "description": "A classic 52 cards deck.",
+  "img": "modules/ready-to-use-cards/resources/pokerLight/icons/back.webp",
   "data": {},
   "cards": [
     {

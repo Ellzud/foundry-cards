@@ -1,7 +1,7 @@
 {
-  "name": "Poker Deck - Pixel Fantasy",
+  "name": "Belote (french style)",
   "type": "deck",
-  "description": "A standard 52-card deck of playing cards with fine display",
+  "description": "A classic 32 cards deck",
   "img": "modules/ready-to-use-cards/resources/pokerClassic/icons/back.webp",
   "data": {},
   "cards": [
