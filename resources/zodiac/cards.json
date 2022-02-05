@@ -1,7 +1,7 @@
 {
   "name": "Zodiac signs",
   "type": "deck",
-  "description": "12 cards.",
+  "description": "A small game with 12 cards, one for each sign.",
   "img": "modules/ready-to-use-cards/resources/zodiac/icons/back.webp",
   "data": {},
   "cards": [

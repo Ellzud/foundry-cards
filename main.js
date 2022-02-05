@@ -1,9 +1,9 @@
 import { CustomCardStackLoader } from './module/CustomCardStackLoader.js';
 import { CARD_STACKS_DEFINITION } from './module/StackDefinition.js';
+import { ShortcutForHand, ShortcutForRevealedCards } from './module/ShortcutPanels.js';
 import * as config  from './module/config.js';
 import * as message  from './module/message.js';
-import { ShortcutForHand, ShortcutForRevealedCards } from './module/ShortcutPanels.js';
-import { GlobalConfiguration } from './module/constants.js';
+import * as contextmenus  from './module/contextmenus.js';
 
 /**
  * Initialization actions taken on Foundry Virtual Tabletop client init.
@@ -49,29 +49,7 @@ Hooks.on("updateCustomCardsContent", (cards, options, user) => {
   module.shortcuts.revealed.someStacksHaveChanged(cards);
 });
 
-
-// -----------------------------------------------------------
-// Those next hooks are here for those who unchecked invasive code
-// It has lesser performance than calling it only once by change inside CustomCards
-// But only available method for those who have unchecked invasive code settings
-// -----------------------------------------------------------
-Hooks.on("createCard", (card, options, userId) => {
-  if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.invasiveCode ) ) {
-    Hooks.call('updateCustomCardsContent', card.parent, options, userId);
-  }
-});
-
-Hooks.on("updateCard", (card, change, options, userId) => {
-  if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.invasiveCode ) ) {
-    Hooks.call('updateCustomCardsContent', card.parent, options, userId);
-  }
-});
-
-Hooks.on("deleteCard", (card, options, userId) => {
-  if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.invasiveCode ) ) {
-    Hooks.call('updateCustomCardsContent', card.parent, options, userId);
-  }
-});
+Hooks.on('getCardsDirectoryEntryContext', contextmenus.onGetCardsDirectoryEntryContext);
 
 
 

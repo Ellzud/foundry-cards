@@ -1,0 +1,925 @@
+{
+  "name": "Belote (pixel fantasy)",
+  "type": "deck",
+  "description": "A classic 32 cards deck",
+  "img": "modules/ready-to-use-cards/resources/pixelFantasy/icons/back.webp",
+  "data": {},
+  "cards": [
+    {
+      "name": "Ace of Clubs",
+      "faces": [
+        {
+          "name": "Ace of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-1.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "clubs",
+      "_id": "loo6q6amo3eztiyh",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 0,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Seven of Clubs",
+      "faces": [
+        {
+          "name": "Seven of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-7.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "clubs",
+      "_id": "zvsjhvidimtguwj0",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 6,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Eight of Clubs",
+      "faces": [
+        {
+          "name": "Eight of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-8.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "clubs",
+      "_id": "s3xdf9wq0vl9kkr2",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 7,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Nine of Clubs",
+      "faces": [
+        {
+          "name": "Nine of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-9.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "clubs",
+      "_id": "x25ykwowoi5bm9eh",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 8,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ten of Clubs",
+      "faces": [
+        {
+          "name": "Ten of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-10.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "clubs",
+      "_id": "3h8kmqpdjoao6x6r",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 9,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Jack of Clubs",
+      "faces": [
+        {
+          "name": "Jack of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-11.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "clubs",
+      "_id": "7f0csnjtydhakm44",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 10,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Queen of Clubs",
+      "faces": [
+        {
+          "name": "Queen of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-12.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "clubs",
+      "_id": "qj3cfswxzqtjjkgb",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 11,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "King of Clubs",
+      "faces": [
+        {
+          "name": "King of Clubs",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-clubs-13.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "clubs",
+      "_id": "asstteqyzvu88qex",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 12,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ace of Spades",
+      "faces": [
+        {
+          "name": "Ace of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-1.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "spades",
+      "_id": "5h5quuegx7t9y6ou",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 39,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Seven of Spades",
+      "faces": [
+        {
+          "name": "Seven of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-7.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "spades",
+      "_id": "8jq2cfaeqar9yxyh",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 45,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Eight of Spades",
+      "faces": [
+        {
+          "name": "Eight of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-8.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "spades",
+      "_id": "jgt0z54p62hwpqly",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 46,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Nine of Spades",
+      "faces": [
+        {
+          "name": "Nine of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-9.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "spades",
+      "_id": "dwhjdjro3pn5kai3",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 47,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ten of Spades",
+      "faces": [
+        {
+          "name": "Ten of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-10.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "spades",
+      "_id": "125g0oj818vemu9k",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 48,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Jack of Spades",
+      "faces": [
+        {
+          "name": "Jack of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-11.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "spades",
+      "_id": "dnem20d68vdydag0",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 49,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Queen of Spades",
+      "faces": [
+        {
+          "name": "Queen of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-12.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "spades",
+      "_id": "g9v9k6y2vdqcwxrl",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 50,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "King of Spades",
+      "faces": [
+        {
+          "name": "King of Spades",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-spades-13.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "spades",
+      "_id": "z2jdunqpwcgvcec7",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 51,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ace of Diamonds",
+      "faces": [
+        {
+          "name": "Ace of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-1.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "diamonds",
+      "_id": "qrqb5fgmbmjx5mze",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 13,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Seven of Diamonds",
+      "faces": [
+        {
+          "name": "Seven of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-7.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "diamonds",
+      "_id": "6ldcfqulvuikl3ow",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 19,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Eight of Diamonds",
+      "faces": [
+        {
+          "name": "Eight of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-8.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "diamonds",
+      "_id": "h4nhqdl3lyo9pklb",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 20,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Nine of Diamonds",
+      "faces": [
+        {
+          "name": "Nine of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-9.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "diamonds",
+      "_id": "cglr7s2pyalravj2",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 21,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ten of Diamonds",
+      "faces": [
+        {
+          "name": "Ten of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-10.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "diamonds",
+      "_id": "vas0aoh7mil5ymcc",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 22,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Jack of Diamonds",
+      "faces": [
+        {
+          "name": "Jack of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-11.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "diamonds",
+      "_id": "9cdzng769umlfzxu",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 23,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Queen of Diamonds",
+      "faces": [
+        {
+          "name": "Queen of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-12.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "diamonds",
+      "_id": "fpfqnob3qzb4q51g",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 24,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "King of Diamonds",
+      "faces": [
+        {
+          "name": "King of Diamonds",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-diamonds-13.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "diamonds",
+      "_id": "32ni0kxlrxq2puhu",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 25,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ace of Hearts",
+      "faces": [
+        {
+          "name": "Ace of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-1.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 1,
+      "suit": "hearts",
+      "_id": "8aovnipdx2euzzg2",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 26,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Seven of Hearts",
+      "faces": [
+        {
+          "name": "Seven of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-7.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 7,
+      "suit": "hearts",
+      "_id": "igf1q0v9npoqqk41",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 32,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Eight of Hearts",
+      "faces": [
+        {
+          "name": "Eight of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-8.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 8,
+      "suit": "hearts",
+      "_id": "olltf0mrydtk0uh7",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 33,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Nine of Hearts",
+      "faces": [
+        {
+          "name": "Nine of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-9.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 9,
+      "suit": "hearts",
+      "_id": "7mwhho643q78ty54",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 34,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Ten of Hearts",
+      "faces": [
+        {
+          "name": "Ten of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-10.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 10,
+      "suit": "hearts",
+      "_id": "lpx7h11tkp95gsty",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 35,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": ""
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Jack of Hearts",
+      "faces": [
+        {
+          "name": "Jack of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-11.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 11,
+      "suit": "hearts",
+      "_id": "1el939yexo1mmgzt",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 36,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "Queen of Hearts",
+      "faces": [
+        {
+          "name": "Queen of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-12.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 12,
+      "suit": "hearts",
+      "_id": "jkp5a8lgyed7ynim",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 37,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    },
+    {
+      "name": "King of Hearts",
+      "faces": [
+        {
+          "name": "King of Hearts",
+          "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/card-hearts-13.png",
+          "text": ""
+        }
+      ],
+      "width": 2,
+      "height": 3,
+      "rotation": 0,
+      "type": "base",
+      "value": 13,
+      "suit": "hearts",
+      "_id": "nrmvizld8ofe36dc",
+      "description": "",
+      "data": {},
+      "face": 0,
+      "drawn": false,
+      "sort": 38,
+      "flags": {},
+      "back": {
+        "name": "",
+        "text": "",
+        "img": null
+      },
+      "origin": "ye4k4c8ILOXk4prz"
+    }
+  ],
+  "width": 2,
+  "height": 3,
+  "rotation": 0,
+  "displayCount": true
+}

@@ -113,19 +113,6 @@ export class CustomCardsDisplay extends CardsConfig {
                 });
             }
 
-            // Allow registering of new modules
-            if( this._cards.type == 'deck' && !this._custom.handledByModule ) {
-                buttons.unshift({
-                    label: "RTUCards.sidebar.context.registerDeck",
-                    class: "register-deck",
-                    icon: "far fa-plus-square",
-                    onclick: async () => {
-                        await this._custom.registerAsHandledByModule();
-                        this.close();
-                    }
-                });
-            }
-
             // Allow unregistering of custom modules
             if( this._cards.type == 'deck' && this._custom.manuallyRegistered ) {
                 buttons.unshift({
