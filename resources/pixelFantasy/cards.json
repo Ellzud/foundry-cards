@@ -2,7 +2,7 @@
   "name": "Poker (pixel fantasy)",
   "type": "deck",
   "description": "A classic 52 cards deck.",
-  "img": "modules/ready-to-use-cards/resources/pixelFantasy/cards/icons/back.webp",
+  "img": "modules/ready-to-use-cards/resources/pixelFantasy/icons/back.webp",
   "data": {},
   "cards": [
     {

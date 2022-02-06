@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Release 1.5.1
+
+### Typos
+- Some typos in deck labels
+
+
 ## Release 1.5.0
 
 ### No more invasive code
