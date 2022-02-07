@@ -5,6 +5,8 @@
 ### Typos
 - Some typos in deck labels
 
+### GUI improvment
+- Scrollbar are now correctly visible on main display
 
 ## Release 1.5.0
 
