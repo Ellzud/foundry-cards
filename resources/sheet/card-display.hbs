@@ -32,7 +32,7 @@
             {{> paramPartStackSelection stacks=param.availableStacks}}
 
         {{else}}
-            <div class="flexrow cards">
+            <div class="flexrow cards scaled-scrollbar">
                 {{#each param.availableCards as |card|}}
                     {{> cardDisplay card=card}}
                 {{/each}}
@@ -144,7 +144,7 @@
             </div>
 
             {{#if listing.opened}}
-                <div class="flexrow all-cards">
+                <div class="flexrow all-cards scaled-scrollbar">
                     {{#each listing.cards as |card|}}
                         {{> cardDisplay card=card}}
                     {{/each}}
