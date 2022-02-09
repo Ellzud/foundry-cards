@@ -6,1476 +6,787 @@
   "data": {},
   "cards": [
     {
-      "name": "Ace of Clubs",
-      "faces": [
-        {
-          "name": "Ace of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-ace.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "clubs",
-      "_id": "Z5222KcLKbykVcYC",
-      "description": "",
-      "data": {},
+      "name": "cards.hearts01.label",
+      "description": "cards.hearts01.desc",
+      "suit": "hearts",
       "face": 0,
-      "drawn": false,
-      "sort": 0,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Two of Clubs",
       "faces": [
         {
-          "name": "Two of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-02.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 2,
-      "suit": "clubs",
-      "_id": "S1p2oRlBTO3mw0C7",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 1,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Three of Clubs",
-      "faces": [
-        {
-          "name": "Three of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-03.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 3,
-      "suit": "clubs",
-      "_id": "50dfT08e6LOeypxB",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 2,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Four of Clubs",
-      "faces": [
-        {
-          "name": "Four of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-04.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 4,
-      "suit": "clubs",
-      "_id": "stdZckO3IjG1qEKK",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 3,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Five of Clubs",
-      "faces": [
-        {
-          "name": "Five of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-05.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 5,
-      "suit": "clubs",
-      "_id": "WMOpolAikWYYPyKd",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 4,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Six of Clubs",
-      "faces": [
-        {
-          "name": "Six of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-06.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 6,
-      "suit": "clubs",
-      "_id": "2VOSeefm5IrHW8JQ",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 5,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Seven of Clubs",
-      "faces": [
-        {
-          "name": "Seven of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "clubs",
-      "_id": "qSoRPVHVyZu1UuWk",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 6,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Eight of Clubs",
-      "faces": [
-        {
-          "name": "Eight of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "clubs",
-      "_id": "47ha8BEaBAn6Oh9G",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 7,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Nine of Clubs",
-      "faces": [
-        {
-          "name": "Nine of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "clubs",
-      "_id": "KDG5FYPymPpsTiiE",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 8,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ten of Clubs",
-      "faces": [
-        {
-          "name": "Ten of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "clubs",
-      "_id": "ZnpKWeLGqL5mtxJj",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 9,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Jack of Clubs",
-      "faces": [
-        {
-          "name": "Jack of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-jack.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "clubs",
-      "_id": "fGTuAfpphM42xklT",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 10,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Queen of Clubs",
-      "faces": [
-        {
-          "name": "Queen of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-queen.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "clubs",
-      "_id": "HCFZJuhN0ZcQi5na",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 11,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "King of Clubs",
-      "faces": [
-        {
-          "name": "King of Clubs",
-          "text": "",
-          "img": "cards/light-soft/clubs-king.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "clubs",
-      "_id": "sY4DdXEa1UDN7Kkb",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 12,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ace of Spades",
-      "faces": [
-        {
-          "name": "Ace of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-ace.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "spades",
-      "_id": "JbCLk5Sed0kIUA1t",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 39,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Two of Spades",
-      "faces": [
-        {
-          "name": "Two of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-02.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 2,
-      "suit": "spades",
-      "_id": "2EmM6IwBgksbmbEv",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 40,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Three of Spades",
-      "faces": [
-        {
-          "name": "Three of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-03.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 3,
-      "suit": "spades",
-      "_id": "Q3bE7KkTgadXQCW9",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 41,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Four of Spades",
-      "faces": [
-        {
-          "name": "Four of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-04.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 4,
-      "suit": "spades",
-      "_id": "lDFLNjnXiCRVljuO",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 42,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Five of Spades",
-      "faces": [
-        {
-          "name": "Five of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-05.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 5,
-      "suit": "spades",
-      "_id": "ze4ZAt3G7y9mw4LH",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 43,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Six of Spades",
-      "faces": [
-        {
-          "name": "Six of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-06.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 6,
-      "suit": "spades",
-      "_id": "DmbZh6rwcrfJiNzH",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 44,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Seven of Spades",
-      "faces": [
-        {
-          "name": "Seven of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "spades",
-      "_id": "wG8XDoyTR2o2oLUK",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 45,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Eight of Spades",
-      "faces": [
-        {
-          "name": "Eight of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "spades",
-      "_id": "Cix6GGKZkr3hImli",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 46,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Nine of Spades",
-      "faces": [
-        {
-          "name": "Nine of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "spades",
-      "_id": "RV918Z65IPgT9cbs",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 47,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ten of Spades",
-      "faces": [
-        {
-          "name": "Ten of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "spades",
-      "_id": "Q89fyNeeoKFkgMry",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 48,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Jack of Spades",
-      "faces": [
-        {
-          "name": "Jack of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-jack.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "spades",
-      "_id": "A8sqbdMByaTDT28W",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 49,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Queen of Spades",
-      "faces": [
-        {
-          "name": "Queen of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-queen.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "spades",
-      "_id": "5hEckcGn3buxdcTR",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 50,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "King of Spades",
-      "faces": [
-        {
-          "name": "King of Spades",
-          "text": "",
-          "img": "cards/light-soft/spades-king.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "spades",
-      "_id": "0pMY5MmETfQ0EkLe",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 51,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ace of Diamonds",
-      "faces": [
-        {
-          "name": "Ace of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-ace.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "diamonds",
-      "_id": "GaZFrzHa6MS5TawP",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 13,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Two of Diamonds",
-      "faces": [
-        {
-          "name": "Two of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-02.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 2,
-      "suit": "diamonds",
-      "_id": "a5U0VEk5LegTxwO1",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 14,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Three of Diamonds",
-      "faces": [
-        {
-          "name": "Three of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-03.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 3,
-      "suit": "diamonds",
-      "_id": "B7eFyR4RKV1onj6R",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 15,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Four of Diamonds",
-      "faces": [
-        {
-          "name": "Four of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-04.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 4,
-      "suit": "diamonds",
-      "_id": "yV9E8VTb3hy4xADv",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 16,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Five of Diamonds",
-      "faces": [
-        {
-          "name": "Five of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-05.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 5,
-      "suit": "diamonds",
-      "_id": "BLapy0A9ul3UFQvw",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 17,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Six of Diamonds",
-      "faces": [
-        {
-          "name": "Six of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-06.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 6,
-      "suit": "diamonds",
-      "_id": "vl8l6og5WiKMQ416",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 18,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Seven of Diamonds",
-      "faces": [
-        {
-          "name": "Seven of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "diamonds",
-      "_id": "6vAXjA1izTfdWyEI",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 19,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Eight of Diamonds",
-      "faces": [
-        {
-          "name": "Eight of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "diamonds",
-      "_id": "PW9bOENXh2InvV7D",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 20,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Nine of Diamonds",
-      "faces": [
-        {
-          "name": "Nine of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "diamonds",
-      "_id": "D2ksHcMPesfg1clo",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 21,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ten of Diamonds",
-      "faces": [
-        {
-          "name": "Ten of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "diamonds",
-      "_id": "oDwzrpp6bXK4czzT",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 22,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Jack of Diamonds",
-      "faces": [
-        {
-          "name": "Jack of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-jack.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "diamonds",
-      "_id": "Xngw4GzXeyFVnM5J",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 23,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Queen of Diamonds",
-      "faces": [
-        {
-          "name": "Queen of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-queen.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "diamonds",
-      "_id": "DdWqQx67cdiRbMjw",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 24,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "King of Diamonds",
-      "faces": [
-        {
-          "name": "King of Diamonds",
-          "text": "",
-          "img": "cards/light-soft/diamonds-king.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "diamonds",
-      "_id": "Hxb7h9FDaG2bkAGS",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 25,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
-    },
-    {
-      "name": "Ace of Hearts",
-      "faces": [
-        {
-          "name": "Ace of Hearts",
-          "text": "",
+          "name": "cards.hearts01.label",
+          "text": "cards.hearts01.desc",
           "img": "cards/light-soft/hearts-ace.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 1,
-      "suit": "hearts",
-      "_id": "UNHJQV4vraX3ZxvJ",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 26,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 1
     },
     {
-      "name": "Two of Hearts",
+      "name": "cards.hearts02.label",
+      "description": "cards.hearts02.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Two of Hearts",
-          "text": "",
+          "name": "cards.hearts02.label",
+          "text": "cards.hearts02.desc",
           "img": "cards/light-soft/hearts-02.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
-      "suit": "hearts",
-      "_id": "PM8XarYNM8GZP4S7",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 27,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 2
     },
     {
-      "name": "Three of Hearts",
+      "name": "cards.hearts03.label",
+      "description": "cards.hearts03.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Three of Hearts",
-          "text": "",
+          "name": "cards.hearts03.label",
+          "text": "cards.hearts03.desc",
           "img": "cards/light-soft/hearts-03.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
-      "suit": "hearts",
-      "_id": "FP9ElFMwUj8uTtT3",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 28,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 3
     },
     {
-      "name": "Four of Hearts",
+      "name": "cards.hearts04.label",
+      "description": "cards.hearts04.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Four of Hearts",
-          "text": "",
+          "name": "cards.hearts04.label",
+          "text": "cards.hearts04.desc",
           "img": "cards/light-soft/hearts-04.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
-      "suit": "hearts",
-      "_id": "HAYgIQbrZ9EBQT9w",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 29,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 4
     },
     {
-      "name": "Five of Hearts",
+      "name": "cards.hearts05.label",
+      "description": "cards.hearts05.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Five of Hearts",
-          "text": "",
+          "name": "cards.hearts05.label",
+          "text": "cards.hearts05.desc",
           "img": "cards/light-soft/hearts-05.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
-      "suit": "hearts",
-      "_id": "9vDYvtjfdGQNhoHH",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 30,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 5
     },
     {
-      "name": "Six of Hearts",
+      "name": "cards.hearts06.label",
+      "description": "cards.hearts06.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Six of Hearts",
-          "text": "",
+          "name": "cards.hearts06.label",
+          "text": "cards.hearts06.desc",
           "img": "cards/light-soft/hearts-06.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
-      "suit": "hearts",
-      "_id": "9gEgG41SWdc8WNah",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 31,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 6
     },
     {
-      "name": "Seven of Hearts",
+      "name": "cards.hearts07.label",
+      "description": "cards.hearts07.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Seven of Hearts",
-          "text": "",
+          "name": "cards.hearts07.label",
+          "text": "cards.hearts07.desc",
           "img": "cards/light-soft/hearts-07.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
-      "suit": "hearts",
-      "_id": "GoGLu6oJrRtbSvPu",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 32,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 7
     },
     {
-      "name": "Eight of Hearts",
+      "name": "cards.hearts08.label",
+      "description": "cards.hearts08.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Eight of Hearts",
-          "text": "",
+          "name": "cards.hearts08.label",
+          "text": "cards.hearts08.desc",
           "img": "cards/light-soft/hearts-08.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
-      "suit": "hearts",
-      "_id": "WQIpXyeFPeybWEED",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 33,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 8
     },
     {
-      "name": "Nine of Hearts",
+      "name": "cards.hearts09.label",
+      "description": "cards.hearts09.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Nine of Hearts",
-          "text": "",
+          "name": "cards.hearts09.label",
+          "text": "cards.hearts09.desc",
           "img": "cards/light-soft/hearts-09.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
-      "suit": "hearts",
-      "_id": "qvuHLVUun75F98U9",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 34,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 9
     },
     {
-      "name": "Ten of Hearts",
+      "name": "cards.hearts10.label",
+      "description": "cards.hearts10.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Ten of Hearts",
-          "text": "",
+          "name": "cards.hearts10.label",
+          "text": "cards.hearts10.desc",
           "img": "cards/light-soft/hearts-10.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
-      "suit": "hearts",
-      "_id": "MWPXzPK1RFeVP4GC",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 35,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 10
     },
     {
-      "name": "Jack of Hearts",
+      "name": "cards.heartsJack.label",
+      "description": "cards.heartsJack.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Jack of Hearts",
-          "text": "",
+          "name": "cards.heartsJack.label",
+          "text": "cards.heartsJack.desc",
           "img": "cards/light-soft/hearts-jack.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
-      "suit": "hearts",
-      "_id": "0jBkgREgFUjT96wp",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 36,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 11
     },
     {
-      "name": "Queen of Hearts",
+      "name": "cards.heartsQueen.label",
+      "description": "cards.heartsQueen.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Queen of Hearts",
-          "text": "",
+          "name": "cards.heartsQueen.label",
+          "text": "cards.heartsQueen.desc",
           "img": "cards/light-soft/hearts-queen.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
-      "suit": "hearts",
-      "_id": "baSwHnunfzSBaTEC",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 37,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "value": 12
     },
     {
-      "name": "King of Hearts",
+      "name": "cards.heartsKing.label",
+      "description": "cards.heartsKing.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "King of Hearts",
-          "text": "",
+          "name": "cards.heartsKing.label",
+          "text": "cards.heartsKing.desc",
           "img": "cards/light-soft/hearts-king.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
-      "suit": "hearts",
-      "_id": "Z3SV4pbXaIn52Kkc",
-      "description": "",
-      "data": {},
+      "value": 13
+    },
+
+    {
+      "name": "cards.spades01.label",
+      "description": "cards.spades01.desc",
+      "suit": "spades",
       "face": 0,
-      "drawn": false,
-      "sort": 38,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "HSGgO9alf6LDRoMl"
+      "faces": [
+        {
+          "name": "cards.spades01.label",
+          "text": "cards.spades01.desc",
+          "img": "cards/light-soft/spades-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.spades02.label",
+      "description": "cards.spades02.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades02.label",
+          "text": "cards.spades02.desc",
+          "img": "cards/light-soft/spades-02.webp"
+        }
+      ],
+      "type": "base",
+      "value": 2
+    },
+    {
+      "name": "cards.spades03.label",
+      "description": "cards.spades03.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades03.label",
+          "text": "cards.spades03.desc",
+          "img": "cards/light-soft/spades-03.webp"
+        }
+      ],
+      "type": "base",
+      "value": 3
+    },
+    {
+      "name": "cards.spades04.label",
+      "description": "cards.spades04.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades04.label",
+          "text": "cards.spades04.desc",
+          "img": "cards/light-soft/spades-04.webp"
+        }
+      ],
+      "type": "base",
+      "value": 4
+    },
+    {
+      "name": "cards.spades05.label",
+      "description": "cards.spades05.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades05.label",
+          "text": "cards.spades05.desc",
+          "img": "cards/light-soft/spades-05.webp"
+        }
+      ],
+      "type": "base",
+      "value": 5
+    },
+    {
+      "name": "cards.spades06.label",
+      "description": "cards.spades06.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades06.label",
+          "text": "cards.spades06.desc",
+          "img": "cards/light-soft/spades-06.webp"
+        }
+      ],
+      "type": "base",
+      "value": 6
+    },
+    {
+      "name": "cards.spades07.label",
+      "description": "cards.spades07.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades07.label",
+          "text": "cards.spades07.desc",
+          "img": "cards/light-soft/spades-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.spades08.label",
+      "description": "cards.spades08.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades08.label",
+          "text": "cards.spades08.desc",
+          "img": "cards/light-soft/spades-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.spades09.label",
+      "description": "cards.spades09.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades09.label",
+          "text": "cards.spades09.desc",
+          "img": "cards/light-soft/spades-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.spades10.label",
+      "description": "cards.spades10.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades10.label",
+          "text": "cards.spades10.desc",
+          "img": "cards/light-soft/spades-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.spadesJack.label",
+      "description": "cards.spadesJack.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesJack.label",
+          "text": "cards.spadesJack.desc",
+          "img": "cards/light-soft/spades-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.spadesQueen.label",
+      "description": "cards.spadesQueen.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesQueen.label",
+          "text": "cards.spadesQueen.desc",
+          "img": "cards/light-soft/spades-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.spadesKing.label",
+      "description": "cards.spadesKing.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesKing.label",
+          "text": "cards.spadesKing.desc",
+          "img": "cards/light-soft/spades-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
+    },
+
+    {
+      "name": "cards.diamonds01.label",
+      "description": "cards.diamonds01.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds01.label",
+          "text": "cards.diamonds01.desc",
+          "img": "cards/light-soft/diamonds-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.diamonds02.label",
+      "description": "cards.diamonds02.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds02.label",
+          "text": "cards.diamonds02.desc",
+          "img": "cards/light-soft/diamonds-02.webp"
+        }
+      ],
+      "type": "base",
+      "value": 2
+    },
+    {
+      "name": "cards.diamonds03.label",
+      "description": "cards.diamonds03.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds03.label",
+          "text": "cards.diamonds03.desc",
+          "img": "cards/light-soft/diamonds-03.webp"
+        }
+      ],
+      "type": "base",
+      "value": 3
+    },
+    {
+      "name": "cards.diamonds04.label",
+      "description": "cards.diamonds04.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds04.label",
+          "text": "cards.diamonds04.desc",
+          "img": "cards/light-soft/diamonds-04.webp"
+        }
+      ],
+      "type": "base",
+      "value": 4
+    },
+    {
+      "name": "cards.diamonds05.label",
+      "description": "cards.diamonds05.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds05.label",
+          "text": "cards.diamonds05.desc",
+          "img": "cards/light-soft/diamonds-05.webp"
+        }
+      ],
+      "type": "base",
+      "value": 5
+    },
+    {
+      "name": "cards.diamonds06.label",
+      "description": "cards.diamonds06.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds06.label",
+          "text": "cards.diamonds06.desc",
+          "img": "cards/light-soft/diamonds-06.webp"
+        }
+      ],
+      "type": "base",
+      "value": 6
+    },
+    {
+      "name": "cards.diamonds07.label",
+      "description": "cards.diamonds07.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds07.label",
+          "text": "cards.diamonds07.desc",
+          "img": "cards/light-soft/diamonds-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.diamonds08.label",
+      "description": "cards.diamonds08.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds08.label",
+          "text": "cards.diamonds08.desc",
+          "img": "cards/light-soft/diamonds-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.diamonds09.label",
+      "description": "cards.diamonds09.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds09.label",
+          "text": "cards.diamonds09.desc",
+          "img": "cards/light-soft/diamonds-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.diamonds10.label",
+      "description": "cards.diamonds10.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds10.label",
+          "text": "cards.diamonds10.desc",
+          "img": "cards/light-soft/diamonds-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.diamondsJack.label",
+      "description": "cards.diamondsJack.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsJack.label",
+          "text": "cards.diamondsJack.desc",
+          "img": "cards/light-soft/diamonds-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.diamondsQueen.label",
+      "description": "cards.diamondsQueen.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsQueen.label",
+          "text": "cards.diamondsQueen.desc",
+          "img": "cards/light-soft/diamonds-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.diamondsKing.label",
+      "description": "cards.diamondsKing.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsKing.label",
+          "text": "cards.diamondsKing.desc",
+          "img": "cards/light-soft/diamonds-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
+    },
+
+    {
+      "name": "cards.clubs01.label",
+      "description": "cards.clubs01.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs01.label",
+          "text": "cards.clubs01.desc",
+          "img": "cards/light-soft/clubs-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.clubs02.label",
+      "description": "cards.clubs02.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs02.label",
+          "text": "cards.clubs02.desc",
+          "img": "cards/light-soft/clubs-02.webp"
+        }
+      ],
+      "type": "base",
+      "value": 2
+    },
+    {
+      "name": "cards.clubs03.label",
+      "description": "cards.clubs03.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs03.label",
+          "text": "cards.clubs03.desc",
+          "img": "cards/light-soft/clubs-03.webp"
+        }
+      ],
+      "type": "base",
+      "value": 3
+    },
+    {
+      "name": "cards.clubs04.label",
+      "description": "cards.clubs04.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs04.label",
+          "text": "cards.clubs04.desc",
+          "img": "cards/light-soft/clubs-04.webp"
+        }
+      ],
+      "type": "base",
+      "value": 4
+    },
+    {
+      "name": "cards.clubs05.label",
+      "description": "cards.clubs05.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs05.label",
+          "text": "cards.clubs05.desc",
+          "img": "cards/light-soft/clubs-05.webp"
+        }
+      ],
+      "type": "base",
+      "value": 5
+    },
+    {
+      "name": "cards.clubs06.label",
+      "description": "cards.clubs06.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs06.label",
+          "text": "cards.clubs06.desc",
+          "img": "cards/light-soft/clubs-06.webp"
+        }
+      ],
+      "type": "base",
+      "value": 6
+    },
+    {
+      "name": "cards.clubs07.label",
+      "description": "cards.clubs07.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs07.label",
+          "text": "cards.clubs07.desc",
+          "img": "cards/light-soft/clubs-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.clubs08.label",
+      "description": "cards.clubs08.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs08.label",
+          "text": "cards.clubs08.desc",
+          "img": "cards/light-soft/clubs-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.clubs09.label",
+      "description": "cards.clubs09.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs09.label",
+          "text": "cards.clubs09.desc",
+          "img": "cards/light-soft/clubs-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.clubs10.label",
+      "description": "cards.clubs10.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs10.label",
+          "text": "cards.clubs10.desc",
+          "img": "cards/light-soft/clubs-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.clubsJack.label",
+      "description": "cards.clubsJack.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsJack.label",
+          "text": "cards.clubsJack.desc",
+          "img": "cards/light-soft/clubs-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.clubsQueen.label",
+      "description": "cards.clubsQueen.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsQueen.label",
+          "text": "cards.clubsQueen.desc",
+          "img": "cards/light-soft/clubs-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.clubsKing.label",
+      "description": "cards.clubsKing.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsKing.label",
+          "text": "cards.clubsKing.desc",
+          "img": "cards/light-soft/clubs-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
     }
   ],
   "width": 2,

@@ -198,7 +198,7 @@ export class CustomCardStack {
 
         // 1: Edit the deck
         const updateData = {};
-        updateData['name'] = this.stack.name + game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
+        updateData['name'] = this.stack.name + game.i18n.localize('RTUCards.coreStacks.suffix.deck');
         updateData['permission'] = {
             default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
         };
@@ -240,7 +240,7 @@ export class CustomCardStack {
 
         // 2: Rename deck and remove flag
         const updateData = {};
-        const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.deck');
+        const suffix = game.i18n.localize('RTUCards.coreStacks.suffix.deck');
         updateData['name'] = this.stack.name.replace(suffix, '');
         updateData['permission'] = {
             default: CONST.DOCUMENT_PERMISSION_LEVELS.NONE

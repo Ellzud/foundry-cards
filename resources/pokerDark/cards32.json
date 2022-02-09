@@ -6,916 +6,487 @@
   "data": {},
   "cards": [
     {
-      "name": "Ace of Clubs",
-      "faces": [
-        {
-          "name": "Ace of Clubs",
-          "img": "cards/dark-gold/clubs-ace.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "clubs",
-      "_id": "loo6q6amo3eztiyh",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 0,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Seven of Clubs",
-      "faces": [
-        {
-          "name": "Seven of Clubs",
-          "text": "",
-          "img": "cards/dark-gold/clubs-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "clubs",
-      "_id": "zvsjhvidimtguwj0",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 6,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Eight of Clubs",
-      "faces": [
-        {
-          "name": "Eight of Clubs",
-          "text": "",
-          "img": "cards/dark-gold/clubs-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "clubs",
-      "_id": "s3xdf9wq0vl9kkr2",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 7,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Nine of Clubs",
-      "faces": [
-        {
-          "name": "Nine of Clubs",
-          "text": "",
-          "img": "cards/dark-gold/clubs-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "clubs",
-      "_id": "x25ykwowoi5bm9eh",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 8,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ten of Clubs",
-      "faces": [
-        {
-          "name": "Ten of Clubs",
-          "text": "",
-          "img": "cards/dark-gold/clubs-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "clubs",
-      "_id": "3h8kmqpdjoao6x6r",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 9,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Jack of Clubs",
-      "faces": [
-        {
-          "name": "Jack of Clubs",
-          "img": "cards/dark-gold/clubs-jack.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "clubs",
-      "_id": "7f0csnjtydhakm44",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 10,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Queen of Clubs",
-      "faces": [
-        {
-          "name": "Queen of Clubs",
-          "img": "cards/dark-gold/clubs-queen.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "clubs",
-      "_id": "qj3cfswxzqtjjkgb",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 11,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "King of Clubs",
-      "faces": [
-        {
-          "name": "King of Clubs",
-          "img": "cards/dark-gold/clubs-king.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "clubs",
-      "_id": "asstteqyzvu88qex",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 12,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ace of Spades",
-      "faces": [
-        {
-          "name": "Ace of Spades",
-          "img": "cards/dark-gold/spades-ace.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "spades",
-      "_id": "5h5quuegx7t9y6ou",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 39,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Seven of Spades",
-      "faces": [
-        {
-          "name": "Seven of Spades",
-          "text": "",
-          "img": "cards/dark-gold/spades-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "spades",
-      "_id": "8jq2cfaeqar9yxyh",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 45,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Eight of Spades",
-      "faces": [
-        {
-          "name": "Eight of Spades",
-          "text": "",
-          "img": "cards/dark-gold/spades-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "spades",
-      "_id": "jgt0z54p62hwpqly",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 46,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Nine of Spades",
-      "faces": [
-        {
-          "name": "Nine of Spades",
-          "text": "",
-          "img": "cards/dark-gold/spades-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "spades",
-      "_id": "dwhjdjro3pn5kai3",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 47,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ten of Spades",
-      "faces": [
-        {
-          "name": "Ten of Spades",
-          "text": "",
-          "img": "cards/dark-gold/spades-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "spades",
-      "_id": "125g0oj818vemu9k",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 48,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Jack of Spades",
-      "faces": [
-        {
-          "name": "Jack of Spades",
-          "img": "cards/dark-gold/spades-jack.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "spades",
-      "_id": "dnem20d68vdydag0",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 49,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Queen of Spades",
-      "faces": [
-        {
-          "name": "Queen of Spades",
-          "img": "cards/dark-gold/spades-queen.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "spades",
-      "_id": "g9v9k6y2vdqcwxrl",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 50,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "King of Spades",
-      "faces": [
-        {
-          "name": "King of Spades",
-          "img": "cards/dark-gold/spades-king.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "spades",
-      "_id": "z2jdunqpwcgvcec7",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 51,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ace of Diamonds",
-      "faces": [
-        {
-          "name": "Ace of Diamonds",
-          "img": "cards/dark-gold/diamonds-ace.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
-      "suit": "diamonds",
-      "_id": "qrqb5fgmbmjx5mze",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 13,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Seven of Diamonds",
-      "faces": [
-        {
-          "name": "Seven of Diamonds",
-          "text": "",
-          "img": "cards/dark-gold/diamonds-07.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 7,
-      "suit": "diamonds",
-      "_id": "6ldcfqulvuikl3ow",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 19,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Eight of Diamonds",
-      "faces": [
-        {
-          "name": "Eight of Diamonds",
-          "text": "",
-          "img": "cards/dark-gold/diamonds-08.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 8,
-      "suit": "diamonds",
-      "_id": "h4nhqdl3lyo9pklb",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 20,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Nine of Diamonds",
-      "faces": [
-        {
-          "name": "Nine of Diamonds",
-          "text": "",
-          "img": "cards/dark-gold/diamonds-09.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 9,
-      "suit": "diamonds",
-      "_id": "cglr7s2pyalravj2",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 21,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ten of Diamonds",
-      "faces": [
-        {
-          "name": "Ten of Diamonds",
-          "text": "",
-          "img": "cards/dark-gold/diamonds-10.webp"
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 10,
-      "suit": "diamonds",
-      "_id": "vas0aoh7mil5ymcc",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 22,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Jack of Diamonds",
-      "faces": [
-        {
-          "name": "Jack of Diamonds",
-          "img": "cards/dark-gold/diamonds-jack.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 11,
-      "suit": "diamonds",
-      "_id": "9cdzng769umlfzxu",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 23,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Queen of Diamonds",
-      "faces": [
-        {
-          "name": "Queen of Diamonds",
-          "img": "cards/dark-gold/diamonds-queen.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 12,
-      "suit": "diamonds",
-      "_id": "fpfqnob3qzb4q51g",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 24,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "King of Diamonds",
-      "faces": [
-        {
-          "name": "King of Diamonds",
-          "img": "cards/dark-gold/diamonds-king.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 13,
-      "suit": "diamonds",
-      "_id": "32ni0kxlrxq2puhu",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 25,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Ace of Hearts",
-      "faces": [
-        {
-          "name": "Ace of Hearts",
-          "img": "cards/dark-gold/hearts-ace.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
+      "name": "cards.hearts01.label",
+      "description": "cards.hearts01.desc",
       "suit": "hearts",
-      "_id": "8aovnipdx2euzzg2",
-      "description": "",
-      "data": {},
       "face": 0,
-      "drawn": false,
-      "sort": 26,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
-    },
-    {
-      "name": "Seven of Hearts",
       "faces": [
         {
-          "name": "Seven of Hearts",
-          "text": "",
+          "name": "cards.hearts01.label",
+          "text": "cards.hearts01.desc",
+          "img": "cards/dark-gold/hearts-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.hearts07.label",
+      "description": "cards.hearts07.desc",
+      "suit": "hearts",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.hearts07.label",
+          "text": "cards.hearts07.desc",
           "img": "cards/dark-gold/hearts-07.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
-      "suit": "hearts",
-      "_id": "igf1q0v9npoqqk41",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 32,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 7
     },
     {
-      "name": "Eight of Hearts",
+      "name": "cards.hearts08.label",
+      "description": "cards.hearts08.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Eight of Hearts",
-          "text": "",
+          "name": "cards.hearts08.label",
+          "text": "cards.hearts08.desc",
           "img": "cards/dark-gold/hearts-08.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
-      "suit": "hearts",
-      "_id": "olltf0mrydtk0uh7",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 33,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 8
     },
     {
-      "name": "Nine of Hearts",
+      "name": "cards.hearts09.label",
+      "description": "cards.hearts09.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Nine of Hearts",
-          "text": "",
+          "name": "cards.hearts09.label",
+          "text": "cards.hearts09.desc",
           "img": "cards/dark-gold/hearts-09.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
-      "suit": "hearts",
-      "_id": "7mwhho643q78ty54",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 34,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 9
     },
     {
-      "name": "Ten of Hearts",
+      "name": "cards.hearts10.label",
+      "description": "cards.hearts10.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Ten of Hearts",
-          "text": "",
+          "name": "cards.hearts10.label",
+          "text": "cards.hearts10.desc",
           "img": "cards/dark-gold/hearts-10.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
-      "suit": "hearts",
-      "_id": "lpx7h11tkp95gsty",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 35,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": ""
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 10
     },
     {
-      "name": "Jack of Hearts",
+      "name": "cards.heartsJack.label",
+      "description": "cards.heartsJack.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Jack of Hearts",
-          "img": "cards/dark-gold/hearts-jack.webp",
-          "text": ""
+          "name": "cards.heartsJack.label",
+          "text": "cards.heartsJack.desc",
+          "img": "cards/dark-gold/hearts-jack.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
-      "suit": "hearts",
-      "_id": "1el939yexo1mmgzt",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 36,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 11
     },
     {
-      "name": "Queen of Hearts",
+      "name": "cards.heartsQueen.label",
+      "description": "cards.heartsQueen.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "Queen of Hearts",
-          "img": "cards/dark-gold/hearts-queen.webp",
-          "text": ""
+          "name": "cards.heartsQueen.label",
+          "text": "cards.heartsQueen.desc",
+          "img": "cards/dark-gold/hearts-queen.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
-      "suit": "hearts",
-      "_id": "jkp5a8lgyed7ynim",
-      "description": "",
-      "data": {},
-      "face": 0,
-      "drawn": false,
-      "sort": 37,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "value": 12
     },
     {
-      "name": "King of Hearts",
+      "name": "cards.heartsKing.label",
+      "description": "cards.heartsKing.desc",
+      "suit": "hearts",
+      "face": 0,
       "faces": [
         {
-          "name": "King of Hearts",
-          "img": "cards/dark-gold/hearts-king.webp",
-          "text": ""
+          "name": "cards.heartsKing.label",
+          "text": "cards.heartsKing.desc",
+          "img": "cards/dark-gold/hearts-king.webp"
         }
       ],
-      "width": 2,
-      "height": 3,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
-      "suit": "hearts",
-      "_id": "nrmvizld8ofe36dc",
-      "description": "",
-      "data": {},
+      "value": 13
+    },
+
+    {
+      "name": "cards.spades01.label",
+      "description": "cards.spades01.desc",
+      "suit": "spades",
       "face": 0,
-      "drawn": false,
-      "sort": 38,
-      "flags": {},
-      "back": {
-        "name": "",
-        "text": "",
-        "img": null
-      },
-      "origin": "ye4k4c8ILOXk4prz"
+      "faces": [
+        {
+          "name": "cards.spades01.label",
+          "text": "cards.spades01.desc",
+          "img": "cards/dark-gold/spades-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.spades07.label",
+      "description": "cards.spades07.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades07.label",
+          "text": "cards.spades07.desc",
+          "img": "cards/dark-gold/spades-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.spades08.label",
+      "description": "cards.spades08.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades08.label",
+          "text": "cards.spades08.desc",
+          "img": "cards/dark-gold/spades-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.spades09.label",
+      "description": "cards.spades09.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades09.label",
+          "text": "cards.spades09.desc",
+          "img": "cards/dark-gold/spades-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.spades10.label",
+      "description": "cards.spades10.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spades10.label",
+          "text": "cards.spades10.desc",
+          "img": "cards/dark-gold/spades-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.spadesJack.label",
+      "description": "cards.spadesJack.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesJack.label",
+          "text": "cards.spadesJack.desc",
+          "img": "cards/dark-gold/spades-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.spadesQueen.label",
+      "description": "cards.spadesQueen.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesQueen.label",
+          "text": "cards.spadesQueen.desc",
+          "img": "cards/dark-gold/spades-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.spadesKing.label",
+      "description": "cards.spadesKing.desc",
+      "suit": "spades",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.spadesKing.label",
+          "text": "cards.spadesKing.desc",
+          "img": "cards/dark-gold/spades-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
+    },
+
+    {
+      "name": "cards.diamonds01.label",
+      "description": "cards.diamonds01.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds01.label",
+          "text": "cards.diamonds01.desc",
+          "img": "cards/dark-gold/diamonds-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.diamonds07.label",
+      "description": "cards.diamonds07.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds07.label",
+          "text": "cards.diamonds07.desc",
+          "img": "cards/dark-gold/diamonds-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.diamonds08.label",
+      "description": "cards.diamonds08.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds08.label",
+          "text": "cards.diamonds08.desc",
+          "img": "cards/dark-gold/diamonds-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.diamonds09.label",
+      "description": "cards.diamonds09.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds09.label",
+          "text": "cards.diamonds09.desc",
+          "img": "cards/dark-gold/diamonds-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.diamonds10.label",
+      "description": "cards.diamonds10.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamonds10.label",
+          "text": "cards.diamonds10.desc",
+          "img": "cards/dark-gold/diamonds-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.diamondsJack.label",
+      "description": "cards.diamondsJack.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsJack.label",
+          "text": "cards.diamondsJack.desc",
+          "img": "cards/dark-gold/diamonds-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.diamondsQueen.label",
+      "description": "cards.diamondsQueen.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsQueen.label",
+          "text": "cards.diamondsQueen.desc",
+          "img": "cards/dark-gold/diamonds-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.diamondsKing.label",
+      "description": "cards.diamondsKing.desc",
+      "suit": "diamonds",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.diamondsKing.label",
+          "text": "cards.diamondsKing.desc",
+          "img": "cards/dark-gold/diamonds-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
+    },
+
+    {
+      "name": "cards.clubs01.label",
+      "description": "cards.clubs01.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs01.label",
+          "text": "cards.clubs01.desc",
+          "img": "cards/dark-gold/clubs-ace.webp"
+        }
+      ],
+      "type": "base",
+      "value": 1
+    },
+    {
+      "name": "cards.clubs07.label",
+      "description": "cards.clubs07.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs07.label",
+          "text": "cards.clubs07.desc",
+          "img": "cards/dark-gold/clubs-07.webp"
+        }
+      ],
+      "type": "base",
+      "value": 7
+    },
+    {
+      "name": "cards.clubs08.label",
+      "description": "cards.clubs08.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs08.label",
+          "text": "cards.clubs08.desc",
+          "img": "cards/dark-gold/clubs-08.webp"
+        }
+      ],
+      "type": "base",
+      "value": 8
+    },
+    {
+      "name": "cards.clubs09.label",
+      "description": "cards.clubs09.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs09.label",
+          "text": "cards.clubs09.desc",
+          "img": "cards/dark-gold/clubs-09.webp"
+        }
+      ],
+      "type": "base",
+      "value": 9
+    },
+    {
+      "name": "cards.clubs10.label",
+      "description": "cards.clubs10.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubs10.label",
+          "text": "cards.clubs10.desc",
+          "img": "cards/dark-gold/clubs-10.webp"
+        }
+      ],
+      "type": "base",
+      "value": 10
+    },
+    {
+      "name": "cards.clubsJack.label",
+      "description": "cards.clubsJack.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsJack.label",
+          "text": "cards.clubsJack.desc",
+          "img": "cards/dark-gold/clubs-jack.webp"
+        }
+      ],
+      "type": "base",
+      "value": 11
+    },
+    {
+      "name": "cards.clubsQueen.label",
+      "description": "cards.clubsQueen.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsQueen.label",
+          "text": "cards.clubsQueen.desc",
+          "img": "cards/dark-gold/clubs-queen.webp"
+        }
+      ],
+      "type": "base",
+      "value": 12
+    },
+    {
+      "name": "cards.clubsKing.label",
+      "description": "cards.clubsKing.desc",
+      "suit": "clubs",
+      "face": 0,
+      "faces": [
+        {
+          "name": "cards.clubsKing.label",
+          "text": "cards.clubsKing.desc",
+          "img": "cards/dark-gold/clubs-king.webp"
+        }
+      ],
+      "type": "base",
+      "value": 13
     }
   ],
   "width": 2,

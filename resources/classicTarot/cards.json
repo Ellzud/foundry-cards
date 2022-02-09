@@ -6,2734 +6,1174 @@
   "data": {},
   "cards": [
     {
-      "name": "Ace of hearts",
-      "faces": [
-        {
-          "name": "Ace of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_01.webp",
-          "text": ""
-        }
-      ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
-      "type": "base",
-      "value": 1,
+      "name": "cards.hearts01.label",
+      "description": "cards.hearts01.desc",
       "suit": "hearts",
-      "id": "6acpzt5bvlxxntzb",
       "face": 0,
-      "drawn": false,
-      "sort": 29,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Bg2vO0zfoQJ2EASi",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Two of hearts",
       "faces": [
         {
-          "name": "Two of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_02.webp",
-          "text": ""
+          "name": "cards.hearts01.label",
+          "text": "cards.hearts01.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_01.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
+      "value": 1
+    },
+    {
+      "name": "cards.hearts02.label",
+      "description": "cards.hearts02.desc",
       "suit": "hearts",
-      "id": "ahc3gx8em1jjmr4p",
       "face": 0,
-      "drawn": false,
-      "sort": 18,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "T7BhqLwhDgNaf3gX",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Three of hearts",
       "faces": [
         {
-          "name": "Three of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_03.webp",
-          "text": ""
+          "name": "cards.hearts02.label",
+          "text": "cards.hearts02.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_02.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
+      "value": 2
+    },
+    {
+      "name": "cards.hearts03.label",
+      "description": "cards.hearts03.desc",
       "suit": "hearts",
-      "id": "ba02kt3zefqipi6r",
       "face": 0,
-      "drawn": false,
-      "sort": 49,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "unDRwrqyu4gV6qWR",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Four of hearts",
       "faces": [
         {
-          "name": "Four of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_04.webp",
-          "text": ""
+          "name": "cards.hearts03.label",
+          "text": "cards.hearts03.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_03.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
+      "value": 3
+    },
+    {
+      "name": "cards.hearts04.label",
+      "description": "cards.hearts04.desc",
       "suit": "hearts",
-      "id": "p5itpjtkahmxg0kp",
       "face": 0,
-      "drawn": false,
-      "sort": 38,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "GZf7xdbVQH8u830F",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Five of hearts",
       "faces": [
         {
-          "name": "Five of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_05.webp",
-          "text": ""
+          "name": "cards.hearts04.label",
+          "text": "cards.hearts04.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_04.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
+      "value": 4
+    },
+    {
+      "name": "cards.hearts05.label",
+      "description": "cards.hearts05.desc",
       "suit": "hearts",
-      "id": "jkkqv4wxisd8zg82",
       "face": 0,
-      "drawn": false,
-      "sort": 66,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "TZ3gIo94apoQxew5",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Six of hearts",
       "faces": [
         {
-          "name": "Six of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_06.webp",
-          "text": ""
+          "name": "cards.hearts05.label",
+          "text": "cards.hearts05.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_05.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
+      "value": 5
+    },
+    {
+      "name": "cards.hearts06.label",
+      "description": "cards.hearts06.desc",
       "suit": "hearts",
-      "id": "xwamzto4bdpqjjrn",
       "face": 0,
-      "drawn": false,
-      "sort": 65,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Kf5Ju5DP2NwxdOKS",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Seven of hearts",
       "faces": [
         {
-          "name": "Seven of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_07.webp",
-          "text": ""
+          "name": "cards.hearts06.label",
+          "text": "cards.hearts06.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_06.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
+      "value": 6
+    },
+    {
+      "name": "cards.hearts07.label",
+      "description": "cards.hearts07.desc",
       "suit": "hearts",
-      "id": "9pkvsq7jhtn2ijns",
       "face": 0,
-      "drawn": false,
-      "sort": 7,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "cQ8La1bl8eCutdIe",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Eight of hearts",
       "faces": [
         {
-          "name": "Eight of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_08.webp",
-          "text": ""
+          "name": "cards.hearts07.label",
+          "text": "cards.hearts07.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_07.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
+      "value": 7
+    },
+    {
+      "name": "cards.hearts08.label",
+      "description": "cards.hearts08.desc",
       "suit": "hearts",
-      "id": "0rkyp2gogaze8aby",
       "face": 0,
-      "drawn": false,
-      "sort": 60,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "iIOlusXf5rxLWeVY",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Nine of hearts",
       "faces": [
         {
-          "name": "Nine of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_09.webp",
-          "text": ""
+          "name": "cards.hearts08.label",
+          "text": "cards.hearts08.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_08.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
+      "value": 8
+    },
+    {
+      "name": "cards.hearts09.label",
+      "description": "cards.hearts09.desc",
       "suit": "hearts",
-      "id": "ww8z0nolu6gkqna1",
       "face": 0,
-      "drawn": false,
-      "sort": 41,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "IWOPO8JZHjdRvsYY",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ten of hearts",
       "faces": [
         {
-          "name": "Ten of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_10.webp",
-          "text": ""
+          "name": "cards.hearts09.label",
+          "text": "cards.hearts09.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_09.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
+      "value": 9
+    },
+    {
+      "name": "cards.hearts10.label",
+      "description": "cards.hearts10.desc",
       "suit": "hearts",
-      "id": "halh9mqfass2i3ba",
       "face": 0,
-      "drawn": false,
-      "sort": 67,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "gfv9tVPvA963orcV",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Jack of hearts",
       "faces": [
         {
-          "name": "Jack of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_11.webp",
-          "text": ""
+          "name": "cards.hearts10.label",
+          "text": "cards.hearts10.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_10.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
+      "value": 10
+    },
+    {
+      "name": "cards.heartsJack.label",
+      "description": "cards.heartsJack.desc",
       "suit": "hearts",
-      "id": "3qrjh8dhfr6psvsi",
       "face": 0,
-      "drawn": false,
-      "sort": 54,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "rOrzwoqIUWnEH04F",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Knight of hearts",
       "faces": [
         {
-          "name": "Knight of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_12.webp",
-          "text": ""
+          "name": "cards.heartsJack.label",
+          "text": "cards.heartsJack.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_11.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
+      "value": 11
+    },
+    {
+      "name": "cards.heartsKnight.label",
+      "description": "cards.heartsKnight.desc",
       "suit": "hearts",
-      "id": "kwyxol97nutlwq28",
       "face": 0,
-      "drawn": false,
-      "sort": 69,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "4uqXND47iPrG0wlp",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Queen of hearts",
       "faces": [
         {
-          "name": "Queen of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_13.webp",
-          "text": ""
+          "name": "cards.heartsKnight.label",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_12.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
+      "value": 12
+    },
+    {
+      "name": "cards.heartsQueen.label",
+      "description": "cards.heartsQueen.desc",
       "suit": "hearts",
-      "id": "cptx3a7aq6osdqsi",
       "face": 0,
-      "drawn": false,
-      "sort": 45,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "sed5MhU3U45XlNxi",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "King of hearts",
       "faces": [
         {
-          "name": "King of hearts",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_14.webp",
-          "text": ""
+          "name": "cards.heartsQueen.label",
+          "text": "cards.heartsQueen.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_13.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 14,
+      "value": 13
+    },
+    {
+      "name": "cards.heartsKing.label",
+      "description": "cards.heartsKing.desc",
       "suit": "hearts",
-      "id": "3pnmodflyduezeqe",
       "face": 0,
-      "drawn": false,
-      "sort": 72,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "a0wdzNWoKbMwshOP",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ace of spades",
       "faces": [
         {
-          "name": "Ace of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_01.webp",
-          "text": ""
+          "name": "cards.heartsKing.label",
+          "text": "cards.heartsKing.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/hearts_14.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 1,
+      "value": 14
+    },
+
+    {
+      "name": "cards.spades01.label",
+      "description": "cards.spades01.desc",
       "suit": "spades",
-      "id": "zkbrzzz3v0f8ws6m",
       "face": 0,
-      "drawn": false,
-      "sort": 20,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Yhaw0MfhdbRE12z3",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Two of spades",
       "faces": [
         {
-          "name": "Two of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_02.webp",
-          "text": ""
+          "name": "cards.spades01.label",
+          "text": "cards.spades01.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_01.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
+      "value": 1
+    },
+    {
+      "name": "cards.spades02.label",
+      "description": "cards.spades02.desc",
       "suit": "spades",
-      "id": "lhf0eajjnwhvlhkj",
       "face": 0,
-      "drawn": false,
-      "sort": 77,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "wW9PQd9ZmsyTUdZE",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Three of spades",
       "faces": [
         {
-          "name": "Three of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_03.webp",
-          "text": ""
+          "name": "cards.spades02.label",
+          "text": "cards.spades02.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_02.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
+      "value": 2
+    },
+    {
+      "name": "cards.spades03.label",
+      "description": "cards.spades03.desc",
       "suit": "spades",
-      "id": "xib8f1o87cqrgfg6",
       "face": 0,
-      "drawn": false,
-      "sort": 6,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "4TqEweP7UXe1T76V",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Four of spades",
       "faces": [
         {
-          "name": "Four of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_04.webp",
-          "text": ""
+          "name": "cards.spades03.label",
+          "text": "cards.spades03.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_03.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
+      "value": 3
+    },
+    {
+      "name": "cards.spades04.label",
+      "description": "cards.spades04.desc",
       "suit": "spades",
-      "id": "gxu7un39k2goophx",
       "face": 0,
-      "drawn": false,
-      "sort": 9,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "D8wbhsr0txCPL336",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Five of spades",
       "faces": [
         {
-          "name": "Five of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_05.webp",
-          "text": ""
+          "name": "cards.spades04.label",
+          "text": "cards.spades04.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_04.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
+      "value": 4
+    },
+    {
+      "name": "cards.spades05.label",
+      "description": "cards.spades05.desc",
       "suit": "spades",
-      "id": "81ck5gf0o8nqfd69",
       "face": 0,
-      "drawn": false,
-      "sort": 56,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "oTwvOF1g9t9nf9PD",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Six of spades",
       "faces": [
         {
-          "name": "Six of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_06.webp",
-          "text": ""
+          "name": "cards.spades05.label",
+          "text": "cards.spades05.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_05.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
+      "value": 5
+    },
+    {
+      "name": "cards.spades06.label",
+      "description": "cards.spades06.desc",
       "suit": "spades",
-      "id": "we1ai88fx2ehinm2",
       "face": 0,
-      "drawn": false,
-      "sort": 33,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Trme1mNoE06jVC8I",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Seven of spades",
       "faces": [
         {
-          "name": "Seven of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_07.webp",
-          "text": ""
+          "name": "cards.spades06.label",
+          "text": "cards.spades06.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_06.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
+      "value": 6
+    },
+    {
+      "name": "cards.spades07.label",
+      "description": "cards.spades07.desc",
       "suit": "spades",
-      "id": "688qboa0v3o7vy2c",
       "face": 0,
-      "drawn": false,
-      "sort": 27,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "1NFaRdTiPKhFtqpD",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Eight of spades",
       "faces": [
         {
-          "name": "Eight of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_08.webp",
-          "text": ""
+          "name": "cards.spades07.label",
+          "text": "cards.spades07.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_07.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
+      "value": 7
+    },
+    {
+      "name": "cards.spades08.label",
+      "description": "cards.spades08.desc",
       "suit": "spades",
-      "id": "uhbb4v3cacxb5vuz",
       "face": 0,
-      "drawn": false,
-      "sort": 14,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "aBrK3pA89R0ijAgv",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Nine of spades",
       "faces": [
         {
-          "name": "Nine of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_09.webp",
-          "text": ""
+          "name": "cards.spades08.label",
+          "text": "cards.spades08.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_08.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
+      "value": 8
+    },
+    {
+      "name": "cards.spades09.label",
+      "description": "cards.spades09.desc",
       "suit": "spades",
-      "id": "7mvtlvbmeqpv2oq7",
       "face": 0,
-      "drawn": false,
-      "sort": 53,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "gcca55Az0e0e1lsb",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ten of spades",
       "faces": [
         {
-          "name": "Ten of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_10.webp",
-          "text": ""
+          "name": "cards.spades09.label",
+          "text": "cards.spades09.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_09.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
+      "value": 9
+    },
+    {
+      "name": "cards.spades10.label",
+      "description": "cards.spades10.desc",
       "suit": "spades",
-      "id": "z83nu03j8gpcc7v0",
       "face": 0,
-      "drawn": false,
-      "sort": 48,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "W57GnY2F80HWf01i",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Jack of spades",
       "faces": [
         {
-          "name": "Jack of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_11.webp",
-          "text": ""
+          "name": "cards.spades10.label",
+          "text": "cards.spades10.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_10.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
+      "value": 10
+    },
+    {
+      "name": "cards.spadesJack.label",
+      "description": "cards.spadesJack.desc",
       "suit": "spades",
-      "id": "5iib9vkl5881ql16",
       "face": 0,
-      "drawn": false,
-      "sort": 44,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "fO6wQPxEsMDtHJhS",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Knight of spades",
       "faces": [
         {
-          "name": "Knight of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_12.webp",
-          "text": ""
+          "name": "cards.spadesJack.label",
+          "text": "cards.spadesJack.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_11.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
+      "value": 11
+    },
+    {
+      "name": "cards.spadesKnight.label",
+      "description": "cards.spadesKnight.desc",
       "suit": "spades",
-      "id": "hhckt0lhfjgdcm4d",
       "face": 0,
-      "drawn": false,
-      "sort": 59,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "OfHw4Z9WsFJbalSY",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Queen of spades",
       "faces": [
         {
-          "name": "Queen of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_13.webp",
-          "text": ""
+          "name": "cards.spadesKnight.label",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_12.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
+      "value": 12
+    },
+    {
+      "name": "cards.spadesQueen.label",
+      "description": "cards.spadesQueen.desc",
       "suit": "spades",
-      "id": "d6d5w5cas1qqif2g",
       "face": 0,
-      "drawn": false,
-      "sort": 34,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "iK6TkBvdNnwcOmgq",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "King of spades",
       "faces": [
         {
-          "name": "King of spades",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_14.webp",
-          "text": ""
+          "name": "cards.spadesQueen.label",
+          "text": "cards.spadesQueen.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_13.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 14,
+      "value": 13
+    },
+    {
+      "name": "cards.spadesKing.label",
+      "description": "cards.spadesKing.desc",
       "suit": "spades",
-      "id": "hzwm6pxjwsflavjt",
       "face": 0,
-      "drawn": false,
-      "sort": 12,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "A5iAdhSeu7UpzAXW",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ace of diamonds",
       "faces": [
         {
-          "name": "Ace of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_01.webp",
-          "text": ""
+          "name": "cards.spadesKing.label",
+          "text": "cards.spadesKing.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/spades_14.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 1,
+      "value": 14
+    },
+
+    {
+      "name": "cards.diamonds01.label",
+      "description": "cards.diamonds01.desc",
       "suit": "diamonds",
-      "id": "y8lvcxmt8e0mbi3m",
       "face": 0,
-      "drawn": false,
-      "sort": 31,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "LG2LwkC8okGuiwiu",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Two of diamonds",
       "faces": [
         {
-          "name": "Two of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_02.webp",
-          "text": ""
+          "name": "cards.diamonds01.label",
+          "text": "cards.diamonds01.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_01.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
+      "value": 1
+    },
+    {
+      "name": "cards.diamonds02.label",
+      "description": "cards.diamonds02.desc",
       "suit": "diamonds",
-      "id": "3r06bqqld82cxpwl",
       "face": 0,
-      "drawn": false,
-      "sort": 19,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "nZ7Q2VKbeJrDYd3n",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Three of diamonds",
       "faces": [
         {
-          "name": "Three of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_03.webp",
-          "text": ""
+          "name": "cards.diamonds02.label",
+          "text": "cards.diamonds02.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_02.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
+      "value": 2
+    },
+    {
+      "name": "cards.diamonds03.label",
+      "description": "cards.diamonds03.desc",
       "suit": "diamonds",
-      "id": "9fkx6dnbdfghfyss",
       "face": 0,
-      "drawn": false,
-      "sort": 74,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "oJMWFmaPl53fi235",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Four of diamonds",
       "faces": [
         {
-          "name": "Four of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_04.webp",
-          "text": ""
+          "name": "cards.diamonds03.label",
+          "text": "cards.diamonds03.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_03.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
+      "value": 3
+    },
+    {
+      "name": "cards.diamonds04.label",
+      "description": "cards.diamonds04.desc",
       "suit": "diamonds",
-      "id": "vkls6knt7gjb2ttz",
       "face": 0,
-      "drawn": false,
-      "sort": 51,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "ySLgZwSE1XqSoWdI",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Five of diamonds",
       "faces": [
         {
-          "name": "Five of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_05.webp",
-          "text": ""
+          "name": "cards.diamonds04.label",
+          "text": "cards.diamonds04.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_04.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
+      "value": 4
+    },
+    {
+      "name": "cards.diamonds05.label",
+      "description": "cards.diamonds05.desc",
       "suit": "diamonds",
-      "id": "o7oyxmciwyebbziz",
       "face": 0,
-      "drawn": false,
-      "sort": 25,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "VTrkMKqSoeze6UxB",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Six of diamonds",
       "faces": [
         {
-          "name": "Six of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_06.webp",
-          "text": ""
+          "name": "cards.diamonds05.label",
+          "text": "cards.diamonds05.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_05.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
+      "value": 5
+    },
+    {
+      "name": "cards.diamonds06.label",
+      "description": "cards.diamonds06.desc",
       "suit": "diamonds",
-      "id": "btbr8gxk4eo7kab8",
       "face": 0,
-      "drawn": false,
-      "sort": 36,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Xbk3YCZa6OcG3BLK",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Seven of diamonds",
       "faces": [
         {
-          "name": "Seven of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_07.webp",
-          "text": ""
+          "name": "cards.diamonds06.label",
+          "text": "cards.diamonds06.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_06.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
+      "value": 6
+    },
+    {
+      "name": "cards.diamonds07.label",
+      "description": "cards.diamonds07.desc",
       "suit": "diamonds",
-      "id": "aby1me9hipb3lcfh",
       "face": 0,
-      "drawn": false,
-      "sort": 35,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "GWntK6x4QipYDflf",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Eight of diamonds",
       "faces": [
         {
-          "name": "Eight of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_08.webp",
-          "text": ""
+          "name": "cards.diamonds07.label",
+          "text": "cards.diamonds07.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_07.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
+      "value": 7
+    },
+    {
+      "name": "cards.diamonds08.label",
+      "description": "cards.diamonds08.desc",
       "suit": "diamonds",
-      "id": "44wovu0sywxh98f3",
       "face": 0,
-      "drawn": false,
-      "sort": 57,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "AD6quwuFeJvJSsVF",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Nine of diamonds",
       "faces": [
         {
-          "name": "Nine of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_09.webp",
-          "text": ""
+          "name": "cards.diamonds08.label",
+          "text": "cards.diamonds08.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_08.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
+      "value": 8
+    },
+    {
+      "name": "cards.diamonds09.label",
+      "description": "cards.diamonds09.desc",
       "suit": "diamonds",
-      "id": "0d1vyhwcjjxai0vt",
       "face": 0,
-      "drawn": false,
-      "sort": 30,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "oMQqi2Ftwynf4UWb",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ten of diamonds",
       "faces": [
         {
-          "name": "Ten of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_10.webp",
-          "text": ""
+          "name": "cards.diamonds09.label",
+          "text": "cards.diamonds09.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_09.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
+      "value": 9
+    },
+    {
+      "name": "cards.diamonds10.label",
+      "description": "cards.diamonds10.desc",
       "suit": "diamonds",
-      "id": "4avknm0s8e3lxp5o",
       "face": 0,
-      "drawn": false,
-      "sort": 15,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "ZucpxDtJJSx62VBb",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Jack of diamonds",
       "faces": [
         {
-          "name": "Jack of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_11.webp",
-          "text": ""
+          "name": "cards.diamonds10.label",
+          "text": "cards.diamonds10.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_10.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
+      "value": 10
+    },
+    {
+      "name": "cards.diamondsJack.label",
+      "description": "cards.diamondsJack.desc",
       "suit": "diamonds",
-      "id": "a08mive13y8mjct2",
       "face": 0,
-      "drawn": false,
-      "sort": 46,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "vf87mCqjKz9Othbc",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Knight of diamonds",
       "faces": [
         {
-          "name": "Knight of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_12.webp",
-          "text": ""
+          "name": "cards.diamondsJack.label",
+          "text": "cards.diamondsJack.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_11.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
+      "value": 11
+    },
+    {
+      "name": "cards.diamondsKnight.label",
+      "description": "cards.diamondsKnight.desc",
       "suit": "diamonds",
-      "id": "c68ix78yzbgtza9g",
       "face": 0,
-      "drawn": false,
-      "sort": 1,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "0OQpSFOg8tsHy4KA",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Queen of diamonds",
       "faces": [
         {
-          "name": "Queen of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_13.webp",
-          "text": ""
+          "name": "cards.diamondsKnight.label",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_12.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
+      "value": 12
+    },
+    {
+      "name": "cards.diamondsQueen.label",
+      "description": "cards.diamondsQueen.desc",
       "suit": "diamonds",
-      "id": "n2gebxgy94z1pd6b",
       "face": 0,
-      "drawn": false,
-      "sort": 2,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Wx3ZlB4zy5mJ2oaR",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "King of diamonds",
       "faces": [
         {
-          "name": "King of diamonds",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_14.webp",
-          "text": ""
+          "name": "cards.diamondsQueen.label",
+          "text": "cards.diamondsQueen.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_13.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 14,
+      "value": 13
+    },
+    {
+      "name": "cards.diamondsKing.label",
+      "description": "cards.diamondsKing.desc",
       "suit": "diamonds",
-      "id": "868edb8yuvgxh375",
       "face": 0,
-      "drawn": false,
-      "sort": 37,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Wenwhv8kJVbzi43L",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ace of clubs",
       "faces": [
         {
-          "name": "Ace of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_01.webp",
-          "text": ""
+          "name": "cards.diamondsKing.label",
+          "text": "cards.diamondsKing.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/diamonds_14.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 1,
+      "value": 14
+    },
+
+    {
+      "name": "cards.clubs01.label",
+      "description": "cards.clubs01.desc",
       "suit": "clubs",
-      "id": "myv7y5907i82mugw",
       "face": 0,
-      "drawn": false,
-      "sort": 62,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "3Aa7xKGknFjACUFo",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Two of clubs",
       "faces": [
         {
-          "name": "Two of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_02.webp",
-          "text": ""
+          "name": "cards.clubs01.label",
+          "text": "cards.clubs01.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_01.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
+      "value": 1
+    },
+    {
+      "name": "cards.clubs02.label",
+      "description": "cards.clubs02.desc",
       "suit": "clubs",
-      "id": "cy84a45di9r8ia97",
       "face": 0,
-      "drawn": false,
-      "sort": 3,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "tjlWL06HTjTN94bs",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Three of clubs",
       "faces": [
         {
-          "name": "Three of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_03.webp",
-          "text": ""
+          "name": "cards.clubs02.label",
+          "text": "cards.clubs02.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_02.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
+      "value": 2
+    },
+    {
+      "name": "cards.clubs03.label",
+      "description": "cards.clubs03.desc",
       "suit": "clubs",
-      "id": "hx7e51c8uocdgmgt",
       "face": 0,
-      "drawn": false,
-      "sort": 55,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "8oYRBtAyoEjkZR4W",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Four of clubs",
       "faces": [
         {
-          "name": "Four of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_04.webp",
-          "text": ""
+          "name": "cards.clubs03.label",
+          "text": "cards.clubs03.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_03.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
+      "value": 3
+    },
+    {
+      "name": "cards.clubs04.label",
+      "description": "cards.clubs04.desc",
       "suit": "clubs",
-      "id": "dstdv224iedjh7p4",
       "face": 0,
-      "drawn": false,
-      "sort": 13,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "wppYtyhyBW8sLvof",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Five of clubs",
       "faces": [
         {
-          "name": "Five of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_05.webp",
-          "text": ""
+          "name": "cards.clubs04.label",
+          "text": "cards.clubs04.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_04.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
+      "value": 4
+    },
+    {
+      "name": "cards.clubs05.label",
+      "description": "cards.clubs05.desc",
       "suit": "clubs",
-      "id": "eig4sf4kpses0c0x",
       "face": 0,
-      "drawn": false,
-      "sort": 42,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "yesbkuTBnhK4jhLP",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Six of clubs",
       "faces": [
         {
-          "name": "Six of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_06.webp",
-          "text": ""
+          "name": "cards.clubs05.label",
+          "text": "cards.clubs05.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_05.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
+      "value": 5
+    },
+    {
+      "name": "cards.clubs06.label",
+      "description": "cards.clubs06.desc",
       "suit": "clubs",
-      "id": "u2eagnai77qh9td1",
       "face": 0,
-      "drawn": false,
-      "sort": 40,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "gQkCqG8XDWRQ2nf5",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Seven of clubs",
       "faces": [
         {
-          "name": "Seven of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_07.webp",
-          "text": ""
+          "name": "cards.clubs06.label",
+          "text": "cards.clubs06.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_06.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
+      "value": 6
+    },
+    {
+      "name": "cards.clubs07.label",
+      "description": "cards.clubs07.desc",
       "suit": "clubs",
-      "id": "pk373b81fv9473zq",
       "face": 0,
-      "drawn": false,
-      "sort": 43,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "A00UPYnNqlJG5WJR",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Eight of clubs",
       "faces": [
         {
-          "name": "Eight of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_08.webp",
-          "text": ""
+          "name": "cards.clubs07.label",
+          "text": "cards.clubs07.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_07.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
+      "value": 7
+    },
+    {
+      "name": "cards.clubs08.label",
+      "description": "cards.clubs08.desc",
       "suit": "clubs",
-      "id": "u7utz82ajqqb7uzp",
       "face": 0,
-      "drawn": false,
-      "sort": 64,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "qfB7PE4yapigwMUr",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Nine of clubs",
       "faces": [
         {
-          "name": "Nine of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_09.webp",
-          "text": ""
+          "name": "cards.clubs08.label",
+          "text": "cards.clubs08.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_08.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
+      "value": 8
+    },
+    {
+      "name": "cards.clubs09.label",
+      "description": "cards.clubs09.desc",
       "suit": "clubs",
-      "id": "gnzsb1a7whntm1ne",
       "face": 0,
-      "drawn": false,
-      "sort": 21,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "faWYuhOfwypTabzP",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Ten of clubs",
       "faces": [
         {
-          "name": "Ten of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_10.webp",
-          "text": ""
+          "name": "cards.clubs09.label",
+          "text": "cards.clubs09.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_09.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
+      "value": 9
+    },
+    {
+      "name": "cards.clubs10.label",
+      "description": "cards.clubs10.desc",
       "suit": "clubs",
-      "id": "oey0l3o50uhrlsg7",
       "face": 0,
-      "drawn": false,
-      "sort": 76,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "eVEj1ub1KkszOdGL",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Jack of clubs",
       "faces": [
         {
-          "name": "Jack of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_11.webp",
-          "text": ""
+          "name": "cards.clubs10.label",
+          "text": "cards.clubs10.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_10.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
+      "value": 10
+    },
+    {
+      "name": "cards.clubsJack.label",
+      "description": "cards.clubsJack.desc",
       "suit": "clubs",
-      "id": "8lwu9uwyrqxdqnbr",
       "face": 0,
-      "drawn": false,
-      "sort": 16,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "XbcYFOHek5QgI7cG",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Knight of clubs",
       "faces": [
         {
-          "name": "Knight of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_12.webp",
-          "text": ""
+          "name": "cards.clubsJack.label",
+          "text": "cards.clubsJack.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_11.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
+      "value": 11
+    },
+    {
+      "name": "cards.clubsKnight.label",
+      "description": "cards.clubsKnight.desc",
       "suit": "clubs",
-      "id": "ri38ken2ecfml0dl",
       "face": 0,
-      "drawn": false,
-      "sort": 63,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "tvAIPppjB8YC14mo",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "Queen of clubs",
       "faces": [
         {
-          "name": "Queen of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_13.webp",
-          "text": ""
+          "name": "cards.clubsKnight.label",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_12.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
+      "value": 12
+    },
+    {
+      "name": "cards.clubsQueen.label",
+      "description": "cards.clubsQueen.desc",
       "suit": "clubs",
-      "id": "r3okb6cxk4sly8yx",
       "face": 0,
-      "drawn": false,
-      "sort": 24,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "0D7fEFuHaqLpTYj6",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "King of clubs",
       "faces": [
         {
-          "name": "King of clubs",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_14.webp",
-          "text": ""
+          "name": "cards.clubsQueen.label",
+          "text": "cards.clubsQueen.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_13.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 14,
+      "value": 13
+    },
+    {
+      "name": "cards.clubsKing.label",
+      "description": "cards.clubsKing.desc",
       "suit": "clubs",
-      "id": "g4jou5yjmptdojs3",
       "face": 0,
-      "drawn": false,
-      "sort": 17,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "q6iajkFkCu8KSCXB",
-      "description": "",
-      "flags": {}
-    },
-    {
-      "name": "The Excuse",
       "faces": [
         {
-          "name": "The Excuse",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_00.webp",
-          "text": ""
+          "name": "cards.clubsKing.label",
+          "text": "cards.clubsKing.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/clubs_14.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 0,
-      "suit": "trumps",
-      "id": "yr9e6kegpbbg252o",
-      "face": 0,
-      "drawn": false,
-      "sort": 4,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Ads2PK3mYuRLmlqD",
-      "description": "",
-      "flags": {}
+      "value": 14
     },
+
     {
-      "name": "1 of trump (petit)",
+      "name": "cards.trumps00.label",
+      "description": "cards.trumps00.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "1 of trump (petit)",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_01.webp",
-          "text": ""
+          "name": "cards.trumps00.label",
+          "text": "cards.trumps00.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_00.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 1,
-      "suit": "trumps",
-      "id": "l8m53j12sebdjlyl",
-      "face": 0,
-      "drawn": false,
-      "sort": 71,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "1qkcXtdPIVw0DZBr",
-      "description": "",
-      "flags": {}
+      "value": 0
     },
     {
-      "name": "2 of trump",
+      "name": "cards.trumps01.label",
+      "description": "cards.trumps01.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "2 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_02.webp",
-          "text": ""
+          "name": "cards.trumps01.label",
+          "text": "cards.trumps01.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_01.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 2,
-      "suit": "trumps",
-      "id": "99el93o2sit1g0bf",
-      "face": 0,
-      "drawn": false,
-      "sort": 8,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "b36qXZ72QNbQV7nU",
-      "description": "",
-      "flags": {}
+      "value": 1
     },
     {
-      "name": "3 of trump",
+      "name": "cards.trumps02.label",
+      "description": "cards.trumps02.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "3 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_03.webp",
-          "text": ""
+          "name": "cards.trumps02.label",
+          "text": "cards.trumps02.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_02.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 3,
-      "suit": "trumps",
-      "id": "wz8yczx8iyx42nao",
-      "face": 0,
-      "drawn": false,
-      "sort": 47,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "XiLetY9AT2rYCpbu",
-      "description": "",
-      "flags": {}
+      "value": 2
     },
     {
-      "name": "4 of trump",
+      "name": "cards.trumps03.label",
+      "description": "cards.trumps03.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "4 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_04.webp",
-          "text": ""
+          "name": "cards.trumps03.label",
+          "text": "cards.trumps03.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_03.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 4,
-      "suit": "trumps",
-      "id": "8mbl1xgsmzu9scfj",
-      "face": 0,
-      "drawn": false,
-      "sort": 70,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "26VJt0dkI7BUknjm",
-      "description": "",
-      "flags": {}
+      "value": 3
     },
     {
-      "name": "5 of trump",
+      "name": "cards.trumps04.label",
+      "description": "cards.trumps04.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "5 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_05.webp",
-          "text": ""
+          "name": "cards.trumps04.label",
+          "text": "cards.trumps04.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_04.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 5,
-      "suit": "trumps",
-      "id": "cqbck4so3owgcttc",
-      "face": 0,
-      "drawn": false,
-      "sort": 11,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "x611AdfGerDEj6DF",
-      "description": "",
-      "flags": {}
+      "value": 4
     },
     {
-      "name": "6 of trump",
+      "name": "cards.trumps05.label",
+      "description": "cards.trumps05.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "6 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_06.webp",
-          "text": ""
+          "name": "cards.trumps05.label",
+          "text": "cards.trumps05.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_05.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 6,
-      "suit": "trumps",
-      "id": "n50ggh5p8ncdiab1",
-      "face": 0,
-      "drawn": false,
-      "sort": 5,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "yvYCoSC8Y21clWh0",
-      "description": "",
-      "flags": {}
+      "value": 5
     },
     {
-      "name": "7 of trump",
+      "name": "cards.trumps06.label",
+      "description": "cards.trumps06.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "7 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_07.webp",
-          "text": ""
+          "name": "cards.trumps06.label",
+          "text": "cards.trumps06.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_06.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 7,
-      "suit": "trumps",
-      "id": "0nyldhg0f4mn2fft",
-      "face": 0,
-      "drawn": false,
-      "sort": 0,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "aI5PSrlCO7Zuz8WJ",
-      "description": "",
-      "flags": {}
+      "value": 6
     },
     {
-      "name": "8 of trump",
+      "name": "cards.trumps07.label",
+      "description": "cards.trumps07.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "8 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_08.webp",
-          "text": ""
+          "name": "cards.trumps07.label",
+          "text": "cards.trumps07.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_07.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 8,
-      "suit": "trumps",
-      "id": "uct7oq7kmhjz1h1g",
-      "face": 0,
-      "drawn": false,
-      "sort": 28,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "FGPmKotTga2bZm6c",
-      "description": "",
-      "flags": {}
+      "value": 7
     },
     {
-      "name": "9 of trump",
+      "name": "cards.trumps08.label",
+      "description": "cards.trumps08.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "9 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_09.webp",
-          "text": ""
+          "name": "cards.trumps08.label",
+          "text": "cards.trumps08.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_08.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 9,
-      "suit": "trumps",
-      "id": "wqn4e5k7ljnxn8sf",
-      "face": 0,
-      "drawn": false,
-      "sort": 68,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "rGr1Q3pb8ZYlJzkL",
-      "description": "",
-      "flags": {}
+      "value": 8
     },
     {
-      "name": "10 of trump",
+      "name": "cards.trumps09.label",
+      "description": "cards.trumps09.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "10 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_10.webp",
-          "text": ""
+          "name": "cards.trumps09.label",
+          "text": "cards.trumps09.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_09.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 10,
-      "suit": "trumps",
-      "id": "oeoepyzo9c39wyfd",
-      "face": 0,
-      "drawn": false,
-      "sort": 32,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "rjJoa3lkDZl9U2f6",
-      "description": "",
-      "flags": {}
+      "value": 9
     },
     {
-      "name": "11 of trump",
+      "name": "cards.trumps10.label",
+      "description": "cards.trumps10.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "11 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_11.webp",
-          "text": ""
+          "name": "cards.trumps10.label",
+          "text": "cards.trumps10.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_10.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 11,
-      "suit": "trumps",
-      "id": "hfk52luhjavdugtu",
-      "face": 0,
-      "drawn": false,
-      "sort": 73,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "SD0LUzVdEMdKQH2M",
-      "description": "",
-      "flags": {}
+      "value": 0
     },
     {
-      "name": "12 of trump",
+      "name": "cards.trumps11.label",
+      "description": "cards.trumps11.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "12 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_12.webp",
-          "text": ""
+          "name": "cards.trumps11.label",
+          "text": "cards.trumps11.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_11.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 12,
-      "suit": "trumps",
-      "id": "4yo5ewrxje9yhwf2",
-      "face": 0,
-      "drawn": false,
-      "sort": 58,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "GZUUs5AEzxYAfutL",
-      "description": "",
-      "flags": {}
+      "value": 11
     },
     {
-      "name": "13 of trump",
+      "name": "cards.trumps12.label",
+      "description": "cards.trumps12.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "13 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_13.webp",
-          "text": ""
+          "name": "cards.trumps12.label",
+          "text": "cards.trumps12.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_12.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 13,
-      "suit": "trumps",
-      "id": "yh2dj1hzqju6ao8k",
-      "face": 0,
-      "drawn": false,
-      "sort": 52,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "HLM3uNPmgsofKU8H",
-      "description": "",
-      "flags": {}
+      "value": 12
     },
     {
-      "name": "14 of trump",
+      "name": "cards.trumps13.label",
+      "description": "cards.trumps13.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "14 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_14.webp",
-          "text": ""
+          "name": "cards.trumps13.label",
+          "text": "cards.trumps13.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_13.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 14,
-      "suit": "trumps",
-      "id": "gkmoktxm50opfx28",
-      "face": 0,
-      "drawn": false,
-      "sort": 75,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "rKL4JWWmMXDPdIyF",
-      "description": "",
-      "flags": {}
+      "value": 13
     },
     {
-      "name": "15 of trump",
+      "name": "cards.trumps14.label",
+      "description": "cards.trumps14.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "15 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_15.webp",
-          "text": ""
+          "name": "cards.trumps14.label",
+          "text": "cards.trumps14.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_14.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 15,
-      "suit": "trumps",
-      "id": "bgkr6r2o155ltjvr",
-      "face": 0,
-      "drawn": false,
-      "sort": 61,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "xQG3ydQ0DqbeRyS2",
-      "description": "",
-      "flags": {}
+      "value": 14
     },
     {
-      "name": "16 of trump",
+      "name": "cards.trumps15.label",
+      "description": "cards.trumps15.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "16 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_16.webp",
-          "text": ""
+          "name": "cards.trumps15.label",
+          "text": "cards.trumps15.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_15.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 16,
-      "suit": "trumps",
-      "id": "89yrqe27gqk3gkt1",
-      "face": 0,
-      "drawn": false,
-      "sort": 39,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "qLblSmUrrCKeXuvW",
-      "description": "",
-      "flags": {}
+      "value": 15
     },
     {
-      "name": "17 of trump",
+      "name": "cards.trumps16.label",
+      "description": "cards.trumps16.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "17 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_17.webp",
-          "text": ""
+          "name": "cards.trumps16.label",
+          "text": "cards.trumps16.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_16.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 17,
-      "suit": "trumps",
-      "id": "rpecwnc2v6p1k1ia",
-      "face": 0,
-      "drawn": false,
-      "sort": 10,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "I4YoUDhVGBsEix82",
-      "description": "",
-      "flags": {}
+      "value": 16
     },
     {
-      "name": "18 of trump",
+      "name": "cards.trumps17.label",
+      "description": "cards.trumps17.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "18 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_18.webp",
-          "text": ""
+          "name": "cards.trumps17.label",
+          "text": "cards.trumps17.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_17.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 18,
-      "suit": "trumps",
-      "id": "hhmjvr9ul9n5tjsd",
-      "face": 0,
-      "drawn": false,
-      "sort": 23,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "7IT7V0ATh3EXfJRd",
-      "description": "",
-      "flags": {}
+      "value": 17
     },
     {
-      "name": "19 of trump",
+      "name": "cards.trumps18.label",
+      "description": "cards.trumps18.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "19 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_19.webp",
-          "text": ""
+          "name": "cards.trumps18.label",
+          "text": "cards.trumps18.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_18.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 19,
-      "suit": "trumps",
-      "id": "4jfhs68rlsd056ol",
-      "face": 0,
-      "drawn": false,
-      "sort": 50,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "Rt6iRbWtWou9F2O8",
-      "description": "",
-      "flags": {}
+      "value": 18
     },
     {
-      "name": "20 of trump",
+      "name": "cards.trumps19.label",
+      "description": "cards.trumps19.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "20 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_20.webp",
-          "text": ""
+          "name": "cards.trumps19.label",
+          "text": "cards.trumps19.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_19.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 20,
-      "suit": "trumps",
-      "id": "nuvkcnnulc6bsh9s",
-      "face": 0,
-      "drawn": false,
-      "sort": 26,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "T39lgTqsYGCSsof5",
-      "description": "",
-      "flags": {}
+      "value": 19
     },
     {
-      "name": "21 of trump",
+      "name": "cards.trumps20.label",
+      "description": "cards.trumps20.desc",
+      "suit": "trumps",
+      "face": 0,
       "faces": [
         {
-          "name": "21 of trump",
-          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_21.webp",
-          "text": ""
+          "name": "cards.trumps20.label",
+          "text": "cards.trumps20.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_20.webp"
         }
       ],
-      "width": 2,
-      "height": 4,
-      "rotation": 0,
       "type": "base",
-      "value": 21,
+      "value": 20
+    },
+    {
+      "name": "cards.trumps21.label",
+      "description": "cards.trumps21.desc",
       "suit": "trumps",
-      "id": "67nwo2g39ybdmw8m",
       "face": 0,
-      "drawn": false,
-      "sort": 22,
-      "back": {
-        "name": "Classic Tarot",
-        "text": "",
-        "img": "modules/ready-to-use-cards/resources/classicTarot/background/back.webp"
-      },
-      "data": {
-        "event": {
-          "cost": "undefined"
-        },
-        "spirit": {}
-      },
-      "origin": "GhPJfekTpJveFoxU",
-      "_id": "X1XYYpAdzHHbbAh7",
-      "description": "",
-      "flags": {}
+      "faces": [
+        {
+          "name": "cards.trumps21.label",
+          "text": "cards.trumps21.desc",
+          "img": "modules/ready-to-use-cards/resources/classicTarot/cards/trumps_21.webp"
+        }
+      ],
+      "type": "base",
+      "value": 21
     }
   ],
   "width": 2,
