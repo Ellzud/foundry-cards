@@ -173,7 +173,7 @@ export class CustomCardStack {
      * @returns {boolean} TRUE if the flags are here
      */
     get handledByModule() {
-        return this.stack.getFlag("ready-to-use-cards", "core") ? true : false;
+        return this.stack.getFlag("ready-to-use-cards", "owner") ? true : false;
     }
 
     /**
