@@ -492,5 +492,13 @@
   "width": 2,
   "height": 3,
   "rotation": 0,
-  "displayCount": true
+  "displayCount": true,
+  "flags": {
+    "ready-to-use-cards": {
+      "default-parameters": {
+        "labelBaseKey" : "RTUCards.pokerClassic32.",
+        "resourceBaseDir" : "modules/ready-to-use-cards/resources/pokerClassic"
+      }
+    }
+  }
 }

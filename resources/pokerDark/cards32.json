@@ -494,11 +494,11 @@
   "rotation": 0,
   "displayCount": true,
   "flags": {
-    "exportSource": {
-      "world": "testworld",
-      "system": "dnd5e",
-      "coreVersion": "9.222",
-      "systemVersion": "1.4.3"
+    "ready-to-use-cards": {
+      "default-parameters": {
+        "labelBaseKey" : "RTUCards.pokerDark32.",
+        "resourceBaseDir" : "modules/ready-to-use-cards/resources/pokerDark"
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   "name": "Poker (french style)",
   "type": "deck",
   "description": "A classic 52 cards deck",
-  "img": "modules/ready-to-use-cards/resources/pokerClassic/cards/icons/back.webp",
+  "img": "modules/ready-to-use-cards/resources/pokerClassic/icons/back.webp",
   "data": {},
   "cards": [
     {
@@ -792,5 +792,13 @@
   "width": 2,
   "height": 3,
   "rotation": 0,
-  "displayCount": true
+  "displayCount": true,
+  "flags": {
+    "ready-to-use-cards": {
+      "default-parameters": {
+        "labelBaseKey" : "RTUCards.pokerClassic.",
+        "resourceBaseDir" : "modules/ready-to-use-cards/resources/pokerClassic"
+      }
+    }
+  }
 }

@@ -188,5 +188,13 @@
   "width": 2,
   "height": 4,
   "rotation": 0,
-  "displayCount": true
+  "displayCount": true,
+  "flags": {
+    "ready-to-use-cards": {
+      "default-parameters": {
+        "labelBaseKey" : "RTUCards.zodiac.",
+        "resourceBaseDir" : "modules/ready-to-use-cards/resources/zodiac"
+      }
+    }
+  }
 }

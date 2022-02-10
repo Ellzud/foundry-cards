@@ -173,7 +173,7 @@ export class CustomCardStack {
      * @returns {boolean} TRUE if the flags are here
      */
     get handledByModule() {
-        return this.stack.data.flags['ready-to-use-cards'] ? true : false;
+        return this.stack.getFlag("ready-to-use-cards", "core") ? true : false;
     }
 
     /**
@@ -204,6 +204,11 @@ export class CustomCardStack {
         };
 
         const flags = {};
+        const defaultParameters = this.stack.getFlag('ready-to-use-cards', 'default-parameters');
+        if(defaultParameters) {
+            flags['default-parameters'] = defaultParameters;
+        }
+
         flags['registered-as'] = {
             name: this.stack.name,
             desc: this.stack.data.description,
@@ -217,7 +222,11 @@ export class CustomCardStack {
 
         // 2: Flag this coreStack as chosen in settings
         let chosenStacks = cardStackSettings();
-        chosenStacks[this.stack.id] = {};
+        const stackSettings = {};
+        if(defaultParameters) {
+            stackSettings['parameters'] = defaultParameters;
+        }
+        chosenStacks[this.stack.id] = stackSettings;
         await updateCardStackSettings(chosenStacks);
 
         // 3: Reload all stacks
@@ -239,6 +248,7 @@ export class CustomCardStack {
         await this.resetDeck();
 
         // 2: Rename deck and remove flag
+        const chosenStacks = cardStackSettings();
         const updateData = {};
         const suffix = game.i18n.localize('RTUCards.coreStacks.suffix.deck');
         updateData['name'] = this.stack.name.replace(suffix, '');
@@ -246,11 +256,15 @@ export class CustomCardStack {
             default: CONST.DOCUMENT_PERMISSION_LEVELS.NONE
         };
 
-        updateData['flags.ready-to-use-cards'] = null;
+        updateData['flags.ready-to-use-cards'] = {
+            core: null,
+            'registered-as' : null,
+            'owner' : null,
+            'default-parameters' : chosenStacks[this.stack.id].parameters
+        };
         await this.stack.update(updateData);
 
         // 3: Unflag this coreStack as chosen in settings
-        const chosenStacks = cardStackSettings();
         delete chosenStacks[this.stack.id];
         await updateCardStackSettings(chosenStacks);
 
