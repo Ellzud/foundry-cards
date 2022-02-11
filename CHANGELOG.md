@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.6.1
+
+### Translations
+- A kind soul helped me fix my `en.json` file :)
+
 ## Release 1.6.0
 
 ### Cleanup
