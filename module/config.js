@@ -3,11 +3,13 @@ import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
 import { GlobalConfiguration } from "./constants.js";
 import { CustomCardStack } from "./CustomCardStack.js";
+import { SingleCardDisplay } from "./SingleCardDisplay.js";
 
 export const registerCardSystem = () => {
 
-	const previousCls = CONFIG.Cards.documentClass;
-	class CustomCards extends previousCls {
+	// Cards override
+	const previousCardsCls = CONFIG.Cards.documentClass;
+	class CustomCards extends previousCardsCls {
 		constructor(data, context) {
 			super(data, context);
 		}
@@ -52,8 +54,29 @@ export const registerCardSystem = () => {
 			Hooks.call('updateCustomCardsContent', this, options, userId);
 		}
 	}
-
 	CONFIG.Cards.documentClass = CustomCards;
+
+	// Card override
+	const previousCardCls = CONFIG.Card.documentClass;
+	class CustomCard extends previousCardCls {
+		constructor(data, context) {
+			super(data, context);
+		}
+
+		get sheet() {
+			const custom = new CustomCardStack(this.source);
+			if(!custom.handledByModule) {
+				return super.sheet;
+			}
+	
+			if ( !this._customSheet ) {
+				this._customSheet = new SingleCardDisplay(this, {editable: this.isOwner});
+			}        
+			return this._customSheet;
+		}
+	}
+
+	CONFIG.Card.documentClass = CustomCard;
 }
 
 /* -------------------------------------------- */

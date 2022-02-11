@@ -2,8 +2,8 @@ import { CustomCardsDisplay } from './CardsDisplay.js';
 
 
 export class SingleCardDisplay extends CustomCardsDisplay {
-    constructor(card) {
-        super(card.parent, card.sheet.options);
+    constructor(card, options) {
+        super(card.parent, options);
         this._currentSelection = card;
 
         // See if the listing is allowed :

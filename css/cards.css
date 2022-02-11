@@ -362,8 +362,8 @@
 
 .rtucards.cards.resized .listing-panel .all-cards {
     transform: scale(0.32);
-    min-height: 815px;
-    max-height: 815px;
+    min-height: 830px;
+    max-height: 830px;
 }
 
 .rtucards.cards .listing-panel .card-slot.selected {

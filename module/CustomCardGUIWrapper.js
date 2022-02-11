@@ -129,14 +129,18 @@ export class CustomCardGUIWrapper {
             player: playerFlag,
             ref: this.name,
             icon: this._custom.frontIcon,
-            name: this.name,
+            name: this._custom.localizedLabel(this.name), //FIXME : May need to support multiple faces
             type: this._custom.coreStackRef,
             rotated: 0,
             description: []
         };
 
-        if( addCardDescription && this._card.data.description ) {
-            result.description.push(this._card.data.description);
+        const faceDescKey = this._card.face?.text;
+        if( addCardDescription && faceDescKey ) {
+            const desc = this._custom.localizedLabel(faceDescKey);
+            if( desc != "" ) {
+                result.description.push(desc);
+            }
         }
 
         // Call the potential implementation inside wrapped impl

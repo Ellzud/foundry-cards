@@ -135,7 +135,7 @@ const removeUnusedFolders = async () => {
  * @returns {object} Preset data ready for creating a Cards document
  */
 const initCoreStackPreset = async (type, coreStack) => {
-    const suffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.' + type);
+    const suffix = game.i18n.localize('RTUCards.coreStacks.suffix.' + type);
     const baseName = coreStack.customName ?? game.i18n.localize(coreStack.labelBaseKey + 'title');
     const name = baseName + suffix;
     const description = coreStack.customDesc ?? game.i18n.localize(coreStack.labelBaseKey + 'description');

@@ -72,7 +72,7 @@ export const alterCardMessage = (message, html) => {
             }
 
             // Classic stack display or single card display
-            const sheet = wholeStackCanBeSeen ? card.parent.sheet :  new SingleCardDisplay(card);
+            const sheet = wholeStackCanBeSeen ? card.parent.sheet :  new SingleCardDisplay(card, {editable: card.isOwner});
             sheet._currentSelection = card;
             sheet.forceRotate = rotated;
             sheet.render(true);
