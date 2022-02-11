@@ -191,7 +191,7 @@ export class ConfigSheetForActions extends FormApplication {
 			parameters.resourceBaseDir = declared ? actualDefinition.core[key].resourceBaseDir : stackDef.resourceBaseDir;
 			data.parameters = parameters;
 
-			const registeredSuffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.manuallyRegistered');;
+			const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');;
 			const deckName = stackDef.customName ?? game.i18n.localize(stackDef.labelBaseKey + 'title');
 			const deckDesc = stackDef.customDesc ?? game.i18n.localize(stackDef.labelBaseKey + 'description');
 
@@ -210,7 +210,7 @@ export class ConfigSheetForActions extends FormApplication {
 
 		// Then : Add card stacks declared inside hooks
 		//--------------------
-		const viaCodeSuffix = game.i18n.localize('RTUCards.pokerDark.coreStacks.suffix.viaCode');;
+		const viaCodeSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.viaCode');;
 		const customDefs = Object.entries(actualDefinition.core).filter( ([coreKey, coreDef]) => !this.object.stacks.find(s => s.key === coreKey) );
 		customDefs.forEach( ([coreKey, coreDef]) => {
 

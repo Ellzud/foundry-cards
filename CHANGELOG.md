@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Release 1.6.0
+
+### Cleanup
+- In README : Now separated in two files. The second is for the developers
+- In presets : Remove unused fields. Now cards labels have been substitued by a translation key. That way, people will be able to add their own translation files.
+
+> Warning : For the DivineTarot preset, I changed the card image names to be conform with the other decks. If you were using it, you will need to recreate it. (Otherwise, card images won't be displayed)
+
+### Internationalization
+- The README_DEVELOPERS explains how you can now add custom translation files
+
+### Fixes :
+- There were cases where `SingleCardDisplay` were badly used.
+
 ## Release 1.5.1
 
 ### Typos
