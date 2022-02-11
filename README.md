@@ -57,12 +57,6 @@ If you want to make slight changes (like adding Jokers) from preconfigured decks
 ![Available presets](docs/README_register_deck_presets.webp?raw=true)
 
 
-### Advanced method (only for developpers)
-
-There exists an advanced method allowing you to do far more configuration for your custom decks. It uses a hooks named `loadCardStacksDefinition`. You will need to add some code in you custom module/system to manage it.
-
-It can allow to automatically create decks without the need to have static preset files. But above all, it allows you to implement custom actions and custom display for your cards.
-
 ## Choosing which actions you want for your cards
 
 ### The config panel
@@ -87,15 +81,17 @@ To solve this, a prior filtering is available. By using it, you can greatly redu
 
 ![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
 
-### Other available parameters for the deck
+### Other parameters
 
-Depending on how the deck was declared, you may have some additional parameters or informations in this section. Those are the most classic ones :
+There exists other parameters linked to each decks. If you use pre-generated decks or decks issued from RTUC presets, you won't need to change those :
 
 ![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
 
+But if you're creating you're own custom decks, you may want to check what those parameters does :
+
 `Used prefix for labels` : Labels for deck name, actions or chat messages are constructed with a prefix depending from the deck. (It will try with the given prefix, and fallback to `RTUCards.default.` if not found ).
 
-> If you want to change the name of some labels, you can put them inside a new [translation file](./lang/en.json) and change this prefix.
+You will have more details on how this works inside [README LABELS](./README_DEVELOPERS.md)
 
 `Image root directory` : By default, deck icons and the card back are defined from this directory. It follows this structure : 
 
@@ -106,9 +102,16 @@ Depending on how the deck was declared, you may have some additional parameters 
 ./icons/front.webp
 ~~~
 
-> If you want to change those images, you can create a new directory in your world and put the image you want by following the previous structure. Then edit this directory path.
+> If you want to change those images, you need create a new directory in your world and put the image you want by following the previous structure. Then edit this directory path.
 
-> If the deck was already created in your world, the icon won't be changed. You will need to delete it, and recreate it with the correct value.
+> For now, if the deck was already created in your world, the icon won't be changed. You will need to delete it, and recreate it with the correct value.
+
+**Why two images?**
+
+Be it Actors, Items, or Card stacks, their are represented inside Chat or Right panel via a square. That's not the ideal format for cards. So I'm using two different images: 
+
+![Additional parameters](docs/README_icons_and_back.webp?raw=true)
+
 
 ## Understanding the GUI
 
@@ -161,38 +164,38 @@ This on is slightly different from the others : It actually doesn't add any chan
 Mainly useful for cards who can be read from the two ways.
 
 
-## Using the shortcuts
+## Using Hand and Revealed cards summary
 
 When you add the module, two panels will be displayed on your canvas :
 
 ![Shortcut display](docs/README_shortcut_display.webp?raw=true)
 
-### Configuring your shortcuts
+### Configuring your panels
 
 This configuration is available for each player.
 
-The configure panel can be opened via the module settings panels, or directly via a right click on the left icon of one of the two shortcuts.
+The configure panel can be opened via the module settings panels, or directly via a right click on the left icon of one of the two panels.
 
 ![Shortcut config](docs/README_shortcut_configuration.webp?raw=true)
 
 In it, you can:
-- Hide unwanted shortcuts
+- Hide unwanted panel
 - Change their left icon
 - Change the amount of displayed cards
-- Make the shortcuts really small, or really big
+- Make the panels really small, or really big
 
-If you choose to display 0 cards, the shortcut will instead display the summary of the stack :
+If you choose to display 0 cards, the panel will instead display the summary of the stack :
 
 ![Shortcut zero cards](docs/README_shortcut_zero_cards.webp?raw=true)
 
-### Moving your shortcuts
+### Moving your panels
 
 The left icon of each shortcut is draggable. Use them to move your shortcuts where you want.
 
-### Available actions on shortcut
+### Available actions on panels
 
 - Clicking on a card will make the stack display pop out, with the given card selected
-- Left and right brackets can help you see what you have (Lopp through cards)
+- Left and right brackets can help you see what you have (Loop through cards)
 - The eye icon in the summary simply open the stack display
 
 
@@ -227,101 +230,15 @@ The first two ones are for the chatlog when GM is doing actions
 
 `Discard all hand` and `Discard all revealed cards` : Thoses actions do not depends on a specific deck and are present even if no cards are selected.
 
-## Advanced method for configuring your decks (only for developpers)
+## For advanced users
 
-### Where to add code
+There are some more stuff that can be done. Since it can be a little complicated, I've stored those feature description in a separated file : [README DEVELOPERS](./README_DEVELOPERS.md)
 
-You need to add the following hooks
-~~~js
-Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
-	// Alter cardStacksDefinition here
-});
-~~~
-
-About `cardStacksDefinition`, you can have a complete detail [here](./module/StackDefinition.js).
-
-### Adding new decks
-
-You need to add childs to `cardStacksDefinition.core`. Make sur you don't use one of the values used by defaultCoreStacks.
-
-Each child should follow the CoreStackDefinition format, described in the [same file](./module/StackDefinition.js).
-
-Here is a summary of the default values :
-~~~js
-// Load default values
-Object.values(def.core).forEach( coreStrackDefinition => {
-    const c = coreStrackDefinition;
-    if( !c.cardClass ) { c.cardClass = CustomCardSimple; }
-    if( !c.labelBaseKey ) { c.labelBaseKey = 'RTUCards.default.'; }
-    if( !c.resourceBaseDir ) { c.resourceBaseDir = 'modules/ready-to-use-cards/resources/default'; }
-});
-~~~
-
-### Setting configuation
-
-Those decks won't be available in the configuration settings panel. You will need to choose which basic actions you want directly inside code.
-
-All basic action keys are referenced in `CardActionsClasses` decribed [here](./module/constants.js).
-
-Inside your code, `CardActionsClasses` can be obtained via `cardStacksDefinition.shared.actionCss`.
-
-You don't need to specify each actions, only those you don't wan't to have for your deck.
-
-### Using labelBaseKey
-
-The prefix can be pretty useful: It can help you redefine every labels for your custom decks.
-
-You just need to the right translation key in your translation files.
-
-Available keys can be deduced from all traslation key prefixed by `RTUCards.default.` in this module translation files
-
-Example (`labelBaseKey` = `AESYSTEM.cards.event.`) : 
-~~~json
-{
-    "AESYSTEM.cards.event.title": "Event & Spirit",
-    "AESYSTEM.cards.event.description": "A 52 cards deck. Drawn as an event card or a spirit card",
-
-    "AESYSTEM.cards.event.message.draw.hand.one":  "One event card has been drawn",
-    "AESYSTEM.cards.event.message.draw.hand.many":  "NB event cards were drawn",
-    "AESYSTEM.cards.event.message.draw.pile.one":  "One spirit is answering your call",
-    "AESYSTEM.cards.event.message.draw.pile.many":  "NB spirits are answering your call",
-    
-    "AESYSTEM.cards.event.sheet.actions.playEvent.actionButton": "Play event",
-    "AESYSTEM.cards.event.sheet.actions.playEvent.selectTitle": "Cards to discard",
-}
-~~~
-
-### Using resourceBaseDir
-
-Define the base directory for your deck icons, background image and front image.
-
-Background image is used when no card are selected on the deck or if the selected card is not visible.
-
-Front image is used when no card are selected on the discard pile.
-
-Check `resources/default` for having more information on how it should be filled. 
-
-Image files should be on the `.webp` format.
-
-
-### Using cardClass
-
-> This is where all the fun (or nightmare) begins !
-
-By substituting the cardClass you can alter the default behavior and display.
-
-[CustomCardSimple](./module/CustomCardSimple.js) decribe in details which methods you can add to your implementation.
-
-You can find an example [here](https://gitlab.com/adrien.schiehle/acariaempire/-/tree/release-1.0.1/src/card) for a custom implementation
-
-It's called inside my custom system via this: (Nothing more):
-~~~js
-Hooks.on("loadCardStacksDefinition", (cardStacksDefinition) => {
-
-	alterCardStacksDefinition(cardStacksDefinition);
-});
-~~~
-
+Here is a summaray of what can be done : 
+- Adding other language support.
+- Changing labels for action names and messages when actions are done.
+- Making more complex card display (not just an image) which can change after some actions
+- Making your custom actions when cards are on the deck / inside your hands or revealed cards / inside discard.
 
 ## Credits for card images used in the preconfigured decks : 
 

@@ -88,15 +88,15 @@
 
     "RTUCards.user.folder": "Cartes de USER",
     "RTUCards.user.hand.title": "Cartes en main (USER)",
-    "RTUCards.user.hand.description": "Evènements piochés",
+    "RTUCards.user.hand.description": "Seul le joueur possédant cette main peut voir son contenu",
     "RTUCards.user.pile.title": "Faces visibles (USER)",
-    "RTUCards.user.pile.description": "Esprits appelés et Dérangements de l'esprit gardien",
+    "RTUCards.user.pile.description": "Tout le monde peut voir ces cartes. Seul le joueur possédant la pile peut effectuer des actions dessus.",
 
     "RTUCards.gm.folder": "Cartes du Maître du Jeu",
     "RTUCards.gm.hand.title": "Cartes en main (MJ)",
-    "RTUCards.gm.hand.description": "Evènements piochés",
+    "RTUCards.gm.hand.description": "Seul les MJs peuvent voir son contenu",
     "RTUCards.gm.pile.title": "Faces visibles (MJ)",
-    "RTUCards.gm.pile.description": "Esprits appelés et Dérangements de l'esprit gardien",
+    "RTUCards.gm.pile.description": "Tout le monde peut voir ces cartes. Seul les MJs peuvent effectuer des actions dessus.",
 
     "RTUCards.default.cards.hearts01.label": "As de coeur",
     "RTUCards.default.cards.hearts01.desc": "",

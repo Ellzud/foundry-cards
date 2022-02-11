@@ -88,15 +88,15 @@
 
     "RTUCards.user.folder": "USER's cards",
     "RTUCards.user.hand.title": "Cards in hand (USER)",
-    "RTUCards.user.hand.description": "Drawn events",
+    "RTUCards.user.hand.description": "Only the related player can see this hand.",
     "RTUCards.user.pile.title": "Revealed cards (USER)",
-    "RTUCards.user.pile.description": "Called spirits and guardian spirit troubles",
+    "RTUCards.user.pile.description": "Seen by everyone. But only the related player can perform actions on it.",
 
     "RTUCards.gm.folder": "Gamemaster cards",
     "RTUCards.gm.hand.title": "Cards in hand (Gamemaster)",
-    "RTUCards.gm.hand.description": "Drawn events",
+    "RTUCards.gm.hand.description": "Only the GMs can see this hand.",
     "RTUCards.gm.pile.title": "Revealed cards (Gamemaster)",
-    "RTUCards.gm.pile.description": "Called spirits and guardian spirit troubles",
+    "RTUCards.gm.pile.description": "Seen by everyone. But only the GMs can perform actions on it.",
 
     "RTUCards.default.cards.hearts01.label": "Ace of hearts",
     "RTUCards.default.cards.hearts01.desc": "",
