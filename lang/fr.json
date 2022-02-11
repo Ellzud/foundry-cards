@@ -16,7 +16,7 @@
     "RTUCards.settings.config-shortcuts.menu": "Configuration des raccourcis",
     "RTUCards.settings.config-shortcuts.title": "Configurer vos raccourcis",
     "RTUCards.settings.config-shortcuts.headers.shortcutIcon": "Icone utilisée :",
-    "RTUCards.settings.config-shortcuts.headers.maxPerLine": "Nombre de cartes affichés :",
+    "RTUCards.settings.config-shortcuts.headers.maxPerLine": "Nombre de cartes affichées :",
     "RTUCards.settings.config-shortcuts.headers.cardScale": "Proportion des cartes :",
     "RTUCards.settings.config-shortcuts.hint": "Permet de positionner proprement les raccourcis vers sa main et ses cartes faces visibles",
     "RTUCards.settings.config-shortcuts.reset": "Remettre les valeurs par défaut",
