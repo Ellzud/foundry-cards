@@ -86,8 +86,15 @@ export class CustomCardStack {
             label = game.i18n.localize(fullPath);
             if( label === fullPath ) { label = null; }
         }
-        if( !label ) { 
-            label = game.i18n.localize("RTUCards.default." + labelPath);
+
+        if( !label ) { // Default translation
+            const defaultPath = "RTUCards.default." + labelPath;
+            label = game.i18n.localize(defaultPath);
+            if( label === defaultPath ) { label = null; }
+        }
+
+        if( !label ) { // No translation
+            label = labelPath;
         }
 
         return label.replace('STACK', this.stack.name).replace('CORE', coreTitle);
