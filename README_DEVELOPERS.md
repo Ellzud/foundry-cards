@@ -52,6 +52,7 @@ This is how it should be done :
 }
 ~~~
 - Edit your deck settings and link to this prefix :
+
 ![Choosing prefix](docs/README_choosing_prefix.webp?raw=true)
 
 By doing so, every labels present in your translation files will be used for this deck. The others will fall back to the `RTUCards.default.xxxx` labels.
@@ -156,13 +157,13 @@ The `cardClass` is used for many things and store the custom behavior of your ca
 
 [CustomCardSimple](./module/CustomCardSimple.js) is used for all the pre-registered card stacks. It does nothing specific but you will be able to see here which methods you can implement
 
-This is what you can alter :
-- The available actions when the card is inside the deck / a player card stack / or inside the discard pile
+This is what you can do :
+- Changing the available actions when the card is inside the deck / a player card stack / or inside the discard pile
 - Creating new custom actions
-- The card display by directly modifying the `<div>` html element
-- How the card will be listed when played
+- Modifying The card display by directly editing the `<div>` html element
+- Altering how the card will be listed when played
 
-Each following chapter will focus on describing one of this options by explaining the available methods present in `CustomCardSimple`
+Each following chapters will focus on describing one of this options by explaining the available methods present in `CustomCardSimple`
 
 You have a full example of what can be done [here](https://gitlab.com/adrien.schiehle/acariaempire/-/tree/release-1.0.1/src/card)
 
@@ -249,7 +250,7 @@ You can also empty the list if you don't want the classic actions :
 
 One of the css class you can use for your action is `customAction`. When using it, you need to add an additionnal parameter to the `tools.addAvailableAction(...)` method. It will be stored inside html as `data-action="..."`
 
-When click it will call the `onClickDoCustomAction()` of your card class. You will then be able to choose what to do.
+When clicked, it will call the `onClickDoCustomAction()` of your card class. You will then be able to choose what to do.
 
 Example (Only one custom available displayed): 
 ~~~js
