@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Release 1.6.1
+
+### Translations
+- A kind soul helped me fix my `en.json` file :)
+
+### Issues
+- When playing a card, the card description was only retrieved from the face text. (and not the card desc)
+
 ## Release 1.6.0
 
 ### Cleanup
