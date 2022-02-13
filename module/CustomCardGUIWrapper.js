@@ -135,8 +135,12 @@ export class CustomCardGUIWrapper {
             description: []
         };
 
-        const faceDescKey = this._card.face?.text;
-        if( addCardDescription && faceDescKey ) {
+        let faceDescKey = this._card.face?.text ?? "";
+        if( faceDescKey == "" ) {
+            faceDescKey = this._card.data.description ?? "";
+        }
+
+        if( addCardDescription && faceDescKey != "" ) {
             const desc = this._custom.localizedLabel(faceDescKey);
             if( desc != "" ) {
                 result.description.push(desc);
