@@ -93,7 +93,7 @@ export class CustomCardStack {
             if( label === defaultPath ) { label = null; }
         }
 
-        if( !label ) { // No translation
+        if( label == null ) { // No translation
             label = labelPath;
         }
 
