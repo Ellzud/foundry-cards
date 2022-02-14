@@ -47,6 +47,7 @@ Hooks.on("updateCustomCardsContent", (cards, options, user) => {
   const module = game.modules.get('ready-to-use-cards');
   module.shortcuts.hand.someStacksHaveChanged(cards);
   module.shortcuts.revealed.someStacksHaveChanged(cards);
+  cards.sheet.render();
 });
 
 Hooks.on('getCardsDirectoryEntryContext', contextmenus.onGetCardsDirectoryEntryContext);

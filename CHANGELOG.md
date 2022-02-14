@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Release 1.7.0
+
+### Features
+- Deck and Discards permissions are now taken into account:
+ - Players with OWNER rights on those cards have almost the same available actions the GM have (except ***recall all cards***)
+ - LIMITED rights on decks disable the draw action for those players
+ - LIMITED rights on discards hide the cards contents (In GUI and in chat messages)
+
+You can have more details about this feature inside the readme file.
+
+### Issues
+- When a **Exchange between players** was init by a player. He didn't have enough rights on the target stack to make the exchange successful.
+- When registering a deck from a custom preset, discard pile had the same icon as the deck.
+- Since 1.5.0, there were cases where card GUI wasn't refreshed after some actions.
+- When giving a card to a player who had no main character, message was saying that the game master was retrieving the card.
+
+### Images
+- Core stacks now have reworked discard piles icons and background
+
 ## Release 1.6.1
 
 ### Translations

@@ -8,12 +8,27 @@ export const isACardMessage = (message) => {
 export const alterCardMessage = (message, html) => {
     
     const needToHideContent = (flag) => {
-        if( !flag.hideToStrangers ) { return false; }
-        if( game.user.isGM && flag.forGMs ) { return false; }
-        if( !game.user.isGM && flag.forPlayers ) {
-            return flag.playerId != game.user.id;
+
+        const gmMessage = flag.forGMs && game.user.isGM;
+        const correctPlayerMessage = flag.forPlayers && flag.playerId === game.user.id;
+
+        if( flag.hideToStrangers ) { 
+            // Only displayed to the one having sent the message
+            if( gmMessage || correctPlayerMessage ) { return false; }
+            return true;
         }
-        return true;
+
+        const discardId = flag.sentToDiscard
+        if( discardId ) {
+            const discard = game.cards.get(discardId);
+            const enoughRights = discard?.testUserPermission(game.user, "OBSERVER") ?? false;
+
+            // Only displayed if you're the one discarding the card
+            if(!enoughRights) { return !correctPlayerMessage; }
+            return false;
+        }
+
+        return false;
     }
 
     const onClickShowCard = async (event) => {
