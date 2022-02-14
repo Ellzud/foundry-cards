@@ -108,6 +108,6 @@ const addUnregisterEntry = (allEntries) => {
             await custom.unregisterAsHandledByModule();
         }
     };
-    entry.condition = appendRTUCardsFlagCondition(entry.condition, {forRegisteredStacks: false});
+    entry.condition = appendRTUCardsFlagCondition(entry.condition, {forRegisteredStacks: true});
     allEntries.push(entry);
 }

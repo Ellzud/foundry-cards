@@ -478,15 +478,22 @@ export class CustomCardStackLoader {
         }).forEach(s => {
             const core = s.getFlag("ready-to-use-cards", "core");
             const registerFlag = s.getFlag("ready-to-use-cards", "registered-as");
-            coreStacks[core] = {
-                cardClass: CustomCardSimple,
-                labelBaseKey : 'RTUCards.default.',
-                resourceBaseDir : 'modules/ready-to-use-cards/resources/default',
+
+            const def = {
                 customName : registerFlag.name,
                 customDesc : registerFlag.desc,
-                customIcon : registerFlag.icon,
                 isManuallyRegistered: true
             };
+            
+            // Choosing icon for discard pile
+            const defaultParam = s.getFlag("ready-to-use-cards", "default-parameters");
+            if( defaultParam ) {
+                def.labelBaseKey = defaultParam.labelBaseKey;
+                def.resourceBaseDir = defaultParam.resourceBaseDir;
+            } else {
+                def.customIcon = registerFlag.icon;
+            }
+            coreStacks[core] = def;
         });
         return coreStacks;
     }

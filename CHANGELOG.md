@@ -12,6 +12,10 @@ You can have more details about this feature inside the readme file.
 
 ### Issues
 - When a **Exchange between players** was init by a player. He didn't have enough rights on the target stack to make the exchange successful.
+- When registering a deck from a custom preset, discard pile had the same icon as the deck.
+
+### Images
+- Core stacks now have reworked discard piles icons and background
 
 ## Release 1.6.1
 
