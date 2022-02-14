@@ -232,14 +232,14 @@ By default, permissions are set to OBSERVER to everyone.
 
 If you change it to :
 - OWNER : 
- - Players with this permission will have access to almost all available GM actions on the deck.
- - The only missing action is ***Recall all cards***, since it needs to own every stacks to be performed.
+  - Players with this permission will have access to almost all available GM actions on the deck.
+  - The only missing action is ***Recall all cards***, since it needs to own every stacks to be performed.
 - LIMITED :
- - Players with this permission won't be able to draw cards from this deck, even if the ***Draw card*** action is allowed in settings.
- - The deck can still be viewed by players with this permission. Allowing them to know how many cards are left in the drawing pile.
+  - Players with this permission won't be able to draw cards from this deck, even if the ***Draw card*** action is allowed in settings.
+  - The deck can still be viewed by players with this permission. Allowing them to know how many cards are left in the drawing pile.
 - NONE :
- - Same restrictions as above.
- - Players can't see the deck anymore and won't be able to know hom many cards are left.
+  - Same restrictions as above.
+  - Players can't see the deck anymore and won't be able to know hom many cards are left.
 
 ### Changing discards permissions
 
@@ -247,13 +247,13 @@ By default, permissions are set to OBSERVER to everyone.
 
 If you change it to :
 - OWNER : 
- - Players with this permission will have access to all available GM actions on the discard pile.
+  - Players with this permission will have access to all available GM actions on the discard pile.
 - LIMITED :
- - Players with this permission won't see the card details when other players use the ***Discard card*** action.
- - The discard can still be viewed by players with this permission. But they can only see how many cards have been discarded. Cards contents are hidden.
+  - Players with this permission won't see the card details when other players use the ***Discard card*** action.
+  - The discard can still be viewed by players with this permission. But they can only see how many cards have been discarded. Cards contents are hidden.
 - NONE :
- - Same restrictions as above.
- - Players can't see the discard anymore and won't be able to know hom many cards are left.
+  - Same restrictions as above.
+  - Players can't see the discard anymore and won't be able to know hom many cards are left.
 
 > Warning : If you choose to give OWNER rights to players, they will have access to the actions ***Put it back in the deck*** and ***Shuffle all discard inside deck***. Those actions usually shuffle the deck after putting the cards inside it. If the player doing it doesn't have the OWNER rights on the deck, the shuffle step will be ignored and the cards will be put on the top of the deck. (`card.data.sort` remained unchanged)
 
