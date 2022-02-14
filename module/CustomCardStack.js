@@ -392,9 +392,17 @@ export class CustomCardStack {
         msgData.speaker = {}
         const stackOwner = this.stackOwner;
         if( stackOwner.forPlayers ) { 
-            const speakerActor = game.users.find( u => u.id === stackOwner.playerId )?.character;
-            msgData.speaker.id = speakerActor?.id;
-            msgData.speaker.alias = speakerActor?.name;
+            const user = game.users.find( u => u.id === stackOwner.playerId );
+            if( user ) {
+                const speakerActor = user.character;
+                if( speakerActor ) {
+                    msgData.speaker.id = speakerActor?.id;
+                    msgData.speaker.alias = speakerActor?.name;
+                } else {
+                    msgData.speaker.alias = user.name;
+                }
+            }
+            
         } else {
             msgData.speaker.alias = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName);
         }

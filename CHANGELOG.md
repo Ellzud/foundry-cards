@@ -13,6 +13,8 @@ You can have more details about this feature inside the readme file.
 ### Issues
 - When a **Exchange between players** was init by a player. He didn't have enough rights on the target stack to make the exchange successful.
 - When registering a deck from a custom preset, discard pile had the same icon as the deck.
+- Since 1.5.0, there were cases where card GUI wasn't refreshed after some actions.
+- When giving a card to a player who had no main character, message was saying that the game master was retrieving the card.
 
 ### Images
 - Core stacks now have reworked discard piles icons and background
