@@ -65,7 +65,7 @@
         {{/if}}
 
         {{#if param.revealedCardsDisplayed}}
-            {{> paramPartStackSelection stacks=param.revealedCards}}
+            {{> paramPartStackSelection header=param.labels.headerRevealed stacks=param.revealedCards}}
         {{/if}}
 
         {{#if param.specifyAmount}}

@@ -190,9 +190,8 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
     };
-    permission[user.id] = CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
 }
@@ -219,7 +218,7 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
     };
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
@@ -479,15 +478,22 @@ export class CustomCardStackLoader {
         }).forEach(s => {
             const core = s.getFlag("ready-to-use-cards", "core");
             const registerFlag = s.getFlag("ready-to-use-cards", "registered-as");
-            coreStacks[core] = {
-                cardClass: CustomCardSimple,
-                labelBaseKey : 'RTUCards.default.',
-                resourceBaseDir : 'modules/ready-to-use-cards/resources/default',
+
+            const def = {
                 customName : registerFlag.name,
                 customDesc : registerFlag.desc,
-                customIcon : registerFlag.icon,
                 isManuallyRegistered: true
             };
+            
+            // Choosing icon for discard pile
+            const defaultParam = s.getFlag("ready-to-use-cards", "default-parameters");
+            if( defaultParam ) {
+                def.labelBaseKey = defaultParam.labelBaseKey;
+                def.resourceBaseDir = defaultParam.resourceBaseDir;
+            } else {
+                def.customIcon = registerFlag.icon;
+            }
+            coreStacks[core] = def;
         });
         return coreStacks;
     }
@@ -509,7 +515,32 @@ export class CustomCardStackLoader {
         
         loadStackDefinition(this.defaultCoreStacks);
         await this.initMissingStacks();
+        await this.ensureRightPermissionsForStacks();
         this.loadStackLinks();
+    }
+
+    /**
+     * Player and GMs stacks should be owned by everybody
+     * Wasn't the case on first implems => We check its the case on every init.
+     */
+    async ensureRightPermissionsForStacks() {
+
+        // Only GMs can alter those stacks
+        if( !game.user.isGM ) { return; }
+
+        const customStacks = game.cards.filter( s => {
+            const ccs = new CustomCardStack(s);
+            if( !ccs.handledByModule ) { return false; }
+            if( ccs.stackOwner.forNobody ) { return false; }
+            return s.data.permission.default != CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
+        });
+
+        for( const ccs of customStacks ) {
+            const updateData = {
+              "permission.default" : CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
+            };
+            await ccs.update(updateData);
+        }
     }
 
     async initMissingStacks() {
