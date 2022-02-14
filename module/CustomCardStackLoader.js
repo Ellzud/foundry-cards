@@ -190,9 +190,8 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
     };
-    permission[user.id] = CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
 }
@@ -219,7 +218,7 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
     };
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
@@ -509,7 +508,32 @@ export class CustomCardStackLoader {
         
         loadStackDefinition(this.defaultCoreStacks);
         await this.initMissingStacks();
+        await this.ensureRightPermissionsForStacks();
         this.loadStackLinks();
+    }
+
+    /**
+     * Player and GMs stacks should be owned by everybody
+     * Wasn't the case on first implems => We check its the case on every init.
+     */
+    async ensureRightPermissionsForStacks() {
+
+        // Only GMs can alter those stacks
+        if( !game.user.isGM ) { return; }
+
+        const customStacks = game.cards.filter( s => {
+            const ccs = new CustomCardStack(s);
+            if( !ccs.handledByModule ) { return false; }
+            if( ccs.stackOwner.forNobody ) { return false; }
+            return s.data.permission.default != CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
+        });
+
+        for( const ccs of customStacks ) {
+            const updateData = {
+              "permission.default" : CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
+            };
+            await ccs.update(updateData);
+        }
     }
 
     async initMissingStacks() {
