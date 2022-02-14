@@ -55,7 +55,7 @@ export class CustomCardsDisplay extends CardsConfig {
      * If the card has been passed to another crd stack, it won't be selected
      * @param {string} cardId The card Id
      */
-     selectAvailableCard( cardId ){
+    selectAvailableCard( cardId ){
         this._currentSelection =  this._cards.availableCards.find( c => c.id === cardId );
     }
 
@@ -129,6 +129,26 @@ export class CustomCardsDisplay extends CardsConfig {
 
         return buttons
     }
+
+    /* -------------------------------------------- */
+
+    /**
+     * I wish for players with only limited right to be able to see the sheet 
+     * Bypassing SidebarSheet implem.
+     * @override 
+     * */
+    render(force=false, options={}) {
+        this._render(force, options).catch(err => {
+          this._state = Application.RENDER_STATES.ERROR;
+          Hooks.onError("Application#render", err, {
+            msg: `An error occurred while rendering ${this.constructor.name} ${this.appId}`,
+            log: "error",
+            ...options
+          });
+        });
+        return this;
+    }
+    
 
     /* -------------------------------------------- */
 
@@ -314,8 +334,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
-        // On decks, default actions are reserved to the GM
-        if( game.user.isGM ) {
+        // On decks, default actions are reserved to the GM and players owning it
+        if( this._cards.testUserPermission(game.user, "OWNER") ) {
 
             const cardsLeft = this._cards.availableCards.length > 0;
             if( cardsLeft ) {
@@ -327,6 +347,9 @@ export class CustomCardsDisplay extends CardsConfig {
 
             tools.addAvailableAction(actions, deckConfig, this._custom, css.dealCards, 'sheet.actions.dealCards', {atLeastOne:[keys.fromDeckDealCardsToHand, keys.fromDeckDealRevealedCards], onLeft:true});
             tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDeck, 'sheet.actions.shuffleCards', {allKeys:[keys.fromDeckShuffleRemainingCards], onLeft:true});
+        }
+
+        if(game.user.isGM) { // Those actions needs owning every card stacks => Only avaialable to GMs
             tools.addAvailableAction(actions, deckConfig, this._custom, css.recallCards, 'sheet.actions.recallCards', {allKeys:[keys.fromDeckResetAll], onLeft:true});
             tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
         }
@@ -372,8 +395,8 @@ export class CustomCardsDisplay extends CardsConfig {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
-        // On main discards, default actions are reserved to the GM
-        if( game.user.isGM ) {
+        // On main discards, default actions are reserved to the GM and players owning the discard
+        if( this._cards.testUserPermission(game.user, "OWNER") ) {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.shuffleDiscard, 'sheet.actions.shuffleDiscard', {allKeys:[keys.fromDiscardResetAll], onLeft:true});
             tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
         }
@@ -423,8 +446,11 @@ export class CustomCardsDisplay extends CardsConfig {
         if( owned ) {
             // Drawing cards from each deck
             Object.values(this._custom.cardStacks.decks).forEach( deck => {
-                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
-                                            {allKeys:[keys.fromHandDrawCard], action:deck.coreStackRef, onLeft:true} );
+
+                if( deck.stack.testUserPermission(game.user, "OBSERVER") ) { // Only available if player has enough permissions
+                    tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                             {allKeys:[keys.fromHandDrawCard], action:deck.coreStackRef, onLeft:true} );
+                }
             });
             tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
     
@@ -492,8 +518,11 @@ export class CustomCardsDisplay extends CardsConfig {
         if( owned ) {
             // Drawing cards from each deck
             Object.values(this._custom.cardStacks.decks).forEach( deck => {
-                tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
-                                            {allKeys:[keys.fromRevealedDrawCard], action:deck.coreStackRef, onLeft:true} );
+
+                if( deck.stack.testUserPermission(game.user, "OBSERVER") ) { // Only available if player has enough permissions
+                    tools.addAvailableAction(actions, deck.stackConfig, deck, css.drawCard, 'sheet.actions.drawCard', 
+                                              {allKeys:[keys.fromRevealedDrawCard], action:deck.coreStackRef, onLeft:true} );
+                }
             });
             tools.addCssOnLastAction(actions, css.separator, {onLeft:true});
     

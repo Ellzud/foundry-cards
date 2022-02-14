@@ -335,11 +335,13 @@ export class CustomCardStack {
         const html = await renderTemplate(template, preparedData);
 
         // Send message
+        const userName = game.user.character?.name ?? game.user.name;
+        const alias = game.user.isGM ? game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName) : userName;
         const msgData = {
             content: html,
             user: game.user.id,
             speaker: {
-                alias: game.settings.get("ready-to-use-cards", GlobalConfiguration.gmName)
+                alias: alias
             }
         }
         return ChatMessage.create(msgData);
@@ -351,9 +353,10 @@ export class CustomCardStack {
      * @param {Card[]} cards List of cards which should be listed
      * @param {boolean} [addCardDescription] : If description should be added for each card
      * @param {boolean} [hideToStrangers] : If message should be hidden to strangers
+     * @param {string} [sentToDiscard] : Discard stack id. When message is displayed, it will check if the player has enough rights to see the discard. If not, the card will be hidden
      * @param {boolean} [letGMSpeak] : If true, message will be formated as if it came from gmHand manipulaition
      */
-     async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, letGMSpeak=false} = {}) {
+     async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, sentToDiscard=null, letGMSpeak=false} = {}) {
 
         const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
@@ -363,7 +366,7 @@ export class CustomCardStack {
             data.cards.push( line );
         }
 
-        return from.sendMessageWithPreparedCardData(flavor, data, {hideToStrangers});
+        return from.sendMessageWithPreparedCardData(flavor, data, {hideToStrangers, sentToDiscard});
     };
 
     /**
@@ -372,9 +375,10 @@ export class CustomCardStack {
      * @param {string} flavor message flavor
      * @param {object} preparedData Should contains a .cards[]
      * @param {boolean} [hideToStrangers] : If message should be hidden to strangers
+     * @param {string} [sentToDiscard] : Discard stack id. When message is displayed, it will check if the player has enough rights to see the discard. If not, the card will be hidden
      * @returns 
      */
-    async sendMessageWithPreparedCardData(flavor, preparedData, {hideToStrangers=false} = {} ) {
+    async sendMessageWithPreparedCardData(flavor, preparedData, {hideToStrangers=false, sentToDiscard=null} = {} ) {
 
         const template = 'modules/ready-to-use-cards/resources/sheet/card-listing.hbs';
         const html = await renderTemplate(template, preparedData);
@@ -399,6 +403,7 @@ export class CustomCardStack {
         // Flags used when handling click on this message
         msgData["flags.ready-to-use-cards.handleCards"] = {
             hideToStrangers: hideToStrangers,
+            sentToDiscard: sentToDiscard,
             forGMs: stackOwner.forGMs,
             forPlayers: stackOwner.forPlayers,
             playerId: stackOwner.playerId
@@ -512,7 +517,7 @@ export class CustomCardStack {
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
-                await this.sendMessageForCards( flavor, cards );
+                await this.sendMessageForCards( flavor, cards, {sentToDiscard: pile.stack.id} );
         
                 discardCards = discardCards.concat(cards);
             }
@@ -536,7 +541,12 @@ export class CustomCardStack {
         const original = await currentCard?.reset({chatNotification: false});
 
         const coreKey = this.coreStackRef;
-        await this.cardStacks.decks[coreKey]?.stack.shuffle({chatNotification: false});
+        const deck = this.cardStacks.decks[coreKey]?.stack;
+        if( deck.testUserPermission(game.user, "OWNER") ) {
+            await deck.shuffle({chatNotification: false});
+        } else {
+            console.warn('RTUC-Actions | You didn\'t have enough permissions to shuffle the deck. Skipped.');
+        }
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', 1);
         await this.sendMessageForCards(flavor,  [original], {letGMSpeak:true} );
@@ -576,7 +586,13 @@ export class CustomCardStack {
         await this.stack.reset({chatNotification: false});
 
         const coreKey = this.coreStackRef;
-        await this.cardStacks.decks[coreKey]?.stack.shuffle({chatNotification: false});
+        const deck = this.cardStacks.decks[coreKey]?.stack;
+        if( deck.testUserPermission(game.user, "OWNER") ) {
+            await deck.shuffle({chatNotification: false});
+        } else {
+            console.warn('RTUC-Actions | You didn\'t have enough permissions to shuffle the deck. Skipped.');
+        }
+        
 
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', amount);
         await this.sendMessageForCards(flavor,  [], {letGMSpeak:true} );

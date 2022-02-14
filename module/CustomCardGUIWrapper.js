@@ -53,15 +53,28 @@ export class CustomCardGUIWrapper {
 
     get detailsCanBeDisplayed() {
         
-        if( this.card.isHome ) {
-            return false;
+        const cardType = this._currently.stack.type;
+        const owner = this._currently.stackOwner;
+        if( owner.forNobody ) {
+
+            // Deck : Hidden to everybody
+            if( cardType == 'deck' ) {
+                return false;
+            }
+            
+            // Discard : Visible only to those having enough rights
+            if( cardType == 'pile' ) {
+                return this._currently.stack.testUserPermission(game.user, "OBSERVER");
+            }
         }
 
+        // Hand and Revealed card of current player
         if( this.ownedByCurrentPlayer ) {
             return true;
         }
 
-        return this._card.parent.type == 'pile';
+        // Card or Revealed cards of other players/GM
+        return cardType == 'pile';
     }
 
     /**
@@ -175,7 +188,7 @@ export class CustomCardGUIWrapper {
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        if( game.user.isGM ) { 
+        if( this.card.parent.testUserPermission(game.user, "OWNER") ) {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand ,keys.fromDeckDealRevealedCards]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
             tools.addCssOnLastAction(actions, css.separator);
@@ -280,13 +293,15 @@ export class CustomCardGUIWrapper {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
-        if( game.user.isGM ) { 
+        if( this.card.parent.testUserPermission(game.user, "OWNER") ) {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
-        tools.addCssOnLastAction(actions, css.separator);
+        if( this.card.parent.testUserPermission(game.user, "OBSERVER") ) {
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
+            tools.addCssOnLastAction(actions, css.separator);
+        }
     
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDiscard ) {
