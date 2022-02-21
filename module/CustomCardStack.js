@@ -1,5 +1,5 @@
-import { cardStackSettings, updateCardStackSettings } from "./tools.js";
-import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { cardFilterSettings, cardStackSettings, updateCardStackSettings } from "./tools.js";
+import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
@@ -42,6 +42,14 @@ export class CustomCardStack {
 
     constructor(stack) {
         this._stack = stack;
+
+        // Some actions calls a reset. Also reset our flags
+        const resetingFlags = {};
+        resetingFlags['flags.ready-to-use-cards.currentFace'] = 0;
+        this._resetingOptions = {
+            chatNotification: false,
+            updateData: resetingFlags    
+        };
     }
 
     get stack() { return this._stack; }
@@ -65,6 +73,31 @@ export class CustomCardStack {
         const coreRef = this.coreStackRef;
         const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
         return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/icons/front.webp');
+    }
+
+    get backDefaultImage() {
+        const coreRef = this.coreStackRef;
+        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
+        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/background/back.webp');
+    }
+
+    get frontDefaultImage() {
+        const coreRef = this.coreStackRef;
+        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
+        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/background/front.webp');
+    }
+
+    /**
+     * Some actions loops through the cards.
+     * If this is TRUE, the card back is added as the last face of the card.
+     * It's true by default. You can change it inside the action config panel.
+     * Is using DeckParameters.removeBackFace to see if it's true or not
+     */
+    get cardBackIsConsideredAsAFaceWhenLooping() {
+        const coreRef = this.coreStackRef;
+        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
+        const removed = coreDef[DeckParameters.removeBackFace] ?? false;
+        return !removed;
     }
 
     /**
@@ -228,11 +261,12 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         // 2: Flag this coreStack as chosen in settings
-        let chosenStacks = cardStackSettings();
-        const stackSettings = {};
+        const stackSettings = cardFilterSettings();
         if(defaultParameters) {
             stackSettings['parameters'] = defaultParameters;
         }
+
+        const chosenStacks = cardStackSettings();
         chosenStacks[this.stack.id] = stackSettings;
         await updateCardStackSettings(chosenStacks);
 
@@ -546,7 +580,7 @@ export class CustomCardStack {
         assertStackType(this, {piles: true});
 
         const currentCard = this.stack.cards.get(cardId);
-        const original = await currentCard?.reset({chatNotification: false});
+        const original = await currentCard?.reset(this._resetingOptions);
 
         const coreKey = this.coreStackRef;
         const deck = this.cardStacks.decks[coreKey]?.stack;
@@ -591,7 +625,7 @@ export class CustomCardStack {
         assertStackType(this, {piles: true});
 
         const amount = this.stack.availableCards.length;
-        await this.stack.reset({chatNotification: false});
+        await this.stack.reset(this._resetingOptions);
 
         const coreKey = this.coreStackRef;
         const deck = this.cardStacks.decks[coreKey]?.stack;
@@ -698,7 +732,9 @@ export class CustomCardStack {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        await this.stack.reset({chatNotification: false});
+        const resetingFlags = [];
+        resetingFlags['flags.ready-to-user-cards.currentFace'] = 0;
+        await this.stack.reset(this._resetingOptions);
         await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'reset', 1);

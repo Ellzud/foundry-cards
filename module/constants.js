@@ -23,6 +23,7 @@
     exchangePlayer: 'exchange-player',
     discardCard: 'discard-card',
     giveCard: 'give-card',
+    loopFaces : 'loop-faces',
     playCard: 'play-card',
     playMultiple: 'play-multiple',
     revealCard: 'reveal-card',
@@ -49,6 +50,7 @@ export const StackConfiguration = {
     fromDeckDiscardDirectly: 'fromDeckDiscardDirectly',
     fromDeckResetAll: 'fromDeckResetAll',
     fromDeckShuffleRemainingCards: 'fromDeckShuffleRemainingCards',
+    fromDeckLoopThroughFaces: 'fromDeckLoopThroughFaces',
     fromDeckRotateCard: 'fromDeckRotateCard',
     fromHandDrawCard: 'fromHandDrawCard',
     fromHandPlayCard: 'fromHandPlayCard',
@@ -59,15 +61,18 @@ export const StackConfiguration = {
     fromHandExchangeWithPlayer: 'fromHandExchangeWithPlayer',
     fromHandDiscardCard: 'fromHandDiscardCard',
     fromHandRotateCard: 'fromHandRotateCard',
+    fromHandLoopThroughFaces: 'fromHandLoopThroughFaces',
     fromRevealedDrawCard: 'fromRevealedDrawCard',
     fromRevealedPlayCard: 'fromRevealedPlayCard',
     fromRevealedBackToHand: 'fromRevealedBackToHand',
     fromRevealedDiscardCard: 'fromRevealedDiscardCard', 
     fromRevealedRotateCard: 'fromRevealedRotateCard',
+    fromRevealedLoopThroughFaces: 'fromRevealedLoopThroughFaces',
     fromRevealedExchangeCard: 'fromRevealedExchangeCard',
     fromRevealedExchangeWithPlayer: 'fromRevealedExchangeWithPlayer',
     fromDiscardBackToDeck: 'fromDiscardBackToDeck',
     fromDiscardRotateCard: 'fromDiscardRotateCard',
+    fromDiscardLoopThroughFaces: 'fromDiscardLoopThroughFaces',
     fromDiscardResetAll: 'fromDiscardResetAll'
 };
 
@@ -78,6 +83,7 @@ export const DeckParameters = {
 	overrideConf : 'overrideConf',
 	labelBaseKey: 'labelBaseKey',
 	resourceBaseDir: 'resourceBaseDir',
+    removeBackFace: 'removeBackFace',
 }
 
 /**
@@ -92,6 +98,7 @@ export const GlobalConfiguration = {
     shortcuts: 'shortcuts',
     smallDisplay: 'smallDisplay',
     stacks: 'stacks',
+    filter: 'filter',
     stackForPlayerHand: 'stackForPlayerHand',
     stackForPlayerRevealedCards: 'stackForPlayerRevealedCards'
 };

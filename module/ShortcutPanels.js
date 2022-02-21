@@ -137,7 +137,7 @@ class ShortcutPanel extends Application {
             const wrapper = new CustomCardGUIWrapper(card);
             return  {
                 id: card.id, 
-                cardBg: card.data.faces[0].img,
+                cardBg: wrapper.currentFace.img,
                 classes: 'display-content ' + (wrapper.shouldBeRotated( false ) ? 'rotated' : '')
              };
         });

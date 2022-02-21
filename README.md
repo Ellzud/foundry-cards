@@ -81,6 +81,14 @@ To solve this, a prior filtering is available. By using it, you can greatly redu
 
 ![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
 
+When untouched, the filter allow every actions. You can manually remove some or click on the `Recreate filter` button. If you do so, it will disable all actions which are not currently used by your decks.
+
+![Choosing actions filtering](docs/README_choosing_action_filtering_rebuild.webp?raw=true)
+
+> If you choose to rebuild the filter when you have no toggled decks, all actions will be disabled
+
+> If later, you add new decks, they will automatically use the current filter.
+
 ### Other parameters
 
 There exists other parameters linked to each decks. If you use pre-generated decks or decks issued from RTUC presets, you won't need to change those :
@@ -158,9 +166,22 @@ For this action, you need to choose two things :
 
 ![Exchange cards](docs/README_exchange_cards.webp?raw=true)
 
+### Action example : Looping through card faces
+
+This action can be done as long as the card is visible for you and you own the stack.
+
+![Looping through cards](docs/README_loop_through_faces.webp?raw=true)
+
+You also need to have multiple faces for your card or this action won't be displayed.
+
+> By default, the card back is considered as a valid card face, making all cards having at least two faces. You can remove this parameter here :
+
+![Removing card back face](docs/README_loop_through_faces_removed.webp?raw=true)
+
+
 ### Action example : Rotating selected card
 
-This on is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
+This one is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
 Mainly useful for cards who can be read from the two ways.
 
 

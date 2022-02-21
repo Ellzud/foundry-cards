@@ -108,6 +108,13 @@ export const loadCardSettings = () => {
 			if ( app ) app.render();
 		}
 	});
+	// Data will be stored inside 'stacks'
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.filter, {
+		scope: "world",
+		config: false,
+		default: {},
+		type: Object
+	});
 
 	// Second menu : Configure your shortcuts
 	//--------------------------------------

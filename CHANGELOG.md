@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## Release 1.8.0
+
+### Features
+- Filtering action in settings is now persistent and will apply to new decks you add
+- Looping through card faces is now available.
+  - Can be done inside deck, hand, revealed card, and discard as long as the card is visible.
+  - You need to own the card to do that.
+  - Current face name is now used when card is dealt, played, or discarded.
+  - Current face is reset when card returns in the deck.
+- The card back is considered as a card face by default.
+  - You can remove it from the card faces inside the action settings panel.
+
+### Translation
+- New action inside filter : 
+  - `RTUCards.settings.config-actions.filter.rebuild`
+  - *Will only be seen by the GM*
+- New action inside deck parameters : 
+  - `RTUCards.settings.config-actions.additionalData.removeBackFace`
+  - *Will only be seen by the GM*
+- New action for your decks : 
+  - `RTUCards.default.sheet.actions.loopFaces`
+  - `RTUCards.settings.sheet.labels.fromDeckLoopThroughFaces`
+  - `RTUCards.settings.sheet.labels.fromHandLoopThroughFaces`
+  - `RTUCards.settings.sheet.labels.fromRevealedLoopThroughFaces`
+  - `RTUCards.settings.sheet.labels.fromDiscardLoopThroughFaces`
+  - *Will only be seen by your players as long as the action is available*
+  - *The four last ones have the same default value. Four keys to make it possible to have different action name depending on where the card is.*
+
+  > I know this makes the translation file really big and difficult to maintain. Sorry for that. I'm thinking of a way to make it thinner but for now, didn't find a good solution
+
 ## Release 1.7.0
 
 ### Features
