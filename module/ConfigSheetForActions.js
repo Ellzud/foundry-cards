@@ -384,7 +384,8 @@ export class ConfigSheetForActions extends FormApplication {
 		});
 
         await updateCardStackSettings(decks);
-
+		await this.module.cardStacks.loadCardStacks();
+		
 		this.close();
 	}
 
