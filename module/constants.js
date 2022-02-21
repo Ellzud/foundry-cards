@@ -92,6 +92,7 @@ export const GlobalConfiguration = {
     shortcuts: 'shortcuts',
     smallDisplay: 'smallDisplay',
     stacks: 'stacks',
+    filter: 'filter',
     stackForPlayerHand: 'stackForPlayerHand',
     stackForPlayerRevealedCards: 'stackForPlayerRevealedCards'
 };

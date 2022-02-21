@@ -5,6 +5,7 @@
     "RTUCards.settings.config-actions.saveAndClose": "Save changes & Close",
     "RTUCards.settings.config-actions.filter.title": "Prior filtering on available actions",
     "RTUCards.settings.config-actions.filter.details": "Unchecked actions will be automatically disabled for all of your decks. They won't appear in deck details. Use this to reduce the pool of actions for your decks.",
+    "RTUCards.settings.config-actions.filter.rebuild": "Recreate filter from current choices in the decks you are using",
 
     "RTUCards.settings.config-actions.additionalData.headerFilter": "What is it for?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Additional data for this deck",

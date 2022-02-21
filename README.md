@@ -81,6 +81,14 @@ To solve this, a prior filtering is available. By using it, you can greatly redu
 
 ![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
 
+When untouched, the filter allow every actions. You can manually remove some or click on the `Recreate filter` button. If you do so, it will disable all actions which are not currently used by your decks.
+
+![Choosing actions filtering](docs/README_choosing_action_filtering_rebuild.webp?raw=true)
+
+> If you choose to rebuild the filter when you have no toggled decks, all actions will be disabled
+
+> If later, you add new decks, they will automatically use the current filter.
+
 ### Other parameters
 
 There exists other parameters linked to each decks. If you use pre-generated decks or decks issued from RTUC presets, you won't need to change those :

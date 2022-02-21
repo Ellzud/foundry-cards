@@ -5,6 +5,7 @@
     "RTUCards.settings.config-actions.saveAndClose": "Sauvegarder les modifs & Fermeture",
     "RTUCards.settings.config-actions.filter.title": "Filtre préliminaire sur les actions disponibles",
     "RTUCards.settings.config-actions.filter.details": "Toutes les actions décochées seront automatiquent indisponibles pour tout vos decks. Elles n'apparaîtront plus dans les détails de chaque deck. À utiliser pour réduire le pool d'actions disponibles pour vos decks",
+    "RTUCards.settings.config-actions.filter.rebuild": "Reconstruire le filtre à partir des choix faits sur les decks actuels",
 
     "RTUCards.settings.config-actions.additionalData.headerFilter": "A quoi il sert ?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Informations supplémentaires sur le deck",

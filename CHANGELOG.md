@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Release 1.8.0
+
+### Features
+- Filtering action in settings is now persistent and will apply to new decks you add
+
+### Translation
+- New key : `RTUCards.settings.config-actions.filter.rebuild`
+
 ## Release 1.7.0
 
 ### Features

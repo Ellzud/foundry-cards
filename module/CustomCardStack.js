@@ -1,4 +1,4 @@
-import { cardStackSettings, updateCardStackSettings } from "./tools.js";
+import { cardFilterSettings, cardStackSettings, updateCardStackSettings } from "./tools.js";
 import { GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
@@ -228,11 +228,12 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         // 2: Flag this coreStack as chosen in settings
-        let chosenStacks = cardStackSettings();
-        const stackSettings = {};
+        const stackSettings = cardFilterSettings();
         if(defaultParameters) {
             stackSettings['parameters'] = defaultParameters;
         }
+
+        const chosenStacks = cardStackSettings();
         chosenStacks[this.stack.id] = stackSettings;
         await updateCardStackSettings(chosenStacks);
 
