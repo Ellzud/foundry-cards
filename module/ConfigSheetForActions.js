@@ -68,7 +68,6 @@ const buildStackActions = (stack) => {
 		}
 	})
 
-
 	// Some stacks may have some custom card implem. Warn the user that the action listing may not be used
 	if( stack.useCustomCardImpl ) {
 		actions.push(
@@ -82,6 +81,17 @@ const buildStackActions = (stack) => {
 		const icon = stack.parameters[overrideKey] ? 'fas fa-lock-open' : 'fas fa-lock';
 		actions.push(
 			createActionLine({ icon: icon, param: overrideKey, labelKey: 'RTUCards.settings.config-actions.additionalData.overrideConf' })
+		);
+	}
+
+
+	// Back inside card faces ?
+	const removeBackKey = DeckParameters.removeBackFace;
+	if( stack.parameters.hasOwnProperty(removeBackKey) ) {
+		const removed = stack.parameters[removeBackKey];
+		const icon = removed ? 'far fa-check-square' : 'far fa-square';
+		actions.push(
+			createActionLine({ icon: icon, param: removeBackKey, labelKey: 'RTUCards.settings.config-actions.additionalData.removeBackFace' })
 		);
 	}
 
@@ -189,6 +199,7 @@ export class ConfigSheetForActions extends FormApplication {
 			const parameters = {};
 			parameters.labelBaseKey = declared ? actualDefinition.core[key].labelBaseKey : stackDef.labelBaseKey;
 			parameters.resourceBaseDir = declared ? actualDefinition.core[key].resourceBaseDir : stackDef.resourceBaseDir;
+			parameters.removeBackFace = declared ? actualDefinition.core[key].removeBackFace : stackDef.removeBackFace;
 			data.parameters = parameters;
 
 			const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');;
@@ -230,6 +241,7 @@ export class ConfigSheetForActions extends FormApplication {
 			const parameters = {};
 			parameters.labelBaseKey = coreDef.labelBaseKey;
 			parameters.resourceBaseDir = coreDef.resourceBaseDir;
+			parameters.removeBackFace = coreDef.removeBackFace;
 			parameters.overrideConf = coreDef.overrideConf;
 			data.parameters = parameters;
 			
@@ -385,7 +397,7 @@ export class ConfigSheetForActions extends FormApplication {
 
         await updateCardStackSettings(decks);
 		await this.module.cardStacks.loadCardStacks();
-		
+
 		this.close();
 	}
 

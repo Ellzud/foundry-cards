@@ -166,9 +166,22 @@ For this action, you need to choose two things :
 
 ![Exchange cards](docs/README_exchange_cards.webp?raw=true)
 
+### Action example : Looping through card faces
+
+This action can be done as long as the card is visible for you and you own the stack.
+
+![Looping through cards](docs/README_loop_through_faces.webp?raw=true)
+
+You also need to have multiple faces for your card or this action won't be displayed.
+
+> By default, the card back is considered as a valid card face, making all cards having at least two faces. You can remove this parameter here :
+
+![Removing card back face](docs/README_loop_through_faces_removed.webp?raw=true)
+
+
 ### Action example : Rotating selected card
 
-This on is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
+This one is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
 Mainly useful for cards who can be read from the two ways.
 
 

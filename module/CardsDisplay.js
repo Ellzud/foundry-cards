@@ -223,7 +223,7 @@ export class CustomCardsDisplay extends CardsConfig {
         if( cardInfo.displayed ) {
 
             cardInfo.classes = 'display-content';
-            cardInfo.cardBg = card.data.faces[0].img;
+            cardInfo.cardBg = wrapper.currentFace.img;
 
             const rotateAsked = this.forceRotate && card.id === this.currentSelection?.id;
             if( wrapper.shouldBeRotated( rotateAsked ) ) {
@@ -559,6 +559,7 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(css.giveCard).click(event => this._onClickGiveCard(event) );
         html.find(css.exchangeCard).click(event => this._onClickExchangeCard(event) );
         html.find(css.exchangePlayer).click(event => this._onClickExchangePlayer(event) );
+        html.find(css.loopFaces).click(event => this._onClickLoopThroughCardFaces(event) );
         html.find(css.playCard).click(event => this._onClickPlayCard(event) );
         html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) );
         html.find(css.revealCard).click(event => this._onClickRevealCard(event) );
@@ -775,6 +776,18 @@ export class CustomCardsDisplay extends CardsConfig {
         await this._custom.sendMessageForStacks(flavor, []);
 
         this._peekOn = !wasPeeking;
+        this.render();
+    }
+
+    async _onClickLoopThroughCardFaces(event) {
+        event.preventDefault();
+
+        try { 
+            const wrapper = new CustomCardGUIWrapper(this.currentSelection);
+            await wrapper.nextFace();
+        } catch( e ) {
+           console.error(e); // SHould not happen : Card making this action available will be wrappable
+        }
         this.render();
     }
 

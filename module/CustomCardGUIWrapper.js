@@ -42,8 +42,66 @@ export class CustomCardGUIWrapper {
     }
 
 
-    get forGUI() {
-        return new CustomCardGUIWrapper(this);
+    /**
+     * Manage all faces with default values.
+     * If settings says so, alos add the back as the last face
+     */
+    get allFaces() {
+
+        if( !this._allFaces ) {
+            this._allFaces = this._card.data.faces.map(f => {
+                const data = {
+                    name: f.name,
+                    text: f.text,
+                    img : f.img
+                };
+                if( !data.name || data.name == '' ) { data.name = this.name ?? ''; }
+                if( !data.text || data.text == '' ) { data.text = this._card.data.description ?? ''; }
+                if( !data.img  || data.img == '' ) { data.img = this._custom.frontDefaultImage; }
+                return data;
+            });
+    
+            const setting = this._custom.cardBackIsConsideredAsAFaceWhenLooping;
+            if( setting ) {
+                const back = {
+                    name: this._card.data.back?.name,
+                    text: this._card.data.back?.text,
+                    img : this._card.data.back?.img
+                };
+                if( !back.name || back.name == '' ) { back.name = this.name ?? ''; }
+                if( !back.text || back.text == '' ) { back.text = this._card.data.description ?? ''; }
+                if( !back.img  || back.img == '' ) { back.img = this._custom.backDefaultImage; }
+    
+                this._allFaces.push(back);
+            }
+        }
+        return this._allFaces;
+    }
+
+    /**
+     * Return the current face for this card.
+     * I chose to store face index in my flags instead of the data._source.face to keep usual card data without changes
+     * Used flag : this._card.getFlag('ready-to-use-cards', 'currentFace')
+     */
+    get currentFace() {
+        let faceIndex = this._card.getFlag('ready-to-use-cards', 'currentFace') ?? 0;
+        const allFaces = this.allFaces;
+        if( faceIndex >= allFaces.length ) { faceIndex = allFaces.length -1; }
+        return allFaces[faceIndex];
+    }
+
+    /**
+     * Loop through faces. When reaching the end, it goes back to the first one
+     * @returns the current face after change
+     */
+    async nextFace() {
+        let faceIndex = this._card.getFlag('ready-to-use-cards', 'currentFace') ?? 0;
+        faceIndex++;
+
+        const allFaces = this.allFaces;
+        if( faceIndex >= allFaces.length ) { faceIndex = 0; }
+        await this._card.setFlag('ready-to-use-cards', 'currentFace', faceIndex);
+        return this.currentFace;
     }
 
 
@@ -138,23 +196,19 @@ export class CustomCardGUIWrapper {
         const stackOwner = this._currently.stackOwner;
         const playerFlag = stackOwner.forPlayers ? stackOwner.playerId : 'gm';
 
+        const face = this.currentFace;
         const result = {
             player: playerFlag,
-            ref: this.name,
+            ref: face.name,
             icon: this._custom.frontIcon,
-            name: this._custom.localizedLabel(this.name), //FIXME : May need to support multiple faces
+            name: this._custom.localizedLabel(face.name),
             type: this._custom.coreStackRef,
             rotated: 0,
             description: []
         };
 
-        let faceDescKey = this._card.face?.text ?? "";
-        if( faceDescKey == "" ) {
-            faceDescKey = this._card.data.description ?? "";
-        }
-
-        if( addCardDescription && faceDescKey != "" ) {
-            const desc = this._custom.localizedLabel(faceDescKey);
+        if( addCardDescription && face.text != "" ) {
+            const desc = this._custom.localizedLabel(face.text);
             if( desc != "" ) {
                 result.description.push(desc);
             }
@@ -183,12 +237,17 @@ export class CustomCardGUIWrapper {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
+        const owner = this.card.parent.testUserPermission(game.user, "OWNER");
+
         if( detailsHaveBeenForced ) {
+            if( owner && this.allFaces.length > 1 ) { // Need edit rights for this action
+                tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromDeckLoopThroughFaces]});
+            }
             tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        if( this.card.parent.testUserPermission(game.user, "OWNER") ) {
+        if( owner ) {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand ,keys.fromDeckDealRevealedCards]} );
             tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
             tools.addCssOnLastAction(actions, css.separator);
@@ -221,6 +280,9 @@ export class CustomCardGUIWrapper {
 
         const cardsAreVisible = detailsHaveBeenForced || stackOwnedByUser;
         if( cardsAreVisible ) {
+            if( this.allFaces.length > 1 ) {
+                tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromHandLoopThroughFaces]});
+            }
             tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
             tools.addCssOnLastAction(actions, css.separator);
         }
@@ -258,6 +320,9 @@ export class CustomCardGUIWrapper {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
+        if( stackOwnedByUser && this.allFaces.length > 1 ) {
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromRevealedLoopThroughFaces]});
+        }
         tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
         tools.addCssOnLastAction(actions, css.separator);
 
@@ -293,16 +358,23 @@ export class CustomCardGUIWrapper {
         const keys = def.shared.configKeys;
         const tools = def.shared.actionTools;
 
+        const owner = this.card.parent.testUserPermission(game.user, "OWNER");
+        const observer = this.card.parent.testUserPermission(game.user, "OBSERVER");
+
+        if( owner && this.allFaces.length > 1 ) {
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromDiscardLoopThroughFaces]});
+        }
+        if( observer ) {
+            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
+        }
+        tools.addCssOnLastAction(actions, css.separator);
+    
+
         if( this.card.parent.testUserPermission(game.user, "OWNER") ) {
             tools.addAvailableAction(actions, deckConfig, this._custom, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
             tools.addCssOnLastAction(actions, css.separator);
         }
 
-        if( this.card.parent.testUserPermission(game.user, "OBSERVER") ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
-            tools.addCssOnLastAction(actions, css.separator);
-        }
-    
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDiscard ) {
             this._wrapped.alterLoadActionsWhileInDiscard(actions);
