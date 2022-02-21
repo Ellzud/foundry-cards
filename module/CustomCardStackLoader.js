@@ -359,6 +359,10 @@ const loadStackDefinition = (defaultStacks) => {
         param = parameters[DeckParameters.labelBaseKey];
         if( param ) { stackDef.labelBaseKey = param; }
 
+        if( parameters.hasOwnProperty(DeckParameters.removeBackFace) ) { // Is a boolean :)
+            stackDef.removeBackFace = parameters[DeckParameters.removeBackFace]
+        }
+
         param = parameters[DeckParameters.overrideConf];
         stackDef.overrideConf = param ?? false;
         if( stackDef.overrideConf ) {
@@ -379,6 +383,7 @@ const loadStackDefinition = (defaultStacks) => {
         if( !c.cardClass ) { c.cardClass = CustomCardSimple; }
         if( !c.labelBaseKey ) { c.labelBaseKey = 'RTUCards.default.'; }
         if( !c.resourceBaseDir ) { c.resourceBaseDir = 'modules/ready-to-use-cards/resources/default'; }
+        if( !c.removeBackFace ) { c.removeBackFace = false; }
     });
 }
 
@@ -398,6 +403,7 @@ export class CustomCardStackLoader {
                 labelBaseKey : 'RTUCards.pokerDark.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
                 preset: 'modules/ready-to-use-cards/resources/pokerDark/cards.json'
+                // removeBackFace : false // False by default, optional
             },
             pokerLight: {
                 cardClass: CustomCardSimple,
