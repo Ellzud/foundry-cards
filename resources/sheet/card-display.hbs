@@ -24,6 +24,24 @@
     </div>
 {{/inline}}
 
+{{#*inline "showListingIcon"}}
+    <div class="listing-icon toggle">
+        {{#if opened}}
+            <i class="fas fa-eye-slash"></i>
+        {{else}}
+            <i class="fas fa-list"></i>
+        {{/if}}
+    </div>
+{{/inline}}
+
+{{#*inline "editBackIcon"}}
+    {{#if displayed}}
+        <div class="listing-icon edit-backs">
+            <i class="fas fa-image"></i>
+        </div>
+    {{/if}}
+{{/inline}}
+
 
 {{#*inline "selectCardsParameters"}}
     <div class="parameters-cards">
@@ -135,13 +153,8 @@
     {{#if listing.allowed }}
         <div class="flexrow listing-panel">
             
-            <div class="listing-toggle">
-                {{#if listing.opened}}
-                    <i class="fas fa-eye-slash"></i>
-                {{else}}
-                    <i class="fas fa-list"></i>
-                {{/if}}
-            </div>
+            {{> showListingIcon opened=listing.opened }}
+            {{> editBackIcon displayed=listing.editBack.displayed}}
 
             {{#if listing.opened}}
                 <div class="flexrow all-cards scaled-scrollbar">

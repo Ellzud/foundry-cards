@@ -132,9 +132,10 @@ const removeUnusedFolders = async () => {
  * Prepare the preset for creating a core stack.
  * @param {string} type 'deck' or 'pile'
  * @param {object} coreStack See CARD_STACKS_DEFINITION
+ * @param {string} [defaultImg] Image to use for this stack. If not set, will be replaced by resourceBaseDir values
  * @returns {object} Preset data ready for creating a Cards document
  */
-const initCoreStackPreset = async (type, coreStack) => {
+const initCoreStackPreset = async (type, coreStack, defaultImg=null) => {
     const suffix = game.i18n.localize('RTUCards.coreStacks.suffix.' + type);
     const baseName = coreStack.customName ?? game.i18n.localize(coreStack.labelBaseKey + 'title');
     const name = baseName + suffix;
@@ -142,7 +143,7 @@ const initCoreStackPreset = async (type, coreStack) => {
 
     // Icon
     const imgPath = coreStack.resourceBaseDir + '/icons/';
-    const imgFile = coreStack.customIcon ?? ( imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' ) );
+    const imgFile = defaultImg ?? ( imgPath + (type == 'pile' ? 'front.webp' : 'back.webp' ) );
 
     // Flags
     const stackFlag = {};
@@ -496,8 +497,6 @@ export class CustomCardStackLoader {
             if( defaultParam ) {
                 def.labelBaseKey = defaultParam.labelBaseKey;
                 def.resourceBaseDir = defaultParam.resourceBaseDir;
-            } else {
-                def.customIcon = registerFlag.icon;
             }
             coreStacks[core] = def;
         });
@@ -560,13 +559,14 @@ export class CustomCardStackLoader {
         // Create new card decks and discards
         for( const coreStack of this.coreStackDefinitions ) {
 
-            if( !findCoreStack('deck', coreStack) ) {
+            const deck  = findCoreStack('deck', coreStack);
+            if( !deck ) {
                 const preset = await initCoreStackPreset('deck', coreStack);
                 toCreate.push(preset);
             }
 
             if( !findCoreStack('pile', coreStack) ) {
-                const preset = await initCoreStackPreset('pile', coreStack);
+                const preset = await initCoreStackPreset('pile', coreStack, deck?.stack.data.img );
                 toCreate.push(preset);
             }
         }

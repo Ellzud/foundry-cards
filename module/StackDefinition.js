@@ -13,7 +13,6 @@ import { CardActionsClasses, StackConfiguration } from './constants.js';
  * @property {string} [resourceBaseDir] Base directory for this deck images. If not set, 'modules/ready-to-use-cards/resources/default' will be used
  * @property {string} [customName]      Name for this deck and discard pile. If not set, name will be retrieved from a subkey of labelBaseKey
  * @property {string} [customDesc]      Description for this deck and discard pile. If not set, descirption will be retrieved from a subkey of labelBaseKey
- * @property {string} [customIcon]      Icon to use for deck and discard piles. If not set, icon will be retrieve from a subdirectory of resourceBaseDir
  * @property {string} [preset]          Either preset or presetLoader should be present. Path to this deck preset.
  * @property {function} [presetLoader]  Should be an async function taking no parameters and return à list of cardData. Will be used to fill the deck
  * @property {object} [config]          Each child has for key one of the CardActionsClasses. As for value, its a boolean. True means the option is taken. Missing configs will be considered as taken.
