@@ -51,6 +51,7 @@
  ----------------------------------*/
 .rtucards.cards .main-card-slot {
     flex: unset;
+    justify-content: center;
 }
 
 .rtucards.cards.resized .main-card-slot {
@@ -334,7 +335,7 @@
     margin-top: -220px;
 }
 
-.rtucards.cards .listing-panel .listing-toggle {
+.rtucards.cards .listing-panel .listing-icon {
     min-width: 50px;
     max-width: 50px;
     font-size: 2.5em;

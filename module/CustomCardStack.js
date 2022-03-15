@@ -1,4 +1,4 @@
-import { cardFilterSettings, cardStackSettings, updateCardStackSettings } from "./tools.js";
+import { cardFilterSettings, cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
@@ -55,6 +55,16 @@ export class CustomCardStack {
     get stack() { return this._stack; }
 
     /**
+     * @param {string} [alternativeCoreKey] Which coreStack key should be used. By default will use this.coreStackRef
+     * @returns {string} Stack base name (without suffix for deck and discard)
+     */
+    retrieveStackBaseName(alternativeCoreKey=null) {
+        const coreKey = alternativeCoreKey ?? this.coreStackRef;
+        const coreStack = CARD_STACKS_DEFINITION.core[coreKey];
+        return coreStack?.customName ?? game.i18n.localize(coreStack?.labelBaseKey + 'title');
+    }
+
+    /**
      * Present in Decks and Discard piles.
      * Gives the unique reference key to this stack definition
      * @returns {string} One of the CARD_STACKS_DEFINITION.core keys
@@ -64,27 +74,19 @@ export class CustomCardStack {
     }
 
     get backIcon() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/icons/back.webp');
+        return deckBacksSettings(this.coreStackRef).deckIcon;
     }
 
     get frontIcon() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/icons/front.webp');
+        return deckBacksSettings(this.coreStackRef).discardIcon;
     }
 
     get backDefaultImage() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/background/back.webp');
+        return deckBacksSettings(this.coreStackRef).deckBg;
     }
 
     get frontDefaultImage() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        return coreDef.customIcon ?? (coreDef.resourceBaseDir + '/background/front.webp');
+        return deckBacksSettings(this.coreStackRef).discardBg;
     }
 
     /**
@@ -110,7 +112,7 @@ export class CustomCardStack {
     localizedLabel(labelPath, {alternativeCoreKey=null}={}) {
         const coreKey = alternativeCoreKey ?? this.coreStackRef;
         const coreStack = CARD_STACKS_DEFINITION.core[coreKey];
-        const coreTitle = coreStack?.customName ?? game.i18n.localize(coreStack?.labelBaseKey + 'title');
+        const coreTitle = this.retrieveStackBaseName(alternativeCoreKey);
 
         let label;
         if(CARD_STACKS_DEFINITION.core.hasOwnProperty(coreKey) ) { 
@@ -251,8 +253,7 @@ export class CustomCardStack {
 
         flags['registered-as'] = {
             name: this.stack.name,
-            desc: this.stack.data.description,
-            icon: this.stack.data.img
+            desc: this.stack.data.description
         };
 
         flags['core'] = this.stack.id;
@@ -308,6 +309,7 @@ export class CustomCardStack {
         // 3: Unflag this coreStack as chosen in settings
         delete chosenStacks[this.stack.id];
         await updateCardStackSettings(chosenStacks);
+        await updateDeckBacksSettings(coreKey, null);
 
         // 4: Delete the related discard
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;

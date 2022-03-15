@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Release 1.9.0
+
+### Features
+- Allow changes of deck/discard icons as well as cards default back image.
+
+![Config icons](docs/README_config_icons.webp?raw=true)
+
+### Translation
+- Labels for the new window : `RTUCards.settings.config-backs.*`
+
 ## Release 1.8.0
 
 ### Features

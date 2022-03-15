@@ -108,8 +108,15 @@ export const loadCardSettings = () => {
 			if ( app ) app.render();
 		}
 	});
-	// Data will be stored inside 'stacks'
+	// Data will be stored inside 'filter'
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.filter, {
+		scope: "world",
+		config: false,
+		default: {},
+		type: Object
+	});
+	// Data will be stored inside 'backs'
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.backs, {
 		scope: "world",
 		config: false,
 		default: {},

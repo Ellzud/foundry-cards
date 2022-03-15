@@ -3,6 +3,8 @@ import { CustomCardStack } from './CustomCardStack.js';
 import { ConfigSheetForActions } from './ConfigSheetForActions.js';
 import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
+import { deckBacksSettings } from './tools.js';
+import { ConfigSheetForBacks } from './ConfigSheetForBacks.js';
 
 export class CustomCardsDisplay extends CardsConfig {
 
@@ -166,6 +168,9 @@ export class CustomCardsDisplay extends CardsConfig {
         data.listing = {
             allowed: this.listingAllowed,
             opened: this.listingOpened,
+            editBack : {
+                displayed : game.user.isGM && this._custom.stackOwner.forNobody
+            }
         };
         data.listing.cards = this._custom.sortedAvailableCards.map( c => {
             const cardInfo = this._buildCardInfo(c);
@@ -234,25 +239,19 @@ export class CustomCardsDisplay extends CardsConfig {
             // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
             let background = card?.data.back.img;
             if(!background) {
+                const type = this._cards.type;
                 const owner = this._custom.stackOwner;
                 const coreRef = this._custom.coreStackRef;
                 const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-                let baseDir;
-                if( owner.forPlayers ) {
-                    baseDir = def.playerStacks.resourceBaseDir;
-
-                } else if (owner.forGMs ) {
-                    baseDir = def.gmStacks.resourceBaseDir;
-
-                } else if( def.core.hasOwnProperty(coreRef) ) { // Registered decks and discard piles
-                    baseDir = def.core[coreRef].resourceBaseDir;
+                if( owner.forPlayers || owner.forGMs ) {
+                    const base = owner.forPlayers ? def.playerStacks : def.gmStacks;
+                    const baseDir = base.resourceBaseDir;
+                    background = baseDir + '/background/' + (type=='pile'? 'front.webp' : 'back.webp');
 
                 } else {
-                    baseDir = 'modules/ready-to-use-cards/resources/default';
+                    const backSettings = deckBacksSettings(coreRef);
+                    background = type=='pile' ? backSettings.discardBg : backSettings.deckBg;
                 }
-                
-                const type = this._cards.type;
-                background = baseDir + '/background/' + (type=='pile'? 'front.webp' : 'back.webp');
             }
 
             cardInfo.classes = 'cardback';
@@ -580,7 +579,8 @@ export class CustomCardsDisplay extends CardsConfig {
 
         // Listing panel clicks
         //-------------------------
-        html.find(".listing-panel .listing-toggle").click(event => this._onClickDisplayListing(event) );
+        html.find(".listing-panel .listing-icon.toggle").click(event => this._onClickDisplayListing(event) );
+        html.find(".listing-panel .listing-icon.edit-backs").click(event => this._onClickDisplayBacksEdition(event) );
         html.find(".listing-panel .card-slot").click(event => this._onClickToggleSelection(event) );
     }
 
@@ -635,6 +635,11 @@ export class CustomCardsDisplay extends CardsConfig {
         event.preventDefault();
         this._listingOpened = !this._listingOpened;
         this.render();
+    }
+
+    async _onClickDisplayBacksEdition(event) {
+        const sheet = new ConfigSheetForBacks(this._custom.coreStackRef);
+        sheet.render(true);
     }
 
     async _onClickDrawCard(event) {

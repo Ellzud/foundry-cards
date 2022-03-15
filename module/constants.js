@@ -99,6 +99,7 @@ export const GlobalConfiguration = {
     smallDisplay: 'smallDisplay',
     stacks: 'stacks',
     filter: 'filter',
+    backs: 'backs',
     stackForPlayerHand: 'stackForPlayerHand',
     stackForPlayerRevealedCards: 'stackForPlayerRevealedCards'
 };

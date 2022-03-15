@@ -101,18 +101,13 @@ But if you're creating you're own custom decks, you may want to check what those
 
 You will have more details on how this works inside [README LABELS](./README_DEVELOPERS.md)
 
-`Image root directory` : By default, deck icons and the card back are defined from this directory. It follows this structure : 
+## Changing icons and card default background
 
-~~~sh
-./background/back.webp
-./background/front.webp
-./icons/back.webp
-./icons/front.webp
-~~~
+This functionnality is available for decks and discard piles. Only the GMs are allowed to do it.
 
-> If you want to change those images, you need create a new directory in your world and put the image you want by following the previous structure. Then edit this directory path.
+It can be accessed via the main display :
 
-> For now, if the deck was already created in your world, the icon won't be changed. You will need to delete it, and recreate it with the correct value.
+![Config icons](docs/README_config_icons.webp?raw=true)
 
 **Why two images?**
 

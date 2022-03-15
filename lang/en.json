@@ -15,6 +15,12 @@
     "RTUCards.settings.config-actions.additionalData.overrideConf": "If unlocked, you can define which actions should be available. Do it only if you're sure that this stack declaration won't evolve anymore. Lock it again to restore default values.",
     "RTUCards.settings.config-actions.additionalData.removeBackFace": "Card back isn't considered as a face the player can loop through. (see related actions)",
 
+    "RTUCards.settings.config-backs.menu": "Configuring icons and backs",
+    "RTUCards.settings.config-backs.stack.icons": "Stack icons",
+    "RTUCards.settings.config-backs.stack.backs": "Cards back",
+    "RTUCards.settings.config-backs.type.deck": "Deck",
+    "RTUCards.settings.config-backs.type.discard": "Discard",
+
     "RTUCards.settings.config-shortcuts.menu": "Shortcuts configuration menu",
     "RTUCards.settings.config-shortcuts.title": "Configure your shortcuts",
     "RTUCards.settings.config-shortcuts.headers.shortcutIcon": "Shortcut icon:",
