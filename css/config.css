@@ -96,3 +96,33 @@
 .rtucards-config-shortcuts .reset-stacks {
   margin-top: 10px;
 }
+
+  
+/* ------------------------
+  Config panel for choosing backs
+  ------------------------*/
+.rtucards-config-backs .category-line {
+  border: groove;
+  align-items: center;
+  padding: 5px;
+}
+
+.rtucards-config-backs .img-col {
+  margin-right: 5px;
+  align-items: center;
+}
+
+.rtucards-config-backs .img-col img {
+  flex: unset;
+  cursor: pointer;
+}
+
+.rtucards-config-backs .img-col img.stack-icon {
+  width: 70px;
+  height: 70px;
+}
+
+.rtucards-config-backs .img-col img.background {
+  width: 70px;
+  height: 115px;
+}
