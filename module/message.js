@@ -1,4 +1,4 @@
-import { SingleCardDisplay } from "./SingleCardDisplay.js";
+import { SingleCardDisplay } from "./mainui/SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
     const flags = message.data.flags;

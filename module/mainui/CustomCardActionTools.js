@@ -1,4 +1,4 @@
-import { CustomCardStack } from "./CustomCardStack.js";
+import { CustomCardStack } from "../CustomCardStack.js";
 
 /**
  * Class storing common methods for managing actions inside a CustomCardDisplay

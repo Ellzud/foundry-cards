@@ -1,4 +1,4 @@
-import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "./constants.js";
+import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "../constants.js";
 
 /**
  * A configuration sheet to configure shortcuts GUI

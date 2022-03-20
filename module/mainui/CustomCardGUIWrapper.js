@@ -3,8 +3,8 @@
    It handle basic CustomCard behavior and can be extends for additional features
 -----------------------------------------------------------------------------------*/
 
-import { CustomCardStack } from "./CustomCardStack.js";
-import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
+import { CustomCardStack } from "../CustomCardStack.js";
+import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
 
 
 export class CustomCardGUIWrapper {

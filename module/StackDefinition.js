@@ -1,5 +1,5 @@
-import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CardActionsClasses, StackConfiguration } from './constants.js';
+import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './mainui/CardActionParameters.js';
 
 
 /* -------------------------------------------- */

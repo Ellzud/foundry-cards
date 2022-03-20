@@ -1,10 +1,10 @@
+import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 import { CustomCardStack } from './CustomCardStack.js';
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from './constants.js';
-import { CustomCardActionTools } from './CustomCardActionTools.js';
-import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
-import { CustomCardSimple } from './CustomCardSimple.js';
-import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 import { cardStackSettings } from './tools.js';
+import { CustomCardActionTools } from './mainui/CustomCardActionTools.js';
+import { CustomCardGUIWrapper } from './mainui/CustomCardGUIWrapper.js';
+import { CustomCardSimple } from './mainui/CustomCardSimple.js';
 
 /**
  * Try to find a card Pile.

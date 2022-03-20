@@ -1,6 +1,6 @@
-import { DeckParameters, StackConfiguration } from "./constants.js";
-import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
-import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings } from "./tools.js";
+import { DeckParameters, StackConfiguration } from "../constants.js";
+import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
+import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings } from "../tools.js";
 
 
 /**

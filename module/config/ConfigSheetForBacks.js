@@ -1,4 +1,4 @@
-import { deckBacksSettings, updateDeckBacksSettings } from "./tools.js";
+import { deckBacksSettings, updateDeckBacksSettings } from "../tools.js";
 
 /**
  * A configuration sheet to configure a deck backs and icons

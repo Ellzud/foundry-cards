@@ -1,6 +1,6 @@
 import { cardFilterSettings, cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
-import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
+import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 const assertStackIsNotADiscardPile = ( customCardStack ) => {

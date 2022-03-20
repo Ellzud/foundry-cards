@@ -1,5 +1,5 @@
-import { CustomCardStack } from "./CustomCardStack.js";
-import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { CustomCardStack } from "../CustomCardStack.js";
+import { GlobalConfiguration, StackConfiguration } from "../constants.js";
 
 const loadStackDataInfos = ( customStack, selectedStackIds ) => { 
 

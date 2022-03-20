@@ -1,10 +1,10 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
-import { CustomCardStack } from './CustomCardStack.js';
-import { ConfigSheetForActions } from './ConfigSheetForActions.js';
-import { CardActionsClasses, GlobalConfiguration } from './constants.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
-import { deckBacksSettings } from './tools.js';
-import { ConfigSheetForBacks } from './ConfigSheetForBacks.js';
+import { CustomCardStack } from '../CustomCardStack.js';
+import { CardActionsClasses, GlobalConfiguration } from '../constants.js';
+import { deckBacksSettings } from '../tools.js';
+import { ConfigSheetForActions } from '../config/ConfigSheetForActions.js';
+import { ConfigSheetForBacks } from '../config/ConfigSheetForBacks.js';
 
 export class CustomCardsDisplay extends CardsConfig {
 

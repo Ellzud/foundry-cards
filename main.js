@@ -1,9 +1,9 @@
 import { CustomCardStackLoader } from './module/CustomCardStackLoader.js';
 import { CARD_STACKS_DEFINITION } from './module/StackDefinition.js';
-import { ShortcutForHand, ShortcutForRevealedCards } from './module/ShortcutPanels.js';
-import * as config  from './module/config.js';
+import { ShortcutForHand, ShortcutForRevealedCards } from './module/ShortcutPanel.js';
 import * as message  from './module/message.js';
 import * as contextmenus  from './module/contextmenus.js';
+import * as config  from './module/config/config.js';
 
 /**
  * Initialization actions taken on Foundry Virtual Tabletop client init.

@@ -1,9 +1,9 @@
-import { CustomCardsDisplay } from "./CardsDisplay.js";
 import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
-import { GlobalConfiguration } from "./constants.js";
-import { CustomCardStack } from "./CustomCardStack.js";
-import { SingleCardDisplay } from "./SingleCardDisplay.js";
+import { GlobalConfiguration } from "../constants.js";
+import { CustomCardStack } from "../CustomCardStack.js";
+import { CustomCardsDisplay } from "../mainui/CardsDisplay.js";
+import { SingleCardDisplay } from "../mainui/SingleCardDisplay.js";
 
 export const registerCardSystem = () => {
 
