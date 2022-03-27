@@ -45,36 +45,183 @@
  */
 export const StackConfiguration = {
     fromDeckPeekOn: 'fromDeckPeekOn',
-    fromDeckDealCardsToHand: 'fromDeckDealCardsToHand',
-    fromDeckDealRevealedCards: 'fromDeckDealRevealedCards',
-    fromDeckDiscardDirectly: 'fromDeckDiscardDirectly',
+    fromDeckDealCardsToHand: 'fromDeckDealCardsToHand',//
+    fromDeckDealRevealedCards: 'fromDeckDealRevealedCards',//
+    fromDeckDiscardDirectly: 'fromDeckDiscardDirectly',//
     fromDeckResetAll: 'fromDeckResetAll',
     fromDeckShuffleRemainingCards: 'fromDeckShuffleRemainingCards',
     fromDeckLoopThroughFaces: 'fromDeckLoopThroughFaces',
     fromDeckRotateCard: 'fromDeckRotateCard',
     fromHandDrawCard: 'fromHandDrawCard',
-    fromHandPlayCard: 'fromHandPlayCard',
+    fromHandPlayCard: 'fromHandPlayCard',//
     fromHandPlayMultiple: 'fromHandPlayMultiple',
-    fromRevealedPlayMultiple: 'fromRevealedPlayMultiple',
-    fromHandRevealCard: 'fromHandRevealCard',
-    fromHandExchangeCard: 'fromHandExchangeCard',
-    fromHandExchangeWithPlayer: 'fromHandExchangeWithPlayer',
-    fromHandDiscardCard: 'fromHandDiscardCard',
+    fromHandRevealCard: 'fromHandRevealCard',//
+    fromHandExchangeCard: 'fromHandExchangeCard',//
+    fromHandExchangeWithPlayer: 'fromHandExchangeWithPlayer',//
+    fromHandDiscardCard: 'fromHandDiscardCard',//
     fromHandRotateCard: 'fromHandRotateCard',
     fromHandLoopThroughFaces: 'fromHandLoopThroughFaces',
     fromRevealedDrawCard: 'fromRevealedDrawCard',
-    fromRevealedPlayCard: 'fromRevealedPlayCard',
-    fromRevealedBackToHand: 'fromRevealedBackToHand',
-    fromRevealedDiscardCard: 'fromRevealedDiscardCard', 
+    fromRevealedPlayCard: 'fromRevealedPlayCard',//
+    fromRevealedPlayMultiple: 'fromRevealedPlayMultiple',
+    fromRevealedBackToHand: 'fromRevealedBackToHand',//
+    fromRevealedDiscardCard: 'fromRevealedDiscardCard', //
     fromRevealedRotateCard: 'fromRevealedRotateCard',
     fromRevealedLoopThroughFaces: 'fromRevealedLoopThroughFaces',
-    fromRevealedExchangeCard: 'fromRevealedExchangeCard',
-    fromRevealedExchangeWithPlayer: 'fromRevealedExchangeWithPlayer',
-    fromDiscardBackToDeck: 'fromDiscardBackToDeck',
+    fromRevealedExchangeCard: 'fromRevealedExchangeCard',//
+    fromRevealedExchangeWithPlayer: 'fromRevealedExchangeWithPlayer',//
+    fromDiscardBackToDeck: 'fromDiscardBackToDeck',//
     fromDiscardRotateCard: 'fromDiscardRotateCard',
     fromDiscardLoopThroughFaces: 'fromDiscardLoopThroughFaces',
     fromDiscardResetAll: 'fromDiscardResetAll'
 };
+
+/**
+ * All target possibilities.
+ * Values are also used inside a css grid (Source x Target)
+ */
+export const StackTargetPossibilities = {
+    DE: 'DE', // DEck
+    DI: 'DI', // DIscard
+    GH: 'GH', // Gm Hand
+    GR: 'GR', // Gm Revelead cards
+    PH: 'PH', // Player Hand
+    PR: 'PR' // Player Revelead cards
+}
+
+export const StackConfigurationGroup = {
+    drawCard: {
+        labelKey: 'Draw a card',
+        grid : {
+            css: 'deck-only',
+            targets: ['DE']
+        },
+        available: [
+            { from: 'GH', target: 'DE', nameKey: 'Draw a card' },
+            { from: 'GR', target: 'DE', nameKey: 'Draw a card' },
+            { from: 'PH', target: 'DE', nameKey: 'Draw a card' },
+            { from: 'PR', target: 'DE', nameKey: 'Draw a card' }
+        ]
+    },
+    playCard: {
+        labelKey: 'Play a card (card effect is applied)',
+        grid : {
+            css: 'discard-only',
+            targets: ['DI']
+        },
+        available: [
+            { from: 'GH', target: 'DI', nameKey: 'Play a card' },
+            { from: 'GR', target: 'DI', nameKey: 'Play a card' },
+            { from: 'PH', target: 'DI', nameKey: 'Play a card' },
+            { from: 'PR', target: 'DI', nameKey: 'Play a card' }
+        ]
+    },
+    moveCard: {
+        labelKey: 'Move a card through stacks (card effect isn\'t applied)',
+        grid : {
+            css: 'all-targets',
+            targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'DE', target: 'GH', nameKey: 'Deal a card' },
+            { from: 'DE', target: 'GR', nameKey: 'Deal a card' },
+            { from: 'DE', target: 'PH', nameKey: 'Deal a card' },
+            { from: 'DE', target: 'PR', nameKey: 'Deal a card' },
+            { from: 'DE', target: 'DI', nameKey: 'Discard a card' },
+            
+            { from: 'GH', target: 'PH', nameKey: 'Give a card' },
+            { from: 'GH', target: 'PR', nameKey: 'Give a card' },
+            { from: 'GH', target: 'DI', nameKey: 'Discard a card' },
+            { from: 'GH', target: 'GR', nameKey: 'Reveal a card' },
+
+            { from: 'GR', target: 'PH', nameKey: 'Give a card' },
+            { from: 'GR', target: 'PR', nameKey: 'Give a card' },
+            { from: 'GR', target: 'DI', nameKey: 'Discard a card' },
+            { from: 'GR', target: 'GH', nameKey: 'Back to hand' },
+            
+            { from: 'PH', target: 'GH', nameKey: 'Give a card' },
+            { from: 'PH', target: 'GR', nameKey: 'Give a card' },
+            { from: 'PH', target: 'DI', nameKey: 'Discard a card' },
+            { from: 'PH', target: 'PR', nameKey: 'Reveal a card' },
+
+            { from: 'PR', target: 'GH', nameKey: 'Give a card' },
+            { from: 'PR', target: 'GR', nameKey: 'Give a card' },
+            { from: 'PR', target: 'DI', nameKey: 'Discard a card' },
+            { from: 'PR', target: 'PH', nameKey: 'Back to hand' },
+
+            { from: 'DI', target: 'DE', nameKey: 'Back to deck' }
+        ]
+    },
+    exchangeCard: {
+        labelKey: 'Exchange a card with another stack',
+        grid : {
+            css: 'no-deck',
+            targets: ['DI', 'GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'GH', target: 'PH', nameKey: 'Exchange with player' },
+            { from: 'GH', target: 'PR', nameKey: 'Exchange with player' },
+            { from: 'GH', target: 'DI', nameKey: 'Exchange with discard' },
+
+            { from: 'GR', target: 'PH', nameKey: 'Exchange with player' },
+            { from: 'GR', target: 'PR', nameKey: 'Exchange with player' },
+            { from: 'GR', target: 'DI', nameKey: 'Exchange with discard' },
+
+            { from: 'PH', target: 'GH', nameKey: 'Exchange with gm' },
+            { from: 'PH', target: 'GR', nameKey: 'Exchange with gm' },
+            { from: 'PH', target: 'DI', nameKey: 'Exchange with discard' },
+            { from: 'PH', target: 'PH', nameKey: 'Exchange with another player' },
+            { from: 'PH', target: 'PR', nameKey: 'Exchange with another player' },
+
+            { from: 'PR', target: 'GH', nameKey: 'Exchange with gm' },
+            { from: 'PR', target: 'GR', nameKey: 'Exchange with gm' },
+            { from: 'PR', target: 'DI', nameKey: 'Exchange with discard' },
+            { from: 'PR', target: 'PH', nameKey: 'Exchange with another player' },
+            { from: 'PR', target: 'PR', nameKey: 'Exchange with another player' },
+        ]
+    },
+    swapCards: {
+        labelKey: 'Swap cards between a user two stacks',
+        grid : {
+            css: 'user-only',
+            targets: ['GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'GH', target: 'GR', nameKey: 'Swap with a revealed card' },
+            { from: 'GR', target: 'GH', nameKey: 'Swap with a card in hand' },
+
+            { from: 'PH', target: 'PR', nameKey: 'Swap with a revealed card' },
+            { from: 'PR', target: 'PH', nameKey: 'Swap with a card in hand' },
+        ]
+    },
+    flipCard: {
+        labelKey: 'Loop through card faces',
+        grid : {
+            css: 'no-target',
+            targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'GH', target: 'GH', nameKey: 'Flip a card' },
+            { from: 'GR', target: 'GR', nameKey: 'Flip a card' },
+            { from: 'PH', target: 'PH', nameKey: 'Flip a card' },
+            { from: 'PR', target: 'PR', nameKey: 'Flip a card' }
+        ]
+    },
+    rotateCard: {
+        labelKey: 'Rotate card',
+        grid : {
+            css: 'no-target',
+            targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'GH', target: 'GH', nameKey: 'Rotate a card' },
+            { from: 'GR', target: 'GR', nameKey: 'Rotate a card' },
+            { from: 'PH', target: 'PH', nameKey: 'Rotate a card' },
+            { from: 'PR', target: 'PR', nameKey: 'Rotate a card' }
+        ]
+    },
+
+}
 
 /**
  * Other parameters for each deck, outside available action configuration

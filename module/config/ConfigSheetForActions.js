@@ -1,4 +1,4 @@
-import { DeckParameters, StackConfiguration } from "../constants.js";
+import { DeckParameters, StackConfiguration, StackTargetPossibilities } from "../constants.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
 import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings } from "../tools.js";
 
@@ -26,6 +26,116 @@ const mapConfBoxForStack = (stack, configName) => {
 		label: stack.gui.labels[configName]
 	};
 };
+
+/**
+ * Augment stack.groups by adding CSS info
+ * @param {object} stack As defined in this.object.stacks
+ * @returns {object} groupsGui which will be used by the hbs
+ */
+const actionGroupsForGUI = (stack) => {
+
+	// Convenience functions
+	//-------------------------
+	const computeDisplayedOptionsforActionGroup = (groupDef) => {
+		const noTarget = groupDef.grid.css == 'no-target';
+
+		let allOptions;
+		if( noTarget ) {
+			allOptions= groupDef.grid.targets.map( t => {
+				return {from: t, target: t};
+			});
+		} else {
+			allOptions = [];
+			Object.values(StackTargetPossibilities).forEach( from => {
+				Object.values(groupDef.grid.targets).forEach( target => {
+					allOptions.push({from: from, target: target});
+				});
+			});
+
+		}
+		return allOptions;
+	}
+
+	const computeDisplayedLinesForActionGroup = (groupDef) => {
+		const noTarget = groupDef.grid.css == 'no-target';
+		return {
+			noTarget: noTarget,
+			deck : !noTarget && groupDef.grid.targets.includes('DE'),
+			discard : !noTarget && groupDef.grid.targets.includes('DI'),
+			gm : !noTarget && groupDef.grid.targets.includes('GH'),
+			players : !noTarget && groupDef.grid.targets.includes('PH'),
+		};
+	}
+
+	const mapStackActionForGui = (option, groupDef) => {
+		const from = option.from;
+		const target = option.target;
+
+		const item = {
+			area: from + target,
+			classes : 'toggle-button',
+			active: false
+		};
+
+		const declaredAction = groupDef.actions.find( a => a.from === from && a.target === target );
+		if(declaredAction) {
+			item.active = !locked;
+			item.classes += declaredAction.available ? ' far fa-check-square' : ' far fa-square';
+			foundry.utils.mergeObject(item, declaredAction);
+
+		} else {
+			item.classes += ' fas fa-ban';
+		}
+
+		item.classes += item.active ? ' active' : '';
+
+		return item;
+	}
+
+	// Prepare groups so that they can be used inside hbs
+	//------------------------
+	const lockKey = DeckParameters.overrideConf;
+	const locked = stack.parameters.hasOwnProperty(lockKey) && !stack.parameters[lockKey];
+
+	const groupsGui = {
+		header: 'Available actions on a selected card', // FIXME
+		list: [] // I prefers lists inside hbs parsing
+	}; 
+	
+	Object.entries(stack.groups).forEach( ([groupId, groupDef]) => {
+
+		const groupGui = {
+			stackId: stack.key,
+			groupId: groupId,
+			name: groupDef.name,
+			unfolded: groupDef.unfolded,
+			css : {
+				grid: groupDef.grid.css
+			}
+		};
+
+		// Add data used by toggle icons
+		const used = groupDef.actions.some( a => a.available );
+		groupGui.css.checkToggle = used ? 'far fa-check-square' : 'far fa-square';
+		groupGui.css.foldToggle = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
+
+		if( !locked ) {
+			groupGui.css.checkToggle += ' active';
+			groupGui.css.foldToggle += ' active';
+		}
+
+		// Action list displays chosen ones, as well as invalid or not chosen
+		groupGui.actions = computeDisplayedOptionsforActionGroup(groupDef).map( option => {
+			return mapStackActionForGui(option, groupDef);
+		});
+
+		// Also add information on displayed lines (to removed unsed header from grid)
+		groupGui.lines = computeDisplayedLinesForActionGroup(groupDef);
+
+		groupsGui.list.push(groupGui);
+	});
+	return groupsGui;
+}
 
 /**
  * During configBox creation for the filter.
@@ -186,7 +296,16 @@ export class ConfigSheetForActions extends FormApplication {
 			data.isDefaultStack = true;
 			data.useCustomCardImpl = false;
 
+
+			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)
+			//---------------
+			data.groups = this.module.actionService.stackAllActionsDetailsMap(key);
+			Object.values(data.groups).forEach( group => {
+				group.unfolded = false;
+			});
+
 			// config : Used to define which actions are available once a card stack is opened
+			//---------------
 			const config = duplicate(defaultStackConfig);
 			if( declared ) { // Substitute current config values
 				Object.entries( actualDefinition.core[key].config ).forEach( ([key, confValue]) => {
@@ -196,6 +315,7 @@ export class ConfigSheetForActions extends FormApplication {
 			data.config = config;
 
 			// parameters : Additional info on deck, like image path or translation prefix
+			//---------------
 			const parameters = {};
 			parameters.labelBaseKey = declared ? actualDefinition.core[key].labelBaseKey : stackDef.labelBaseKey;
 			parameters.resourceBaseDir = declared ? actualDefinition.core[key].resourceBaseDir : stackDef.resourceBaseDir;
@@ -229,6 +349,13 @@ export class ConfigSheetForActions extends FormApplication {
 			data.key = coreKey;
 			data.isDefaultStack = false;
 			data.useCustomCardImpl = coreDef.cardClass != actualDefinition.shared.cardClasses.simple;
+
+			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)
+			//---------------
+			data.groups = this.module.actionService.stackAllActionsDetailsMap(key);
+			Object.values(data.groups).forEach( group => {
+				group.unfolded = false;
+			});
 
 			// config : Used to define which actions are available once a card stack is opened
 			const config = duplicate(defaultStackConfig);
@@ -301,7 +428,8 @@ export class ConfigSheetForActions extends FormApplication {
 		const stacks = this.object.stacks.map( stack => {
 			const data = {
 				configBoxes: this.configBoxes.map( confKey => mapConfBoxForStack( stack, confKey ) ),
-				actions: buildStackActions(stack)
+				actions: buildStackActions(stack),
+				groupsGui: actionGroupsForGUI(stack)
 			};
 
 			return foundry.utils.mergeObject( data, stack );
@@ -356,11 +484,14 @@ export class ConfigSheetForActions extends FormApplication {
 
 		html.find('.declared-deck .toggle-button.deck.active').click(event => this._onClickToggleDeck(event) );
 		html.find('.declared-deck .toggle-button.show.active').click(event => this._onClickToggleDetails(event) );
-		html.find('.declared-deck .toggle-button.config.active').click(event => this._onClickToggleConfigBox(event) );
+		html.find('.declared-deck .config.toggle-button.active').click(event => this._onClickToggleConfigBox(event) );
 		
+		html.find('.declared-deck .group-action.toggle-button.active').click(event => this._onClickToggleActionChoice(event) );
+		html.find('.declared-deck .group-check.toggle-button.active').click(event => this._onClickToggleWholeActionGroup(event) );
+		html.find('.declared-deck .group-fold.toggle-button.active').click(event => this._onClickFoldActionGroup(event) );
+
 		html.find('.declared-deck .toggle-button.action.active').click(event => this._onClickToggleStackParameter(event) );
         html.find('.declared-deck .param-input').change(event => this._onChangeParameterValue(event) );
-
 
 		html.find('.save-stacks').click(event => this._onClickSaveConfig(event) );
 	}
@@ -371,6 +502,53 @@ export class ConfigSheetForActions extends FormApplication {
 	}
 
 	/* -------------------------------------------- */
+
+	async _onClickToggleActionChoice(event) {
+		const a = event.currentTarget;
+		const configKey = a.dataset.config;
+		const deckKey = a.parentElement.parentElement.dataset.key;
+		const groupId = a.parentElement.parentElement.dataset.group;
+
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		const action = group.actions.find( a => a.confKey === configKey);
+
+		action.available = !action.available;
+		this.render();
+	}
+
+	async _onClickToggleWholeActionGroup(event) {
+		const a = event.currentTarget;
+		const deckKey = a.parentElement.dataset.key;
+		const groupId = a.parentElement.dataset.group;
+
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		const used = group.actions.some( a => a.available );
+		group.unfolded = !used;
+		group.actions.forEach( a => {
+			a.available = !used;
+		});
+		
+		this.render();
+	}
+
+	async _onClickFoldActionGroup(event) {
+		const a = event.currentTarget;
+		const deckKey = a.parentElement.dataset.key;
+		const groupId = a.parentElement.dataset.group;
+
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		group.unfolded = !group.unfolded;
+		this.render();
+	}
+
+
+
+
+
+
 
 	async _onClickSaveConfig(event) {
 		// Filter
