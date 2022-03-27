@@ -89,12 +89,45 @@ export const StackTargetPossibilities = {
     PR: 'PR' // Player Revelead cards
 }
 
+/**
+ * All target possibilities.
+ * Values are also used inside a css grid (Source x Target)
+ */
+ export const StackActionTypes = {
+    deckUsage: {
+        labelKey: 'Available actions directly on deck'
+    },
+    selectedCard: {
+        labelKey: 'Available actions on a selected card'
+    }
+}
+
+
 export const StackConfigurationGroup = {
-    drawCard: {
-        labelKey: 'Draw a card',
+    dealCard: {
+        labelKey: 'Deal a card',
+        actionType: 'deckUsage',
         grid : {
             css: 'deck-only',
-            targets: ['DE']
+            targets: ['DE'],
+            fromLabel: 'To',
+            targetLabel: 'From'
+        },
+        available: [
+            { from: 'GH', target: 'DE', nameKey: 'Deal a card' },
+            { from: 'GR', target: 'DE', nameKey: 'Deal a card' },
+            { from: 'PH', target: 'DE', nameKey: 'Deal a card' },
+            { from: 'PR', target: 'DE', nameKey: 'Deal a card' }
+        ]
+    },
+    drawCard: {
+        labelKey: 'Draw a card',
+        actionType: 'deckUsage',
+        grid : {
+            css: 'deck-only',
+            targets: ['DE'],
+            fromLabel: 'Drawer',
+            targetLabel: 'From'
         },
         available: [
             { from: 'GH', target: 'DE', nameKey: 'Draw a card' },
@@ -105,6 +138,7 @@ export const StackConfigurationGroup = {
     },
     playCard: {
         labelKey: 'Play a card (card effect is applied)',
+        actionType: 'selectedCard',
         grid : {
             css: 'discard-only',
             targets: ['DI']
@@ -118,6 +152,7 @@ export const StackConfigurationGroup = {
     },
     moveCard: {
         labelKey: 'Move a card through stacks (card effect isn\'t applied)',
+        actionType: 'selectedCard',
         grid : {
             css: 'all-targets',
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
@@ -153,7 +188,8 @@ export const StackConfigurationGroup = {
         ]
     },
     exchangeCard: {
-        labelKey: 'Exchange a card with another stack',
+        labelKey: 'Exchange a card with another user',
+        actionType: 'selectedCard',
         grid : {
             css: 'no-deck',
             targets: ['DI', 'GH', 'GR', 'PH', 'PR']
@@ -182,6 +218,7 @@ export const StackConfigurationGroup = {
     },
     swapCards: {
         labelKey: 'Swap cards between a user two stacks',
+        actionType: 'selectedCard',
         grid : {
             css: 'user-only',
             targets: ['GH', 'GR', 'PH', 'PR']
@@ -196,6 +233,7 @@ export const StackConfigurationGroup = {
     },
     flipCard: {
         labelKey: 'Loop through card faces',
+        actionType: 'selectedCard',
         grid : {
             css: 'no-target',
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
@@ -209,6 +247,7 @@ export const StackConfigurationGroup = {
     },
     rotateCard: {
         labelKey: 'Rotate card',
+        actionType: 'selectedCard',
         grid : {
             css: 'no-target',
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']

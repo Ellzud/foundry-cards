@@ -8,9 +8,9 @@
         {{/if}}
     {{/each}}
 
-    {{#if groups}}
-        {{> listConfigGroups groups=groups }}
-    {{/if}}
+    {{#each topLevelGroups as |topLevelGroup| }}
+        {{> listConfigGroups groups=topLevelGroup }}
+    {{/each}}
 
     {{#each boxes as |box| }}
         {{#if box.isHeader }}
@@ -52,14 +52,14 @@
 
     {{#each groups.list as |group| }}
         <div class="flexrow deck-row content conf" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
-            <i class="toggle-button group-check {{group.css.checkToggle}}"></i>
-            <i class="toggle-button group-fold {{group.css.foldToggle}}"></i>
+            <i class="toggle-button group-check {{group.toggle.checkCss}}"></i>
+            <i class="toggle-button group-fold {{group.toggle.foldCss}}"></i>
             <div>{{group.name}}</div>
         </div>
         {{#if group.unfolded}}
-            <div class="action-grid {{group.css.grid}}" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
-                <div class="header right-col" style="grid-area: Fxxx;">From →</div>
-                <div class="header left-col" style="grid-area: Txxx;">Targets ↴</div>
+            <div class="action-grid {{group.grid.css}}" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
+                <div class="header right-col" style="grid-area: Fxxx;">{{group.grid.from}} →</div>
+                <div class="header left-col" style="grid-area: Txxx;">{{group.grid.target}} ↴</div>
                 <div class="header" style="grid-area: F-DE;">Deck</div>
                 <div class="header" style="grid-area: F-DI;">Discard</div>  
                 <div class="header" style="grid-area: F-Gx;">GM</div>
@@ -141,7 +141,7 @@
                     <div>{{stack.gui.deck.name}}</div>
                 </div>
                 {{#if stack.gui.detailsDisplayed}}
-                    {{> listConfigs boxes=stack.configBoxes actions=stack.actions groups=stack.groupsGui }}
+                    {{> listConfigs boxes=stack.configBoxes actions=stack.actions topLevelGroups=stack.groupsGui }}
                 {{/if}}
             </div>
         {{/each}}

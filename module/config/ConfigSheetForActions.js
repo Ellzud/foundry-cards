@@ -1,4 +1,4 @@
-import { DeckParameters, StackConfiguration, StackTargetPossibilities } from "../constants.js";
+import { DeckParameters, StackActionTypes, StackConfiguration, StackTargetPossibilities } from "../constants.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
 import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings } from "../tools.js";
 
@@ -28,9 +28,60 @@ const mapConfBoxForStack = (stack, configName) => {
 };
 
 /**
+ * Go through all declared and default stack, even if they haven't been chosen
+ * Extract all necessay metadata from them to be able to create this.object.stacks
+ * @returns {object[]} Necessay metadata for all stacks
+ */
+const computeAllPossibleStackList = () => {
+
+	const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+	const actualDefinition = CARD_STACKS_DEFINITION;
+
+	const list = Object.entries(cardStacks.defaultCoreStacks).map( ([key, stackDef]) => {
+		const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');;
+		const deckName = stackDef.customName ?? game.i18n.localize(stackDef.labelBaseKey + 'title');
+		const deckDesc = stackDef.customDesc ?? game.i18n.localize(stackDef.labelBaseKey + 'description');
+
+		return {
+			key: key,
+			default: true,
+			useCustomCardImpl: false,
+			toggled: cardStacks.decks.hasOwnProperty( key ),
+			toggleLocked: stackDef.isManuallyRegistered ?? false,
+			deck : {
+				name: deckName + (stackDef.isManuallyRegistered ? registeredSuffix : '' ),
+				desc: deckDesc
+			}
+		};
+	});
+
+	const viaHooksSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.viaCode');;
+	const addedViaHooks = Object.entries(actualDefinition.core).filter( ([key, coreDef]) => {
+		return !list.find(s => s.key === key) 
+
+	}).map(([key, coreDef]) => {
+
+		return {
+			key: key,
+			default: false,
+			useCustomCardImpl: coreDef.cardClass != actualDefinition.shared.cardClasses.simple,
+			overrideConf: coreDef.overrideConf,
+			toggled: true,
+			toggleLocked: true,
+			deck : {
+				name: game.i18n.localize(coreDef.labelBaseKey + 'title') + viaHooksSuffix,
+				desc: game.i18n.localize(coreDef.labelBaseKey + 'description')
+			}
+		};
+	});
+	list.push( ...addedViaHooks);
+	return list;
+}
+
+/**
  * Augment stack.groups by adding CSS info
  * @param {object} stack As defined in this.object.stacks
- * @returns {object} groupsGui which will be used by the hbs
+ * @returns {object[]} groupsGui, grouped by actionType
  */
 const actionGroupsForGUI = (stack) => {
 
@@ -97,31 +148,32 @@ const actionGroupsForGUI = (stack) => {
 	const lockKey = DeckParameters.overrideConf;
 	const locked = stack.parameters.hasOwnProperty(lockKey) && !stack.parameters[lockKey];
 
-	const groupsGui = {
-		header: 'Available actions on a selected card', // FIXME
-		list: [] // I prefers lists inside hbs parsing
-	}; 
-	
-	Object.entries(stack.groups).forEach( ([groupId, groupDef]) => {
+	// Prepare all groups
+	const allGuiGroups = Object.entries(stack.groups).map( ([groupId, groupDef]) => {
 
 		const groupGui = {
+			topLevel: groupDef.actionType,
 			stackId: stack.key,
 			groupId: groupId,
 			name: groupDef.name,
 			unfolded: groupDef.unfolded,
-			css : {
-				grid: groupDef.grid.css
+			grid: {
+				css: groupDef.grid.css,
+				from: game.i18n.localize( groupDef.grid.fromLabel ?? 'From' ),
+				target: game.i18n.localize( groupDef.grid.targetLabel ?? 'Targets' ),
+			}, 
+			toggle: {
 			}
 		};
 
 		// Add data used by toggle icons
 		const used = groupDef.actions.some( a => a.available );
-		groupGui.css.checkToggle = used ? 'far fa-check-square' : 'far fa-square';
-		groupGui.css.foldToggle = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
+		groupGui.toggle.checkCss = used ? 'far fa-check-square' : 'far fa-square';
+		groupGui.toggle.foldCss = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
 
 		if( !locked ) {
-			groupGui.css.checkToggle += ' active';
-			groupGui.css.foldToggle += ' active';
+			groupGui.toggle.checkCss += ' active';
+			groupGui.toggle.foldCss += ' active';
 		}
 
 		// Action list displays chosen ones, as well as invalid or not chosen
@@ -132,9 +184,17 @@ const actionGroupsForGUI = (stack) => {
 		// Also add information on displayed lines (to removed unsed header from grid)
 		groupGui.lines = computeDisplayedLinesForActionGroup(groupDef);
 
-		groupsGui.list.push(groupGui);
+		return groupGui;
 	});
-	return groupsGui;
+
+	// Gui groups are grouped by actionTypes 
+	const topLevelGroups = Object.entries(StackActionTypes).map( ([key, value]) => {
+		return {
+			header: game.i18n.localize(value.labelKey),
+			list: allGuiGroups.filter( g => g.topLevel === key )
+		};
+	})
+	return topLevelGroups;
 }
 
 /**
@@ -282,107 +342,53 @@ export class ConfigSheetForActions extends FormApplication {
 			return _config;
 		}, {});
 
+		// Create this.object.stacks
 		const cardStacks = this.module.cardStacks;
 		const actualDefinition = CARD_STACKS_DEFINITION;
-
-		// First : List all possible card stacks from classic declaration (default and manuallyRegistered)
-		//--------------------
-		this.object.stacks = Object.entries(cardStacks.defaultCoreStacks).map( ([key, stackDef]) => {
-
-			const declared = actualDefinition.core.hasOwnProperty(key);
+		this.object.stacks = computeAllPossibleStackList().map( s => {
 
 			const data = {};
-			data.key = key;
-			data.isDefaultStack = true;
-			data.useCustomCardImpl = false;
-
+			data.key = s.key;
+			data.isDefaultStack = s.default;
+			data.useCustomCardImpl = s.useCustomCardImpl;
+			data.gui = {
+				toggled: s.toggled,
+				toggleLocked: s.toggleLocked,
+				detailsDisplayed: false,
+				deck: s.deck,
+				labels: configLabels
+			};
 
 			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)
 			//---------------
-			data.groups = this.module.actionService.stackAllActionsDetailsMap(key);
-			Object.values(data.groups).forEach( group => {
-				group.unfolded = false;
+			data.groups = this.module.actionService.stackAllActionsDetailsMap(s.key);
+			Object.values(data.groups).forEach( g => {
+				g.unfolded = false;
+				return g;
 			});
 
 			// config : Used to define which actions are available once a card stack is opened
 			//---------------
-			const config = duplicate(defaultStackConfig);
+			data.config = duplicate(defaultStackConfig);
+			const declared = actualDefinition.core[s.key];
 			if( declared ) { // Substitute current config values
-				Object.entries( actualDefinition.core[key].config ).forEach( ([key, confValue]) => {
-					config[key] = confValue;
+				Object.entries( declared.config ).forEach( ([key, confValue]) => {
+					data.config[key] = confValue;
 				});
 			}
-			data.config = config;
 
 			// parameters : Additional info on deck, like image path or translation prefix
 			//---------------
-			const parameters = {};
-			parameters.labelBaseKey = declared ? actualDefinition.core[key].labelBaseKey : stackDef.labelBaseKey;
-			parameters.resourceBaseDir = declared ? actualDefinition.core[key].resourceBaseDir : stackDef.resourceBaseDir;
-			parameters.removeBackFace = declared ? actualDefinition.core[key].removeBackFace : stackDef.removeBackFace;
-			data.parameters = parameters;
-
-			const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');;
-			const deckName = stackDef.customName ?? game.i18n.localize(stackDef.labelBaseKey + 'title');
-			const deckDesc = stackDef.customDesc ?? game.i18n.localize(stackDef.labelBaseKey + 'description');
-
-			data.gui = {
-				toggled: cardStacks.decks.hasOwnProperty( key ),
-				toggleLocked: stackDef.isManuallyRegistered ?? false,
-				detailsDisplayed: false,
-				deck: {
-					name: deckName + (stackDef.isManuallyRegistered ? registeredSuffix : '' ),
-					desc: deckDesc
-				},
-				labels: configLabels
+			const stackDef = cardStacks.defaultCoreStacks[s.key];
+			data.parameters = {
+				labelBaseKey: declared?.labelBaseKey ?? stackDef.labelBaseKey,
+				removeBackFace: declared?.removeBackFace ?? stackDef.removeBackFace,
 			};
+			if( s.hasOwnProperty('overrideConf')) { 
+				data.parameters.overrideConf = s.overrideConf;
+			}
+
 			return data;
-		});
-
-		// Then : Add card stacks declared inside hooks
-		//--------------------
-		const viaCodeSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.viaCode');;
-		const customDefs = Object.entries(actualDefinition.core).filter( ([coreKey, coreDef]) => !this.object.stacks.find(s => s.key === coreKey) );
-		customDefs.forEach( ([coreKey, coreDef]) => {
-
-			const data = {};
-			data.key = coreKey;
-			data.isDefaultStack = false;
-			data.useCustomCardImpl = coreDef.cardClass != actualDefinition.shared.cardClasses.simple;
-
-			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)
-			//---------------
-			data.groups = this.module.actionService.stackAllActionsDetailsMap(key);
-			Object.values(data.groups).forEach( group => {
-				group.unfolded = false;
-			});
-
-			// config : Used to define which actions are available once a card stack is opened
-			const config = duplicate(defaultStackConfig);
-			Object.entries( coreDef.config ).forEach( ([key, confValue]) => {
-				config[key] = confValue;
-			});
-			data.config = config;
-
-			// parameters : Additional info on deck, like image path or translation prefix
-			const parameters = {};
-			parameters.labelBaseKey = coreDef.labelBaseKey;
-			parameters.resourceBaseDir = coreDef.resourceBaseDir;
-			parameters.removeBackFace = coreDef.removeBackFace;
-			parameters.overrideConf = coreDef.overrideConf;
-			data.parameters = parameters;
-			
-			data.gui = {
-				toggled: true,
-				toggleLocked: true,
-				detailsDisplayed: false,
-				deck: {
-					name: game.i18n.localize(coreDef.labelBaseKey + 'title') + viaCodeSuffix,
-					desc: game.i18n.localize(coreDef.labelBaseKey + 'description')
-				},
-				labels: configLabels
-			};
-			this.object.stacks.push(data);
 		});
 	}
 	
