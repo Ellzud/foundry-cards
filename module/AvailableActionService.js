@@ -43,7 +43,7 @@ export class AvailableActionService {
                 actionGroupId: actionGroupId,
                 from: action.from,
                 target: action.target,
-                confKey: action.from + action.target + '-' + actionGroupId,
+                confKey: actionGroupId + "-" + action.from + action.target,
                 name: game.i18n.localize(action.nameKey ?? actionGroup.labelKey)
             };
             data.available = stackConfs[data.confKey] ?? false;

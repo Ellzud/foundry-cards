@@ -30,6 +30,11 @@
   padding-left: 10px;
 }
 
+.rtucards-config-actions .deck-row.content.unfolded-margin {
+  flex: unset;
+  height: 20px;
+}
+
 .rtucards-config-actions .toggle-button {
   flex: unset;
   padding-top: 2px;

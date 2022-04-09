@@ -102,11 +102,29 @@ export const StackTargetPossibilities = {
     },
     selectedCard: {
         labelKey: 'Actions after selecting a card'
+    },
+    other: {
+        labelKey: 'Other actions'
     }
 }
 
 
 export const StackConfigurationGroup = {
+    peekOnCards: {
+        labelKey: 'Peeks on cards',
+        descKey: 'By default, deck cards are not visible, only back is displayed. This is also the case for other player hands. Those options allow GM to peek on those cards. (A message will let everyone know he is doing it).',
+        actionType: 'other',
+        grid : {
+            css: 'no-target',
+            targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR'],
+            fromLabel: 'Peeking on',
+            targetLabel: 'Only GMs'
+        },
+        available: [
+            { from: 'DE', target: 'DE', nameKey: 'Peek on cards' },
+            { from: 'PH', target: 'PH', nameKey: 'Peek on cards' }
+        ]
+    },
     dealCard: {
         labelKey: 'Deal a card',
         descKey: 'GM can give card to users when manipulating the deck. Action is available via the deck stack, on left side',
@@ -230,10 +248,10 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'DE', target: 'GH', nameKey: 'Deal a card' },
-            { from: 'DE', target: 'GR', nameKey: 'Deal a card' },
-            { from: 'DE', target: 'PH', nameKey: 'Deal a card' },
-            { from: 'DE', target: 'PR', nameKey: 'Deal a card' },
+            { from: 'DE', target: 'GH', nameKey: 'Give a card' },
+            { from: 'DE', target: 'GR', nameKey: 'Give a card' },
+            { from: 'DE', target: 'PH', nameKey: 'Give a card' },
+            { from: 'DE', target: 'PR', nameKey: 'Give a card' },
             { from: 'DE', target: 'DI', nameKey: 'Discard a card' },
             
             { from: 'GH', target: 'PH', nameKey: 'Give a card' },
@@ -314,6 +332,8 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
+            { from: 'DE', target: 'DE', nameKey: 'Flip a card' },
+            { from: 'DI', target: 'DI', nameKey: 'Flip a card' },
             { from: 'GH', target: 'GH', nameKey: 'Flip a card' },
             { from: 'GR', target: 'GR', nameKey: 'Flip a card' },
             { from: 'PH', target: 'PH', nameKey: 'Flip a card' },
@@ -329,6 +349,8 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
+            { from: 'DE', target: 'DE', nameKey: 'Rotate a card' },
+            { from: 'DI', target: 'DI', nameKey: 'Rotate a card' },
             { from: 'GH', target: 'GH', nameKey: 'Rotate a card' },
             { from: 'GR', target: 'GR', nameKey: 'Rotate a card' },
             { from: 'PH', target: 'PH', nameKey: 'Rotate a card' },
@@ -363,7 +385,8 @@ export const GlobalConfiguration = {
     filter: 'filter',
     backs: 'backs',
     stackForPlayerHand: 'stackForPlayerHand',
-    stackForPlayerRevealedCards: 'stackForPlayerRevealedCards'
+    stackForPlayerRevealedCards: 'stackForPlayerRevealedCards',
+    version: "version"
 };
 
 export const DEFAULT_SHORTCUT_SETTINGS = {

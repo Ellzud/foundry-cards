@@ -108,6 +108,14 @@ export const loadCardSettings = () => {
 			if ( app ) app.render();
 		}
 	});
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.version, {
+		scope: "world",
+		type: String,
+		default: '',
+		config: false
+	});
+  
+
 	// Data will be stored inside 'filter'
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.filter, {
 		scope: "world",

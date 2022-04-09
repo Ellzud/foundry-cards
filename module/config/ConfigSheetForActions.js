@@ -171,7 +171,8 @@ const actionGroupsForGUI = (stack) => {
 
 		// Add data used by toggle icons
 		const used = groupDef.actions.some( a => a.available );
-		groupGui.toggle.checkCss = used ? 'far fa-check-square' : 'far fa-square';
+		const notAll = groupDef.actions.some( a => !a.available );
+		groupGui.toggle.checkCss = used ? ( notAll ? 'far fa-minus-square' : 'far fa-check-square' ) : 'far fa-square';
 		groupGui.toggle.foldCss = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
 
 		if( !locked ) {

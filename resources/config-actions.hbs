@@ -11,7 +11,7 @@
     {{#each topLevelGroups as |topLevelGroup| }}
         {{> listConfigGroups groups=topLevelGroup }}
     {{/each}}
-
+<!--
     {{#each boxes as |box| }}
         {{#if box.isHeader }}
             {{> configHeader header=box }}
@@ -19,6 +19,7 @@
             {{> configLine box=box }}
         {{/if}}
     {{/each}}
+-->
 {{/inline}}
 
 {{#*inline "configHeader"}}
@@ -105,6 +106,8 @@
                     {{/each}}
                 </div>
             {{/unless}}
+
+            <div class="deck-row content unfolded-margin"></div>
         {{/if}}
     {{/each}}
 
