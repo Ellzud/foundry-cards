@@ -57,6 +57,7 @@
   border-left: solid darkgray;
   font-style: italic;
   padding-left: 20px;
+  padding-top: 5px;
 }
 
 .rtucards-config-actions .action-grid.all-targets {

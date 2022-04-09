@@ -95,10 +95,13 @@ export const StackTargetPossibilities = {
  */
  export const StackActionTypes = {
     deckUsage: {
-        labelKey: 'Available actions directly on deck'
+        labelKey: 'Actions on deck piles'
+    },
+    discardUsage: {
+        labelKey: 'Actions on discard piles'
     },
     selectedCard: {
-        labelKey: 'Available actions on a selected card'
+        labelKey: 'Actions after selecting a card'
     }
 }
 
@@ -106,6 +109,7 @@ export const StackTargetPossibilities = {
 export const StackConfigurationGroup = {
     dealCard: {
         labelKey: 'Deal a card',
+        descKey: 'GM can give card to users when manipulating the deck. Action is available via the deck stack, on left side',
         actionType: 'deckUsage',
         grid : {
             css: 'deck-only',
@@ -120,8 +124,9 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DE', nameKey: 'Deal a card' }
         ]
     },
-    drawCard: {
-        labelKey: 'Draw a card',
+    drawDeckCard: {
+        labelKey: 'Draw the top cards',
+        descKey: 'Users can draw cards themself. Action is available via the user stacks, on left side',
         actionType: 'deckUsage',
         grid : {
             css: 'deck-only',
@@ -136,8 +141,74 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DE', nameKey: 'Draw a card' }
         ]
     },
+    shuffleDeck: {
+        labelKey: 'Shuffle the deck',
+        descKey: 'GM can shuffle the remaining cards of the deck. Action is available via the deck stack, on left side',
+        actionType: 'deckUsage',
+        grid : {
+            css: 'alone',
+            targets: ['DE']
+        },
+        available: [
+            { from: 'DE', target: 'DE', nameKey: 'Shuffle the deck' }
+        ]
+    },
+    resetDeck: {
+        labelKey: 'Reset the deck',
+        descKey: 'GM can choose to take back all cards and shuffle them. Action is available via the deck stack, on left side',
+        actionType: 'deckUsage',
+        grid : {
+            css: 'alone',
+            targets: ['DE']
+        },
+        available: [
+            { from: 'DE', target: 'DE', nameKey: 'Reset the deck' }
+        ]
+    },
+    drawDiscardCard: {
+        labelKey: 'Draw the top cards',
+        descKey: 'Users can draw the top cards from the discard. Action is available via the user stacks, on left side',
+        actionType: 'discardUsage',
+        grid : {
+            css: 'discard-only',
+            targets: ['DI'],
+            fromLabel: 'Drawer',
+            targetLabel: 'From'
+        },
+        available: [
+            { from: 'GH', target: 'DI', nameKey: 'Draw from discard' },
+            { from: 'GR', target: 'DI', nameKey: 'Draw from discard' },
+            { from: 'PH', target: 'DI', nameKey: 'Draw from discard' },
+            { from: 'PR', target: 'DI', nameKey: 'Draw from discard' }
+        ]
+    },
+    shuffleDiscard: {
+        labelKey: 'Shuffle the discard',
+        descKey: 'GM can shuffle the discard, changing the cards order. Action is available via the discard stack, on left side',
+        actionType: 'discardUsage',
+        grid : {
+            css: 'alone',
+            targets: ['DI']
+        },
+        available: [
+            { from: 'DI', target: 'DI', nameKey: 'Shuffle the discard' }
+        ]
+    },
+    resetDiscard: {
+        labelKey: 'Reset the discard',
+        descKey: 'GM can choose to take put all cards from the discard back to the deck. If deck shuffle is allowed, the deck will be shuffled.',
+        actionType: 'discardUsage',
+        grid : {
+            css: 'alone',
+            targets: ['DI']
+        },
+        available: [
+            { from: 'DI', target: 'DI', nameKey: 'Reset the discard' }
+        ]
+    },
     playCard: {
         labelKey: 'Play a card (card effect is applied)',
+        descKey: 'A user can play one of his cards. The displayed message will indicate that the card has been played',
         actionType: 'selectedCard',
         grid : {
             css: 'discard-only',
@@ -151,7 +222,8 @@ export const StackConfigurationGroup = {
         ]
     },
     moveCard: {
-        labelKey: 'Move a card through stacks (card effect isn\'t applied)',
+        labelKey: 'Move a card through stacks',
+        descKey: 'A user can transfer one of his cards to another stack. The displayed message will indicate that the card has been transfered',
         actionType: 'selectedCard',
         grid : {
             css: 'all-targets',
@@ -189,6 +261,7 @@ export const StackConfigurationGroup = {
     },
     exchangeCard: {
         labelKey: 'Exchange a card with another user',
+        descKey: 'A user can exchange a card from one of this stacks with an other user stack',
         actionType: 'selectedCard',
         grid : {
             css: 'no-deck',
@@ -218,6 +291,7 @@ export const StackConfigurationGroup = {
     },
     swapCards: {
         labelKey: 'Swap cards between a user two stacks',
+        descKey: 'A user can swap a card between its two stacks',
         actionType: 'selectedCard',
         grid : {
             css: 'user-only',
@@ -233,6 +307,7 @@ export const StackConfigurationGroup = {
     },
     flipCard: {
         labelKey: 'Loop through card faces',
+        descKey: 'When manipulating his cards, a user can flip them',
         actionType: 'selectedCard',
         grid : {
             css: 'no-target',
@@ -247,6 +322,7 @@ export const StackConfigurationGroup = {
     },
     rotateCard: {
         labelKey: 'Rotate card',
+        descKey: 'When manipulating his cards, a user can rotate them',
         actionType: 'selectedCard',
         grid : {
             css: 'no-target',

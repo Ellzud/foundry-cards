@@ -34,7 +34,7 @@ export class AvailableActionService {
         const result = {};
         foundry.utils.mergeObject(result, actionGroup);
         result.name = game.i18n.localize(result.labelKey);
-
+        result.description = game.i18n.localize(result.descKey);
         
         // Add action list:  available ones with added info if it has been toggled or not
         const stackConfs = this.stackConfig(stackKey);

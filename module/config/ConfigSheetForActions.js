@@ -109,7 +109,9 @@ const actionGroupsForGUI = (stack) => {
 
 	const computeDisplayedLinesForActionGroup = (groupDef) => {
 		const noTarget = groupDef.grid.css == 'no-target';
+		const alone = groupDef.grid.css == 'alone';
 		return {
+			alone: alone,
 			noTarget: noTarget,
 			deck : !noTarget && groupDef.grid.targets.includes('DE'),
 			discard : !noTarget && groupDef.grid.targets.includes('DI'),
@@ -156,6 +158,7 @@ const actionGroupsForGUI = (stack) => {
 			stackId: stack.key,
 			groupId: groupId,
 			name: groupDef.name,
+			description: groupDef.description,
 			unfolded: groupDef.unfolded,
 			grid: {
 				css: groupDef.grid.css,
