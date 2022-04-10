@@ -170,9 +170,7 @@ const actionGroupsForGUI = (stack) => {
 		};
 
 		// Add data used by toggle icons
-		const used = groupDef.actions.some( a => a.available );
-		const notAll = groupDef.actions.some( a => !a.available );
-		groupGui.toggle.checkCss = used ? ( notAll ? 'far fa-minus-square' : 'far fa-check-square' ) : 'far fa-square';
+		groupGui.toggle.checkCss = groupDef.used ? ( groupDef.fullyUsed ? 'far fa-check-square' : 'far fa-minus-square' ) : 'far fa-square';
 		groupGui.toggle.foldCss = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
 
 		if( !locked ) {
@@ -365,7 +363,7 @@ export class ConfigSheetForActions extends FormApplication {
 
 			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)
 			//---------------
-			data.groups = this.module.actionService.stackAllActionsDetailsMap(s.key);
+			data.groups = this.module.actionService.getAllActionsDetailsMap(s.key);
 			Object.values(data.groups).forEach( g => {
 				g.unfolded = false;
 				return g;

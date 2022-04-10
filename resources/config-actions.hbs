@@ -100,7 +100,7 @@
                     {{#each group.actions as |action| }}
                         <div style="grid-area: {{action.area}};">
                             <i class="group-action {{action.classes}}" 
-                            title="{{action.name}}" 
+                            title="{{action.name.current}}" 
                             data-config="{{action.confKey}}"></i>
                         </div>
                     {{/each}}

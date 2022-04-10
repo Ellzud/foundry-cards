@@ -121,8 +121,11 @@ export const StackConfigurationGroup = {
             targetLabel: 'Only GMs'
         },
         available: [
-            { from: 'DE', target: 'DE', nameKey: 'Peek on cards' },
-            { from: 'PH', target: 'PH', nameKey: 'Peek on cards' }
+            { from: 'DE', target: 'DE', action: 'peek' },
+            { from: 'PH', target: 'PH', action: 'peek' }
+        ],
+        labels: [
+            {action: 'peek', default: 'Peek on cards'}
         ]
     },
     dealCard: {
@@ -136,10 +139,13 @@ export const StackConfigurationGroup = {
             targetLabel: 'From'
         },
         available: [
-            { from: 'GH', target: 'DE', nameKey: 'Deal a card' },
-            { from: 'GR', target: 'DE', nameKey: 'Deal a card' },
-            { from: 'PH', target: 'DE', nameKey: 'Deal a card' },
-            { from: 'PR', target: 'DE', nameKey: 'Deal a card' }
+            { from: 'GH', target: 'DE', action: 'deal' },
+            { from: 'GR', target: 'DE', action: 'deal' },
+            { from: 'PH', target: 'DE', action: 'deal' },
+            { from: 'PR', target: 'DE', action: 'deal' }
+        ],
+        labels: [
+            {action: 'deal', default: 'Deal a card'}
         ]
     },
     drawDeckCard: {
@@ -153,10 +159,13 @@ export const StackConfigurationGroup = {
             targetLabel: 'From'
         },
         available: [
-            { from: 'GH', target: 'DE', nameKey: 'Draw a card' },
-            { from: 'GR', target: 'DE', nameKey: 'Draw a card' },
-            { from: 'PH', target: 'DE', nameKey: 'Draw a card' },
-            { from: 'PR', target: 'DE', nameKey: 'Draw a card' }
+            { from: 'GH', target: 'DE', action: 'draw' },
+            { from: 'GR', target: 'DE', action: 'draw' },
+            { from: 'PH', target: 'DE', action: 'draw' },
+            { from: 'PR', target: 'DE', action: 'draw' }
+        ],
+        labels: [
+            {action: 'draw', default: 'Draw a card'}
         ]
     },
     shuffleDeck: {
@@ -168,7 +177,10 @@ export const StackConfigurationGroup = {
             targets: ['DE']
         },
         available: [
-            { from: 'DE', target: 'DE', nameKey: 'Shuffle the deck' }
+            { from: 'DE', target: 'DE', action: 'shuffle' }
+        ],
+        labels: [
+            {action: 'shuffle', default: 'Shuffle the deck'}
         ]
     },
     resetDeck: {
@@ -180,7 +192,10 @@ export const StackConfigurationGroup = {
             targets: ['DE']
         },
         available: [
-            { from: 'DE', target: 'DE', nameKey: 'Reset the deck' }
+            { from: 'DE', target: 'DE', action: 'reset' }
+        ],
+        labels: [
+            {action: 'reset', default: 'Reset the deck'}
         ]
     },
     drawDiscardCard: {
@@ -194,10 +209,13 @@ export const StackConfigurationGroup = {
             targetLabel: 'From'
         },
         available: [
-            { from: 'GH', target: 'DI', nameKey: 'Draw from discard' },
-            { from: 'GR', target: 'DI', nameKey: 'Draw from discard' },
-            { from: 'PH', target: 'DI', nameKey: 'Draw from discard' },
-            { from: 'PR', target: 'DI', nameKey: 'Draw from discard' }
+            { from: 'GH', target: 'DI', action: 'draw' },
+            { from: 'GR', target: 'DI', action: 'draw' },
+            { from: 'PH', target: 'DI', action: 'draw' },
+            { from: 'PR', target: 'DI', action: 'draw' }
+        ],
+        labels: [
+            {action: 'draw', default: 'Draw from discard'}
         ]
     },
     shuffleDiscard: {
@@ -209,7 +227,10 @@ export const StackConfigurationGroup = {
             targets: ['DI']
         },
         available: [
-            { from: 'DI', target: 'DI', nameKey: 'Shuffle the discard' }
+            { from: 'DI', target: 'DI', action: 'shuffle' }
+        ],
+        labels: [
+            {action: 'shuffle', default: 'Shuffle the discard'}
         ]
     },
     resetDiscard: {
@@ -221,7 +242,10 @@ export const StackConfigurationGroup = {
             targets: ['DI']
         },
         available: [
-            { from: 'DI', target: 'DI', nameKey: 'Reset the discard' }
+            { from: 'DI', target: 'DI', action: 'reset' }
+        ],
+        labels: [
+            {action: 'reset', default: 'Reset the discard'}
         ]
     },
     playCard: {
@@ -233,10 +257,13 @@ export const StackConfigurationGroup = {
             targets: ['DI']
         },
         available: [
-            { from: 'GH', target: 'DI', nameKey: 'Play a card' },
-            { from: 'GR', target: 'DI', nameKey: 'Play a card' },
-            { from: 'PH', target: 'DI', nameKey: 'Play a card' },
-            { from: 'PR', target: 'DI', nameKey: 'Play a card' }
+            { from: 'GH', target: 'DI', action: 'play' },
+            { from: 'GR', target: 'DI', action: 'play' },
+            { from: 'PH', target: 'DI', action: 'play' },
+            { from: 'PR', target: 'DI', action: 'play' }
+        ],
+        labels: [
+            {action: 'play', default: 'Play a card'}
         ]
     },
     moveCard: {
@@ -248,33 +275,40 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'DE', target: 'GH', nameKey: 'Give a card' },
-            { from: 'DE', target: 'GR', nameKey: 'Give a card' },
-            { from: 'DE', target: 'PH', nameKey: 'Give a card' },
-            { from: 'DE', target: 'PR', nameKey: 'Give a card' },
-            { from: 'DE', target: 'DI', nameKey: 'Discard a card' },
+            { from: 'DE', target: 'GH', action: 'give' },
+            { from: 'DE', target: 'GR', action: 'give' },
+            { from: 'DE', target: 'PH', action: 'give' },
+            { from: 'DE', target: 'PR', action: 'give' },
+            { from: 'DE', target: 'DI', action: 'discard' },
             
-            { from: 'GH', target: 'PH', nameKey: 'Give a card' },
-            { from: 'GH', target: 'PR', nameKey: 'Give a card' },
-            { from: 'GH', target: 'DI', nameKey: 'Discard a card' },
-            { from: 'GH', target: 'GR', nameKey: 'Reveal a card' },
+            { from: 'GH', target: 'PH', action: 'give' },
+            { from: 'GH', target: 'PR', action: 'give' },
+            { from: 'GH', target: 'DI', action: 'discard' },
+            { from: 'GH', target: 'GR', action: 'reveal' },
 
-            { from: 'GR', target: 'PH', nameKey: 'Give a card' },
-            { from: 'GR', target: 'PR', nameKey: 'Give a card' },
-            { from: 'GR', target: 'DI', nameKey: 'Discard a card' },
-            { from: 'GR', target: 'GH', nameKey: 'Back to hand' },
+            { from: 'GR', target: 'PH', action: 'give' },
+            { from: 'GR', target: 'PR', action: 'give' },
+            { from: 'GR', target: 'DI', action: 'discard' },
+            { from: 'GR', target: 'GH', action: 'backHand' },
             
-            { from: 'PH', target: 'GH', nameKey: 'Give a card' },
-            { from: 'PH', target: 'GR', nameKey: 'Give a card' },
-            { from: 'PH', target: 'DI', nameKey: 'Discard a card' },
-            { from: 'PH', target: 'PR', nameKey: 'Reveal a card' },
+            { from: 'PH', target: 'GH', action: 'give' },
+            { from: 'PH', target: 'GR', action: 'give' },
+            { from: 'PH', target: 'DI', action: 'discard' },
+            { from: 'PH', target: 'PR', action: 'reveal' },
 
-            { from: 'PR', target: 'GH', nameKey: 'Give a card' },
-            { from: 'PR', target: 'GR', nameKey: 'Give a card' },
-            { from: 'PR', target: 'DI', nameKey: 'Discard a card' },
-            { from: 'PR', target: 'PH', nameKey: 'Back to hand' },
+            { from: 'PR', target: 'GH', action: 'give' },
+            { from: 'PR', target: 'GR', action: 'give' },
+            { from: 'PR', target: 'DI', action: 'discard' },
+            { from: 'PR', target: 'PH', action: 'backHand' },
 
-            { from: 'DI', target: 'DE', nameKey: 'Back to deck' }
+            { from: 'DI', target: 'DE', action: 'backDeck' }
+        ],
+        labels: [
+            {action: 'give', default: 'Give a card'},
+            {action: 'discard', default: 'Discard a card'},
+            {action: 'reveal', default: 'Reveal a card'},
+            {action: 'backHand', default: 'Back to hand'},
+            {action: 'backDeck', default: 'Back to deck'},
         ]
     },
     exchangeCard: {
@@ -286,25 +320,31 @@ export const StackConfigurationGroup = {
             targets: ['DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'GH', target: 'PH', nameKey: 'Exchange with player' },
-            { from: 'GH', target: 'PR', nameKey: 'Exchange with player' },
-            { from: 'GH', target: 'DI', nameKey: 'Exchange with discard' },
+            { from: 'GH', target: 'PH', action: 'player' },
+            { from: 'GH', target: 'PR', action: 'player' },
+            { from: 'GH', target: 'DI', action: 'discard' },
 
-            { from: 'GR', target: 'PH', nameKey: 'Exchange with player' },
-            { from: 'GR', target: 'PR', nameKey: 'Exchange with player' },
-            { from: 'GR', target: 'DI', nameKey: 'Exchange with discard' },
+            { from: 'GR', target: 'PH', action: 'player' },
+            { from: 'GR', target: 'PR', action: 'player' },
+            { from: 'GR', target: 'DI', action: 'discard' },
 
-            { from: 'PH', target: 'GH', nameKey: 'Exchange with gm' },
-            { from: 'PH', target: 'GR', nameKey: 'Exchange with gm' },
-            { from: 'PH', target: 'DI', nameKey: 'Exchange with discard' },
-            { from: 'PH', target: 'PH', nameKey: 'Exchange with another player' },
-            { from: 'PH', target: 'PR', nameKey: 'Exchange with another player' },
+            { from: 'PH', target: 'GH', action: 'gm' },
+            { from: 'PH', target: 'GR', action: 'gm' },
+            { from: 'PH', target: 'DI', action: 'discard' },
+            { from: 'PH', target: 'PH', action: 'other' },
+            { from: 'PH', target: 'PR', action: 'other' },
 
-            { from: 'PR', target: 'GH', nameKey: 'Exchange with gm' },
-            { from: 'PR', target: 'GR', nameKey: 'Exchange with gm' },
-            { from: 'PR', target: 'DI', nameKey: 'Exchange with discard' },
-            { from: 'PR', target: 'PH', nameKey: 'Exchange with another player' },
-            { from: 'PR', target: 'PR', nameKey: 'Exchange with another player' },
+            { from: 'PR', target: 'GH', action: 'gm' },
+            { from: 'PR', target: 'GR', action: 'gm' },
+            { from: 'PR', target: 'DI', action: 'discard' },
+            { from: 'PR', target: 'PH', action: 'other' },
+            { from: 'PR', target: 'PR', action: 'other' },
+        ],
+        labels: [
+            {action: 'player', default: 'Exchange with player'},
+            {action: 'discard', default: 'Exchange with discard'},
+            {action: 'other', default: 'Exchange with another player'},
+            {action: 'gm', default: 'Exchange with gm'}
         ]
     },
     swapCards: {
@@ -316,11 +356,15 @@ export const StackConfigurationGroup = {
             targets: ['GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'GH', target: 'GR', nameKey: 'Swap with a revealed card' },
-            { from: 'GR', target: 'GH', nameKey: 'Swap with a card in hand' },
+            { from: 'GH', target: 'GR', action: 'withRevealed' },
+            { from: 'GR', target: 'GH', action: 'withHand' },
 
-            { from: 'PH', target: 'PR', nameKey: 'Swap with a revealed card' },
-            { from: 'PR', target: 'PH', nameKey: 'Swap with a card in hand' },
+            { from: 'PH', target: 'PR', action: 'withRevealed' },
+            { from: 'PR', target: 'PH', action: 'withHand' },
+        ],
+        labels: [
+            {action: 'withRevealed', default: 'Swap with a revealed card'},
+            {action: 'withHand', default: 'Swap with a card in hand'}
         ]
     },
     flipCard: {
@@ -332,12 +376,15 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'DE', target: 'DE', nameKey: 'Flip a card' },
-            { from: 'DI', target: 'DI', nameKey: 'Flip a card' },
-            { from: 'GH', target: 'GH', nameKey: 'Flip a card' },
-            { from: 'GR', target: 'GR', nameKey: 'Flip a card' },
-            { from: 'PH', target: 'PH', nameKey: 'Flip a card' },
-            { from: 'PR', target: 'PR', nameKey: 'Flip a card' }
+            { from: 'DE', target: 'DE', action: 'flip' },
+            { from: 'DI', target: 'DI', action: 'flip' },
+            { from: 'GH', target: 'GH', action: 'flip' },
+            { from: 'GR', target: 'GR', action: 'flip' },
+            { from: 'PH', target: 'PH', action: 'flip' },
+            { from: 'PR', target: 'PR', action: 'flip' }
+        ],
+        labels: [
+            {action: 'flip', default: 'Flip a card'}
         ]
     },
     rotateCard: {
@@ -349,12 +396,15 @@ export const StackConfigurationGroup = {
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'DE', target: 'DE', nameKey: 'Rotate a card' },
-            { from: 'DI', target: 'DI', nameKey: 'Rotate a card' },
-            { from: 'GH', target: 'GH', nameKey: 'Rotate a card' },
-            { from: 'GR', target: 'GR', nameKey: 'Rotate a card' },
-            { from: 'PH', target: 'PH', nameKey: 'Rotate a card' },
-            { from: 'PR', target: 'PR', nameKey: 'Rotate a card' }
+            { from: 'DE', target: 'DE', action: 'rotate' },
+            { from: 'DI', target: 'DI', action: 'rotate' },
+            { from: 'GH', target: 'GH', action: 'rotate' },
+            { from: 'GR', target: 'GR', action: 'rotate' },
+            { from: 'PH', target: 'PH', action: 'rotate' },
+            { from: 'PR', target: 'PR', action: 'rotate' }
+        ],
+        labels: [
+            {action: 'rotate', default: 'Rotate a card'}
         ]
     },
 
