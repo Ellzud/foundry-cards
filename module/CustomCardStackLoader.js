@@ -2,7 +2,6 @@ import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 import { CustomCardStack } from './CustomCardStack.js';
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from './constants.js';
 import { cardStackSettings } from './tools.js';
-import { CustomCardActionTools } from './mainui/CustomCardActionTools.js';
 import { CustomCardGUIWrapper } from './mainui/CustomCardGUIWrapper.js';
 import { CustomCardSimple } from './mainui/CustomCardSimple.js';
 
@@ -341,7 +340,6 @@ const loadStackDefinition = (defaultStacks) => {
         customCardStack: CustomCardStack,
         cardGUIWrapper: CustomCardGUIWrapper
     }
-    def.shared.actionTools = new CustomCardActionTools();
 
     // For those who want to add some custom stacks
     Hooks.call("loadCardStacksDefinition", def);
