@@ -162,7 +162,7 @@ export class AvailableActionService {
      * @param {string} [target] Allow to filter on a .target
      * @returns One line for each action, with available possibilities in .possibilites
      */
-    getActionPossibilities(stackKey, actionGroups, {from=null, target=null}) {
+    getActionPossibilities(stackKey, actionGroups, {from=null, target=null}={}) {
 
         const flatList = actionGroups.reduce( (_result, actionGroup) => {
             _result.push( ...this.getActionGroupDetails(stackKey, actionGroup).actions );
@@ -184,6 +184,7 @@ export class AvailableActionService {
                 _results.push({
                     actionGroupId: _current.actionGroupId,
                     action: _current.action,
+                    signature: _current.actionGroupId + "-" + _current.action,
                     name: _current.name.current,
                     possibilities: [{from: _current.from, target: _current.target}]
                 });
@@ -191,5 +192,21 @@ export class AvailableActionService {
             return _results;
 
         }, []);
+    }
+
+    asGUIAction(possibility, {action=null} = {}) {
+
+        const onLeftSide = [
+            "peekOnCards", "dealCard", "drawDeckCard", 
+            "shuffleDeck", "resetDeck", "drawDiscardCard", 
+            "shuffleDiscard", "resetDiscard"].includes( possibility.actionGroupId );
+
+        return {
+            classes: possibility.signature,
+            label: possibility.name,
+            action: action,
+            onLeft: onLeftSide
+        }
+
     }
 }

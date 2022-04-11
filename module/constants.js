@@ -125,7 +125,7 @@ export const StackConfigurationGroup = {
             { from: 'PH', target: 'PH', action: 'peek' }
         ],
         labels: [
-            {action: 'peek', default: 'Peek on cards'}
+            {action: 'peek', default: 'Toggle card visibility'}
         ]
     },
     dealCard: {

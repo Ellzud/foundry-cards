@@ -73,6 +73,23 @@ export class CustomCardStack {
         return this.stack.getFlag("ready-to-use-cards", "core");
     }
 
+    /**
+     * Prefix used by ActionService to differenciate actions
+     */
+     get prefixForActions() {
+        const stackOwner = this.stackOwner;
+        const type = this._stack.type;
+        if( stackOwner.forNobody ) {
+            return type == 'deck' ? "DE" :  "DI";
+        } 
+        
+        if( stackOwner.forGMs ) {
+            return type == 'hand' ? "GH" :  "GR";
+        }
+
+        return type == 'hand' ? "PH" :  "PR";
+    }
+
     get backIcon() {
         return deckBacksSettings(this.coreStackRef).deckIcon;
     }
