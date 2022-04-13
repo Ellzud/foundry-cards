@@ -473,15 +473,30 @@ export class CustomCardsDisplay extends CardsConfig {
         const isOwned = this._custom.ownedByCurrentPlayer;
 
         if( isOwned ) {
-            // Drawing cards from each decks and discards
-            Object.values(this._custom.cardStacks.decks).filter( deck => {
-                return deck.stack.testUserPermission(game.user, "OBSERVER");
-            }).forEach( deck => {
-                const deckName = deck.retrieveStackBaseName();
-                const deckPossibilities = service.getActionPossibilities(deck.coreStackRef, ["drawDeckCard", "drawDiscardCard"], {from: prefix});
 
-                const guiActions = deckPossibilities.map( p => service.asGUIAction(p, {action: deck.coreStackRef}) );
-                guiActions.forEach( a => a.label += ` (${deckName})` );
+            const allSeenDecks = Object.values(this._custom.cardStacks.decks).filter( deck => deck.stack.testUserPermission(game.user, "OBSERVER") );
+            const allSeenDiscards = Object.values(this._custom.cardStacks.piles).filter( pile => pile.stack.testUserPermission(game.user, "OBSERVER") );
+
+            // Drawing cards from each decks and discards
+            allSeenDecks.filter( cs => {
+                return cs.stack.availableCards.length != 0;
+            }).forEach( cs => {
+                const name = cs.retrieveStackBaseName();
+
+                const possibilities = service.getActionPossibilities(cs.coreStackRef, ["drawDeckCard"], {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: cs.coreStackRef}) );
+                guiActions.forEach( a => a.label += ` (${name})` );
+                actions.push(...guiActions);
+            });
+
+            allSeenDiscards.filter( cs => {
+                return cs.stack.availableCards.length != 0;
+            }).forEach( cs => {
+                const name = cs.retrieveStackBaseName();
+
+                const possibilities = service.getActionPossibilities(cs.coreStackRef, ["drawDiscardCard"], {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: cs.coreStackRef}) );
+                guiActions.forEach( a => a.label += ` (${name})` );
                 actions.push(...guiActions);
             });
 
@@ -494,7 +509,8 @@ export class CustomCardsDisplay extends CardsConfig {
                 actions.push(...guiActions);
             });
 
-            service.addCssAfterSomeGuiActions(actions, ["drawDeckCard-", "drawDiscardCard-"]);
+            service.addCssAfterSomeGuiActions(actions, ["drawDeckCard-"]);
+            service.addCssAfterSomeGuiActions(actions, ["drawDiscardCard-"]);
 
         } else if( game.user.isGM ) {
             
@@ -585,6 +601,7 @@ export class CustomCardsDisplay extends CardsConfig {
         }, {});
 
         html.find(".drawDeckCard-draw").click(event => this._onClickDrawCard(event) );
+        html.find(".drawDiscardCard-draw").click(event => this._onClickDrawDiscardCard(event) );
         html.find(".moveCard-backDeck").click(event => this._onClickBackToDeck(event) );
         html.find(".moveCard-backHand").click(event => this._onClickBackToHand(event) );
         html.find(".moveCard-discardOne").click(event => this._onClickDiscardCard(event) );
@@ -676,12 +693,16 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickDrawCard(event) {
         event.preventDefault();
         const coreKey = event.currentTarget.dataset.action;
-
         const deck = this._custom.cardStacks.decks[coreKey];
-        const deckCards = deck.sortedAvailableCards;
+        await this._custom.drawCards(deck);
+        this.render();
+    }
 
-        const cardIds = deckCards.length > 0 ? [deckCards[0].id] : [];
-        await deck.giveCards(this._custom, cardIds );
+    async _onClickDrawDiscardCard(event) {
+        event.preventDefault();
+        const coreKey = event.currentTarget.dataset.action;
+        const pile = this._custom.cardStacks.piles[coreKey];
+        await this._custom.drawCards(pile);
         this.render();
     }
 

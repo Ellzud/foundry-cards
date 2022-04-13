@@ -538,9 +538,16 @@ export class CustomCardStack {
         const stackType = this.stack.type;
         const inHand = stackType == 'hand';
 
-        const drawnCards = await this.stack.draw( from.stack, amount, {chatNotification: false} );
+        const cardIds = from.sortedAvailableCards.filter( (card, index) => {
+            return index < amount;
+        }).map( card => {
+            return card.id;
+        });
 
-        const flavor = this.getCardMessageFlavor(stackType, 'draw', drawnCards.length);
+        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: false} );
+
+        const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
+        const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
 
         await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: inHand});
 

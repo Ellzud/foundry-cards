@@ -215,7 +215,7 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DI', action: 'draw' }
         ],
         labels: [
-            {action: 'draw', default: 'Draw from discard'} // FIXME : Not linked
+            {action: 'draw', default: 'Draw from discard'}
         ]
     },
     shuffleDiscard: {

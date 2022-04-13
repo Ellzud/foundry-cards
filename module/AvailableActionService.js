@@ -170,6 +170,8 @@ export class AvailableActionService {
         }, []);
 
         const filteredList = flatList.filter( action => {
+            return action.available;
+        }).filter( action => {
             return !from || action.from === from;
         }).filter( action => {
             return !target || action.target === target;
@@ -206,6 +208,7 @@ export class AvailableActionService {
         const moveCardDetails = this.getActionGroupDetails(stackKey, "moveCard");
         const allowAllDiscard = true; // FIXME Need to add something like : moveCardDetails.parameters.allowAllDiscard;
         const discardActions = moveCardDetails.actions.filter( a => {
+            if( !a.available ) { return false; }
             if( from && from != a.from ) { return false; }
             return a.action === "discardOne";
         });
