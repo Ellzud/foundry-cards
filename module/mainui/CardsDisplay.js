@@ -16,7 +16,7 @@ export class CustomCardsDisplay extends CardsConfig {
         this._currentSelection = null;
         this._listingOpened = true;
         this._forceRotate = false;
-        this._peekOn = false;
+        this._peekOn = []; // List of deck keys on which the GM can peek on
 
         this._actionParameters = null;
         const resized = game.settings.get('ready-to-use-cards', GlobalConfiguration.smallDisplay);
@@ -65,10 +65,6 @@ export class CustomCardsDisplay extends CardsConfig {
         return !this._actionParameters;
     }
 
-    get detailsForced() {
-        return this._peekOn;
-    }
-
     get listingOpened() {
         return this._listingOpened;
     }
@@ -79,6 +75,23 @@ export class CustomCardsDisplay extends CardsConfig {
 
     set forceRotate(value) {
         this._forceRotate = value;
+    }
+
+    currentlyPeekingOnCard( card ) {
+        const customDeck = new CustomCardStack(card.source);
+        return this.currentlyPeekingOnCardType(customDeck.coreStackRef);        
+    }
+
+    currentlyPeekingOnCardType( coreStackRef ) {
+        return this._peekOn.includes( coreStackRef );
+    }
+
+    togglePeekingOnCardType( coreStackRef ) {
+        if( this.currentlyPeekingOnCardType(coreStackRef) ) {
+            this._peekOn = this._peekOn.filter( k => k != coreStackRef );
+        } else  {
+            this._peekOn.push( coreStackRef );
+        }
     }
 
     /* -------------------------------------------- */
@@ -218,7 +231,7 @@ export class CustomCardsDisplay extends CardsConfig {
         // Check if the content should be displayed or hidden
         if( card ) {
             cardInfo.id = card.id;
-            cardInfo.displayed = this.detailsForced || wrapper?.detailsCanBeDisplayed;
+            cardInfo.displayed = this.currentlyPeekingOnCard(card) || wrapper?.detailsCanBeDisplayed;
 
         } else {
             cardInfo.displayed = false;
@@ -311,8 +324,10 @@ export class CustomCardsDisplay extends CardsConfig {
      _loadDeckActionsForSelectedCard(actions) {
 
         if( this.currentSelection ) {
+            const peeking = this.currentlyPeekingOnCard(this.currentSelection);
+
             const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInDeck(this.detailsForced);
+            const selectionActions = wrapper.loadActionsWhileInDeck(peeking);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
     }
@@ -344,6 +359,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
                 case "peekOnCards-peek" : {
                     if( !isOwner || !cardsLeft ) { return; }
+                    guiAction.action = deckKey;
                     guiAction.classes += " red separator";
                     break;
                 }
@@ -436,8 +452,9 @@ export class CustomCardsDisplay extends CardsConfig {
 
         const owned = this._custom.ownedByCurrentPlayer;
         if( this.currentSelection ) {
+            const peeking = this.currentlyPeekingOnCard(this.currentSelection);
             const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-            const selectionActions = wrapper.loadActionsWhileInHand(owned, this.detailsForced);
+            const selectionActions = wrapper.loadActionsWhileInHand(owned, peeking);
             if( selectionActions.length > 0 ) { actions.push( ...selectionActions ); }
         }
     }
@@ -454,7 +471,6 @@ export class CustomCardsDisplay extends CardsConfig {
         const service = game.modules.get('ready-to-use-cards').actionService;
 
         const isOwned = this._custom.ownedByCurrentPlayer;
-        const cardsLeft = this._cards.availableCards.length > 0;
 
         if( isOwned ) {
             // Drawing cards from each decks and discards
@@ -469,11 +485,27 @@ export class CustomCardsDisplay extends CardsConfig {
                 actions.push(...guiActions);
             });
 
-        } else if( game.user.isGM && cardsLeft ) {
-            // Allow to peek on cards
-            const possibilities = service.getActionPossibilities(deckKey, ["peekOnCards"], {from: prefix});
-            const guiActions = possibilities.map( p => service.asGUIAction(p) );
-            actions.push(...guiActions);
+            // For the current cards, allow full discard if discard is allowed on each card
+            this._custom.decksOfAvailableCards.forEach( deck => {
+                const deckKey = deck.coreStackRef;
+                const possibilities = service.getDiscardAllPossibilities(deckKey, {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: deckKey}) );
+                guiActions.forEach( a => a.label += " (" + deck.retrieveStackBaseName() + ")");
+                actions.push(...guiActions);
+            });
+
+            service.addCssAfterSomeGuiActions(actions, ["drawDeckCard-", "drawDiscardCard-"]);
+
+        } else if( game.user.isGM ) {
+            
+            // Allow to peek on cards will be available if at least one of the cart types allow this action
+            this._custom.decksOfAvailableCards.forEach( deck => {
+                const deckKey = deck.coreStackRef;
+                const possibilities = service.getActionPossibilities(deckKey, ["peekOnCards"], {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: deckKey}) );
+                guiActions.forEach( a => a.label += " (" + deck.retrieveStackBaseName() + ")");
+                actions.push(...guiActions);
+            });
         }
     }
 
@@ -552,27 +584,26 @@ export class CustomCardsDisplay extends CardsConfig {
             return _css;
         }, {});
 
-        html.find(css.backToDeckCard).click(event => this._onClickBackToDeck(event) );
-        html.find(css.backToHandCard).click(event => this._onClickBackToHand(event) );
-        html.find(css.drawCard).click(event => this._onClickDrawCard(event) );
-        html.find(css.discardCard).click(event => this._onClickDiscardCard(event) );
-        html.find(css.giveCard).click(event => this._onClickGiveCard(event) );
-        html.find(css.exchangeCard).click(event => this._onClickExchangeCard(event) );
-        html.find(css.exchangePlayer).click(event => this._onClickExchangePlayer(event) );
-        html.find(css.loopFaces).click(event => this._onClickLoopThroughCardFaces(event) );
-        html.find(css.playCard).click(event => this._onClickPlayCard(event) );
-        html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) );
-        html.find(css.revealCard).click(event => this._onClickRevealCard(event) );
-        html.find(css.rotateCard).click(event => this._onClickRotateCard(event) );
-        html.find(css.customAction).click(event => this._onClickCustomAction(event) );
+        html.find(".drawDeckCard-draw").click(event => this._onClickDrawCard(event) );
+        html.find(".moveCard-backDeck").click(event => this._onClickBackToDeck(event) );
+        html.find(".moveCard-backHand").click(event => this._onClickBackToHand(event) );
+        html.find(".moveCard-discardOne").click(event => this._onClickDiscardCard(event) );
+        html.find(".moveCard-discardAll").click(event => this._onClickDiscardAll(event) );
+        html.find(".moveCard-give").click(event => this._onClickGiveCard(event) );
+        html.find(".moveCard-reveal").click(event => this._onClickRevealCard(event) );
+        html.find(".exchangeCard-discard").click(event => this._onClickExchangeCard(event) );
+        html.find(".exchangeCard-player").click(event => this._onClickExchangePlayer(event) );
+        html.find(".playCard-play").click(event => this._onClickPlayCard(event) );
+        // FIXME html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) ); Will be a parameter of play cards
+        html.find(".flipCard-flip").click(event => this._onClickLoopThroughCardFaces(event) );
+        html.find(".rotateCard-rotate").click(event => this._onClickRotateCard(event) );
+        html.find(".custom-action").click(event => this._onClickCustomAction(event) );
 
-        html.find(css.dealCards).click(event => this._onClickDealCards(event) );
-        html.find(css.recallCards).click(event => this._onClickRecallAllCards(event) );
-        html.find(css.peekOnDeck).click(event => this._onClickPeekOnStack(event) );
-        html.find(css.shuffleDeck).click(event => this._onClickShuffleDeck(event) );
-        html.find(css.shuffleDiscard).click(event => this._onClickShuffleDiscard(event) );
-        html.find(css.discardHand).click(event => this._onClickDiscardHand(event) );
-        html.find(css.discardRevealedCards).click(event => this._onClickDiscardRevealedCards(event) );
+        html.find(".dealCard-deal").click(event => this._onClickDealCards(event) );
+        html.find(".resetDeck-reset").click(event => this._onClickRecallAllCards(event) );
+        html.find(".peekOnCards-peek").click(event => this._onClickPeekOnStack(event) );
+        html.find(".shuffleDeck-shuffle").click(event => this._onClickShuffleDeck(event) );
+        html.find(".resetDiscard-reset").click(event => this._onClickShuffleDiscard(event) );
 
         // Parameters clicks
         //-------------------------
@@ -597,10 +628,8 @@ export class CustomCardsDisplay extends CardsConfig {
                     const wrapper = new CustomCardGUIWrapper(card);
                     wrapper.fillCardContent(htmlDiv);
                 }
-                
             }
         }
-    
     }
 
     async _onClickBackToDeck(event) {
@@ -662,21 +691,17 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
-    async _onClickDiscardHand(event) {
+    async _onClickDiscardAll(event) {
         event.preventDefault();
+        const coreKey = event.currentTarget.dataset.action;
 
-        const cardIds = this._cards.availableCards.map( c => c.id );
-        await this._custom.discardCards(cardIds),
-
-        this.render();
-    }
-
-    async _onClickDiscardRevealedCards(event) {
-        event.preventDefault();
-
-        const cardIds = this._cards.availableCards.map( c => c.id );
-        await this._custom.discardCards(cardIds),
-
+        const cardIds = this._cards.availableCards.filter( c => {
+            const custom = new CustomCardStack(c.source);
+            return custom.coreStackRef === coreKey;
+        }).map( c => {
+            return c.id;
+        })
+        await this._custom.discardCards(cardIds);
         this.render();
     }
 
@@ -774,14 +799,17 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickPeekOnStack(event) {
         event.preventDefault();
+        const coreKey = event.currentTarget.dataset.action;
 
-        const wasPeeking = this._peekOn;
+        const wasPeeking = this.currentlyPeekingOnCardType(coreKey);
 
         const labelKey = wasPeeking ? 'sheet.actions.peekStopWarning' : 'sheet.actions.peekOnWarning';
-        const flavor = this._custom.localizedLabel(labelKey);
+
+        let flavor = this._custom.localizedLabel(labelKey);
+        flavor = flavor.replace('CARD_TYPE', this._custom.retrieveStackBaseName(coreKey)); // Add precisition on which card type
         await this._custom.sendMessageForStacks(flavor, []);
 
-        this._peekOn = !wasPeeking;
+        this.togglePeekingOnCardType(coreKey);
         this.render();
     }
 

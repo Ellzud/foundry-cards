@@ -160,7 +160,7 @@ export class AvailableActionService {
      * @param {string} actionGroupId The actionGroup id, as defined in StackConfigurationGroup
      * @param {string} [from] Allow to filter on a .from
      * @param {string} [target] Allow to filter on a .target
-     * @returns One line for each action, with available possibilities in .possibilites
+     * @returns {object[]} One line for each action, with available possibilities in .possibilites
      */
     getActionPossibilities(stackKey, actionGroups, {from=null, target=null}={}) {
 
@@ -194,12 +194,47 @@ export class AvailableActionService {
         }, []);
     }
 
+    /**
+     * DiscardAll slightly differs from other actions.
+     * It's discard from discardOne actions, and only available if the parameter allowAllDiscard is true
+     * @param {string} stackKey The stack key, as defined in flags
+     * @param {string} [from] Allow to filter on a .from
+     * @returns {object[]} Same structure as getActionPossibilities
+     */
+    getDiscardAllPossibilities(stackKey, {from=null}={}) {
+
+        const moveCardDetails = this.getActionGroupDetails(stackKey, "moveCard");
+        const allowAllDiscard = true; // FIXME Need to add something like : moveCardDetails.parameters.allowAllDiscard;
+        const discardActions = moveCardDetails.actions.filter( a => {
+            if( from && from != a.from ) { return false; }
+            return a.action === "discardOne";
+        });
+
+        if( !allowAllDiscard || discardActions.length == 0 ) {
+            return [];
+        }
+
+        const discardAll = {
+            actionGroupId: "moveCard",
+            action: "discardAll",
+            signature: "moveCard-discardAll",
+            name: moveCardDetails.labels.find( l => l.action === "discardAll").current
+        };
+        discardAll.possibilities = discardActions.map( a => {
+            return { from: a.from, target: a.target };
+        });
+
+        return [discardAll];
+    }
+
     asGUIAction(possibility, {action=null} = {}) {
 
-        const onLeftSide = [
+        let onLeftSide = [
             "peekOnCards", "dealCard", "drawDeckCard", 
             "shuffleDeck", "resetDeck", "drawDiscardCard", 
             "shuffleDiscard", "resetDiscard"].includes( possibility.actionGroupId );
+
+        onLeftSide = onLeftSide || possibility.signature === "moveCard-discardAll";
 
         return {
             classes: possibility.signature,
@@ -207,6 +242,34 @@ export class AvailableActionService {
             action: action,
             onLeft: onLeftSide
         }
+    }
 
+    /**
+     * Convenience function allowing to add css classes on one of the element of the guiActions list
+     * Only the last on in the list correspong to afterClasses criteria will be modified.
+     * If no element match the critera, nothing is done.
+     * 
+     * @param {object[]} guiActions See asGUIAction for structure
+     * @param {string[]} afterClasses When looking for the element wich will be modified, wll only consider the one having on of the list classes. (Can be partial: xxx- or xxx-yy)
+     * @param {string[]} [classesToAdd] By default, will add "separator" to the element. Can be used to changed what will be added
+     */
+    addCssAfterSomeGuiActions(guiActions, afterClasses, {classesToAdd=["separator"]} = {}) {
+
+        // Find last related element
+        const lastIndex = guiActions.reduce( (_lastIndex, _action, _actionIndex) => {
+            const isRelated = afterClasses.some( cl => _action.classes.includes(cl));
+            return isRelated ? _actionIndex : _lastIndex;
+        }, -1);
+
+        const nothingToDo = lastIndex < 0 || lastIndex >= guiActions.length;
+        if( nothingToDo ) { return; }
+
+        // Only add classes that haven't already been added
+        const action = guiActions[lastIndex];
+        classesToAdd.filter( css => {
+            return !action.classes.includes( " " + css);
+        }).forEach( css => {
+            action.classes += " " + css;
+        });
     }
 }

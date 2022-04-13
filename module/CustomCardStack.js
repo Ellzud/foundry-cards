@@ -152,6 +152,7 @@ export class CustomCardStack {
         return label.replace('STACK', this.stack.name).replace('CORE', coreTitle);
     }
     
+    /** @returns {CustomCardStackLoader} the loaded, which also reference all stacks */
     get cardStacks() {
 		return game.modules.get('ready-to-use-cards').cardStacks;
     }
@@ -199,6 +200,9 @@ export class CustomCardStack {
         return null;
     }
 
+    /**
+     * Available cards are sorted by types
+     */
     get sortedAvailableCards() {
         const cards = this.stack.availableCards;
         cards.sort( (a,b) => {
@@ -211,6 +215,22 @@ export class CustomCardStack {
             return sort;
         });
         return cards;
+    }
+
+    /**
+     * Loop through all available cards and retrieve related coreStackRef
+     * @returns {CustomCardStack[]} Distinct core stack refs
+     */
+    get decksOfAvailableCards() {
+        const decks = this.sortedAvailableCards.reduce( (_decks, _card) => {
+            const customDeck = new CustomCardStack(_card.source);
+            const key = customDeck.coreStackRef;
+
+            const alreadyAdded = _decks.some( d => d.coreStackRef === key );
+            if( !alreadyAdded ) { _decks.push(customDeck); }
+            return _decks;
+        }, []);
+        return decks;
     }
 
     get ownedByCurrentPlayer() {

@@ -215,7 +215,7 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DI', action: 'draw' }
         ],
         labels: [
-            {action: 'draw', default: 'Draw from discard'}
+            {action: 'draw', default: 'Draw from discard'} // FIXME : Not linked
         ]
     },
     shuffleDiscard: {
@@ -230,7 +230,7 @@ export const StackConfigurationGroup = {
             { from: 'DI', target: 'DI', action: 'shuffle' }
         ],
         labels: [
-            {action: 'shuffle', default: 'Shuffle the discard'}
+            {action: 'shuffle', default: 'Shuffle the discard'} // FIXME : Not linked
         ]
     },
     resetDiscard: {
@@ -279,36 +279,37 @@ export const StackConfigurationGroup = {
             { from: 'DE', target: 'GR', action: 'give' },
             { from: 'DE', target: 'PH', action: 'give' },
             { from: 'DE', target: 'PR', action: 'give' },
-            { from: 'DE', target: 'DI', action: 'discard' },
+            { from: 'DE', target: 'DI', action: 'discardOne' },
             
             { from: 'GH', target: 'PH', action: 'give' },
             { from: 'GH', target: 'PR', action: 'give' },
-            { from: 'GH', target: 'DI', action: 'discard' },
+            { from: 'GH', target: 'DI', action: 'discardOne' },
             { from: 'GH', target: 'GR', action: 'reveal' },
 
             { from: 'GR', target: 'PH', action: 'give' },
             { from: 'GR', target: 'PR', action: 'give' },
-            { from: 'GR', target: 'DI', action: 'discard' },
+            { from: 'GR', target: 'DI', action: 'discardOne' },
             { from: 'GR', target: 'GH', action: 'backHand' },
             
             { from: 'PH', target: 'GH', action: 'give' },
             { from: 'PH', target: 'GR', action: 'give' },
-            { from: 'PH', target: 'DI', action: 'discard' },
+            { from: 'PH', target: 'DI', action: 'discardOne' },
             { from: 'PH', target: 'PR', action: 'reveal' },
 
             { from: 'PR', target: 'GH', action: 'give' },
             { from: 'PR', target: 'GR', action: 'give' },
-            { from: 'PR', target: 'DI', action: 'discard' },
+            { from: 'PR', target: 'DI', action: 'discardOne' },
             { from: 'PR', target: 'PH', action: 'backHand' },
 
             { from: 'DI', target: 'DE', action: 'backDeck' }
         ],
         labels: [
-            {action: 'give', default: 'Give a card'},
-            {action: 'discard', default: 'Discard a card'},
-            {action: 'reveal', default: 'Reveal a card'},
             {action: 'backHand', default: 'Back to hand'},
             {action: 'backDeck', default: 'Back to deck'},
+            {action: 'give', default: 'Give card'},
+            {action: 'reveal', default: 'Reveal card'},
+            {action: 'discardOne', default: 'Discard card'},
+            {action: 'discardAll', default: 'Discard all cards'},
         ]
     },
     exchangeCard: {
@@ -331,20 +332,19 @@ export const StackConfigurationGroup = {
             { from: 'PH', target: 'GH', action: 'gm' },
             { from: 'PH', target: 'GR', action: 'gm' },
             { from: 'PH', target: 'DI', action: 'discard' },
-            { from: 'PH', target: 'PH', action: 'other' },
-            { from: 'PH', target: 'PR', action: 'other' },
+            { from: 'PH', target: 'PH', action: 'player' },
+            { from: 'PH', target: 'PR', action: 'player' },
 
             { from: 'PR', target: 'GH', action: 'gm' },
             { from: 'PR', target: 'GR', action: 'gm' },
             { from: 'PR', target: 'DI', action: 'discard' },
-            { from: 'PR', target: 'PH', action: 'other' },
-            { from: 'PR', target: 'PR', action: 'other' },
+            { from: 'PR', target: 'PH', action: 'player' },
+            { from: 'PR', target: 'PR', action: 'player' },
         ],
         labels: [
             {action: 'player', default: 'Exchange with player'},
             {action: 'discard', default: 'Exchange with discard'},
-            {action: 'other', default: 'Exchange with another player'},
-            {action: 'gm', default: 'Exchange with gm'}
+            {action: 'gm', default: 'Exchange with gm'} // FIXME : Not linked
         ]
     },
     swapCards: {
@@ -363,8 +363,8 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PH', action: 'withHand' },
         ],
         labels: [
-            {action: 'withRevealed', default: 'Swap with a revealed card'},
-            {action: 'withHand', default: 'Swap with a card in hand'}
+            {action: 'withRevealed', default: 'Swap with a revealed card'}, // FIXME : Not linked
+            {action: 'withHand', default: 'Swap with a card in hand'} // FIXME : Not linked
         ]
     },
     flipCard: {

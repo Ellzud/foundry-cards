@@ -241,18 +241,15 @@ export class CustomCardGUIWrapper {
                 }
 
                 case "moveCard-give" :
-                case "moveCard-discard" : {
+                case "moveCard-discardOne" : {
                     if( !isOwner ) { return; }
                 }
             }
             actions.push(guiAction);
         });
 
-        // Add a separator above moveActions if needed
-        const moveIndex = actions.findIndex( a => a.actionGroupId === "moveCard" );
-        if( moveIndex > 0 ) {
-            actions[moveIndex-1].classes += " separator";
-        }
+        // Separate rotate and flip from real actions
+        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
 
 
         // Call the potential implementation inside wrapped impl
@@ -280,7 +277,7 @@ export class CustomCardGUIWrapper {
         const prefix = this._currently.prefixForActions; // "PH" or "GH"
         const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["playCard", "moveCard", "exchangeCard", "swapCards", "flipCard", "rotateCard"], {from: prefix});
+        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
             const guiAction = service.asGUIAction(p);
@@ -305,11 +302,8 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        const index = actions.findIndex( a => ["flipCard", "rotateCard"].includes(a.actionGroupId) );
-        if( index > 0 ) {
-            actions[index-1].classes += " separator";
-        }
-
+        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        service.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInHand ) {
@@ -332,7 +326,7 @@ export class CustomCardGUIWrapper {
         const prefix = this._currently.prefixForActions; // "PR" or "GR"
         const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["playCard", "moveCard", "exchangeCard", "swapCards", "flipCard", "rotateCard"], {from: prefix});
+        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
             const guiAction = service.asGUIAction(p);
@@ -356,11 +350,8 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        const index = actions.findIndex( a => ["flipCard", "rotateCard"].includes(a.actionGroupId) );
-        if( index > 0 ) {
-            actions[index-1].classes += " separator";
-        }
-
+        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        service.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInRevealedCards ) {
@@ -409,11 +400,8 @@ export class CustomCardGUIWrapper {
             actions.push(guiAction);
         });
 
-        // Add a separator above moveActions if needed
-        const moveIndex = actions.findIndex( a => a.actionGroupId === "moveCard" );
-        if( moveIndex > 0 ) {
-            actions[moveIndex-1].classes += " separator";
-        }
+        // Separate rotate and flip from real actions
+        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDiscard ) {
