@@ -330,7 +330,7 @@
     "RTUCards.default.sheet.parameters.players.giveTitle": "Who receives it?",
 
     "RTUCards.default.message.backToDeck.pile.one":  "The card has been put back to the deck",
-    "RTUCards.default.message.backToDeck.pile.many":  "'STACK' has been shuffled back into the decks",
+    "RTUCards.default.message.backToDeck.pile.many":  "'CORE': Discard has been shuffled back into the deck",
     "RTUCards.default.message.backToHand.pile.one":  "Has returned a card to its hand",
     "RTUCards.default.message.backToHand.pile.many":  "Has returned some cards to its hand",
     "RTUCards.default.message.deal.deck.one":  "One card has been dealt to: ",
@@ -357,8 +357,9 @@
     "RTUCards.default.message.play.hand.many":  "Played some cards",
     "RTUCards.default.message.reveal.hand.one":  "Revealed a card to other players",
     "RTUCards.default.message.reveal.hand.many":  "Revealed some cards to other players",
-    "RTUCards.default.message.reset.deck.one":  "'STACK' has been reset",
-    "RTUCards.default.message.shuffle.deck.one":  "'STACK' has been shuffled",
+    "RTUCards.default.message.reset.deck.one":  "'CORE' deck has been reset",
+    "RTUCards.default.message.shuffle.deck.one":  "'CORE' deck has been shuffled",
+    "RTUCards.default.message.shuffle.discard.one":  "'CORE' discard has been shuffled",
     
     "RTUCards.pokerDark.title": "Poker (gold)",
     "RTUCards.pokerDark.description": "A classic 52-card deck.",

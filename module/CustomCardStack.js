@@ -7,7 +7,7 @@ const assertStackIsNotADiscardPile = ( customCardStack ) => {
 
     const discardPiles = Object.values(customCardStack.cardStacks.piles);
     if( discardPiles.find( p => p == customCardStack ) ) {
-        throw 'Cards already in discard can\'t be discareded'; 
+        throw 'Cards already in discard can\'t be discarded'; 
     }
 }
 
@@ -38,6 +38,25 @@ const assertStackType = ( customCardStack, {decks=false, hands=false, piles=fals
     }
 }
 
+/**
+ * Process the options for soon to be discarded cards
+ * @param {Cards} discardStack Where the cards will go
+ */
+const optionsForDiscardedCards = ( discardStack ) => {
+    const options = {
+        chatNotification: false
+    };
+    const maxDiscardOrder = discardStack.availableCards.reduce( (_max, _card) => {
+        const order = _card.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+        return Math.max(_max, order);
+    }, 0);
+    
+    const discardFlags = {};
+    discardFlags['flags.ready-to-use-cards.discardOrder'] = maxDiscardOrder + 1;
+    options.updateData = discardFlags;
+    return options;
+}
+
 export class CustomCardStack {
 
     constructor(stack) {
@@ -46,6 +65,7 @@ export class CustomCardStack {
         // Some actions calls a reset. Also reset our flags
         const resetingFlags = {};
         resetingFlags['flags.ready-to-use-cards.currentFace'] = 0;
+        resetingFlags['flags.ready-to-use-cards.discardOrder'] = 0;
         this._resetingOptions = {
             chatNotification: false,
             updateData: resetingFlags    
@@ -204,15 +224,26 @@ export class CustomCardStack {
      * Available cards are sorted by types
      */
     get sortedAvailableCards() {
+        const isMainDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === this.stack.id );
         const cards = this.stack.availableCards;
         cards.sort( (a,b) => {
+            // First comparison on card source deck
             const aCore = ( new CustomCardStack(a.source) ).coreStackRef ?? '';
             const bCore = ( new CustomCardStack(b.source) ).coreStackRef ?? '';
-            let sort = aCore.localeCompare(bCore);
-            if(!sort) {
-                sort = a.data.sort - b.data.sort;
+            let result = aCore.localeCompare(bCore);
+            if( result != 0 ) { return result; }
+
+            // Main discard have an additionnal sorting order
+            if( isMainDiscard ) {
+                const aSort = a.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+                const bSort = b.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+                if( aSort != bSort ) {
+                    return bSort - aSort; // Last removed one on top
+                }
             }
-            return sort;
+
+            // Default sort
+            return a.data.sort - b.data.sort;
         });
         return cards;
     }
@@ -518,6 +549,7 @@ export class CustomCardStack {
 
     /**
      * Give some cards to a player
+     * Do not use it to discard cards
      * @param {CustomCardStack} to The player which will receive the card
      * @param {string[]} cardIds The cards which should be transfered
      * @returns {Card[]} The transfered cards
@@ -558,7 +590,10 @@ export class CustomCardStack {
 
         const target = withStack.stack;
 
-        const givenCards = await this.stack.pass( target, myCardIds, {chatNotification: false} );
+        const targetIsDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === target.id );
+        const giveOptions = targetIsDiscard ? optionsForDiscardedCards(target) : {chatNotification: false};
+        const givenCards = await this.stack.pass( target, myCardIds, giveOptions );
+
         const receivedCards = await target.pass( this.stack, receivedCardsId, {chatNotification: false} );
 
         const allCards = [];
@@ -594,7 +629,8 @@ export class CustomCardStack {
                     return custom.coreStackRef === coreKey;
                 }
             });
-            const cards = await this.stack.pass( pile.stack, ids, {chatNotification: false});
+            const options = optionsForDiscardedCards(pile.stack);
+            const cards = await this.stack.pass( pile.stack, ids, options);
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
@@ -760,6 +796,35 @@ export class CustomCardStack {
         await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'shuffle', 1);
+        await this.sendMessageForStacks(flavor, []);
+    }
+
+    /** 
+     * Shuffle the discard.
+     * Actually only update flags on each cards
+     */
+     async shuffleDiscard() {
+
+        assertStackOwner(this, {forNobody: true});
+        assertStackType(this, {piles: true});
+
+        // New sort for the cards
+        const twist = new MersenneTwister(Date.now());
+        const forSorting = this.stack.availableCards.map(c => {
+            return {newOrder: twist.random(), card: c};
+        });
+        forSorting.sort((a, b) => a.newOrder - b.newOrder);
+
+        // All updated in one go
+        const toUpdate = forSorting.map((cardSort, index) => {
+            const updatedData = { _id: cardSort.card.id };
+            updatedData['flags.ready-to-use-cards.discardOrder'] = index;
+            return updatedData;
+        });
+        await this.stack.updateEmbeddedDocuments("Card", toUpdate);
+
+        // Sending message
+        const flavor = this.getCardMessageFlavor('discard', 'shuffle', 1);
         await this.sendMessageForStacks(flavor, []);
     }
 

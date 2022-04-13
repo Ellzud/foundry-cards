@@ -603,7 +603,8 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(".resetDeck-reset").click(event => this._onClickRecallAllCards(event) );
         html.find(".peekOnCards-peek").click(event => this._onClickPeekOnStack(event) );
         html.find(".shuffleDeck-shuffle").click(event => this._onClickShuffleDeck(event) );
-        html.find(".resetDiscard-reset").click(event => this._onClickShuffleDiscard(event) );
+        html.find(".shuffleDiscard-shuffle").click(event => this._onClickShuffleDiscard(event) );
+        html.find(".resetDiscard-reset").click(event => this._onClickResetDiscard(event) );
 
         // Parameters clicks
         //-------------------------
@@ -873,6 +874,12 @@ export class CustomCardsDisplay extends CardsConfig {
         await this._custom.shuffleDeck();
     }
 
+    async _onClickShuffleDiscard(event) {
+        event.preventDefault();
+        this.selectAvailableCard(null);
+        await this._custom.shuffleDiscard();
+    }
+
     async _onClickToggleSelection(event) {
         event.preventDefault();
         const key = event.currentTarget.dataset.key;
@@ -901,7 +908,7 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
-    async _onClickShuffleDiscard(event) {
+    async _onClickResetDiscard(event) {
         event.preventDefault();
         await this._custom.shuffleDiscardIntoDeck();
     }

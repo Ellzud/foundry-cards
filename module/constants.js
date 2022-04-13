@@ -230,7 +230,7 @@ export const StackConfigurationGroup = {
             { from: 'DI', target: 'DI', action: 'shuffle' }
         ],
         labels: [
-            {action: 'shuffle', default: 'Shuffle the discard'} // FIXME : Not linked
+            {action: 'shuffle', default: 'Shuffle the discard'}
         ]
     },
     resetDiscard: {

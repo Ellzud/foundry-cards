@@ -329,7 +329,7 @@
     "RTUCards.default.sheet.parameters.players.giveTitle": "Qui récupère la carte ?",
 
     "RTUCards.default.message.backToDeck.pile.one":  "La carte a été remélangée dans le paquet",
-    "RTUCards.default.message.backToDeck.pile.many":  "'STACK' a été remélangée dans les paquets",
+    "RTUCards.default.message.backToDeck.pile.many":  "'CORE' : La défausse a été remélangée dans le paquet",
     "RTUCards.default.message.backToHand.pile.one":  "A repris une carte en main",
     "RTUCards.default.message.backToHand.pile.many":  "A repris plusieurs cartes en main",
     "RTUCards.default.message.deal.deck.one":  "Une carte a été distribuée à :",
@@ -356,8 +356,9 @@
     "RTUCards.default.message.play.hand.many":  "Joue plusieurs cartes",
     "RTUCards.default.message.reveal.hand.one":  "Révèle une carte aux autres joueurs",
     "RTUCards.default.message.reveal.hand.many":  "Révèle plusieurs cartes aux autres joueurs",
-    "RTUCards.default.message.reset.deck.one":  "'STACK' a été réinitialisé",
-    "RTUCards.default.message.shuffle.deck.one":  "'STACK' a été mélangé",
+    "RTUCards.default.message.reset.deck.one":  "Le paquet 'CORE' a été réinitialisé",
+    "RTUCards.default.message.shuffle.deck.one":  "Le paquet 'CORE' a été mélangé",
+    "RTUCards.default.message.shuffle.discard.one":  "La défausse 'CORE' a été mélangée",
 
     "RTUCards.pokerDark.title": "Poker (doré)",
     "RTUCards.pokerDark.description": "Un jeu classique de 52 cartes.",
