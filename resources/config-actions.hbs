@@ -11,27 +11,12 @@
     {{#each topLevelGroups as |topLevelGroup| }}
         {{> listConfigGroups groups=topLevelGroup }}
     {{/each}}
-<!--
-    {{#each boxes as |box| }}
-        {{#if box.isHeader }}
-            {{> configHeader header=box }}
-        {{else}}
-            {{> configLine box=box }}
-        {{/if}}
-    {{/each}}
--->
+
 {{/inline}}
 
 {{#*inline "configHeader"}}
     <div class="flexrow deck-row content header">
         <div>{{header.label}}</div>
-    </div>
-{{/inline}}
-
-{{#*inline "configLine"}}
-    <div class="flexrow deck-row content conf">
-        <i class="toggle-button config {{box.classes}}" data-config="{{box.config}}"></i>
-        <div>{{box.label}}</div>
     </div>
 {{/inline}}
 
@@ -120,22 +105,6 @@
 
     <div class="flexcol deck-list">
 
-        <!-- Filter -->
-        <div class="flexcol filter">
-            <div class="flexrow deck-row">
-                <i class="fas fa-filter toggle-button"></i>
-                {{#if filter.detailsDisplayed}}
-                    <i class="fas fa-sort-down toggle-button active show"></i>
-                {{else}}
-                    <i class="fas fa-sort-up toggle-button active show"></i>
-                {{/if}}
-                <div>{{filter.title}}</div>
-            </div>
-            {{#if filter.detailsDisplayed}}
-                {{> listConfigs boxes=filter.configBoxes actions=filter.actions }}
-            {{/if}}
-        </div>
-
         {{#each stacks as |stack| }}
             <div class="flexcol declared-deck" data-key={{stack.key}}>
                 <div class="flexrow deck-row">
@@ -152,7 +121,7 @@
                     <div>{{stack.gui.deck.name}}</div>
                 </div>
                 {{#if stack.gui.detailsDisplayed}}
-                    {{> listConfigs boxes=stack.configBoxes actions=stack.actions topLevelGroups=stack.groupsGui }}
+                    {{> listConfigs actions=stack.actions topLevelGroups=stack.groupsGui }}
                 {{/if}}
             </div>
         {{/each}}

@@ -4,30 +4,6 @@ import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings }
 
 
 /**
- * During configBox creation for each stack.
- * Map stack config value and labels for a given conf key
- * @param {object} stack a stack from this.object.stacks
- * @param {string} configName The conf key
- * @returns {object} will be stored as a configBoxes element
- */
-const mapConfBoxForStack = (stack, configName) => {
-
-	const toggled = stack.config[configName];
-	let classes = toggled ? 'far fa-check-square' : 'far fa-square';
-
-	const key = DeckParameters.overrideConf;
-	if( !stack.parameters.hasOwnProperty(key) || stack.parameters[key] ) {
-		classes += ' active';
-	}
-
-	return {
-		config: configName,
-		classes: classes,
-		label: stack.gui.labels[configName]
-	};
-};
-
-/**
  * Go through all declared and default stack, even if they haven't been chosen
  * Extract all necessay metadata from them to be able to create this.object.stacks
  * @returns {object[]} Necessay metadata for all stacks
@@ -326,7 +302,6 @@ export class ConfigSheetForActions extends FormApplication {
 		super(object, options);
 		this.module = game.modules.get('ready-to-use-cards');
 		this.initStacks();
-		this.initFilter();
 	}
 
 	initStacks( ) {
@@ -338,15 +313,8 @@ export class ConfigSheetForActions extends FormApplication {
 			configLabels[key] = game.i18n.localize('RTUCards.settings.sheet.labels.' + key);
 		});
 
-		// List of the available configuration settings.
-		const defaultStackConfig = this.configBoxes.reduce( (_config, confKey) => {
-			_config[confKey] = true;
-			return _config;
-		}, {});
-
 		// Create this.object.stacks
 		const cardStacks = this.module.cardStacks;
-		const actualDefinition = CARD_STACKS_DEFINITION;
 		this.object.stacks = computeAllPossibleStackList().map( s => {
 
 			const data = {};
@@ -369,18 +337,9 @@ export class ConfigSheetForActions extends FormApplication {
 				return g;
 			});
 
-			// config : Used to define which actions are available once a card stack is opened
-			//---------------
-			data.config = duplicate(defaultStackConfig);
-			const declared = actualDefinition.core[s.key];
-			if( declared ) { // Substitute current config values
-				Object.entries( declared.config ).forEach( ([key, confValue]) => {
-					data.config[key] = confValue;
-				});
-			}
-
 			// parameters : Additional info on deck, like image path or translation prefix
 			//---------------
+			const declared = CARD_STACKS_DEFINITION.core[s.key];
 			const stackDef = cardStacks.defaultCoreStacks[s.key];
 			data.parameters = {
 				labelBaseKey: declared?.labelBaseKey ?? stackDef.labelBaseKey,
@@ -394,48 +353,11 @@ export class ConfigSheetForActions extends FormApplication {
 		});
 	}
 	
-	initFilter() {
-
-		const configUsage = Object.entries(cardFilterSettings()).map( ([key, value]) => {
-			return {
-				config: key,
-				toggled: value
-			};
-		});
-
-		this.filter = {
-			detailsDisplayed: false,
-			title: game.i18n.localize('RTUCards.settings.config-actions.filter.title'),
-			configUsage: configUsage
-		};
-	}
-
-	_addHeadersToConfigBoxes(configBoxes) {
-
-		const result = [];
-		['fromDeck', 'fromHand', 'fromRevealed', 'fromDiscard'].forEach( header => {
-
-			const relatedConfs = configBoxes.filter( cb => cb.config.startsWith(header) );
-			if( relatedConfs.length > 0 ) {
-
-				result.push({ // Header line
-					isHeader: true, 
-					label: game.i18n.localize('RTUCards.settings.sheet.headers.' + header) 
-				});
-
-				relatedConfs.sort( (a,b) => a.label.localeCompare(b.label) );
-				result.push(...relatedConfs);
-			}
-		});
-		return result;
-	}
-
 	_prepareStackList() {
 
 		// Add confboxes information for each stack
 		const stacks = this.object.stacks.map( stack => {
 			const data = {
-				configBoxes: this.configBoxes.map( confKey => mapConfBoxForStack( stack, confKey ) ),
 				actions: buildStackActions(stack),
 				groupsGui: actionGroupsForGUI(stack)
 			};
@@ -445,54 +367,20 @@ export class ConfigSheetForActions extends FormApplication {
 		return stacks;
 	}
 
-	_prepareFilteringWithStacks(stacks) {
-
-		// Retrieve confs which are never used
-		const unusedKeys = this.filter.configUsage.filter( c => !c.toggled).map( c => c.config );
-
-		// Reduce confboxes on each stack by removing those elements
-		stacks.forEach( stack => {
-			stack.configBoxes = stack.configBoxes.filter( cb => cb.isHeader || !unusedKeys.includes(cb.config) );
-		});
-
-		const result = { 
-			configBoxes: this.filter.configUsage.map( cu => mapConfBoxForFilter(cu) ) ,
-			actions: [
-				{isHeader:true, label: game.i18n.localize('RTUCards.settings.config-actions.additionalData.headerFilter')},
-				createActionLine({ icon: 'fas fa-info', clickable: false, labelKey: 'RTUCards.settings.config-actions.filter.details' }),
-				createActionLine({ icon: 'fas fa-retweet', param: 'rebuild', labelKey: 'RTUCards.settings.config-actions.filter.rebuild' })
-			]
-		};
-		return foundry.utils.mergeObject(result, this.filter);
-	}
-
 	/** @override */
 	async getData() {
 
 		const stacks = this._prepareStackList();
-		const filter = this._prepareFilteringWithStacks(stacks);
-
-		// Add headers at the end (wait until entries have been filtered)
-		stacks.forEach(stack => {
-			stack.configBoxes = this._addHeadersToConfigBoxes(stack.configBoxes);
-		});
-		filter.configBoxes = this._addHeadersToConfigBoxes(filter.configBoxes);
 
 		return {
-			stacks: stacks,
-			filter: filter
+			stacks: stacks
 		};
 	}
 
 	/** @override */
     activateListeners(html) {
-		html.find('.filter .toggle-button.show').click(event => this._onClickToggleFilter(event) );
-		html.find('.filter .toggle-button.config').click(event => this._onClickToggleFilterBox(event) );
-		html.find('.filter .toggle-button.action.active').click(event => this._onClickToggleFilterParameter(event) );
-
 		html.find('.declared-deck .toggle-button.deck.active').click(event => this._onClickToggleDeck(event) );
 		html.find('.declared-deck .toggle-button.show.active').click(event => this._onClickToggleDetails(event) );
-		html.find('.declared-deck .config.toggle-button.active').click(event => this._onClickToggleConfigBox(event) );
 		
 		html.find('.declared-deck .group-action.toggle-button.active').click(event => this._onClickToggleActionChoice(event) );
 		html.find('.declared-deck .group-check.toggle-button.active').click(event => this._onClickToggleWholeActionGroup(event) );
@@ -559,6 +447,7 @@ export class ConfigSheetForActions extends FormApplication {
 
 
 	async _onClickSaveConfig(event) {
+/*FIXME
 		// Filter
 		const confFilter = this.filter.configUsage.reduce( (_result, _val) => {
 			_result[_val.config] = _val.toggled;
@@ -573,24 +462,15 @@ export class ConfigSheetForActions extends FormApplication {
 		this.object.stacks.filter( s => s.gui.toggled ).forEach( stack => {
 
 			const configUsage = duplicate(stack.config);
-			this.filter.configUsage.filter( c => !c.toggled ).forEach( c => {
-				// Make sure filtered actions are correctly removed
-				configUsage[c.config] = false;
-			});
 			decks[stack.key] = configUsage;
 			decks[stack.key].parameters = stack.parameters;
 		});
 
         await updateCardStackSettings(decks);
 		await this.module.cardStacks.loadCardStacks();
+*/
 
 		this.close();
-	}
-
-	async _onClickToggleFilter(event) {
-		event.preventDefault();
-		this.filter.detailsDisplayed = !this.filter.detailsDisplayed;
-		this.render();
 	}
 
 	async _onClickToggleDeck(event) {
@@ -615,17 +495,6 @@ export class ConfigSheetForActions extends FormApplication {
 		this.render();
 	}
 
-	async _onClickToggleConfigBox(event) {
-		event.preventDefault();
-		const a = event.currentTarget;
-		const deckKey = a.parentElement.parentElement.dataset.key;
-		const configKey = a.dataset.config;
-
-		const stack = this.object.stacks.find( s =>s.key === deckKey );
-		stack.config[configKey] = !stack.config[configKey];
-		this.render();
-	}
-
 	async _onClickToggleStackParameter(event) {
 		event.preventDefault();
 		const a = event.currentTarget;
@@ -645,45 +514,6 @@ export class ConfigSheetForActions extends FormApplication {
 
 		const stack = this.object.stacks.find( s =>s.key === deckKey );
 		stack.parameters[paramKey] = a.value;
-		this.render();
-	}
-
-	async _onClickToggleFilterBox(event) {
-		event.preventDefault();
-		const a = event.currentTarget;
-		const configKey = a.dataset.config;
-
-		const relatedConfig = this.filter.configUsage.find( c => c.config === configKey );
-		const wasChecked = relatedConfig.toggled;
-		relatedConfig.toggled = !wasChecked;
-
-		if( wasChecked ) { // Uncheck box on all stacks
-			this.object.stacks.forEach( stack => {
-				stack.config[configKey] = false;
-			});
-		}
-		this.render();
-	}
-
-	async _onClickToggleFilterParameter(event) {
-		event.preventDefault();
-		const a = event.currentTarget;
-		const param = a.parentElement.dataset.param;
-
-		if( param == 'rebuild' ) {
-			// Recreate config usage from current choices in current decks
-			const usedStacks = this.object.stacks.filter( stack => stack.gui.toggled );
-			this.filter.configUsage = this.configBoxes.map( key => {
-				const used = usedStacks.some( stack => {
-					return stack.config[key];
-				});
-	
-				return {
-					config: key,
-					toggled: used
-				};
-			});
-		}
 		this.render();
 	}
 
