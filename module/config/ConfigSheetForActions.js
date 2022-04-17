@@ -1,7 +1,5 @@
 import { DeckParameters, StackActionTypes, StackConfiguration, StackTargetPossibilities } from "../constants.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
-import { cardFilterSettings, updateCardFilterSettings, updateCardStackSettings } from "../tools.js";
-
 
 /**
  * Go through all declared and default stack, even if they haven't been chosen
@@ -63,7 +61,7 @@ const actionGroupsForGUI = (stack) => {
 
 	// Convenience functions
 	//-------------------------
-	const computeDisplayedOptionsforActionGroup = (groupDef) => {
+	const computeDisplayedOptions = (groupDef) => {
 		const noTarget = groupDef.grid.css == 'no-target';
 
 		let allOptions;
@@ -83,7 +81,7 @@ const actionGroupsForGUI = (stack) => {
 		return allOptions;
 	}
 
-	const computeDisplayedLinesForActionGroup = (groupDef) => {
+	const computeDisplayedGridLines = (groupDef) => {
 		const noTarget = groupDef.grid.css == 'no-target';
 		const alone = groupDef.grid.css == 'alone';
 		return {
@@ -94,6 +92,53 @@ const actionGroupsForGUI = (stack) => {
 			gm : !noTarget && groupDef.grid.targets.includes('GH'),
 			players : !noTarget && groupDef.grid.targets.includes('PH'),
 		};
+	}
+
+	const computeDisplayedActionParameters = (groupDef) => {
+		const params = groupDef.labels.filter( l => {
+			// Action which have not been selected won't be displayed
+			return groupDef.actions.some( a => a.action === l.action && a.available);
+
+		}).map( l => {
+			return {
+				action: l.action,
+				label: {
+					default: l.default,
+					current: l.default != l.current ? l.current : ""
+				}
+			};
+		});
+		params.sort( (a,b) => a.label.default.localeCompare(b.label.default) );
+		return params;
+	}
+
+	const computeDisplayedGuiTabs = (groupDef, gridLines, actionParameters) => {
+		
+		// Build tab list
+		const guiTabs = { list: [] };
+		if( !gridLines.alone ) {
+			guiTabs.list.push({ id: "grid", header: "Action grid" });
+		}
+		if( actionParameters.length > 0 ) {
+			guiTabs.list.push({ id: "params", header: "Related parameters" });
+		}
+		
+		// Add radio button selection
+		guiTabs.displayed = guiTabs.list.length > 0;
+		if( guiTabs.displayed ) {
+
+			// /!\ May update groupDef.currentTab
+			if( ! guiTabs.list.some( t => t.id === groupDef.currentTab ) ) {
+				groupDef.currentTab = guiTabs.list[0].id;
+			}
+			
+			guiTabs.list.forEach( t => {
+				t.selected = ( t.id === groupDef.currentTab );
+			});
+		}
+		guiTabs.gridDisplayed = guiTabs.list.find( t => t.id === "grid" )?.selected ?? false;
+		guiTabs.paramDisplayed = guiTabs.list.find( t => t.id === "params" )?.selected ?? false;
+		return guiTabs;
 	}
 
 	const mapStackActionForGui = (option, groupDef) => {
@@ -140,13 +185,17 @@ const actionGroupsForGUI = (stack) => {
 				css: groupDef.grid.css,
 				from: game.i18n.localize( groupDef.grid.fromLabel ?? 'From' ),
 				target: game.i18n.localize( groupDef.grid.targetLabel ?? 'Targets' ),
+				lines: computeDisplayedGridLines(groupDef)
 			}, 
 			toggle: {
 			}
 		};
 
 		// Add data used by toggle icons
-		groupGui.toggle.checkCss = groupDef.used ? ( groupDef.fullyUsed ? 'far fa-check-square' : 'far fa-minus-square' ) : 'far fa-square';
+		// used and fullyUsed were re
+        const used = groupDef.actions.some( a => a.available );
+        const fullyUsed = used && !groupDef.actions.some( a => !a.available );
+		groupGui.toggle.checkCss = used ? ( fullyUsed ? 'far fa-check-square' : 'far fa-minus-square' ) : 'far fa-square';
 		groupGui.toggle.foldCss = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
 
 		if( !locked ) {
@@ -155,12 +204,15 @@ const actionGroupsForGUI = (stack) => {
 		}
 
 		// Action list displays chosen ones, as well as invalid or not chosen
-		groupGui.actions = computeDisplayedOptionsforActionGroup(groupDef).map( option => {
+		groupGui.actions = computeDisplayedOptions(groupDef).map( option => {
 			return mapStackActionForGui(option, groupDef);
 		});
 
-		// Also add information on displayed lines (to removed unsed header from grid)
-		groupGui.lines = computeDisplayedLinesForActionGroup(groupDef);
+		// Parameters for each action
+		groupGui.actionParameters = computeDisplayedActionParameters(groupDef);
+		
+		// Check if there is a need to update currentTab
+		groupGui.guiTabs = computeDisplayedGuiTabs(groupDef, groupGui.grid.lines, groupGui.actionParameters);
 
 		return groupGui;
 	});
@@ -174,23 +226,6 @@ const actionGroupsForGUI = (stack) => {
 	})
 	return topLevelGroups;
 }
-
-/**
- * During configBox creation for the filter.
- * @param {object} configUsage The conf key
- * @returns {object} will be stored as a configBoxes element
- */
- const mapConfBoxForFilter = (confUsage) => {
-
-	let classes = confUsage.toggled ? 'far fa-check-square' : 'far fa-square';
-	classes += ' active';
-
-	return {
-		config: confUsage.config,
-		classes: classes,
-		label: game.i18n.localize('RTUCards.settings.sheet.labels.' + confUsage.config)
-	};
-};
 
 const buildStackActions = (stack) => {
 	const actions = [];
@@ -334,6 +369,7 @@ export class ConfigSheetForActions extends FormApplication {
 			data.groups = this.module.actionService.getAllActionsDetailsMap(s.key);
 			Object.values(data.groups).forEach( g => {
 				g.unfolded = false;
+				g.currentTab = null; // Once unfolded, tab will be deduced
 				return g;
 			});
 
@@ -385,9 +421,12 @@ export class ConfigSheetForActions extends FormApplication {
 		html.find('.declared-deck .group-action.toggle-button.active').click(event => this._onClickToggleActionChoice(event) );
 		html.find('.declared-deck .group-check.toggle-button.active').click(event => this._onClickToggleWholeActionGroup(event) );
 		html.find('.declared-deck .group-fold.toggle-button.active').click(event => this._onClickFoldActionGroup(event) );
+		html.find('.declared-deck .group-tab').click(event => this._onClickChangeActionGroupTab(event) );
+
+        html.find('.declared-deck .param-input.button-text').change(event => this._onChangeActionButtonText(event) );
 
 		html.find('.declared-deck .toggle-button.action.active').click(event => this._onClickToggleStackParameter(event) );
-        html.find('.declared-deck .param-input').change(event => this._onChangeParameterValue(event) );
+        //html.find('.declared-deck .param-input').change(event => this._onChangeParameterValue(event) );
 
 		html.find('.save-stacks').click(event => this._onClickSaveConfig(event) );
 	}
@@ -400,10 +439,12 @@ export class ConfigSheetForActions extends FormApplication {
 	/* -------------------------------------------- */
 
 	async _onClickToggleActionChoice(event) {
-		const a = event.currentTarget;
-		const configKey = a.dataset.config;
-		const deckKey = a.parentElement.parentElement.dataset.key;
-		const groupId = a.parentElement.parentElement.dataset.group;
+		const checkboxInGrid = event.currentTarget;
+		const groupDiv = checkBoxIcon.parentElement.parentElement.parentElement;
+
+		const configKey = checkboxInGrid.dataset.config;
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
 
 		const stack = this.object.stacks.find( s => s.key === deckKey);
 		const group = stack.groups[groupId];
@@ -414,9 +455,11 @@ export class ConfigSheetForActions extends FormApplication {
 	}
 
 	async _onClickToggleWholeActionGroup(event) {
-		const a = event.currentTarget;
-		const deckKey = a.parentElement.dataset.key;
-		const groupId = a.parentElement.dataset.group;
+		const checkBoxIcon = event.currentTarget;
+		const groupDiv = checkBoxIcon.parentElement.parentElement;
+
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
 
 		const stack = this.object.stacks.find( s => s.key === deckKey);
 		const group = stack.groups[groupId];
@@ -430,9 +473,11 @@ export class ConfigSheetForActions extends FormApplication {
 	}
 
 	async _onClickFoldActionGroup(event) {
-		const a = event.currentTarget;
-		const deckKey = a.parentElement.dataset.key;
-		const groupId = a.parentElement.dataset.group;
+		const folderIcon = event.currentTarget;
+		const groupDiv = folderIcon.parentElement.parentElement;
+
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
 
 		const stack = this.object.stacks.find( s => s.key === deckKey);
 		const group = stack.groups[groupId];
@@ -440,10 +485,35 @@ export class ConfigSheetForActions extends FormApplication {
 		this.render();
 	}
 
+	async _onClickChangeActionGroupTab(event) {
+		const tabDiv = event.currentTarget;
+		const groupDiv = tabDiv.parentElement.parentElement;
 
+		const tab = tabDiv.dataset.tab;
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
 
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		group.currentTab = tab;
+		this.render();		
+	}
 
+	async _onChangeActionButtonText(event) {
+		const input = event.currentTarget;
+		const paramDiv = input.parentElement.parentElement; 
+		const groupDiv = paramDiv.parentElement;
 
+		const action = paramDiv.dataset.action;
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
+
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		const label = group.labels.find(l => l.action === action);
+		label.current = input.value;
+		this.render();
+	}
 
 
 	async _onClickSaveConfig(event) {
@@ -503,17 +573,6 @@ export class ConfigSheetForActions extends FormApplication {
 
 		const stack = this.object.stacks.find( s =>s.key === deckKey );
 		stack.parameters[paramKey] = !stack.parameters[paramKey];
-		this.render();
-	}
-
-	async _onChangeParameterValue(event) {
-		event.preventDefault();
-		const a = event.currentTarget;
-		const deckKey = a.parentElement.parentElement.dataset.key;
-		const paramKey = a.parentElement.dataset.param;
-
-		const stack = this.object.stacks.find( s =>s.key === deckKey );
-		stack.parameters[paramKey] = a.value;
 		this.render();
 	}
 

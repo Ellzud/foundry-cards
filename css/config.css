@@ -26,13 +26,47 @@
   text-decoration: underline;
 }
 
-.rtucards-config-actions .deck-row.content.conf {
-  padding-left: 10px;
+.rtucards-config-actions .deck-row.content.action-group-div {
+  padding: 0px 3px;
 }
 
-.rtucards-config-actions .deck-row.content.unfolded-margin {
+.rtucards-config-actions .action-group-div .unfolded-margin {
   flex: unset;
   height: 20px;
+}
+
+.rtucards-config-actions .action-group-div .line {
+  padding: 3px;
+  line-height: 18px;
+  align-items: center;
+}
+
+.rtucards-config-actions .action-group-div .line .action-title {
+  font-style: initial;
+  text-decoration: underline;
+}
+
+.rtucards-config-actions .action-group-div .line .action-param {
+  flex: unset;
+  margin-right: 10px;
+}
+
+
+.rtucards-config-actions .action-group-div .group-tab {
+  border: groove;
+  border-radius: 1px;
+  text-align: center;
+  margin: 0px 2px;
+  opacity: 0.5;
+}
+
+.rtucards-config-actions .action-group-div .group-tab.selected {
+  opacity: 1;
+}
+
+.rtucards-config-actions .action-group-div .group-tab:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .rtucards-config-actions .toggle-button {
@@ -42,7 +76,7 @@
   opacity: 0.3;
 }
 
-.rtucards-config-actions .action .toggle-button {
+.rtucards-config-actions .toggle-button.exact-width {
   min-width: 18px;
   text-align: center;
 }
@@ -59,9 +93,7 @@
 .rtucards-config-actions .action-grid {
   display: grid;
   margin-left: 20px;
-  border-left: solid darkgray;
   font-style: italic;
-  padding-left: 20px;
   padding-top: 5px;
 }
 

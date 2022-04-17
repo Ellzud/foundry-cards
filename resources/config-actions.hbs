@@ -21,8 +21,8 @@
 {{/inline}}
 
 {{#*inline "actionLine"}}
-    <div class="flexrow deck-row content action" data-param="{{action.param}}">
-        <i class="toggle-button action {{action.classes}}"></i>
+    <div class="flexrow deck-row content" data-param="{{action.param}}">
+        <i class="toggle-button exact-width {{action.classes}}"></i>
         <div>{{action.label}}</div>
         {{#if action.input.displayed}}
             <input type="text" class="param-input" value="{{action.input.text}}" >
@@ -37,68 +37,108 @@
     </div>
 
     {{#each groups.list as |group| }}
-        <div class="flexrow deck-row content conf" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
-            <i class="toggle-button group-check {{group.toggle.checkCss}}"></i>
-            <i class="toggle-button group-fold {{group.toggle.foldCss}}"></i>
-            <div>{{group.name}}</div>
-        </div>
-        {{#if group.unfolded}}
-            <!-- Description -->
-            <div class="flexrow deck-row content action">
-                <i class="toggle-button action fas fa-info"></i>
-                <div>{{group.description}}</div>
+
+        <div class="deck-row content action-group-div" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
+
+            <div class="flexrow line">
+                <i class="toggle-button exact-width group-check {{group.toggle.checkCss}}"></i>
+                <i class="toggle-button exact-width group-fold {{group.toggle.foldCss}}"></i>
+                <div>{{group.name}}</div>
             </div>
-
-            {{#unless group.lines.alone}}
-                <div class="action-grid {{group.grid.css}}" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
-                    <div class="header right-col" style="grid-area: Fxxx;">{{group.grid.from}} →</div>
-                    <div class="header left-col" style="grid-area: Txxx;">{{group.grid.target}} ↴</div>
-                    <div class="header" style="grid-area: F-DE;">Deck</div>
-                    <div class="header" style="grid-area: F-DI;">Discard</div>  
-                    <div class="header" style="grid-area: F-Gx;">GM</div>
-                    <div class="header" style="grid-area: F-Px;">Player</div>
-                    <div class="header" style="grid-area: F-GH;">Hand</div>
-                    <div class="header" style="grid-area: F-GR;">Revealed</div>
-                    <div class="header" style="grid-area: F-PH;">Hand</div>
-                    <div class="header" style="grid-area: F-PR;">Revealed</div>
-
-                    {{#if group.lines.noTarget}}
-                        <div class="header left-col" style="grid-area: T-NO;">No target</div>
-                    {{/if}}
-                    {{#if group.lines.deck}}
-                        <div class="header left-col" style="grid-area: T-DE;">Deck</div>
-                    {{/if}}
-                    {{#if group.lines.discard}}
-                        <div class="header left-col" style="grid-area: T-DI;">Discard</div>
-                    {{/if}}
-                    {{#if group.lines.gm}}
-                        <div class="header left-col" style="grid-area: T-Gx;">GM</div>
-                        <div class="header" style="grid-area: T-GH;">Hand</div>
-                        <div class="header" style="grid-area: T-GR;">Revealed</div>
-                    {{/if}}
-                    {{#if group.lines.players}}
-                        <div class="header left-col" style="grid-area: T-Px;">Player</div>
-                        <div class="header" style="grid-area: T-PH;">Hand</div>
-                        <div class="header" style="grid-area: T-PR;">Revealed</div>
-                    {{/if}}
-
-                    {{#each group.actions as |action| }}
-                        <div style="grid-area: {{action.area}};">
-                            <i class="group-action {{action.classes}}" 
-                            title="{{action.name.current}}" 
-                            data-config="{{action.confKey}}"></i>
-                        </div>
-                    {{/each}}
+            {{#if group.unfolded}}
+                <!-- Description -->
+                <div class="flexrow line">
+                    <i class="toggle-button exact-width fas fa-info"></i>
+                    <div>{{group.description}}</div>
                 </div>
-            {{/unless}}
 
-            <div class="deck-row content unfolded-margin"></div>
-        {{/if}}
+                <!-- Radio button switching between grid and parameters -->
+                {{#if group.guiTabs.displayed }}
+                    <div class="flexrow line">
+                        <i class="toggle-button exact-width"></i>
+                        {{#each group.guiTabs.list as |tab|}}
+                            <div class="group-tab {{#if tab.selected}}selected{{/if}}" data-tab="{{tab.id}}">{{tab.header}}</div>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                <!-- Parameters -->
+                {{#if group.guiTabs.paramDisplayed }}
+                    {{#each group.actionParameters as |param| }}
+                        {{> actionParams action=param }}
+                    {{/each}}
+                {{/if}}
+
+                <!-- Grid -->
+                {{#if group.guiTabs.gridDisplayed }}
+                    {{> actionGrid group=group }}
+                {{/if}}
+
+                <div class="unfolded-margin"></div>
+            {{/if}}
+        </div>
     {{/each}}
 
 {{/inline}}
 
+{{#* inline "actionParams"}}
+        <div class="param-section" data-action="{{action.action}}">
+            <div class="flexrow line">
+                <i class="toggle-button exact-width fas fa-ellipsis-h"></i>
+                <div class="action-title">{{action.label.default}}</div>
+            </div>
+            <div class="flexrow line">
+                <i class="toggle-button exact-width far fa-closed-captioning"></i>
+                <div class="action-param">Button text</div>
+                <input type="text" class="param-input button-text" 
+                       value="{{action.label.current}}" 
+                       placeholder="{{action.label.default}}" >
+            </div>
+        </div>
+{{/inline}}
 
+{{#* inline "actionGrid"}}
+    <div class="action-grid {{group.grid.css}}" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
+        <div class="header right-col" style="grid-area: Fxxx;">{{group.grid.from}} →</div>
+        <div class="header left-col" style="grid-area: Txxx;">{{group.grid.target}} ↴</div>
+        <div class="header" style="grid-area: F-DE;">Deck</div>
+        <div class="header" style="grid-area: F-DI;">Discard</div>  
+        <div class="header" style="grid-area: F-Gx;">GM</div>
+        <div class="header" style="grid-area: F-Px;">Player</div>
+        <div class="header" style="grid-area: F-GH;">Hand</div>
+        <div class="header" style="grid-area: F-GR;">Revealed</div>
+        <div class="header" style="grid-area: F-PH;">Hand</div>
+        <div class="header" style="grid-area: F-PR;">Revealed</div>
+
+        {{#if group.grid.lines.noTarget}}
+            <div class="header left-col" style="grid-area: T-NO;">No target</div>
+        {{/if}}
+        {{#if group.grid.lines.deck}}
+            <div class="header left-col" style="grid-area: T-DE;">Deck</div>
+        {{/if}}
+        {{#if group.grid.lines.discard}}
+            <div class="header left-col" style="grid-area: T-DI;">Discard</div>
+        {{/if}}
+        {{#if group.grid.lines.gm}}
+            <div class="header left-col" style="grid-area: T-Gx;">GM</div>
+            <div class="header" style="grid-area: T-GH;">Hand</div>
+            <div class="header" style="grid-area: T-GR;">Revealed</div>
+        {{/if}}
+        {{#if group.grid.lines.players}}
+            <div class="header left-col" style="grid-area: T-Px;">Player</div>
+            <div class="header" style="grid-area: T-PH;">Hand</div>
+            <div class="header" style="grid-area: T-PR;">Revealed</div>
+        {{/if}}
+
+        {{#each group.actions as |action| }}
+            <div style="grid-area: {{action.area}};">
+                <i class="group-action {{action.classes}}" 
+                title="{{action.name.current}}" 
+                data-config="{{action.confKey}}"></i>
+            </div>
+        {{/each}}
+    </div>
+{{/inline}}
 
 <form>
     <p class="notification info">{{localize 'RTUCards.settings.config-actions.title'}}</p>

@@ -133,9 +133,6 @@ export class AvailableActionService {
         result.labels = buildActionGroupDetailsLabels(stackKey, actionGroup);
         result.actions = buildActionGroupDetailsActions(stackKey, actionGroup, result.labels);
 
-        result.used = result.actions.some( a => a.available );
-        result.fullyUsed = result.used && !result.actions.some( a => !a.available );
-
         return result;
     }
 
