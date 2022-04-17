@@ -148,6 +148,68 @@ export class AvailableActionService {
         }, {});
         return result;
     }
+
+    /**
+     * Persist new definition after it has been edited inside ConfigSheetForActions
+     * @param {object[]} wholeDetails An array of { stackKey: string, details: actionsDetails[] }
+     */
+    updateSettingsWithCurrentActionDetails(wholeDetails) {
+
+        const currentSettings = cardStackSettings();
+        const newSettings = {};
+        wholeDetails.forEach( stackData => {
+            const stackSettings = { actions: {}, labels: {} };
+
+            // FIMXE : Need to persist parameters
+
+            // Go through all action groups
+            Object.values(stackData.details).forEach( actionGroup => {
+
+                // Persist action choices
+                const usedActions = actionGroup.actions.filter( a => a.available );
+                usedActions.forEach( a => stackSettings.actions[a.confKey] = true );
+
+                // Persist labels
+                const distinctActionKeys = usedActions.reduce( (_distinct, a) => {
+                    if( !_distinct.includes(a.action) ) { _distinct.push( a.action ); }
+                    return _distinct;
+                }, []);
+                distinctActionKeys.forEach( actionKey => {
+                    const labelDef = actionGroup.labels.find( l => l.action === actionKey );
+                    if( labelDef.current != labelDef.default ) {
+                        stackSettings.labels[actionKey] = labelDef.current;
+                    }
+                });
+            });
+
+            // Persist only if there is some data set for this stack
+            if( Object.keys(stackSettings.actions).length > 0 ) {
+                newSettings[stackData.key] = stackSettings;
+
+                const rollback = currentSettings[stackData.key]?.rollback;
+                if( rollback ) {
+                    newSettings[stackData.key].rollback = rollback;
+                }
+                
+            }
+        });
+
+        // FIXME : Testing
+
+        const toString = (obj) => {
+            const keys = Object.keys(obj);
+            keys.sort();
+            return keys.join("\n");
+        }
+
+		const currentActions = toString(currentSettings["pokerDark"]?.actions ?? {});
+		const newSettingsActions = toString(newSettings["pokerDark"]?.actions ?? {});
+
+		const currentLabels = toString(currentSettings["pokerDark"]?.labels ?? {});
+		const newSettingsLabels = toString(newSettings["pokerDark"]?.labels ?? {});
+
+        return newSettings;
+    }
     
     
     /**

@@ -1,5 +1,6 @@
 import { DeckParameters, StackActionTypes, StackConfiguration, StackTargetPossibilities } from "../constants.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
+import { cardStackSettings } from "../tools.js";
 
 /**
  * Go through all declared and default stack, even if they haven't been chosen
@@ -440,7 +441,7 @@ export class ConfigSheetForActions extends FormApplication {
 
 	async _onClickToggleActionChoice(event) {
 		const checkboxInGrid = event.currentTarget;
-		const groupDiv = checkBoxIcon.parentElement.parentElement.parentElement;
+		const groupDiv = checkboxInGrid.parentElement.parentElement.parentElement;
 
 		const configKey = checkboxInGrid.dataset.config;
 		const deckKey = groupDiv.dataset.key;
@@ -455,8 +456,8 @@ export class ConfigSheetForActions extends FormApplication {
 	}
 
 	async _onClickToggleWholeActionGroup(event) {
-		const checkBoxIcon = event.currentTarget;
-		const groupDiv = checkBoxIcon.parentElement.parentElement;
+		const checkboxIcon = event.currentTarget;
+		const groupDiv = checkboxIcon.parentElement.parentElement;
 
 		const deckKey = groupDiv.dataset.key;
 		const groupId = groupDiv.dataset.group;
@@ -517,30 +518,15 @@ export class ConfigSheetForActions extends FormApplication {
 
 
 	async _onClickSaveConfig(event) {
-/*FIXME
-		// Filter
-		const confFilter = this.filter.configUsage.reduce( (_result, _val) => {
-			_result[_val.config] = _val.toggled;
-			return _result;
-		}, {});
 
-		await updateCardFilterSettings(confFilter),
+		const wholeDetails = this.object.stacks.filter( s => {
+			return s.gui.toggled;
 
-		// Each stack
-		await this.module.cardStacks.loadCardStacks();
-		const decks = {};
-		this.object.stacks.filter( s => s.gui.toggled ).forEach( stack => {
-
-			const configUsage = duplicate(stack.config);
-			decks[stack.key] = configUsage;
-			decks[stack.key].parameters = stack.parameters;
+		}).map( s => {
+			return { key: s.key, details: s.groups };
 		});
-
-        await updateCardStackSettings(decks);
-		await this.module.cardStacks.loadCardStacks();
-*/
-
-		this.close();
+		this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
+		// this.close();
 	}
 
 	async _onClickToggleDeck(event) {
