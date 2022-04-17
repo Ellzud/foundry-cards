@@ -559,8 +559,7 @@ export class CustomCardStack {
      */
      async giveCards(to, cardIds) {
 
-        assertStackOwner(this, {forNobody: true});
-        assertStackType(this, {decks: true});
+        assertStackIsNotADiscardPile(this);
 
         const stackType = to.stack.type;
         const inHand = stackType == 'hand';

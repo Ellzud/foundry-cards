@@ -319,30 +319,29 @@ export const StackConfigurationGroup = {
             targets: ['DI', 'GH', 'GR', 'PH', 'PR']
         },
         available: [
-            { from: 'GH', target: 'PH', action: 'player' },
-            { from: 'GH', target: 'PR', action: 'player' },
+            { from: 'GH', target: 'PH', action: 'someone' },
+            { from: 'GH', target: 'PR', action: 'someone' },
             { from: 'GH', target: 'DI', action: 'discard' },
 
-            { from: 'GR', target: 'PH', action: 'player' },
-            { from: 'GR', target: 'PR', action: 'player' },
+            { from: 'GR', target: 'PH', action: 'someone' },
+            { from: 'GR', target: 'PR', action: 'someone' },
             { from: 'GR', target: 'DI', action: 'discard' },
 
-            { from: 'PH', target: 'GH', action: 'gm' },
-            { from: 'PH', target: 'GR', action: 'gm' },
+            { from: 'PH', target: 'GH', action: 'someone' },
+            { from: 'PH', target: 'GR', action: 'someone' },
             { from: 'PH', target: 'DI', action: 'discard' },
-            { from: 'PH', target: 'PH', action: 'player' },
-            { from: 'PH', target: 'PR', action: 'player' },
+            { from: 'PH', target: 'PH', action: 'someone' },
+            { from: 'PH', target: 'PR', action: 'someone' },
 
-            { from: 'PR', target: 'GH', action: 'gm' },
-            { from: 'PR', target: 'GR', action: 'gm' },
+            { from: 'PR', target: 'GH', action: 'someone' },
+            { from: 'PR', target: 'GR', action: 'someone' },
             { from: 'PR', target: 'DI', action: 'discard' },
-            { from: 'PR', target: 'PH', action: 'player' },
-            { from: 'PR', target: 'PR', action: 'player' },
+            { from: 'PR', target: 'PH', action: 'someone' },
+            { from: 'PR', target: 'PR', action: 'someone' },
         ],
         labels: [
-            {action: 'player', default: 'Exchange with player'},
+            {action: 'someone', default: 'Exchange with someone'},
             {action: 'discard', default: 'Exchange with discard'},
-            {action: 'gm', default: 'Exchange with gm'} // FIXME : Not linked
         ]
     },
     transferCards: {
