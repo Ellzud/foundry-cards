@@ -268,7 +268,7 @@ export const StackConfigurationGroup = {
     },
     moveCard: {
         labelKey: 'Move a card through stacks',
-        descKey: 'A user can transfer one of his cards to another stack. The displayed message will indicate that the card has been transfered',
+        descKey: 'A user can transfer one of his cards to another user stack. The displayed message will indicate that the card has been transfered',
         actionType: 'selectedCard',
         grid : {
             css: 'all-targets',
@@ -284,30 +284,28 @@ export const StackConfigurationGroup = {
             { from: 'GH', target: 'PH', action: 'give' },
             { from: 'GH', target: 'PR', action: 'give' },
             { from: 'GH', target: 'DI', action: 'discardOne' },
-            { from: 'GH', target: 'GR', action: 'reveal' },
 
             { from: 'GR', target: 'PH', action: 'give' },
             { from: 'GR', target: 'PR', action: 'give' },
             { from: 'GR', target: 'DI', action: 'discardOne' },
-            { from: 'GR', target: 'GH', action: 'backHand' },
             
             { from: 'PH', target: 'GH', action: 'give' },
             { from: 'PH', target: 'GR', action: 'give' },
             { from: 'PH', target: 'DI', action: 'discardOne' },
-            { from: 'PH', target: 'PR', action: 'reveal' },
+            { from: 'PH', target: 'PH', action: 'give' },
+            { from: 'PH', target: 'PR', action: 'give' },
 
             { from: 'PR', target: 'GH', action: 'give' },
             { from: 'PR', target: 'GR', action: 'give' },
             { from: 'PR', target: 'DI', action: 'discardOne' },
-            { from: 'PR', target: 'PH', action: 'backHand' },
+            { from: 'PR', target: 'PH', action: 'give' },
+            { from: 'PR', target: 'PR', action: 'give' },
 
             { from: 'DI', target: 'DE', action: 'backDeck' }
         ],
         labels: [
-            {action: 'backHand', default: 'Back to hand'},
             {action: 'backDeck', default: 'Back to deck'},
             {action: 'give', default: 'Give card'},
-            {action: 'reveal', default: 'Reveal card'},
             {action: 'discardOne', default: 'Discard card'},
             {action: 'discardAll', default: 'Discard all cards'},
         ]
@@ -347,8 +345,28 @@ export const StackConfigurationGroup = {
             {action: 'gm', default: 'Exchange with gm'} // FIXME : Not linked
         ]
     },
+    transferCards: {
+        labelKey: '[Between a user two stacks] Transfer cards',
+        descKey: 'A user can transfer a card between its two stacks',
+        actionType: 'selectedCard',
+        grid : {
+            css: 'user-only',
+            targets: ['GH', 'GR', 'PH', 'PR']
+        },
+        available: [
+            { from: 'GH', target: 'GR', action: 'reveal' },
+            { from: 'GR', target: 'GH', action: 'backHand' },
+
+            { from: 'PH', target: 'PR', action: 'reveal' },
+            { from: 'PR', target: 'PH', action: 'backHand' },
+        ],
+        labels: [
+            {action: 'backHand', default: 'Back to hand'},
+            {action: 'reveal', default: 'Reveal card'},
+        ]
+    },
     swapCards: {
-        labelKey: 'Swap cards between a user two stacks',
+        labelKey: '[Between a user two stacks] Swap cards',
         descKey: 'A user can swap a card between its two stacks',
         actionType: 'selectedCard',
         grid : {

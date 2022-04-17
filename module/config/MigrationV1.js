@@ -94,8 +94,8 @@ export const migrateFromV1 = async () => {
                     break;
                 }
                 case "fromHandRevealCard": {
-                    actions["swapCards-GHGR"] = true;
-                    actions["swapCards-PHPR"] = true;
+                    actions["transferCards-GHGR"] = true;
+                    actions["transferCards-PHPR"] = true;
                     break;
                 }
                 case "fromHandExchangeCard": {
@@ -140,8 +140,8 @@ export const migrateFromV1 = async () => {
                     break;
                 }
                 case "fromRevealedBackToHand": {
-                    actions["swapCards-GRGH"] = true;
-                    actions["swapCards-PRPH"] = true;
+                    actions["transferCards-GRGH"] = true;
+                    actions["transferCards-PRPH"] = true;
                     break;
                 }
                 case "fromRevealedDiscardCard": {

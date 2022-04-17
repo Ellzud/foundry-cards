@@ -341,13 +341,6 @@ export class ConfigSheetForActions extends FormApplication {
 
 	initStacks( ) {
 
-		// Prepare configBoxes
-		const configLabels = {};
-		this.configBoxes = Object.values(StackConfiguration);
-		this.configBoxes.forEach( key => {
-			configLabels[key] = game.i18n.localize('RTUCards.settings.sheet.labels.' + key);
-		});
-
 		// Create this.object.stacks
 		const cardStacks = this.module.cardStacks;
 		this.object.stacks = computeAllPossibleStackList().map( s => {
@@ -360,8 +353,7 @@ export class ConfigSheetForActions extends FormApplication {
 				toggled: s.toggled,
 				toggleLocked: s.toggleLocked,
 				detailsDisplayed: false,
-				deck: s.deck,
-				labels: configLabels
+				deck: s.deck
 			};
 
 			// actionGroups : actions are grouped by category. (Move, Exchance, Deal, Rotate, ...)

@@ -603,11 +603,11 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(".drawDeckCard-draw").click(event => this._onClickDrawCard(event) );
         html.find(".drawDiscardCard-draw").click(event => this._onClickDrawDiscardCard(event) );
         html.find(".moveCard-backDeck").click(event => this._onClickBackToDeck(event) );
-        html.find(".moveCard-backHand").click(event => this._onClickBackToHand(event) );
         html.find(".moveCard-discardOne").click(event => this._onClickDiscardCard(event) );
         html.find(".moveCard-discardAll").click(event => this._onClickDiscardAll(event) );
         html.find(".moveCard-give").click(event => this._onClickGiveCard(event) );
-        html.find(".moveCard-reveal").click(event => this._onClickRevealCard(event) );
+        html.find(".transferCards-backHand").click(event => this._onClickBackToHand(event) );
+        html.find(".transferCards-reveal").click(event => this._onClickRevealCard(event) );
         html.find(".exchangeCard-discard").click(event => this._onClickExchangeCard(event) );
         html.find(".exchangeCard-player").click(event => this._onClickExchangePlayer(event) );
         html.find(".playCard-play").click(event => this._onClickPlayCard(event) );

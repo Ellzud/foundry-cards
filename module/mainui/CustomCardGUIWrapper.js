@@ -277,7 +277,7 @@ export class CustomCardGUIWrapper {
         const prefix = this._currently.prefixForActions; // "PH" or "GH"
         const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "swapCards"], {from: prefix});
+        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "transferCards", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
             const guiAction = service.asGUIAction(p);
@@ -326,7 +326,7 @@ export class CustomCardGUIWrapper {
         const prefix = this._currently.prefixForActions; // "PR" or "GR"
         const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "swapCards"], {from: prefix});
+        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "transferCards", "exchangeCard", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
             const guiAction = service.asGUIAction(p);

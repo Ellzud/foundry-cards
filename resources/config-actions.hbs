@@ -131,10 +131,8 @@
         {{/if}}
 
         {{#each group.actions as |action| }}
-            <div style="grid-area: {{action.area}};">
-                <i class="group-action {{action.classes}}" 
-                title="{{action.name.current}}" 
-                data-config="{{action.confKey}}"></i>
+            <div style="grid-area: {{action.area}};" title="{{action.name.current}}" >
+                <i class="group-action {{action.classes}}" data-config="{{action.confKey}}"></i>
             </div>
         {{/each}}
     </div>

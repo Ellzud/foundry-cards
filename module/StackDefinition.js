@@ -1,4 +1,4 @@
-import { CardActionsClasses, StackConfiguration } from './constants.js';
+import { CardActionsClasses } from './constants.js';
 import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './mainui/CardActionParameters.js';
 
 
@@ -49,7 +49,6 @@ export const CARD_STACKS_DEFINITION = {
     },
     shared: { // To share some const enums and some basic implems
         actionCss: CardActionsClasses,
-        configKeys: StackConfiguration,
         actionParametersClasses: {
             base: CardActionParametersBase,
             cardSelection: CardActionParametersForCardSelection,

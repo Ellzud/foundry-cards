@@ -1,4 +1,4 @@
-import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { GlobalConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 export const cardStackSettings = () => {
