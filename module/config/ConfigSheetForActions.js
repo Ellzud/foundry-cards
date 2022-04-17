@@ -95,7 +95,9 @@ const actionGroupsForGUI = (stack) => {
 	}
 
 	const computeDisplayedActionParameters = (groupDef) => {
-		const params = groupDef.labels.filter( l => {
+		
+		// One section for each distinct action. Start with labels
+		const actionParams = groupDef.labels.filter( l => {
 			// Action which have not been selected won't be displayed
 			return groupDef.actions.some( a => a.action === l.action && a.available);
 
@@ -108,8 +110,25 @@ const actionGroupsForGUI = (stack) => {
 				}
 			};
 		});
-		params.sort( (a,b) => a.label.default.localeCompare(b.label.default) );
-		return params;
+		actionParams.sort( (a,b) => a.label.default.localeCompare(b.label.default) );
+
+		// Add related parameters
+		actionParams.forEach( a => {
+			a.parameters = groupDef.parameters.filter( p => {
+				return p.action === a.action;
+			}).map( p => {
+				return {
+					id: p.id, // Unique id for datalists
+					param: p.param,
+					label: p.label,
+					default: p.default,
+					current: p.default != p.current ? p.current : "",
+					validation: p.validation
+				};
+			});
+		});
+
+		return actionParams;
 	}
 
 	const computeDisplayedGuiTabs = (groupDef, gridLines, actionParameters) => {
@@ -416,6 +435,7 @@ export class ConfigSheetForActions extends FormApplication {
 		html.find('.declared-deck .group-tab').click(event => this._onClickChangeActionGroupTab(event) );
 
         html.find('.declared-deck .param-input.button-text').change(event => this._onChangeActionButtonText(event) );
+        html.find('.declared-deck .param-input.real-param').change(event => this._onChangeActionParameter(event) );
 
 		html.find('.declared-deck .toggle-button.action.active').click(event => this._onClickToggleStackParameter(event) );
         //html.find('.declared-deck .param-input').change(event => this._onChangeParameterValue(event) );
@@ -507,6 +527,26 @@ export class ConfigSheetForActions extends FormApplication {
 		this.render();
 	}
 
+	async _onChangeActionParameter(event) {
+
+		const input = event.currentTarget;
+		if( input.validity.valid ) {
+			const paramDiv = input.parentElement.parentElement; 
+			const groupDiv = paramDiv.parentElement;
+	
+			const paramKey = input.dataset.param;
+			const action = paramDiv.dataset.action;
+			const deckKey = groupDiv.dataset.key;
+			const groupId = groupDiv.dataset.group;
+	
+			const stack = this.object.stacks.find( s => s.key === deckKey);
+			const group = stack.groups[groupId];
+			const param = group.parameters.find(p => p.action === action && p.param === paramKey);
+			param.current = input.value;
+		}
+		this.render();
+	}
+
 
 	async _onClickSaveConfig(event) {
 
@@ -516,6 +556,7 @@ export class ConfigSheetForActions extends FormApplication {
 		}).map( s => {
 			return { key: s.key, details: s.groups };
 		});
+
 		await this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
 		this.close();
 	}

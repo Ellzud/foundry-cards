@@ -27,6 +27,18 @@ const settings_allLabels = (stackKey) => {
 }
 
 /**
+ * List all parameters settings for a stack
+ * @param {string} stackKey stack key in the flags
+ * @returns {object} One child for each parameter. key: {groupId}-{action}-{param}
+ */
+ const settings_allParameters = (stackKey) => {
+    const settings = cardStackSettings();
+    if( !settings.hasOwnProperty( stackKey ) ) { return {}; }
+
+    return settings[stackKey].parameters ?? {};
+}
+
+/**
  * Retrieve the constant definition of an action group.
  * This service is the only one parsing the complex StackConfigurationGroup object.
  * The StackConfigurationGroup structure is abstracted via the AvailableActionService methods
@@ -50,20 +62,20 @@ const buildActionGroupDetailsLabels = (stackKey, actionGroup) => {
     const allLabelSettings = settings_allLabels(stackKey);
     const defaultLabels = actionGroup.labels.map( l => {
         return {
+            confKey: actionGroup.id + "-" + l.action,
             action: l.action,
             default: game.i18n.localize(l.default)
         };
     });
     return defaultLabels.map( l => {
-        const keyInSettings = actionGroup.id + "-" + l.action;
         const data = {
-            confKey: keyInSettings, 
+            confKey: l.confKey, 
             action: l.action,
             default: l.default,
             current: l.default
         };
 
-        const label = allLabelSettings[keyInSettings];
+        const label = allLabelSettings[l.confKey];
         if( label ) {
             data.current = label;
         }
@@ -107,6 +119,58 @@ const buildActionGroupDetailsActions = (stackKey, actionGroup, labels) => {
     });
 }
 
+const buildActionGroupDetailsParameters = (stackKey, actionGroup) => {
+    const allActionParameters = settings_allParameters(stackKey);
+    const parameters = (actionGroup.parameters ?? []).map( p => {
+        const data = {
+            confKey: actionGroup.id + "-" + p.action + "-" + p.param,
+            action: p.action,
+            param: p.param,
+            label: game.i18n.localize(p.label),
+            default: p.default,
+            current: p.default
+        };
+        data.id = stackKey + "-" + data.confKey;
+
+        // current label
+        if( allActionParameters.hasOwnProperty(data.confKey) ) {
+            data.current = allActionParameters[data.confKey];
+        }
+
+        // input validation pattern
+        const validation = INPUT_VALIDATION[p.validation ?? ""];
+        if( validation ) {
+            data.validation = {
+                tooltip: game.i18n.localize(validation.tooltipKey),
+                pattern: validation.pattern,
+                datalist: validation.datalist
+            };
+        }
+        return data;
+    });
+    return parameters;
+}
+
+/**
+ * Some parameters imput need a validation pattern
+ */
+const INPUT_VALIDATION = {
+    boolean: {
+        tooltipKey: "0 and 1 are the only accepted values",
+        pattern: "[0-1]",
+        datalist: ["0", "1"]
+    },
+    playMode: {
+        tooltipKey: "Cost parameters are only taken into account if you choose 'discardCost' or 'otherCost'",
+        datalist: ["singleCard", "multipleCards", "discardCost", "otherCost"]
+    },
+    cardAtrribute: {
+        tooltipKey: "Should be a card attribute, a numeric, or a range. Will try to retrieve card[xxx] to $xxxx. Examples: $value, 2, 0-3",
+        pattern: "(\\$[a-zA-Z0-9_\\-\\.]*)|([0-9]+)|([0-9]+-[0-9]+)",
+    },
+
+}
+
 /**
  * Service manipulating StackConfigurationGroup structure and flags to know which actions are available
  */
@@ -133,6 +197,7 @@ export class AvailableActionService {
 
         result.labels = buildActionGroupDetailsLabels(stackKey, actionGroup);
         result.actions = buildActionGroupDetailsActions(stackKey, actionGroup, result.labels);
+        result.parameters = buildActionGroupDetailsParameters(stackKey, actionGroup);
 
         return result;
     }
@@ -159,7 +224,7 @@ export class AvailableActionService {
         const currentSettings = cardStackSettings();
         const newSettings = {};
         wholeDetails.forEach( stackData => {
-            const stackSettings = { actions: {}, labels: {} };
+            const stackSettings = { actions: {}, labels: {}, parameters: {} };
 
             // FIMXE : Need to persist parameters
 
@@ -180,6 +245,15 @@ export class AvailableActionService {
                     if( labelDef.current != labelDef.default ) {
                         stackSettings.labels[labelDef.confKey] = labelDef.current;
                     }
+                });
+
+                // Persist parameters
+                actionGroup.parameters.filter( p => {
+                    return distinctActionKeys.includes(p.action);
+                }).filter( p => {
+                    return p.current != p.default;
+                }).forEach( p => {
+                    stackSettings.parameters[p.confKey] = p.current;
                 });
             });
 

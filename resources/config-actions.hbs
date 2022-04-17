@@ -87,6 +87,7 @@
                 <i class="toggle-button exact-width fas fa-ellipsis-h"></i>
                 <div class="action-title">{{action.label.default}}</div>
             </div>
+            <!-- First line is always here : Button label -->
             <div class="flexrow line">
                 <i class="toggle-button exact-width far fa-closed-captioning"></i>
                 <div class="action-param">Button text</div>
@@ -94,6 +95,29 @@
                        value="{{action.label.current}}" 
                        placeholder="{{action.label.default}}" >
             </div>
+            <!-- Then one line for each additional parameter -->
+            {{#each action.parameters as |param| }}
+                <div class="flexrow line">
+                    <i class="toggle-button exact-width"></i>
+                    <div class="action-param">{{param.label}}</div>
+                    <input  id="{{param.id}}"
+                            type="text" class="param-input real-param" 
+                            data-param="{{param.param}}"
+                            value="{{param.current}}" 
+                            placeholder="{{param.default}}"
+                            list="{{param.id}}-valid-values"
+                            title="{{param.validation.tooltip}}"
+                            {{#if param.validation.pattern}}
+                                pattern="{{param.validation.pattern}}" 
+                            {{/if}}
+                            >
+                    <datalist id="{{param.id}}-valid-values">
+                        {{#each param.validation.datalist as |option|}}
+                            <option value="{{option}}"></option>
+                        {{/each}}
+                    </datalist>
+                </div>
+            {{/each}}
         </div>
 {{/inline}}
 
