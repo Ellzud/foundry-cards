@@ -13,25 +13,6 @@ export const updateCardStackSettings = async (newSettings) => {
 }
 
 
-export const cardFilterSettings = () => {
-	let filter = game.settings.get('ready-to-use-cards', GlobalConfiguration.filter);
-	if( !filter || filter == '' ) { filter = {}; }
-
-	Object.values(StackConfiguration).forEach( key => {
-		if( !filter.hasOwnProperty(key) ) {
-			filter[key] = true;
-		}
-	});
-	
-	return filter;
-}
-
-export const updateCardFilterSettings = async (newFilter) => {
-	const result = await game.settings.set('ready-to-use-cards', GlobalConfiguration.filter, newFilter ?? {} );
-	return result;
-}
-
-
 export const allBacksSettings = () => {
 	let allBacks = game.settings.get('ready-to-use-cards', GlobalConfiguration.backs);
 	if( !allBacks || allBacks == '' ) { allBacks = {}; }

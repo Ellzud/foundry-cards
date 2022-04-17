@@ -1,5 +1,5 @@
 import { StackConfigurationGroup } from "./constants.js";
-import { cardStackSettings } from "./tools.js";
+import { cardStackSettings, updateCardStackSettings } from "./tools.js";
 
 
 /**
@@ -55,13 +55,14 @@ const buildActionGroupDetailsLabels = (stackKey, actionGroup) => {
         };
     });
     return defaultLabels.map( l => {
+        const keyInSettings = actionGroup.id + "-" + l.action;
         const data = {
+            confKey: keyInSettings, 
             action: l.action,
             default: l.default,
             current: l.default
         };
 
-        const keyInSettings = actionGroup.id + "-" + l.action;
         const label = allLabelSettings[keyInSettings];
         if( label ) {
             data.current = label;
@@ -91,11 +92,11 @@ const buildActionGroupDetailsActions = (stackKey, actionGroup, labels) => {
         const label = labels.find( l => l.action === action );
 
         const data = {
+            confKey: confKey,
             actionGroupId: actionGroup.id,
             action: action,
             from: a.from,
             target: a.target,
-            confKey: confKey,
             available: allActionSettings[confKey] ?? false,
             name: {
                 default: label.default,
@@ -153,7 +154,7 @@ export class AvailableActionService {
      * Persist new definition after it has been edited inside ConfigSheetForActions
      * @param {object[]} wholeDetails An array of { stackKey: string, details: actionsDetails[] }
      */
-    updateSettingsWithCurrentActionDetails(wholeDetails) {
+    async updateSettingsWithCurrentActionDetails(wholeDetails) {
 
         const currentSettings = cardStackSettings();
         const newSettings = {};
@@ -177,7 +178,7 @@ export class AvailableActionService {
                 distinctActionKeys.forEach( actionKey => {
                     const labelDef = actionGroup.labels.find( l => l.action === actionKey );
                     if( labelDef.current != labelDef.default ) {
-                        stackSettings.labels[actionKey] = labelDef.current;
+                        stackSettings.labels[labelDef.confKey] = labelDef.current;
                     }
                 });
             });
@@ -194,7 +195,7 @@ export class AvailableActionService {
             }
         });
 
-        // FIXME : Testing
+        /* For Testing
 
         const toString = (obj) => {
             const keys = Object.keys(obj);
@@ -208,6 +209,8 @@ export class AvailableActionService {
 		const currentLabels = toString(currentSettings["pokerDark"]?.labels ?? {});
 		const newSettingsLabels = toString(newSettings["pokerDark"]?.labels ?? {});
 
+        */
+        await updateCardStackSettings(newSettings);
         return newSettings;
     }
     

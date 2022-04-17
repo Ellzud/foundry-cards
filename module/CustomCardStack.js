@@ -1,4 +1,4 @@
-import { cardFilterSettings, cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
+import { cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
@@ -329,15 +329,11 @@ export class CustomCardStack {
         updateData['flags.ready-to-use-cards'] = flags;
         await this.stack.update(updateData);
 
-        // 2: Flag this coreStack as chosen in settings
-        const stackSettings = cardFilterSettings();
-        if(defaultParameters) {
-            stackSettings['parameters'] = defaultParameters;
-        }
-
         const chosenStacks = cardStackSettings();
         chosenStacks[this.stack.id] = stackSettings;
         await updateCardStackSettings(chosenStacks);
+
+        // FIXME : Add default settings for new stack
 
         // 3: Reload all stacks
         const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;

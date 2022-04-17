@@ -1,6 +1,5 @@
 import { DeckParameters, StackActionTypes, StackConfiguration, StackTargetPossibilities } from "../constants.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
-import { cardStackSettings } from "../tools.js";
 
 /**
  * Go through all declared and default stack, even if they haven't been chosen
@@ -525,8 +524,8 @@ export class ConfigSheetForActions extends FormApplication {
 		}).map( s => {
 			return { key: s.key, details: s.groups };
 		});
-		this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
-		// this.close();
+		await this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
+		this.close();
 	}
 
 	async _onClickToggleDeck(event) {
