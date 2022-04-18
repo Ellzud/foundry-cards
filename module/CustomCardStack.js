@@ -452,17 +452,18 @@ export class CustomCardStack {
      * @param {string} flavor message flavor
      * @param {Card[]} cards List of cards which should be listed
      * @param {boolean} [addCardDescription] : If description should be added for each card
+     * @param {boolean} [displayCardImage] : Card image should also be added to chat
      * @param {boolean} [hideToStrangers] : If message should be hidden to strangers
      * @param {string} [sentToDiscard] : Discard stack id. When message is displayed, it will check if the player has enough rights to see the discard. If not, the card will be hidden
      * @param {boolean} [letGMSpeak] : If true, message will be formated as if it came from gmHand manipulaition
      */
-     async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, sentToDiscard=null, letGMSpeak=false} = {}) {
+     async sendMessageForCards(flavor, cards, {addCardDescription=false, displayCardImage=false, hideToStrangers=false, sentToDiscard=null, letGMSpeak=false} = {}) {
 
         const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
         for( const card of cards ) {
             const wrapper = new CustomCardGUIWrapper(card);
-            const line = wrapper.buildCardInfoForListing(from, addCardDescription);
+            const line = wrapper.buildCardInfoForListing(from, addCardDescription, displayCardImage);
             data.cards.push( line );
         }
 
@@ -723,7 +724,7 @@ export class CustomCardStack {
      * @param {string[]} cardsIds cards Ids
      * @returns {Card[]} The played cards (now in discard pile)
      */
-     async playCards(cardsIds) {
+     async playCards(cardsIds, {displayedInChat=false}={}) {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
         assertStackType(this, {hands: true, piles: true});
@@ -741,7 +742,7 @@ export class CustomCardStack {
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor('hand', 'play', cards.length, {alternativeCoreKey: coreKey});
-                await this.sendMessageForCards(flavor, cards, {addCardDescription: true});
+                await this.sendMessageForCards(flavor, cards, {addCardDescription: true, displayCardImage: displayedInChat});
         
                 playedCards.push( ...cards);
             }

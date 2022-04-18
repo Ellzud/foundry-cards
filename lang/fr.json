@@ -311,6 +311,7 @@
     "RTUCards.default.sheet.actions.peekStopWarning": " a arrêté de regarder les cartes de 'STACK'. Cartes concernées: 'CARD_TYPE'",
     "RTUCards.default.sheet.actions.playCard": "Jouer la carte",
     "RTUCards.default.sheet.actions.playMultiple": "Jouer plusieurs cartes",
+    "RTUCards.default.sheet.actions.playWithDiscard": "Cartes à défausser choisies",
     "RTUCards.default.sheet.actions.giveCard": "La donner à quelqu'un",
     "RTUCards.default.sheet.actions.recallCards": "Réinitialiser le paquet",
     "RTUCards.default.sheet.actions.revealCard": "Révéler la carte",

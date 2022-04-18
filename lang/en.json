@@ -312,6 +312,7 @@
     "RTUCards.default.sheet.actions.peekStopWarning": " has stopped peeking on 'STACK'. It concerns cards issued from 'CARD_TYPE'",
     "RTUCards.default.sheet.actions.playCard": "Play card",
     "RTUCards.default.sheet.actions.playMultiple": "Play multiples cards",
+    "RTUCards.default.sheet.actions.playWithDiscard": "Discard card chosen",
     "RTUCards.default.sheet.actions.giveCard": "Give it to someone",
     "RTUCards.default.sheet.actions.recallCards": "Recall all cards",
     "RTUCards.default.sheet.actions.revealCard": "Reveal card",

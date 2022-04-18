@@ -15,6 +15,10 @@
             {{#each card.description as |line|}}
                 <li class="card-description">{{line}}</li>
             {{/each}}
+            {{#if card.image}}
+                {{{card.image.htmlDiv}}}
+            {{/if}}
+
         {{/each}}
     </ol>
 </div>

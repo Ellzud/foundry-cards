@@ -836,7 +836,7 @@ export class CustomCardsDisplay extends CardsConfig {
             const custom = new CustomCardStack(card.source);
             return custom.coreStackRef === coreKey; 
         };
-        options.callBack = async (selection, from, additionalCards) => { 
+        options.callBack = async (selection, from, additionalCards ) => { 
             const stack = this._custom;
             await stack.exchangeCards(from, [selection.id], additionalCards.map( c => c.id ) );
         };
@@ -877,7 +877,80 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickPlayCard(event) {
         event.preventDefault();
-        await this._custom.playCards([this.currentSelection.id]);
+
+        const deck = new CustomCardStack(this.currentSelection.source);
+        const coreKey = deck.coreStackRef;
+        const actionService = game.modules.get('ready-to-use-cards').actionService;
+        const paramService = game.modules.get('ready-to-use-cards').parameterService;
+        const action = actionService.getActionPossibilities(coreKey, ["playCard"], {from: this._custom.prefixForActions}).filter( a => {
+            return a.action === "play";
+        })[0];
+
+        // Init options
+        //----------------------
+        const maxCards = this._custom.sortedAvailableCards.filter(c => {
+            const ccs = new CustomCardStack(c.source);
+            return ccs.coreStackRef == coreKey;
+        }).length;
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.playTitle');
+
+        const displayedInChat = paramService.parseBoolean(
+            action.parameters.find( p => p.param == "inChat" ).current
+        );
+
+        const options = {
+            minAmount: 0,
+            maxAmount: Math.max(1, maxCards-1),
+            fromStacks: [this._custom]
+        };
+        options.criteria = (card) => { 
+            const ccs = new CustomCardStack(card.source);
+            return ccs.coreStackRef === coreKey; 
+        };
+
+
+        // The action will differ depending on which mode has been chosen
+        //------------------------------------------------
+        const playMode = action.parameters.find( p => p.param == "playMode" ).current;
+        if( playMode == "multipleCards") {
+
+            const multipleParam = paramService.parseCardAttributeOrRangleValue(
+                this.currentSelection,
+                action.parameters.find( p => p.param == "multipleAmount" ).current
+            );
+            options.minAmount = multipleParam.min;
+            options.maxAmount = multipleParam.max;
+
+            options.buttonLabel = this._custom.localizedLabel('sheet.actions.playMultiple');
+            options.callBack = async (selection, from, additionalCards) => { 
+                const cardIds = [selection.id];
+                cardIds.push(...additionalCards.map(c => c.id));
+                await this._custom.playCards(cardIds, {displayedInChat});
+            };
+            this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        } else if( playMode == "discardCardsAsCost") {
+
+            const costParam = paramService.parseCardAttributeOrRangleValue(
+                this.currentSelection,
+                action.parameters.find( p => p.param == "discardAmount" ).current
+            );
+            options.minAmount = costParam.min;
+            options.maxAmount = costParam.max;
+
+            options.buttonLabel = this._custom.localizedLabel('sheet.actions.playWithDiscard');
+            options.callBack = async (selection, from, additionalCards) => { 
+                await this._custom.discardCards(additionalCards.map(c => c.id));
+                await this._custom.playCards([selection.id], {displayedInChat});
+            };
+            this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        // FIXME } else if( playMode == "otherCost") {
+        //    
+        } else { // default "singleCard"
+            await this._custom.playCards([this.currentSelection.id], {displayedInChat});
+        } 
+
         this.render();
     }
 

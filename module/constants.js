@@ -268,6 +268,7 @@ export const StackConfigurationGroup = {
         parameters: [
             {action: 'play', param: 'playMode', label: 'Playing card mode', default: 'singleCard', validation: 'playMode'},
             {action: 'play', param: 'inChat', label: 'Show played cards in chat', default: '0', validation: 'boolean'},
+            {action: 'play', param: 'multipleAmount', label: 'Multiple cards play range', default: '0-10', validation: 'cardAtrribute'},
             {action: 'play', param: 'discardAmount', label: 'Amount of discarded cards', default: '$value', validation: 'cardAtrribute'},
         ]
     },

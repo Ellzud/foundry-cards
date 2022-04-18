@@ -161,11 +161,11 @@ const INPUT_VALIDATION = {
         datalist: ["0", "1"]
     },
     playMode: {
-        tooltipKey: "Cost parameters are only taken into account if you choose 'discardCost' or 'otherCost'",
-        datalist: ["singleCard", "multipleCards", "discardCost", "otherCost"]
+        tooltipKey: "Cost parameters are only taken into account if you choose 'discardCardsAsCost' or 'otherCost'",
+        datalist: ["singleCard", "multipleCards", "discardCardsAsCost", "otherCost"]
     },
     cardAtrribute: {
-        tooltipKey: "Should be a card attribute, a numeric, or a range. Will try to retrieve card[xxx] to $xxxx. Examples: $value, 2, 0-3",
+        tooltipKey: "Should be a card attribute, a numeric, or a range. Will try to retrieve card[xxx] for $xxx. Examples: $value, 2, 0-3",
         pattern: "(\\$[a-zA-Z0-9_\\-\\.]*)|([0-9]+)|([0-9]+-[0-9]+)",
     },
 
@@ -300,12 +300,17 @@ export class AvailableActionService {
      */
     getActionPossibilities(stackKey, actionGroups, {from=null, target=null}={}) {
 
-        const flatList = actionGroups.reduce( (_result, actionGroup) => {
-            _result.push( ...this.getActionGroupDetails(stackKey, actionGroup).actions );
-            return _result;
-        }, []);
 
-        const filteredList = flatList.filter( action => {
+        const allGroupDetails = {
+            actions: [],
+            parameters: []
+        };
+        actionGroups.forEach( (actionGroup) => {
+            allGroupDetails.actions.push( ...this.getActionGroupDetails(stackKey, actionGroup).actions );
+            allGroupDetails.parameters.push( ...this.getActionGroupDetails(stackKey, actionGroup).parameters );
+        });
+
+        allGroupDetails.actions = allGroupDetails.actions.filter( action => {
             return action.available;
         }).filter( action => {
             return !from || action.from === from;
@@ -313,19 +318,23 @@ export class AvailableActionService {
             return !target || action.target === target;
         });
 
-        return filteredList.reduce( (_results, _current) => {
+        return allGroupDetails.actions.reduce( (_results, _current) => {
 
             const result = _results.find( r => r.action === _current.action );
             if( result ) {
                 result.possibilities.push( {from: _current.from, target: _current.target} );
             } else {
-                _results.push({
+                const signature = _current.actionGroupId + "-" + _current.action;
+                const actionData = {
                     actionGroupId: _current.actionGroupId,
                     action: _current.action,
-                    signature: _current.actionGroupId + "-" + _current.action,
+                    signature: signature,
                     name: _current.name.current,
-                    possibilities: [{from: _current.from, target: _current.target}]
-                });
+                    possibilities: [{from: _current.from, target: _current.target}],
+                    parameters: allGroupDetails.parameters.filter( p => p.confKey.startsWith( signature + "-" ))
+                }
+
+                _results.push(actionData);
             }
             return _results;
 
