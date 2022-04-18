@@ -610,6 +610,8 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(".transferCards-reveal").click(event => this._onClickRevealCard(event) );
         html.find(".exchangeCard-discard").click(event => this._onClickExchangeCardWithDiscard(event) );
         html.find(".exchangeCard-someone").click(event => this._onClickExchangeCardWithSomeone(event) );
+        html.find(".swapCards-withRevealed").click(event => this._onClickSwapWithRevealedCard(event) );
+        html.find(".swapCards-withHand").click(event => this._onClickSwapWithHandCard(event) );
         html.find(".playCard-play").click(event => this._onClickPlayCard(event) );
         // FIXME html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) ); Will be a parameter of play cards
         html.find(".flipCard-flip").click(event => this._onClickLoopThroughCardFaces(event) );
@@ -829,6 +831,75 @@ export class CustomCardsDisplay extends CardsConfig {
             return _targets;
         }, []) ?? [];
         options.includeSelf = false;
+
+        // For selected card (criteria and callback)
+        //------------------------------------------
+        options.criteria = (card) => { 
+            const custom = new CustomCardStack(card.source);
+            return custom.coreStackRef === coreKey; 
+        };
+        options.callBack = async (selection, from, additionalCards ) => { 
+            const stack = this._custom;
+            await stack.exchangeCards(from, [selection.id], additionalCards.map( c => c.id ) );
+        };
+
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.exchangeTitle');
+        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        this.render();
+    }
+
+
+    /**
+     * Exchange a card with your revealed cards
+     */
+     async _onClickSwapWithRevealedCard(event) {
+        const deck = new CustomCardStack(this.currentSelection.source);
+        const coreKey = deck.coreStackRef;
+
+        const options = {
+            buttonLabel: this._custom.localizedLabel('sheet.actions.swapWithRevealed') 
+        };
+
+        // Prepare available stacks for selection
+        //----------------------------------------
+        const stacks = this._custom.cardStacks;
+        const revealedCards = game.user.isGM ? stacks.gmRevealedCards : stacks.findRevealedCards(game.user);
+        options.fromStacks = [revealedCards];
+
+        // For selected card (criteria and callback)
+        //------------------------------------------
+        options.criteria = (card) => { 
+            const custom = new CustomCardStack(card.source);
+            return custom.coreStackRef === coreKey; 
+        };
+        options.callBack = async (selection, from, additionalCards ) => { 
+            const stack = this._custom;
+            await stack.exchangeCards(from, [selection.id], additionalCards.map( c => c.id ) );
+        };
+
+        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.exchangeTitle');
+        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
+
+        this.render();
+    }
+
+    /**
+     * Exchange a card with your hand
+     */
+     async _onClickSwapWithHandCard(event) {
+        const deck = new CustomCardStack(this.currentSelection.source);
+        const coreKey = deck.coreStackRef;
+
+        const options = {
+            buttonLabel: this._custom.localizedLabel('sheet.actions.swapWithHand') 
+        };
+
+        // Prepare available stacks for selection
+        //----------------------------------------
+        const stacks = this._custom.cardStacks;
+        const hand = game.user.isGM ? stacks.gmHand : stacks.findPlayerHand(game.user);
+        options.fromStacks = [hand];
 
         // For selected card (criteria and callback)
         //------------------------------------------

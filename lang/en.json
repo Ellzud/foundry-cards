@@ -305,6 +305,8 @@
     "RTUCards.default.sheet.actions.discardRevealedCards": "Discard all cards",
     "RTUCards.default.sheet.actions.exchangeCard": "Exchange a card with the discard",
     "RTUCards.default.sheet.actions.exchangePlayer": "Exchange with an other player",
+    "RTUCards.default.sheet.actions.swapWithHand": "Swap revealed card with one in hand",
+    "RTUCards.default.sheet.actions.swapWithRevealed": "Swap card with revealed one",
     "RTUCards.default.sheet.actions.peekOn": "Peek on content",
     "RTUCards.default.sheet.actions.loopFaces": "Loop through faces",
     "RTUCards.default.sheet.actions.peekOnWarning": " is peeking on 'STACK'. It concerns cards issued from 'CARD_TYPE'",
