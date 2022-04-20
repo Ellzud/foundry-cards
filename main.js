@@ -8,6 +8,7 @@ import * as message  from './module/message.js';
 import * as contextmenus  from './module/contextmenus.js';
 import * as config  from './module/config/config.js';
 
+
 /**
  * Initialization actions taken on Foundry Virtual Tabletop client init.
  */
@@ -35,7 +36,7 @@ import * as config  from './module/config/config.js';
 Hooks.once("ready", async () => {
 
   const module = game.modules.get('ready-to-use-cards');
-  module.migrationService.applyMigration();
+  await module.migrationService.applyMigration();
 
   await module.cardStacks.loadCardStacks();
 

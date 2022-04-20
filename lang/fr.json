@@ -3,9 +3,6 @@
     "RTUCards.settings.config-actions.title": "Choisissez vos decks!",
     "RTUCards.settings.config-actions.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
     "RTUCards.settings.config-actions.saveAndClose": "Sauvegarder les modifs & Fermeture",
-    "RTUCards.settings.config-actions.filter.title": "Filtre préliminaire sur les actions disponibles",
-    "RTUCards.settings.config-actions.filter.details": "Toutes les actions décochées seront automatiquent indisponibles pour tout vos decks. Elles n'apparaîtront plus dans les détails de chaque deck. À utiliser pour réduire le pool d'actions disponibles pour vos decks",
-    "RTUCards.settings.config-actions.filter.rebuild": "Reconstruire le filtre à partir des choix faits sur les decks actuels",
 
     "RTUCards.settings.config-actions.additionalData.headerFilter": "A quoi il sert ?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Informations supplémentaires sur le deck",
@@ -43,13 +40,6 @@
     "RTUCards.settings.stackForPlayerHand.hint": "Chaque joueur possède une main de cartes cachée aux autres joueurs",
     "RTUCards.settings.stackForPlayerRevealedCards.label": "Cartes faces visibles",
     "RTUCards.settings.stackForPlayerRevealedCards.hint": "Chaque joueur peut avoir des cartes visibles posées devant lui",
-
-    "RTUCards.settings.everyHandsPeekOn.label": "Zieuter les mains adverses",
-    "RTUCards.settings.everyHandsPeekOn.hint": "Le MJ peut regarder les mains des joueurs (ils seront avertis)",
-    "RTUCards.settings.everyHandsDiscardAll.label": "Défausser toute sa main",
-    "RTUCards.settings.everyHandsDiscardAll.hint": "Les joueurs peuvent défausser toute leur main d'un coup",
-    "RTUCards.settings.everyRevealedDiscardAll.label": "Défausser les cartes devant soi",
-    "RTUCards.settings.everyRevealedDiscardAll.hint": "Les joueurs peuvent défausser toutes les cartes faces visibles d'un coup",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Actions possibles depuis le deck : (Nécessite d'être OWNER du deck)",
     "RTUCards.settings.sheet.headers.fromHand": "Actions possibles depuis la main du joueur :",

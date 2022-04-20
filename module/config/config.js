@@ -86,6 +86,9 @@ export const registerCardSystem = () => {
  */
 export const loadCardSettings = () => {
 
+	loadLegacySettings();
+	loadHiddenSettings();
+
 	// First menu : Choose your decks!
 	//------------------------------------
 	game.settings.registerMenu("ready-to-use-cards", "config-actions", {
@@ -107,28 +110,6 @@ export const loadCardSettings = () => {
 			const app = Object.values(ui.windows).find(a => a.constructor === ConfigSheetForActions);
 			if ( app ) app.render();
 		}
-	});
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.version, {
-		scope: "world",
-		type: String,
-		default: '',
-		config: false
-	});
-  
-
-	// Data will be stored inside 'filter'
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.filter, {
-		scope: "world",
-		config: false,
-		default: {},
-		type: Object
-	});
-	// Data will be stored inside 'backs'
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.backs, {
-		scope: "world",
-		config: false,
-		default: {},
-		type: Object
 	});
 
 	// Second menu : Configure your shortcuts
@@ -155,18 +136,6 @@ export const loadCardSettings = () => {
 		config: false
 	});
 
-
-
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.smallDisplay, {
-		name: "RTUCards.settings.smallDisplay.label",
-		hint: "RTUCards.settings.smallDisplay.hint",
-		scope: "client",
-		type: Boolean,
-		default: false,
-		config: true,
-		onChange: () => window.location.reload()
-	});
-  
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.gmName, {
 		name: "RTUCards.settings.gmName.label",
 		hint: "RTUCards.settings.gmName.hint",
@@ -183,6 +152,16 @@ export const loadCardSettings = () => {
 		type: String,
 		default: 'modules/ready-to-use-cards/resources/gmIcon.png',
 		config: true
+	});
+  
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.smallDisplay, {
+		name: "RTUCards.settings.smallDisplay.label",
+		hint: "RTUCards.settings.smallDisplay.hint",
+		scope: "client",
+		type: Boolean,
+		default: false,
+		config: true,
+		onChange: () => window.location.reload()
 	});
   
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand, {
@@ -205,31 +184,42 @@ export const loadCardSettings = () => {
 		onChange: () => game.modules.get('ready-to-use-cards').cardStacks.loadCardStacks()
 	});
   
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.everyHandsPeekOn, {
-		name: "RTUCards.settings.everyHandsPeekOn.label",
-		hint: "RTUCards.settings.everyHandsPeekOn.hint",
-		scope: "world",
-		type: Boolean,
-		default: true,
-		config: true
-	});
-  
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.everyHandsDiscardAll, {
-		name: "RTUCards.settings.everyHandsDiscardAll.label",
-		hint: "RTUCards.settings.everyHandsDiscardAll.hint",
-		scope: "world",
-		type: Boolean,
-		default: true,
-		config: true
-	});
-  
-	game.settings.register("ready-to-use-cards", GlobalConfiguration.everyRevealedDiscardAll, {
-		name: "RTUCards.settings.everyRevealedDiscardAll.label",
-		hint: "RTUCards.settings.everyRevealedDiscardAll.hint",
-		scope: "world",
-		type: Boolean,
-		default: true,
-		config: true
-	});
-  
 }
+
+/**
+ * Was used inside previous versions.
+ * Still declared so we can have access to them for migration purpose
+ */
+const loadLegacySettings = () => {
+	game.settings.register("ready-to-use-cards", "stacks", 
+		{ scope: "world", default: null, type: Object, config: false }
+	);
+
+	game.settings.register("ready-to-use-cards", "everyHandsPeekOn", 
+		{ scope: "world", type: Boolean, default: true, config: false }
+	);
+  
+	game.settings.register("ready-to-use-cards", "everyHandsDiscardAll", 
+		{ scope: "world", type: Boolean, default: true, config: false }
+	);
+  
+	game.settings.register("ready-to-use-cards", "everyRevealedDiscardAll", 
+		{ scope: "world", type: Boolean, default: true, config: false }
+	);
+}
+
+/**
+ * Stil used, but can't be accessed via the main config settings
+ * So no need for labels or hints
+ */
+ const loadHiddenSettings = () => {
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.version, 
+		{ scope: "world", type: String, default: '', config: false }
+	);
+  
+	// Some data will be stored inside 'backs'
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.backs, 
+		{ scope: "world", config: false, default: {}, type: Object }
+	);
+}
+

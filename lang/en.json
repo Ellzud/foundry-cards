@@ -3,9 +3,6 @@
     "RTUCards.settings.config-actions.title": "Setup which decks you want!",
     "RTUCards.settings.config-actions.hint": "Once set, cards stacks will be automatically created",
     "RTUCards.settings.config-actions.saveAndClose": "Save changes & Close",
-    "RTUCards.settings.config-actions.filter.title": "Prior filtering on available actions",
-    "RTUCards.settings.config-actions.filter.details": "Unchecked actions will be automatically disabled for all of your decks. They won't appear in deck details. Use this to reduce the pool of actions for your decks.",
-    "RTUCards.settings.config-actions.filter.rebuild": "Recreate filter from current choices in the decks you are using",
 
     "RTUCards.settings.config-actions.additionalData.headerFilter": "What is it for?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Additional data for this deck",
@@ -43,13 +40,6 @@
     "RTUCards.settings.stackForPlayerHand.hint": "Each player has card in hands. These cards are hidden from other players.",
     "RTUCards.settings.stackForPlayerRevealedCards.label": "Revealed cards",
     "RTUCards.settings.stackForPlayerRevealedCards.hint": "Each player has some visible cards displayed in front on him",
-
-    "RTUCards.settings.everyHandsPeekOn.label": "Peek on player's hand",
-    "RTUCards.settings.everyHandsPeekOn.hint": "GM may peek on players' hands (players will be warned)",
-    "RTUCards.settings.everyHandsDiscardAll.label": "Discard all hand",
-    "RTUCards.settings.everyHandsDiscardAll.hint": "Players may discard their entire hand in one go",
-    "RTUCards.settings.everyRevealedDiscardAll.label": "Discard all revealed cards",
-    "RTUCards.settings.everyRevealedDiscardAll.hint": "Players may discard all cards they have revealed in front of them in one go",
 
     "RTUCards.settings.sheet.headers.fromDeck": "Available actions on deck display: (Needs OWNER permissions)",
     "RTUCards.settings.sheet.headers.fromHand": "Available actions on user hand display:",
