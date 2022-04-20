@@ -425,7 +425,7 @@ export class CustomCardGUIWrapper {
     }
 
     /**
-     * Triggered when CardActionsClasses.customAction is clicked
+     * Triggered when .customAction is clicked
      * Shopuld be overriden. Do nothing in this implem
      * @param {string} action 
      */

@@ -10,7 +10,6 @@
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Used prefix for labels: ",
     "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Image root directory: ",
     "RTUCards.settings.config-actions.additionalData.overrideConf": "If unlocked, you can define which actions should be available. Do it only if you're sure that this stack declaration won't evolve anymore. Lock it again to restore default values.",
-    "RTUCards.settings.config-actions.additionalData.removeBackFace": "Card back isn't considered as a face the player can loop through. (see related actions)",
 
     "RTUCards.settings.config-backs.menu": "Configuring icons and backs",
     "RTUCards.settings.config-backs.stack.icons": "Stack icons",

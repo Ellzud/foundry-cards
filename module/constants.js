@@ -4,7 +4,7 @@
 
 /**
  * @typedef {Object} CardActionData Necessary data to create an action inside the rendered template
- * @property {string} classes         Will be added as css class. Can contain multiple ones. See CardActionsClasses
+ * @property {string} classes         Will be added as css class. In the form of <actionGroup>-<action>. See CardDisplay.activateListeners for all available ones
  * @property {string} label           The action label.
  * @property {number} action          Optional. Will be added inside action div as data-action. Can then be retrieved when performing the action
  * 
@@ -12,33 +12,6 @@
  * A custom class is mapped named 'custom-action'.
  * When called, it will trigger this.currentSelection.onClickDoCustomAction(action)
  */
-
- export const CardActionsClasses = {
-    separator: 'separator', // If added, it will add a bottom margin before displaying the next one.
-    coloredInRed: 'red',    // If added, the frame will be red when hovering it
-    backToDeckCard: 'back-to-deck',
-    backToHandCard: 'back-to-hand',
-    drawCard: 'draw-card',
-    exchangeCard: 'exchange-card',
-    exchangePlayer: 'exchange-player',
-    discardCard: 'discard-card',
-    giveCard: 'give-card',
-    loopFaces : 'loop-faces',
-    playCard: 'play-card',
-    playMultiple: 'play-multiple',
-    revealCard: 'reveal-card',
-    rotateCard: 'rotate-card',
-    dealCards: 'deal-cards',
-    recallCards: 'recall-cards',
-    peekOnDeck: 'peek-on-deck',
-    shuffleDeck: 'shuffle-deck',
-    shuffleDiscard: 'shuffle-discard',
-    discardHand: 'discard-hand',
-    discardRevealedCards: 'discard-revealed-cards',
-    customAction: 'custom-action'
-};
-
-
 
 /**
  * Config stored for core stack definition.
@@ -445,8 +418,7 @@ export const StackConfigurationGroup = {
 export const DeckParameters = {
 	overrideConf : 'overrideConf',
 	labelBaseKey: 'labelBaseKey',
-	resourceBaseDir: 'resourceBaseDir',
-    removeBackFace: 'removeBackFace',
+	resourceBaseDir: 'resourceBaseDir'
 }
 
 /**

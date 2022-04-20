@@ -1,7 +1,7 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
 import { CustomCardStack } from '../CustomCardStack.js';
-import { CardActionsClasses, GlobalConfiguration } from '../constants.js';
+import { GlobalConfiguration } from '../constants.js';
 import { deckBacksSettings } from '../tools.js';
 import { ConfigSheetForActions } from '../config/ConfigSheetForActions.js';
 import { ConfigSheetForBacks } from '../config/ConfigSheetForBacks.js';
@@ -619,13 +619,6 @@ export class CustomCardsDisplay extends CardsConfig {
 
         // Mapping every actions
         //-------------------------
-        const css = Object.entries(CardActionsClasses).reduce( (_css, entry) => {
-            const key = entry[0];
-            const cssPath = '.card-action.' + entry[1];
-            _css[key] = cssPath;
-            return _css;
-        }, {});
-
         html.find(".drawDeckCard-draw").click(event => this._onClickDrawCard(event) );
         html.find(".drawDiscardCard-draw").click(event => this._onClickDrawDiscardCard(event) );
         html.find(".moveCard-backDeck").click(event => this._onClickBackToDeck(event) );

@@ -1,5 +1,5 @@
-import { DeckParameters, StackActionTypes, StackConfiguration, StackTargetPossibilities } from "../constants.js";
-import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
+import { DeckParameters, StackActionTypes, StackTargetPossibilities } from "../constants.js";
+import { cardStackSettings } from "../tools.js";
 
 /**
  * Go through all declared and default stack, even if they haven't been chosen
@@ -8,19 +8,28 @@ import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
  */
 const computeAllPossibleStackList = () => {
 
-	const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
-	const actualDefinition = CARD_STACKS_DEFINITION;
+	const module =game.modules.get('ready-to-use-cards');
+	const cardStacks = module.cardStacks;
+	const actualDefinition = module.stacksDefinition;
+	const parameterService = module.parameterService;
+
+	const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');
+	const viaHooksSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.viaCode');;
 
 	const list = Object.entries(cardStacks.defaultCoreStacks).map( ([key, stackDef]) => {
-		const registeredSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.manuallyRegistered');;
-		const deckName = stackDef.customName ?? game.i18n.localize(stackDef.labelBaseKey + 'title');
-		const deckDesc = stackDef.customDesc ?? game.i18n.localize(stackDef.labelBaseKey + 'description');
 
+		const deckInSettings = cardStackSettings()[key];
+		const labelBaseKey = parameterService.getCoreParam(key, DeckParameters.labelBaseKey) ?? stackDef.labelBaseKey;
+
+		const deckName = stackDef.customName ?? game.i18n.localize(labelBaseKey + 'title');
+		const deckDesc = stackDef.customDesc ?? game.i18n.localize(labelBaseKey + 'description');
+
+		// FIXME : isManuallyRegistered and customName should be moved inside flags
 		return {
 			key: key,
 			default: true,
 			useCustomCardImpl: false,
-			toggled: cardStacks.decks.hasOwnProperty( key ),
+			toggled: !!deckInSettings,
 			toggleLocked: stackDef.isManuallyRegistered ?? false,
 			deck : {
 				name: deckName + (stackDef.isManuallyRegistered ? registeredSuffix : '' ),
@@ -29,22 +38,25 @@ const computeAllPossibleStackList = () => {
 		};
 	});
 
-	const viaHooksSuffix = game.i18n.localize('RTUCards.coreStacks.suffix.viaCode');;
 	const addedViaHooks = Object.entries(actualDefinition.core).filter( ([key, coreDef]) => {
 		return !list.find(s => s.key === key) 
 
 	}).map(([key, coreDef]) => {
 
+		// The ones in actualDefinition always have settings for them
+		const labelBaseKey = parameterService.getCoreParam(key, DeckParameters.labelBaseKey);
+		const overrideConf = parameterService.getCoreParam(key, DeckParameters.overrideConf);
+
 		return {
 			key: key,
 			default: false,
 			useCustomCardImpl: coreDef.cardClass != actualDefinition.shared.cardClasses.simple,
-			overrideConf: coreDef.overrideConf,
+			overrideConf: overrideConf,
 			toggled: true,
 			toggleLocked: true,
 			deck : {
-				name: game.i18n.localize(coreDef.labelBaseKey + 'title') + viaHooksSuffix,
-				desc: game.i18n.localize(coreDef.labelBaseKey + 'description')
+				name: game.i18n.localize(labelBaseKey + 'title') + viaHooksSuffix,
+				desc: game.i18n.localize(labelBaseKey + 'description')
 			}
 		};
 	});
@@ -286,17 +298,6 @@ const buildStackActions = (stack) => {
 		);
 	}
 
-
-	// Back inside card faces ?
-	const removeBackKey = DeckParameters.removeBackFace;
-	if( stack.parameters.hasOwnProperty(removeBackKey) ) {
-		const removed = stack.parameters[removeBackKey];
-		const icon = removed ? 'far fa-check-square' : 'far fa-square';
-		actions.push(
-			createActionLine({ icon: icon, param: removeBackKey, labelKey: 'RTUCards.settings.config-actions.additionalData.removeBackFace' })
-		);
-	}
-
 	// Only add the header is there are some actions
 	const result = [];
 	if( actions.length > 0 ) {
@@ -386,11 +387,10 @@ export class ConfigSheetForActions extends FormApplication {
 
 			// parameters : Additional info on deck, like image path or translation prefix
 			//---------------
-			const declared = CARD_STACKS_DEFINITION.core[s.key];
+			const declared = this.module.stacksDefinition.core[s.key];
 			const stackDef = cardStacks.defaultCoreStacks[s.key];
 			data.parameters = {
-				labelBaseKey: declared?.labelBaseKey ?? stackDef.labelBaseKey,
-				removeBackFace: declared?.removeBackFace ?? stackDef.removeBackFace,
+				labelBaseKey: declared?.labelBaseKey ?? stackDef.labelBaseKey
 			};
 			if( s.hasOwnProperty('overrideConf')) { 
 				data.parameters.overrideConf = s.overrideConf;

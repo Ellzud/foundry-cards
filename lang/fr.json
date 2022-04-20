@@ -10,7 +10,6 @@
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Préfixe pour les libellés : ",
     "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Répertoire pour les images : ",
     "RTUCards.settings.config-actions.additionalData.overrideConf": "Si déverrouillé, permet de modifier les actions disponibles pour ce deck. À ne faire que si vous êtes certain que le code permettant la déclaration de ce deck n'évoluera plus en terme d'actions disponibles. Vérouillez-le à nouveau si vous voulez repasser sur les actions par défaut.",
-    "RTUCards.settings.config-actions.additionalData.removeBackFace": "Le dos de la carte n'est pas considéré comme une face que le joueur peut parcourir (voir actions correspondantes).",
 
     "RTUCards.settings.config-backs.menu": "Icones et dos des cartes",
     "RTUCards.settings.config-backs.stack.icons": "Icones",

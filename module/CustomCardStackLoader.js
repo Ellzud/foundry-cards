@@ -1,7 +1,7 @@
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 import { CustomCardStack } from './CustomCardStack.js';
 import { DeckParameters, GlobalConfiguration, StackConfiguration } from './constants.js';
-import { cardStackSettings } from './tools.js';
+import { cardStackSettings, updateCardStackSettings } from './tools.js';
 import { CustomCardGUIWrapper } from './mainui/CustomCardGUIWrapper.js';
 import { CustomCardSimple } from './mainui/CustomCardSimple.js';
 
@@ -315,10 +315,16 @@ const loadFolder = async (ownerId, folderName) => {
  * Once it is initialized, trigger a hok so that other modules/systems can complete it
  * @param {object} defaultStacks Default definition for every classic card stack
  */
-const loadStackDefinition = (defaultStacks) => {
+const loadStackDefinition = async (defaultStacks) => {
 
     const def = CARD_STACKS_DEFINITION;
     def.core = {};
+    def.shared.cardClasses = { // Additional data are shared (Can't be put in the constant panel)
+        simple: CustomCardSimple,
+        customCardStack: CustomCardStack,
+        cardGUIWrapper: CustomCardGUIWrapper
+    }
+
 
     // Retrieve config for every card stack toggled in configuration
     const stacks = cardStackSettings();
@@ -329,61 +335,58 @@ const loadStackDefinition = (defaultStacks) => {
             const stackDef = duplicate(defaultCore);
             stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
             stackDef.presetLoader = defaultCore.presetLoader; // Duplicate doesn't copy function either
-            stackDef.config = stackConf; // Config is replaced by the one in config.
             def.core[coreKey] = stackDef;
         }
     });
 
-    // Additional data are shared (Can't be put in the constant panel)
-    def.shared.cardClasses = {
-        simple: CustomCardSimple,
-        customCardStack: CustomCardStack,
-        cardGUIWrapper: CustomCardGUIWrapper
-    }
-
     // For those who want to add some custom stacks
     Hooks.call("loadCardStacksDefinition", def);
 
-    // Retrieve potential custom parameters for each deck (for everyones : core, manually registered and via code)
-    Object.entries(stacks).forEach( ([coreKey, stackConf]) => {
-
-        const parameters = stackConf.parameters;
-        if( !parameters || !def.core.hasOwnProperty(coreKey) ) { return; }
-
-        const stackDef = def.core[coreKey];
-
-        let param = parameters[DeckParameters.resourceBaseDir];
-        if( param ) { stackDef.resourceBaseDir = param; }
-
-        param = parameters[DeckParameters.labelBaseKey];
-        if( param ) { stackDef.labelBaseKey = param; }
-
-        if( parameters.hasOwnProperty(DeckParameters.removeBackFace) ) { // Is a boolean :)
-            stackDef.removeBackFace = parameters[DeckParameters.removeBackFace]
-        }
-
-        param = parameters[DeckParameters.overrideConf];
-        stackDef.overrideConf = param ?? false;
-        if( stackDef.overrideConf ) {
-            const newConf = {};
-            Object.values(StackConfiguration).forEach(key => {
-                if( stackConf.hasOwnProperty(key) ) {
-                    newConf[key] = stackConf[key];
-                }
-            });
-            stackDef.config = newConf;
-        }
-    });
-
-
     // Load default values
-    Object.values(def.core).forEach( coreStrackDefinition => {
-        const c = coreStrackDefinition;
+    Object.values(def.core).forEach( coreStackDefinition => {
+        const c = coreStackDefinition;
         if( !c.cardClass ) { c.cardClass = CustomCardSimple; }
         if( !c.labelBaseKey ) { c.labelBaseKey = 'RTUCards.default.'; }
         if( !c.resourceBaseDir ) { c.resourceBaseDir = 'modules/ready-to-use-cards/resources/default'; }
-        if( !c.removeBackFace ) { c.removeBackFace = false; }
     });
+
+    // Apply changes in flag settings if necessary (Need GM Rights)
+    // -----------------------------------------
+    if( game.user.isGM ) {
+        const definedDeckKeys = Object.keys(def.core);
+        for( const key of definedDeckKeys ) {
+            const definedDeck = def.core[key];
+
+            const deckInSettings = stacks[key];
+            const alreadyRegistered = deckInSettings ? true : false;
+
+            const hasOverrideConf = deckInSettings?.parameters?.hasOwnProperty("core-overrideConf");
+            const definedFromCode = hasOverrideConf ? !deckInSettings.parameters["core-overrideConf"] : false;
+            
+            const updateSettings = !alreadyRegistered || definedFromCode;
+            if( !updateSettings ) { continue; }
+
+            // Default settings
+            const newDeckSettings = {};
+            const defaultSettings = definedDeck.defaultSettings ?? {};
+            newDeckSettings.actions = defaultSettings.actions ?? {};
+            newDeckSettings.labels = defaultSettings.labels ?? {};
+            newDeckSettings.parameters = defaultSettings.parameters ?? {};
+
+
+            // Global parameters
+            newDeckSettings.parameters["core-labelBaseKey"] = definedDeck.labelBaseKey;
+            newDeckSettings.parameters["core-resourceBaseDir"] = definedDeck.resourceBaseDir;
+            if( !defaultStacks.hasOwnProperty(key) ) { // override conf only for decks added via code
+                newDeckSettings.parameters["core-overrideConf"] = false;
+            }
+            
+            stacks[key] = newDeckSettings;
+        }
+
+        await updateCardStackSettings(stacks);
+    }
+
 }
 
 
@@ -402,7 +405,6 @@ export class CustomCardStackLoader {
                 labelBaseKey : 'RTUCards.pokerDark.',
                 resourceBaseDir : 'modules/ready-to-use-cards/resources/pokerDark',
                 preset: 'modules/ready-to-use-cards/resources/pokerDark/cards.json'
-                // removeBackFace : false // False by default, optional
             },
             pokerLight: {
                 cardClass: CustomCardSimple,
@@ -516,7 +518,7 @@ export class CustomCardStackLoader {
 
     async loadCardStacks() {
         
-        loadStackDefinition(this.defaultCoreStacks);
+        await loadStackDefinition(this.defaultCoreStacks);
         await this.initMissingStacks();
         await this.ensureRightPermissionsForStacks();
         this.loadStackLinks();

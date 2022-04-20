@@ -260,12 +260,6 @@ export class AvailableActionService {
             // Persist only if there is some data set for this stack
             if( Object.keys(stackSettings.actions).length > 0 ) {
                 newSettings[stackData.key] = stackSettings;
-
-                const rollback = currentSettings[stackData.key]?.rollback;
-                if( rollback ) {
-                    newSettings[stackData.key].rollback = rollback;
-                }
-                
             }
         });
 

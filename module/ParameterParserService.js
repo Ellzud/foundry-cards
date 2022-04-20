@@ -1,3 +1,4 @@
+import { cardStackSettings } from "./tools.js";
 
 
 const parseNumberOrNull = (value) => {
@@ -9,10 +10,33 @@ const parseNumberOrNull = (value) => {
 }
 
 /**
+ * List all parameters settings for a stack
+ * @param {string} stackKey stack key in the flags
+ * @returns {object} One child for each parameter. key: {groupId}-{action}-{param}
+ */
+ const settings_allParameters = (stackKey) => {
+    const settings = cardStackSettings();
+    if( !settings.hasOwnProperty( stackKey ) ) { return {}; }
+
+    return settings[stackKey].parameters ?? {};
+}
+
+
+/**
  * Service manipulating StackConfigurationGroup structure and flags to know which actions are available
  */
 export class ParameterParserService {
 
+    /**
+     * For core parameters which are not linked to any actions
+     * @param {string} stackKey The stack key, as defined in flags
+     * @param {string} paramName The param name
+     */
+    getCoreParam(stackKey, paramName) {
+        const parameters = settings_allParameters(stackKey);
+        const paramKey = "core-" + paramName;
+        return parameters[paramKey];
+    }
 
     /**
      * Convenience function to easily retrieve a parameter for a given action.
@@ -24,10 +48,8 @@ export class ParameterParserService {
      */
     getParam(stackKey, actionGroupId, action, paramName) {
         const actionService = game.modules.get('ready-to-use-cards').actionService;
-        const actionNode = actionService.getActionPossibilities(stackKey, [actionGroupId]).filter( a => {
-            return a.action === action;
-        })[0];
-        return actionNode.parameters.find( p => p.param === paramName );
+        const groupDetail = actionService.getActionGroupDetails(stackKey, [actionGroupId]);
+        return groupDetail.parameters.find( p => p.param === paramName && p.action === action );
     }
 
     /**

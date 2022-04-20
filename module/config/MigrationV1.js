@@ -23,12 +23,12 @@ export const migrateFromV1 = async () => {
             // Parsing V1 data
             //--------------------
             const v1Confs = Object.entries(deck).filter( ([key, used]) => {
-                const validKey = ! ["parameters", "actions", "rollback"].includes(key);
+                const validKey = ! ["parameters", "actions"].includes(key);
                 return validKey && used;
             }).map( ([key, ]) => {
                 return key;
             });
-            const v1Params = deck.parameters;
+            const v1Params = deck.parameters ?? {};
 
             // Transfering actions on new structure
             //----------------------------
@@ -178,6 +178,13 @@ export const migrateFromV1 = async () => {
                     }
                     case "fromDiscardLoopThroughFaces": {
                         actions["flipCard-DIDI"] = true;
+
+                        if( v1Params.hasOwnProperty("removeBackFace") ) {
+                            const backRemoved = deck.parameters.removeBackFace;
+                            if( backRemoved ) {
+                                parameters["flipCard-flip-includeBack"] = '0'; // Default value is set to 1
+                            }
+                        }
                         break;
                     }
                     case "fromDiscardResetAll": {
@@ -196,6 +203,10 @@ export const migrateFromV1 = async () => {
                 const newKey = "core-" + key;
                 parameters[newKey] = value;
             });
+            if( parameters.hasOwnProperty("core-overrideConf") ) {
+                // For deck added via code, force the overrideConf to be sure everything won't be lost if the other module hasn't been updated
+                parameters["core-overrideConf"] = true;
+            }
         }
 
         // Some parameters were transfered to each stack key
@@ -210,7 +221,6 @@ export const migrateFromV1 = async () => {
             
             const allDisardAllowed = everyHandsDiscardAll || everyRevealedDiscardAll;
             deckSettings.parameters["moveCards-discardOne-discardAll"] = allDisardAllowed ? "1" : "0";
-
         }
     }
     await game.settings.set('ready-to-use-cards', "stacksV2", newStacksSettings);
