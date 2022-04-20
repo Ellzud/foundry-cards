@@ -4,7 +4,6 @@
     "RTUCards.settings.config-actions.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",
     "RTUCards.settings.config-actions.saveAndClose": "Sauvegarder les modifs & Fermeture",
 
-    "RTUCards.settings.config-actions.additionalData.headerFilter": "A quoi il sert ?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Informations supplémentaires sur le deck",
     "RTUCards.settings.config-actions.additionalData.warnImplem": "Ce deck utilise une implémentation spécifique pour afficher les cartes. Il est possible qu'une partie des actions ci-dessous soit directement ignorée dans l'implémentation et ne soit pas gérée par ce panneau de configuration.",
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Préfixe pour les libellés : ",

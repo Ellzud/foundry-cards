@@ -4,7 +4,6 @@
     "RTUCards.settings.config-actions.hint": "Once set, cards stacks will be automatically created",
     "RTUCards.settings.config-actions.saveAndClose": "Save changes & Close",
 
-    "RTUCards.settings.config-actions.additionalData.headerFilter": "What is it for?",
     "RTUCards.settings.config-actions.additionalData.headerDeck": "Additional data for this deck",
     "RTUCards.settings.config-actions.additionalData.warnImplem": "This deck uses a custom implementation for card display. Some of the following actions may have been directly removed inside the implementation and won't be managed here.",
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Used prefix for labels: ",

@@ -29,6 +29,7 @@ const computeAllPossibleStackList = () => {
 			key: key,
 			default: true,
 			useCustomCardImpl: false,
+			labelBaseKey: labelBaseKey,
 			toggled: !!deckInSettings,
 			toggleLocked: stackDef.isManuallyRegistered ?? false,
 			deck : {
@@ -51,6 +52,7 @@ const computeAllPossibleStackList = () => {
 			key: key,
 			default: false,
 			useCustomCardImpl: coreDef.cardClass != actualDefinition.shared.cardClasses.simple,
+			labelBaseKey: labelBaseKey,
 			overrideConf: overrideConf,
 			toggled: true,
 			toggleLocked: true,
@@ -258,22 +260,41 @@ const actionGroupsForGUI = (stack) => {
 	return topLevelGroups;
 }
 
-const buildStackActions = (stack) => {
-	const actions = [];
+const buildStackCoreParams = (stack) => {
+
+	// Convenience function
+	const createLine = ({icon='', clickable=true, labelKey='', param='', editText=null} = {}) => {
+		const result = {};
+		result.classes = icon;
+		if( clickable ) { result.classes += ' active'; }
+	
+		result.label = game.i18n.localize(labelKey);
+		result.param = param;
+	
+		result.input = {
+			displayed: (editText != null),
+			text: editText
+		};
+	
+		return result;
+	};
+	
+
+	const coreParams = [];
 
 	// Deck desc
 	const desc = stack.gui.deck.desc;
 	if( desc && desc != '' ) {
-		actions.push(
-			createActionLine({ icon: 'fas fa-info', clickable: false, labelKey: stack.gui.deck.desc })
+		coreParams.push(
+			createLine({ icon: 'fas fa-info', clickable: false, labelKey: stack.gui.deck.desc })
 		);
 	}
 
 	// Deck edition
 	[DeckParameters.labelBaseKey, DeckParameters.resourceBaseDir].forEach( key => {
 		if( stack.parameters.hasOwnProperty(key) ) {
-			actions.push(
-				createActionLine({ 
+			coreParams.push(
+				createLine({ 
 					icon: 'far fa-edit', clickable: false, param: key, 
 					labelKey: 'RTUCards.settings.config-actions.additionalData.' + key,
 					editText: stack.parameters[key]
@@ -284,8 +305,8 @@ const buildStackActions = (stack) => {
 
 	// Some stacks may have some custom card implem. Warn the user that the action listing may not be used
 	if( stack.useCustomCardImpl ) {
-		actions.push(
-			createActionLine({ icon: 'fas fa-exclamation', clickable: false, labelKey: 'RTUCards.settings.config-actions.additionalData.warnImplem' })
+		coreParams.push(
+			createLine({ icon: 'fas fa-exclamation', clickable: false, labelKey: 'RTUCards.settings.config-actions.additionalData.warnImplem' })
 		);
 	}
 
@@ -293,35 +314,12 @@ const buildStackActions = (stack) => {
 	const overrideKey = DeckParameters.overrideConf;
 	if( stack.parameters.hasOwnProperty(overrideKey) ) {
 		const icon = stack.parameters[overrideKey] ? 'fas fa-lock-open' : 'fas fa-lock';
-		actions.push(
-			createActionLine({ icon: icon, param: overrideKey, labelKey: 'RTUCards.settings.config-actions.additionalData.overrideConf' })
+		coreParams.push(
+			createLine({ icon: icon, param: overrideKey, labelKey: 'RTUCards.settings.config-actions.additionalData.overrideConf' })
 		);
 	}
 
-	// Only add the header is there are some actions
-	const result = [];
-	if( actions.length > 0 ) {
-		result.push({isHeader:true, label: game.i18n.localize('RTUCards.settings.config-actions.additionalData.headerDeck') });
-		result.push(...actions);
-	}
-
-	return result;
-}
-
-const createActionLine = ({icon='', clickable=true, labelKey='', param='', editText=null} = {}) => {
-	const result = {};
-	result.classes = icon;
-	if( clickable ) { result.classes += ' active'; }
-
-	result.label = game.i18n.localize(labelKey);
-	result.param = param;
-
-	result.input = {
-		displayed: (editText != null),
-		text: editText
-	};
-
-	return result;
+	return coreParams;
 }
 
 /**
@@ -387,10 +385,8 @@ export class ConfigSheetForActions extends FormApplication {
 
 			// parameters : Additional info on deck, like image path or translation prefix
 			//---------------
-			const declared = this.module.stacksDefinition.core[s.key];
-			const stackDef = cardStacks.defaultCoreStacks[s.key];
 			data.parameters = {
-				labelBaseKey: declared?.labelBaseKey ?? stackDef.labelBaseKey
+				labelBaseKey: s.labelBaseKey
 			};
 			if( s.hasOwnProperty('overrideConf')) { 
 				data.parameters.overrideConf = s.overrideConf;
@@ -405,7 +401,7 @@ export class ConfigSheetForActions extends FormApplication {
 		// Add confboxes information for each stack
 		const stacks = this.object.stacks.map( stack => {
 			const data = {
-				actions: buildStackActions(stack),
+				coreParams: buildStackCoreParams(stack),
 				groupsGui: actionGroupsForGUI(stack)
 			};
 
@@ -429,16 +425,16 @@ export class ConfigSheetForActions extends FormApplication {
 		html.find('.declared-deck .toggle-button.deck.active').click(event => this._onClickToggleDeck(event) );
 		html.find('.declared-deck .toggle-button.show.active').click(event => this._onClickToggleDetails(event) );
 		
-		html.find('.declared-deck .group-action.toggle-button.active').click(event => this._onClickToggleActionChoice(event) );
-		html.find('.declared-deck .group-check.toggle-button.active').click(event => this._onClickToggleWholeActionGroup(event) );
-		html.find('.declared-deck .group-fold.toggle-button.active').click(event => this._onClickFoldActionGroup(event) );
-		html.find('.declared-deck .group-tab').click(event => this._onClickChangeActionGroupTab(event) );
+		html.find('.details.action-group .group-action.toggle-button.active').click(event => this._onClickToggleActionChoice(event) );
+		html.find('.details.action-group .group-check.toggle-button.active').click(event => this._onClickToggleWholeActionGroup(event) );
+		html.find('.details.action-group .group-fold.toggle-button.active').click(event => this._onClickFoldActionGroup(event) );
+		html.find('.details.action-group .group-tab').click(event => this._onClickChangeActionGroupTab(event) );
 
-        html.find('.declared-deck .param-input.button-text').change(event => this._onChangeActionButtonText(event) );
-        html.find('.declared-deck .param-input.real-param').change(event => this._onChangeActionParameter(event) );
+        html.find('.details.action-group .param-input.button-text').change(event => this._onChangeActionButtonText(event) );
+        html.find('.details.action-group .param-input.real-param').change(event => this._onChangeActionParameter(event) );
 
-		html.find('.declared-deck .toggle-button.action.active').click(event => this._onClickToggleStackParameter(event) );
-        //html.find('.declared-deck .param-input').change(event => this._onChangeParameterValue(event) );
+		html.find('.details.core-params .toggle-button.active').click(event => this._onClickToggleCoreParameter(event) );
+        html.find('.details.core-params .param-input').change(event => this._onClickEditCoreParameter(event) );
 
 		html.find('.save-stacks').click(event => this._onClickSaveConfig(event) );
 	}
@@ -554,7 +550,9 @@ export class ConfigSheetForActions extends FormApplication {
 			return s.gui.toggled;
 
 		}).map( s => {
-			return { key: s.key, details: s.groups };
+			return { key: s.key, 
+					 coreParameters: s.parameters,
+					 details: s.groups };
 		});
 
 		await this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
@@ -583,14 +581,31 @@ export class ConfigSheetForActions extends FormApplication {
 		this.render();
 	}
 
-	async _onClickToggleStackParameter(event) {
+	async _onClickToggleCoreParameter(event) {
 		event.preventDefault();
-		const a = event.currentTarget;
-		const deckKey = a.parentElement.parentElement.dataset.key;
-		const paramKey = a.parentElement.dataset.param;
+		const toggle = event.currentTarget;
+		const paramLine = toggle.parentElement;
+		const deckDiv = paramLine.parentElement.parentElement;
+
+		const paramKey = paramLine.dataset.param;
+		const deckKey = deckDiv.dataset.key;
 
 		const stack = this.object.stacks.find( s =>s.key === deckKey );
 		stack.parameters[paramKey] = !stack.parameters[paramKey];
+		this.render();
+	}
+
+	async _onClickEditCoreParameter(event) {
+		event.preventDefault();
+		const input = event.currentTarget;
+		const paramLine = input.parentElement;
+		const deckDiv = paramLine.parentElement.parentElement;
+
+		const paramKey = paramLine.dataset.param;
+		const deckKey = deckDiv.dataset.key;
+
+		const stack = this.object.stacks.find( s =>s.key === deckKey );
+		stack.parameters[paramKey] = input.value;
 		this.render();
 	}
 

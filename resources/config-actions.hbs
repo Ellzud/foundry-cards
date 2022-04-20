@@ -1,44 +1,48 @@
-{{#* inline "listConfigs" }}
+{{#* inline "deckDetails" }}
 
-    {{#each actions as |action| }}
-        {{#if action.isHeader }}
-            {{> configHeader header=action }}
-        {{else}}
-            {{> actionLine action=action }}
-        {{/if}}
-    {{/each}}
+    <!-- Core params -->
+    {{> coreParams params=deck.coreParams }}
 
-    {{#each topLevelGroups as |topLevelGroup| }}
+    <!-- Action groups -->
+    {{#each deck.groupsGui as |topLevelGroup| }}
         {{> listConfigGroups groups=topLevelGroup }}
     {{/each}}
 
+    <!-- Some space before next deck -->
+    <div class="deck-row details" >
+        <div class="unfolded-margin"></div>
+    </div>
+
 {{/inline}}
 
-{{#*inline "configHeader"}}
-    <div class="flexrow deck-row content header">
-        <div>{{header.label}}</div>
-    </div>
-{{/inline}}
+{{#* inline "coreParams"}}
 
-{{#*inline "actionLine"}}
-    <div class="flexrow deck-row content" data-param="{{action.param}}">
-        <i class="toggle-button exact-width {{action.classes}}"></i>
-        <div>{{action.label}}</div>
-        {{#if action.input.displayed}}
-            <input type="text" class="param-input" value="{{action.input.text}}" >
-        {{/if}}
+    <div class="flexrow deck-row header">
+        <div>{{localize 'RTUCards.settings.config-actions.additionalData.headerDeck'}}</div>
     </div>
+    <div class="deck-row details core-params" >
+        {{#each params as |param| }}
+            <div class="flexrow line" data-param="{{param.param}}">
+                <i class="toggle-button exact-width {{param.classes}}"></i>
+                <div class="action-param">{{param.label}}</div>
+                {{#if param.input.displayed}}
+                    <input type="text" class="param-input" value="{{param.input.text}}" >
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+
 {{/inline}}
 
 {{#* inline "listConfigGroups"}}
 
-    <div class="flexrow deck-row content header">
+    <div class="flexrow deck-row header">
         <div>{{groups.header}}</div>
     </div>
 
     {{#each groups.list as |group| }}
 
-        <div class="deck-row content action-group-div" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
+        <div class="deck-row details action-group" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
 
             <div class="flexrow line">
                 <i class="toggle-button exact-width group-check {{group.toggle.checkCss}}"></i>
@@ -183,7 +187,7 @@
                     <div>{{stack.gui.deck.name}}</div>
                 </div>
                 {{#if stack.gui.detailsDisplayed}}
-                    {{> listConfigs actions=stack.actions topLevelGroups=stack.groupsGui }}
+                    {{> deckDetails deck=stack }}
                 {{/if}}
             </div>
         {{/each}}

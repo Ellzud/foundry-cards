@@ -221,12 +221,15 @@ export class AvailableActionService {
      */
     async updateSettingsWithCurrentActionDetails(wholeDetails) {
 
-        const currentSettings = cardStackSettings();
         const newSettings = {};
         wholeDetails.forEach( stackData => {
             const stackSettings = { actions: {}, labels: {}, parameters: {} };
 
-            // FIMXE : Need to persist parameters
+            // Core parameters :
+            Object.entries(stackData.coreParameters).forEach( ([key, value]) => {
+                const paramKey = "core-" + key;
+                stackSettings.parameters[paramKey] = value;
+            });
 
             // Go through all action groups
             Object.values(stackData.details).forEach( actionGroup => {
@@ -265,6 +268,7 @@ export class AvailableActionService {
 
         /* For Testing
 
+        const currentSettings = cardStackSettings();
         const toString = (obj) => {
             const keys = Object.keys(obj);
             keys.sort();

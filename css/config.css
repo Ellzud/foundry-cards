@@ -12,47 +12,44 @@
   padding: 3px;
   line-height: 18px;
   align-items: center;
-}
-
-.rtucards-config-actions .deck-row.content {
   margin-left: 20px;
   border-left: solid darkgray;
   font-style: italic;
 }
 
-.rtucards-config-actions .deck-row.content.header {
+.rtucards-config-actions .deck-row.header {
   padding-top: 10px;
   font-style: unset;
   text-decoration: underline;
 }
 
-.rtucards-config-actions .deck-row.content.action-group-div {
+.rtucards-config-actions .deck-row.details {
   padding: 0px 3px;
 }
 
-.rtucards-config-actions .action-group-div .unfolded-margin {
+.rtucards-config-actions .details .unfolded-margin {
   flex: unset;
   height: 20px;
 }
 
-.rtucards-config-actions .action-group-div .line {
+.rtucards-config-actions .details .line {
   padding: 3px;
   line-height: 18px;
   align-items: center;
 }
 
-.rtucards-config-actions .action-group-div .line .action-title {
+.rtucards-config-actions .details .line .action-title {
   font-style: initial;
   text-decoration: underline;
 }
 
-.rtucards-config-actions .action-group-div .line .action-param {
-  flex: unset;
+.rtucards-config-actions .details .line .action-param {
+  max-width: fit-content;
   margin-right: 10px;
 }
 
 
-.rtucards-config-actions .action-group-div .group-tab {
+.rtucards-config-actions .details .group-tab {
   border: groove;
   border-radius: 1px;
   text-align: center;
@@ -60,11 +57,11 @@
   opacity: 0.5;
 }
 
-.rtucards-config-actions .action-group-div .group-tab.selected {
+.rtucards-config-actions .details .group-tab.selected {
   opacity: 1;
 }
 
-.rtucards-config-actions .action-group-div .group-tab:hover {
+.rtucards-config-actions .details .group-tab:hover {
   opacity: 1;
   cursor: pointer;
 }
