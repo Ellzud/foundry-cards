@@ -314,6 +314,9 @@ export const StackConfigurationGroup = {
             {action: 'give', default: 'Give card'},
             {action: 'discardOne', default: 'Discard card'},
             {action: 'discardAll', default: 'Discard all cards'},
+        ],
+        parameters: [
+            {action: 'discardOne', param: 'discardAll', label: 'Allow discard in batch', default: '1', validation: 'boolean'}
         ]
     },
     exchangeCard: {
@@ -386,8 +389,8 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PH', action: 'withHand' },
         ],
         labels: [
-            {action: 'withRevealed', default: 'Swap with a revealed card'}, // FIXME : Not linked
-            {action: 'withHand', default: 'Swap with a card in hand'} // FIXME : Not linked
+            {action: 'withRevealed', default: 'Swap with a revealed card'},
+            {action: 'withHand', default: 'Swap with a card in hand'}
         ]
     },
     flipCard: {
@@ -408,6 +411,9 @@ export const StackConfigurationGroup = {
         ],
         labels: [
             {action: 'flip', default: 'Flip a card'}
+        ],
+        parameters: [
+            {action: 'flip', param: 'includeBack', label: 'Card back is included', default: '1', validation: 'boolean'}
         ]
     },
     rotateCard: {

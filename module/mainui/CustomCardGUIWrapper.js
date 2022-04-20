@@ -17,6 +17,10 @@ export class CustomCardGUIWrapper {
         const coreKey = this._custom.coreStackRef;
         const cls = CARD_STACKS_DEFINITION.core[coreKey].cardClass;
         this._wrapped = new cls(card);
+
+        const module = game.modules.get('ready-to-use-cards');
+        this.actionService = module.actionService;
+        this.paramService = module.parameterService;
     }
 
     get card() {
@@ -61,8 +65,10 @@ export class CustomCardGUIWrapper {
                 return data;
             });
     
-            const setting = this._custom.cardBackIsConsideredAsAFaceWhenLooping;
-            if( setting ) {
+            const backIncluded = this.paramService.parseBoolean(
+                this.paramService.getParam(this._custom.coreStackRef, "flipCard", "flip", "includeBack").current
+            );
+            if( backIncluded ) {
                 const back = {
                     name: this._card.data.back?.name,
                     text: this._card.data.back?.text,
@@ -142,8 +148,7 @@ export class CustomCardGUIWrapper {
 
         const deckKey = this._custom.coreStackRef;
         const prefix = this._currently.prefixForActions;
-        const service = game.modules.get('ready-to-use-cards').actionService;
-        const actions = service.getActionPossibilities(deckKey, ["rotateCard"], {from: prefix, target: prefix});
+        const actions = this.actionService.getActionPossibilities(deckKey, ["rotateCard"], {from: prefix, target: prefix});
 
         const allowed = actions.length > 0;
         const result = allowed && rotatingAsked;
@@ -234,12 +239,11 @@ export class CustomCardGUIWrapper {
 
         const deckKey = this._custom.coreStackRef;
         const prefix = this._currently.prefixForActions; // "DE"
-        const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
         possibilities.forEach( p => {
 
-            const guiAction = service.asGUIAction(p);
+            const guiAction = this.actionService.asGUIAction(p);
             switch( p.signature ) {
 
                 case "flipCard-flip" : {
@@ -261,7 +265,7 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
 
 
         // Call the potential implementation inside wrapped impl
@@ -287,12 +291,11 @@ export class CustomCardGUIWrapper {
 
         const deckKey = this._custom.coreStackRef;
         const prefix = this._currently.prefixForActions; // "PH" or "GH"
-        const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "transferCards", "swapCards"], {from: prefix});
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "transferCards", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
-            const guiAction = service.asGUIAction(p);
+            const guiAction = this.actionService.asGUIAction(p);
             switch( p.signature ) {
 
                 case "flipCard-flip" : {
@@ -314,8 +317,8 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
-        service.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInHand ) {
@@ -336,12 +339,11 @@ export class CustomCardGUIWrapper {
 
         const deckKey = this._custom.coreStackRef;
         const prefix = this._currently.prefixForActions; // "PR" or "GR"
-        const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "transferCards", "exchangeCard", "swapCards"], {from: prefix});
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "transferCards", "exchangeCard", "swapCards"], {from: prefix});
         possibilities.forEach( p => {
 
-            const guiAction = service.asGUIAction(p);
+            const guiAction = this.actionService.asGUIAction(p);
             switch( p.signature ) {
 
                 case "flipCard-flip" : {
@@ -362,8 +364,8 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
-        service.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInRevealedCards ) {
@@ -387,12 +389,11 @@ export class CustomCardGUIWrapper {
 
         const deckKey = this._custom.coreStackRef;
         const prefix = this._currently.prefixForActions; // "DI"
-        const service = game.modules.get('ready-to-use-cards').actionService;
 
-        const possibilities = service.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
         possibilities.forEach( p => {
 
-            const guiAction = service.asGUIAction(p);
+            const guiAction = this.actionService.asGUIAction(p);
             switch( p.signature ) {
 
                 case "flipCard-flip" : {
@@ -413,7 +414,7 @@ export class CustomCardGUIWrapper {
         });
 
         // Separate rotate and flip from real actions
-        service.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDiscard ) {

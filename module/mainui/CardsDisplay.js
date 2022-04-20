@@ -566,18 +566,44 @@ export class CustomCardsDisplay extends CardsConfig {
         const isOwned = this._custom.ownedByCurrentPlayer;
 
         if( isOwned ) {
-            // Drawing cards from each decks and discards
-            Object.values(this._custom.cardStacks.decks).filter( deck => {
-                return deck.stack.testUserPermission(game.user, "OBSERVER");
-            }).forEach( deck => {
-                const deckName = deck.retrieveStackBaseName();
-                const deckPossibilities = service.getActionPossibilities(deck.coreStackRef, ["drawDeckCard", "drawDiscardCard"], {from: prefix});
 
-                const guiActions = deckPossibilities.map( p => service.asGUIAction(p, {action: deck.coreStackRef}) );
-                guiActions.forEach( a => a.label += ` (${deckName})` );
+            const allSeenDecks = Object.values(this._custom.cardStacks.decks).filter( deck => deck.stack.testUserPermission(game.user, "OBSERVER") );
+            const allSeenDiscards = Object.values(this._custom.cardStacks.piles).filter( pile => pile.stack.testUserPermission(game.user, "OBSERVER") );
+
+            // Drawing cards from each decks and discards
+            allSeenDecks.filter( cs => {
+                return cs.stack.availableCards.length != 0;
+            }).forEach( cs => {
+                const name = cs.retrieveStackBaseName();
+
+                const possibilities = service.getActionPossibilities(cs.coreStackRef, ["drawDeckCard"], {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: cs.coreStackRef}) );
+                guiActions.forEach( a => a.label += ` (${name})` );
                 actions.push(...guiActions);
             });
 
+            allSeenDiscards.filter( cs => {
+                return cs.stack.availableCards.length != 0;
+            }).forEach( cs => {
+                const name = cs.retrieveStackBaseName();
+
+                const possibilities = service.getActionPossibilities(cs.coreStackRef, ["drawDiscardCard"], {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: cs.coreStackRef}) );
+                guiActions.forEach( a => a.label += ` (${name})` );
+                actions.push(...guiActions);
+            });
+
+            // For the current cards, allow full discard if discard is allowed on each card
+            this._custom.decksOfAvailableCards.forEach( deck => {
+                const deckKey = deck.coreStackRef;
+                const possibilities = service.getDiscardAllPossibilities(deckKey, {from: prefix});
+                const guiActions = possibilities.map( p => service.asGUIAction(p, {action: deckKey}) );
+                guiActions.forEach( a => a.label += " (" + deck.retrieveStackBaseName() + ")");
+                actions.push(...guiActions);
+            });
+
+            service.addCssAfterSomeGuiActions(actions, ["drawDeckCard-"]);
+            service.addCssAfterSomeGuiActions(actions, ["drawDiscardCard-"]);
         }
     }
 
@@ -613,7 +639,6 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(".swapCards-withRevealed").click(event => this._onClickSwapWithRevealedCard(event) );
         html.find(".swapCards-withHand").click(event => this._onClickSwapWithHandCard(event) );
         html.find(".playCard-play").click(event => this._onClickPlayCard(event) );
-        // FIXME html.find(css.playMultiple).click(event => this._onClickPlayMultipleCards(event) ); Will be a parameter of play cards
         html.find(".flipCard-flip").click(event => this._onClickLoopThroughCardFaces(event) );
         html.find(".rotateCard-rotate").click(event => this._onClickRotateCard(event) );
         html.find(".custom-action").click(event => this._onClickCustomAction(event) );

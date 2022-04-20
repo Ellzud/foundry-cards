@@ -351,16 +351,18 @@ export class AvailableActionService {
     getDiscardAllPossibilities(stackKey, {from=null}={}) {
 
         const moveCardDetails = this.getActionGroupDetails(stackKey, "moveCard");
-        const allowAllDiscard = true; // FIXME Need to add something like : moveCardDetails.parameters.allowAllDiscard;
         const discardActions = moveCardDetails.actions.filter( a => {
             if( !a.available ) { return false; }
             if( from && from != a.from ) { return false; }
             return a.action === "discardOne";
         });
+        if( discardActions.length == 0 ) { return []; }
 
-        if( !allowAllDiscard || discardActions.length == 0 ) {
-            return [];
-        }
+        const paramService = game.modules.get('ready-to-use-cards').parameterService;
+        const allowAllDiscard = paramService.parseBoolean(
+            moveCardDetails.parameters.find( p => p.action == "discardOne" && p.param == "discardAll" ).current
+        );
+        if( !allowAllDiscard ) { return []; }
 
         const discardAll = {
             actionGroupId: "moveCard",

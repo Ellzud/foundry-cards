@@ -1,5 +1,5 @@
 import { cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
-import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { GlobalConfiguration } from "./constants.js";
 import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
@@ -127,19 +127,6 @@ export class CustomCardStack {
     }
 
     /**
-     * Some actions loops through the cards.
-     * If this is TRUE, the card back is added as the last face of the card.
-     * It's true by default. You can change it inside the action config panel.
-     * Is using DeckParameters.removeBackFace to see if it's true or not
-     */
-    get cardBackIsConsideredAsAFaceWhenLooping() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        const removed = coreDef[DeckParameters.removeBackFace] ?? false;
-        return !removed;
-    }
-
-    /**
      * Retrieve a translated label based on what was define as CARD_STACKS_DEFINITION.core.key.labelBaseKey
      * If not found, fallback to RTUCards.default.default.
      * @param {string} labelPath label suffix (will be completed for retrieve real label key)
@@ -193,31 +180,6 @@ export class CustomCardStack {
         }
 
         return result;
-    }
-
-    get stackConfig() {
-        const coreKey = this.coreStackRef;
-        if( coreKey ) {
-            const config = duplicate(CARD_STACKS_DEFINITION.core[coreKey].config); // Do not directly edit config. Read only
-
-            Object.values(StackConfiguration).forEach(confKey => { // By default all missing config are set to true
-                if( !config.hasOwnProperty(confKey) ) {  config[confKey] = true;}
-            });
-
-            // If players hands have been removed, some confs are automatically set to false.
-            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand) ) {
-                config[StackConfiguration.fromDeckDealCardsToHand] = false;
-                config[StackConfiguration.fromRevealedBackToHand] = false;
-            }
-
-            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards) ) {
-                config[StackConfiguration.fromDeckDealRevealedCards] = false;
-                config[StackConfiguration.fromHandRevealCard] = false;
-            }
-            return config;
-
-        }
-        return null;
     }
 
     /**

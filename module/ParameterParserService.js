@@ -13,6 +13,7 @@ const parseNumberOrNull = (value) => {
  */
 export class ParameterParserService {
 
+
     /**
      * Convenience function to easily retrieve a parameter for a given action.
      * You may want to directly manipulate the actiongroupDetails if you have multiple parameters to retrieve
@@ -21,9 +22,9 @@ export class ParameterParserService {
      * @param {string} action Action name
      * @param {string} paramName The param name
      */
-    getParam(stackKey, actionGroupId, action, paramName, {from=null, target=null}={}) {
+    getParam(stackKey, actionGroupId, action, paramName) {
         const actionService = game.modules.get('ready-to-use-cards').actionService;
-        const actionNode = actionService.getActionPossibilities(stackKey, [actionGroupId], {from: from, target: target}).filter( a => {
+        const actionNode = actionService.getActionPossibilities(stackKey, [actionGroupId]).filter( a => {
             return a.action === action;
         })[0];
         return actionNode.parameters.find( p => p.param === paramName );
