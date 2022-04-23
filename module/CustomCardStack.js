@@ -61,6 +61,7 @@ export class CustomCardStack {
 
     constructor(stack) {
         this._stack = stack;
+        this.module = game.modules.get('ready-to-use-cards');
 
         // Some actions calls a reset. Also reset our flags
         const resetingFlags = {};
@@ -292,13 +293,13 @@ export class CustomCardStack {
         await this.stack.update(updateData);
 
         const chosenStacks = cardStackSettings();
-        chosenStacks[this.stack.id] = stackSettings;
+        chosenStacks[this.stack.id] = this.module.actionService.createSettingsForNewStack(this.stack);
         await updateCardStackSettings(chosenStacks);
 
         // FIXME : Add default settings for new stack
 
         // 3: Reload all stacks
-        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        const cardStacks = this.module.cardStacks;
         await cardStacks.loadCardStacks();
     }
 

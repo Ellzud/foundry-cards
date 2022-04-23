@@ -177,6 +177,31 @@ const INPUT_VALIDATION = {
 export class AvailableActionService {
 
     /**
+     * Create base settings for a new stack
+     * @param {Cards} stack : The stack which will be soon registered
+     * @returns {object}
+     */
+    createSettingsForNewStack(stack) {
+        const actions = {};
+        actions["dealCard-GHDE"] = true;
+        actions["dealCard-GRDE"] = true;
+        actions["dealCard-PHDE"] = true;
+        actions["dealCard-PRDE"] = true;
+
+        const parameters = {};
+        const defaultParameters = stack.getFlag('ready-to-use-cards', 'default-parameters');
+        parameters["core-labelBaseKey"] = defaultParameters.labelBaseKey ?? "RTUCards.default.";
+        parameters["core-resourceBaseDir"] = defaultParameters.resourceBaseDir ?? "";
+        parameters["core-removeBackFace"] = false;
+
+        return {
+            actions: actions,
+            parameters: parameters,
+            labels: {}
+        };
+    }
+
+    /**
      * List of all possible actions for an actionGroup
      * For each action, see if it as been enabled for this stack
      * @param {string} stackKey The stack key, as defined in flags
