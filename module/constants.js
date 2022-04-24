@@ -84,32 +84,32 @@ export const StackTargetPossibilities = {
 
 export const StackConfigurationGroup = {
     peekOnCards: {
-        labelKey: 'Peeks on cards',
-        descKey: 'By default, deck cards are not visible, only back is displayed. This is also the case for other player hands. Those options allow GM to peek on those cards. (A message will let everyone know he is doing it).',
+        labelKey: 'RTUCards.action.peekOnCards.label',
+        descKey: 'RTUCards.action.peekOnCards.desc',
         actionType: 'other',
         grid : {
             css: 'no-target',
             targets: ['DE', 'DI', 'GH', 'GR', 'PH', 'PR'],
-            fromLabel: 'Peeking on',
-            targetLabel: 'Only GMs'
+            fromLabel: 'RTUCards.action.peekOnCards.fromLabel',
+            targetLabel: 'RTUCards.action.peekOnCards.targetLabel'
         },
         available: [
             { from: 'DE', target: 'DE', action: 'peek' },
             { from: 'PH', target: 'PH', action: 'peek' }
         ],
         labels: [
-            {action: 'peek', default: 'Toggle card visibility'}
+            {action: 'peek', default: 'RTUCards.action.peekOnCards.peek.label'}
         ]
     },
     dealCard: {
-        labelKey: 'Deal a card',
-        descKey: 'GM can give card to users when manipulating the deck. Action is available via the deck stack, on left side',
+        labelKey: 'RTUCards.action.dealCard.label',
+        descKey: 'RTUCards.action.dealCard.desc',
         actionType: 'deckUsage',
         grid : {
             css: 'deck-only',
             targets: ['DE'],
-            fromLabel: 'To',
-            targetLabel: 'From'
+            fromLabel: 'RTUCards.action.dealCard.fromLabel',
+            targetLabel: 'RTUCards.action.dealCard.targetLabel'
         },
         available: [
             { from: 'GH', target: 'DE', action: 'deal' },
@@ -118,18 +118,18 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DE', action: 'deal' }
         ],
         labels: [
-            {action: 'deal', default: 'Deal a card'}
+            {action: 'deal', default: 'RTUCards.action.dealCard.deal.label'}
         ]
     },
     drawDeckCard: {
-        labelKey: 'Draw the top cards',
-        descKey: 'Users can draw cards themself. Action is available via the user stacks, on left side',
+        labelKey: 'RTUCards.action.drawDeckCard.label',
+        descKey: 'RTUCards.action.drawDeckCard.desc',
         actionType: 'deckUsage',
         grid : {
             css: 'deck-only',
             targets: ['DE'],
-            fromLabel: 'Drawer',
-            targetLabel: 'From'
+            fromLabel: 'RTUCards.action.drawDeckCard.fromLabel',
+            targetLabel: 'RTUCards.action.drawDeckCard.targetLabel'
         },
         available: [
             { from: 'GH', target: 'DE', action: 'draw' },
@@ -138,12 +138,12 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DE', action: 'draw' }
         ],
         labels: [
-            {action: 'draw', default: 'Draw a card'}
+            {action: 'draw', default: 'RTUCards.action.drawDeckCard.draw.label'}
         ]
     },
     shuffleDeck: {
-        labelKey: 'Shuffle the deck',
-        descKey: 'GM can shuffle the remaining cards of the deck. Action is available via the deck stack, on left side',
+        labelKey: 'RTUCards.action.shuffleDeck.label',
+        descKey: 'RTUCards.action.shuffleDeck.desc',
         actionType: 'deckUsage',
         grid : {
             css: 'alone',
@@ -153,12 +153,12 @@ export const StackConfigurationGroup = {
             { from: 'DE', target: 'DE', action: 'shuffle' }
         ],
         labels: [
-            {action: 'shuffle', default: 'Shuffle the deck'}
+            {action: 'shuffle', default: 'RTUCards.action.shuffleDeck.shuffle.label'}
         ]
     },
     resetDeck: {
-        labelKey: 'Reset the deck',
-        descKey: 'GM can choose to take back all cards and shuffle them. Action is available via the deck stack, on left side',
+        labelKey: 'RTUCards.action.resetDeck.label',
+        descKey: 'RTUCards.action.resetDeck.desc',
         actionType: 'deckUsage',
         grid : {
             css: 'alone',
@@ -168,18 +168,18 @@ export const StackConfigurationGroup = {
             { from: 'DE', target: 'DE', action: 'reset' }
         ],
         labels: [
-            {action: 'reset', default: 'Reset the deck'}
+            {action: 'reset', default: 'RTUCards.action.resetDeck.reset.label'}
         ]
     },
     drawDiscardCard: {
-        labelKey: 'Draw the top cards',
-        descKey: 'Users can draw the top cards from the discard. Action is available via the user stacks, on left side',
+        labelKey: 'RTUCards.action.drawDiscardCard.label',
+        descKey: 'RTUCards.action.drawDiscardCard.desc',
         actionType: 'discardUsage',
         grid : {
             css: 'discard-only',
             targets: ['DI'],
-            fromLabel: 'Drawer',
-            targetLabel: 'From'
+            fromLabel: 'RTUCards.action.drawDiscardCard.fromLabel',
+            targetLabel: 'RTUCards.action.drawDiscardCard.targetLabel'
         },
         available: [
             { from: 'GH', target: 'DI', action: 'draw' },
@@ -188,12 +188,12 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DI', action: 'draw' }
         ],
         labels: [
-            {action: 'draw', default: 'Draw from discard'}
+            {action: 'draw', default: 'RTUCards.action.drawDiscardCard.draw.label'}
         ]
     },
     shuffleDiscard: {
-        labelKey: 'Shuffle the discard',
-        descKey: 'GM can shuffle the discard, changing the cards order. Action is available via the discard stack, on left side',
+        labelKey: 'RTUCards.action.shuffleDiscard.label',
+        descKey: 'RTUCards.action.shuffleDiscard.desc',
         actionType: 'discardUsage',
         grid : {
             css: 'alone',
@@ -203,12 +203,12 @@ export const StackConfigurationGroup = {
             { from: 'DI', target: 'DI', action: 'shuffle' }
         ],
         labels: [
-            {action: 'shuffle', default: 'Shuffle the discard'}
+            {action: 'shuffle', default: 'RTUCards.action.shuffleDiscard.shuffle.label'}
         ]
     },
     resetDiscard: {
-        labelKey: 'Reset the discard',
-        descKey: 'GM can choose to take put all cards from the discard back to the deck. If deck shuffle is allowed, the deck will be shuffled.',
+        labelKey: 'RTUCards.action.resetDiscard.label',
+        descKey: 'RTUCards.action.resetDiscard.desc',
         actionType: 'discardUsage',
         grid : {
             css: 'alone',
@@ -218,12 +218,12 @@ export const StackConfigurationGroup = {
             { from: 'DI', target: 'DI', action: 'reset' }
         ],
         labels: [
-            {action: 'reset', default: 'Reset the discard'}
+            {action: 'reset', default: 'RTUCards.action.resetDiscard.reset.label'}
         ]
     },
     playCard: {
-        labelKey: 'Play a card (card effect is applied)',
-        descKey: 'A user can play one of his cards. The displayed message will indicate that the card has been played',
+        labelKey: 'RTUCards.action.playCard.label',
+        descKey: 'RTUCards.action.playCard.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'discard-only',
@@ -236,18 +236,18 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'DI', action: 'play' }
         ],
         labels: [
-            {action: 'play', default: 'Play a card'}
+            {action: 'play', default: 'RTUCards.action.playCard.play.label'}
         ],
         parameters: [
-            {action: 'play', param: 'playMode', label: 'Playing card mode', default: 'singleCard', validation: 'playMode'},
-            {action: 'play', param: 'inChat', label: 'Show played cards in chat', default: '0', validation: 'boolean'},
-            {action: 'play', param: 'multipleAmount', label: 'Multiple cards play range', default: '0-10', validation: 'cardAtrribute'},
-            {action: 'play', param: 'discardAmount', label: 'Amount of discarded cards', default: '$value', validation: 'cardAtrribute'},
+            {action: 'play', param: 'playMode', label: 'RTUCards.action.playCard.play.playMode', default: 'singleCard', validation: 'playMode'},
+            {action: 'play', param: 'inChat', label: 'RTUCards.action.playCard.play.inChat', default: '0', validation: 'boolean'},
+            {action: 'play', param: 'multipleAmount', label: 'RTUCards.action.playCard.play.multipleAmount', default: '0-10', validation: 'cardAtrribute'},
+            {action: 'play', param: 'discardAmount', label: 'RTUCards.action.playCard.play.discardAmount', default: '$value', validation: 'cardAtrribute'},
         ]
     },
     moveCard: {
-        labelKey: 'Move a card through stacks',
-        descKey: 'A user can transfer one of his cards to another user stack. The displayed message will indicate that the card has been transfered',
+        labelKey: 'RTUCards.action.moveCard.label',
+        descKey: 'RTUCards.action.moveCard.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'all-targets',
@@ -283,18 +283,18 @@ export const StackConfigurationGroup = {
             { from: 'DI', target: 'DE', action: 'backDeck' }
         ],
         labels: [
-            {action: 'backDeck', default: 'Back to deck'},
-            {action: 'give', default: 'Give card'},
-            {action: 'discardOne', default: 'Discard card'},
-            {action: 'discardAll', default: 'Discard all cards'},
+            {action: 'backDeck', default: 'RTUCards.action.moveCard.backDeck.label'},
+            {action: 'give', default: 'RTUCards.action.moveCard.give.label'},
+            {action: 'discardOne', default: 'RTUCards.action.moveCard.discardOne.label'},
+            {action: 'discardAll', default: 'RTUCards.action.moveCard.discardAll.label'},
         ],
         parameters: [
-            {action: 'discardOne', param: 'discardAll', label: 'Allow discard in batch', default: '1', validation: 'boolean'}
+            {action: 'discardOne', param: 'discardAll', label: 'RTUCards.action.moveCard.discardOne.discardAll', default: '1', validation: 'boolean'}
         ]
     },
     exchangeCard: {
-        labelKey: 'Exchange a card with another user',
-        descKey: 'A user can exchange a card from one of this stacks with an other user stack',
+        labelKey: 'RTUCards.action.exchangeCard.label',
+        descKey: 'RTUCards.action.exchangeCard.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'no-deck',
@@ -322,13 +322,13 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PR', action: 'someone' },
         ],
         labels: [
-            {action: 'someone', default: 'Exchange with someone'},
-            {action: 'discard', default: 'Exchange with discard'},
+            {action: 'someone', default: 'RTUCards.action.exchangeCard.someone.label'},
+            {action: 'discard', default: 'RTUCards.action.exchangeCard.discard.label'},
         ]
     },
     transferCards: {
-        labelKey: '[Between a user two stacks] Transfer cards',
-        descKey: 'A user can transfer a card between its two stacks',
+        labelKey: 'RTUCards.action.transferCards.label',
+        descKey: 'RTUCards.action.transferCards.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'user-only',
@@ -342,13 +342,13 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PH', action: 'backHand' },
         ],
         labels: [
-            {action: 'backHand', default: 'Back to hand'},
-            {action: 'reveal', default: 'Reveal card'},
+            {action: 'backHand', default: 'RTUCards.action.transferCards.backHand.label'},
+            {action: 'reveal', default: 'RTUCards.action.transferCards.reveal.label'},
         ]
     },
     swapCards: {
-        labelKey: '[Between a user two stacks] Swap cards',
-        descKey: 'A user can swap a card between its two stacks',
+        labelKey: 'RTUCards.action.swapCards.label',
+        descKey: 'RTUCards.action.swapCards.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'user-only',
@@ -362,13 +362,13 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PH', action: 'withHand' },
         ],
         labels: [
-            {action: 'withRevealed', default: 'Swap with a revealed card'},
-            {action: 'withHand', default: 'Swap with a card in hand'}
+            {action: 'withHand', default: 'RTUCards.action.swapCards.withHand.label'},
+            {action: 'withRevealed', default: 'RTUCards.action.swapCards.withRevealed.label'}
         ]
     },
     flipCard: {
-        labelKey: 'Loop through card faces',
-        descKey: 'When manipulating his cards, a user can flip them',
+        labelKey: 'RTUCards.action.flipCard.label',
+        descKey: 'RTUCards.action.flipCard.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'no-target',
@@ -383,15 +383,15 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PR', action: 'flip' }
         ],
         labels: [
-            {action: 'flip', default: 'Flip a card'}
+            {action: 'flip', default: 'RTUCards.action.flipCard.flip.label'}
         ],
         parameters: [
-            {action: 'flip', param: 'includeBack', label: 'Card back is included', default: '1', validation: 'boolean'}
+            {action: 'flip', param: 'includeBack', label: 'RTUCards.action.flipCard.flip.includeBack', default: '1', validation: 'boolean'}
         ]
     },
     rotateCard: {
-        labelKey: 'Rotate card',
-        descKey: 'When manipulating his cards, a user can rotate them',
+        labelKey: 'RTUCards.action.rotateCard.label',
+        descKey: 'RTUCards.action.rotateCard.desc',
         actionType: 'selectedCard',
         grid : {
             css: 'no-target',
@@ -406,7 +406,7 @@ export const StackConfigurationGroup = {
             { from: 'PR', target: 'PR', action: 'rotate' }
         ],
         labels: [
-            {action: 'rotate', default: 'Rotate a card'}
+            {action: 'rotate', default: 'RTUCards.action.rotateCard.rotate.label'}
         ]
     },
 

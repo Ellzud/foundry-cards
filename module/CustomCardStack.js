@@ -296,8 +296,6 @@ export class CustomCardStack {
         chosenStacks[this.stack.id] = this.module.actionService.createSettingsForNewStack(this.stack);
         await updateCardStackSettings(chosenStacks);
 
-        // FIXME : Add default settings for new stack
-
         // 3: Reload all stacks
         const cardStacks = this.module.cardStacks;
         await cardStacks.loadCardStacks();

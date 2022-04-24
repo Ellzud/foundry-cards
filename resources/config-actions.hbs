@@ -94,7 +94,7 @@
             <!-- First line is always here : Button label -->
             <div class="flexrow line">
                 <i class="toggle-button exact-width far fa-closed-captioning"></i>
-                <div class="action-param">Button text</div>
+                <div class="action-param">{{localize 'RTUCards.settings.config-actions.actionParams.buttonText'}}</div>
                 <input type="text" class="param-input button-text" 
                        value="{{action.label.current}}" 
                        placeholder="{{action.label.default}}" >
@@ -129,33 +129,33 @@
     <div class="action-grid {{group.grid.css}}" data-key="{{group.stackId}}" data-group="{{group.groupId}}">
         <div class="header right-col" style="grid-area: Fxxx;">{{group.grid.from}} →</div>
         <div class="header left-col" style="grid-area: Txxx;">{{group.grid.target}} ↴</div>
-        <div class="header" style="grid-area: F-DE;">Deck</div>
-        <div class="header" style="grid-area: F-DI;">Discard</div>  
-        <div class="header" style="grid-area: F-Gx;">GM</div>
-        <div class="header" style="grid-area: F-Px;">Player</div>
-        <div class="header" style="grid-area: F-GH;">Hand</div>
-        <div class="header" style="grid-area: F-GR;">Revealed</div>
-        <div class="header" style="grid-area: F-PH;">Hand</div>
-        <div class="header" style="grid-area: F-PR;">Revealed</div>
+        <div class="header" style="grid-area: F-DE;">{{localize 'RTUCards.settings.config-actions.actionGrid.de'}}</div>
+        <div class="header" style="grid-area: F-DI;">{{localize 'RTUCards.settings.config-actions.actionGrid.di'}}</div>  
+        <div class="header" style="grid-area: F-Gx;">{{localize 'RTUCards.settings.config-actions.actionGrid.gx'}}</div>
+        <div class="header" style="grid-area: F-Px;">{{localize 'RTUCards.settings.config-actions.actionGrid.px'}}</div>
+        <div class="header" style="grid-area: F-GH;">{{localize 'RTUCards.settings.config-actions.actionGrid.hand'}}</div>
+        <div class="header" style="grid-area: F-GR;">{{localize 'RTUCards.settings.config-actions.actionGrid.revealed'}}</div>
+        <div class="header" style="grid-area: F-PH;">{{localize 'RTUCards.settings.config-actions.actionGrid.hand'}}</div>
+        <div class="header" style="grid-area: F-PR;">{{localize 'RTUCards.settings.config-actions.actionGrid.revealed'}}</div>
 
         {{#if group.grid.lines.noTarget}}
-            <div class="header left-col" style="grid-area: T-NO;">No target</div>
+            <div class="header left-col" style="grid-area: T-NO;">{{localize 'RTUCards.settings.config-actions.actionGrid.noTarget'}}</div>
         {{/if}}
         {{#if group.grid.lines.deck}}
-            <div class="header left-col" style="grid-area: T-DE;">Deck</div>
+            <div class="header left-col" style="grid-area: T-DE;">{{localize 'RTUCards.settings.config-actions.actionGrid.de'}}</div>
         {{/if}}
         {{#if group.grid.lines.discard}}
-            <div class="header left-col" style="grid-area: T-DI;">Discard</div>
+            <div class="header left-col" style="grid-area: T-DI;">{{localize 'RTUCards.settings.config-actions.actionGrid.di'}}</div>
         {{/if}}
         {{#if group.grid.lines.gm}}
-            <div class="header left-col" style="grid-area: T-Gx;">GM</div>
-            <div class="header" style="grid-area: T-GH;">Hand</div>
-            <div class="header" style="grid-area: T-GR;">Revealed</div>
+            <div class="header left-col" style="grid-area: T-Gx;">{{localize 'RTUCards.settings.config-actions.actionGrid.gx'}}</div>
+            <div class="header" style="grid-area: T-GH;">{{localize 'RTUCards.settings.config-actions.actionGrid.hand'}}</div>
+            <div class="header" style="grid-area: T-GR;">{{localize 'RTUCards.settings.config-actions.actionGrid.revealed'}}</div>
         {{/if}}
         {{#if group.grid.lines.players}}
-            <div class="header left-col" style="grid-area: T-Px;">Player</div>
-            <div class="header" style="grid-area: T-PH;">Hand</div>
-            <div class="header" style="grid-area: T-PR;">Revealed</div>
+            <div class="header left-col" style="grid-area: T-Px;">{{localize 'RTUCards.settings.config-actions.actionGrid.px'}}</div>
+            <div class="header" style="grid-area: T-PH;">{{localize 'RTUCards.settings.config-actions.actionGrid.hand'}}</div>
+            <div class="header" style="grid-area: T-PR;">{{localize 'RTUCards.settings.config-actions.actionGrid.revealed'}}</div>
         {{/if}}
 
         {{#each group.actions as |action| }}

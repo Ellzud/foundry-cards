@@ -150,10 +150,10 @@ const actionGroupsForGUI = (stack) => {
 		// Build tab list
 		const guiTabs = { list: [] };
 		if( !gridLines.alone ) {
-			guiTabs.list.push({ id: "grid", header: "Action grid" });
+			guiTabs.list.push({ id: "grid", header: game.i18n.localize("RTUCards.settings.config-actions.actionGrid.header") });
 		}
 		if( actionParameters.length > 0 ) {
-			guiTabs.list.push({ id: "params", header: "Related parameters" });
+			guiTabs.list.push({ id: "params", header: game.i18n.localize("RTUCards.settings.config-actions.actionParams.header") });
 		}
 		
 		// Add radio button selection
@@ -216,8 +216,8 @@ const actionGroupsForGUI = (stack) => {
 			unfolded: groupDef.unfolded,
 			grid: {
 				css: groupDef.grid.css,
-				from: game.i18n.localize( groupDef.grid.fromLabel ?? 'From' ),
-				target: game.i18n.localize( groupDef.grid.targetLabel ?? 'Targets' ),
+				from: game.i18n.localize( groupDef.grid.fromLabel ?? 'RTUCards.settings.config-actions.actionGrid.from' ),
+				target: game.i18n.localize( groupDef.grid.targetLabel ?? 'RTUCards.settings.config-actions.actionGrid.targets' ),
 				lines: computeDisplayedGridLines(groupDef)
 			}, 
 			toggle: {
