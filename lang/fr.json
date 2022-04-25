@@ -8,7 +8,7 @@
     "RTUCards.settings.config-actions.additionalData.warnImplem": "Ce deck utilise une implémentation spécifique pour afficher les cartes. Il est possible qu'une partie des actions ci-dessous soit directement ignorée dans l'implémentation et ne soit pas gérée par ce panneau de configuration.",
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Préfixe pour les libellés : ",
     "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Répertoire pour les images : ",
-    "RTUCards.settings.config-actions.additionalData.overrideConf": "Si déverrouillé, permet de modifier les actions disponibles pour ce deck. À ne faire que si vous êtes certain que le code permettant la déclaration de ce deck n'évoluera plus en terme d'actions disponibles. Vérouillez-le à nouveau si vous voulez repasser sur les actions par défaut.",
+    "RTUCards.settings.config-actions.additionalData.overrideConf": "Si déverrouillé, permet de modifier les actions disponibles pour ce deck. À ne faire que si vous êtes certain que le code permettant la déclaration de ce deck n'évoluera plus en terme d'actions disponibles. Vérrouillez-le à nouveau si vous voulez repasser sur les actions par défaut.",
 
     "RTUCards.settings.config-actions.actionParams.header": "Paramètres correspondants",
     "RTUCards.settings.config-actions.actionParams.buttonText": "Libéllé du bouton",
@@ -142,7 +142,7 @@
 
     "RTUCards.action.rotateCard.label": "Voir la carte à l'envers",
     "RTUCards.action.rotateCard.desc": "Quelquefois, il est plus facile de voir certains détails de la carte en la mettant à l'envers. C'est une simple option de visualisation. N'a pas d'impact sur l'état de la carte.",
-    "RTUCards.action.rotateCard.flip.label": "Voir à l'envers",
+    "RTUCards.action.rotateCard.rotate.label": "Voir à l'envers",
 
     "RTUCards.coreStacks.suffix.deck": " - Deck",
     "RTUCards.coreStacks.suffix.pile": " - Défausse",

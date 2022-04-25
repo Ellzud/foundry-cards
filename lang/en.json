@@ -142,7 +142,7 @@
 
     "RTUCards.action.rotateCard.label": "Rotate the card",
     "RTUCards.action.rotateCard.desc": "Sometimes, it's easier to see things on card where seeing it upside down. Just some IHM option, no impact on the card state.",
-    "RTUCards.action.rotateCard.flip.label": "Rotate the card",
+    "RTUCards.action.rotateCard.rotate.label": "Rotate the card",
 
     "RTUCards.coreStacks.suffix.deck": " - Deck",
     "RTUCards.coreStacks.suffix.pile": " - Discard",

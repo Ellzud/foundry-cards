@@ -256,37 +256,54 @@ export class AvailableActionService {
                 stackSettings.parameters[paramKey] = value;
             });
 
-            // Go through all action groups
-            Object.values(stackData.details).forEach( actionGroup => {
+            const retrieveDefaultConf = stackData.coreParameters.hasOwnProperty("overrideConf") && !stackData.coreParameters.overrideConf;
+            if( retrieveDefaultConf ) { 
+                // Retrieve conf from actual definition
+                const def = game.modules.get('ready-to-use-cards').stacksDefinition;
+                const defaultSettings = def.core[stackData.key]?.defaultSettings ?? {};
+                const defaultActions = defaultSettings.actions ?? {};
+                const defaultLabel = defaultSettings.labels ?? {};
+                const defaultParameters = defaultSettings.parameters ?? {};
 
-                // Persist action choices
-                const usedActions = actionGroup.actions.filter( a => a.available );
-                usedActions.forEach( a => stackSettings.actions[a.confKey] = true );
+                foundry.utils.mergeObject(stackSettings.actions, defaultActions);
+                foundry.utils.mergeObject(stackSettings.labels, defaultLabel);
+                foundry.utils.mergeObject(stackSettings.parameters, defaultParameters);
 
-                // Persist labels
-                const distinctActionKeys = usedActions.reduce( (_distinct, a) => {
-                    if( !_distinct.includes(a.action) ) { _distinct.push( a.action ); }
-                    return _distinct;
-                }, []);
-                distinctActionKeys.forEach( actionKey => {
-                    const labelDef = actionGroup.labels.find( l => l.action === actionKey );
-                    if( labelDef.current != labelDef.default ) {
-                        stackSettings.labels[labelDef.confKey] = labelDef.current;
-                    }
+            } else {
+                // Take what was given in input
+                Object.values(stackData.details).forEach( actionGroup => {
+
+                    // Persist action choices
+                    const usedActions = actionGroup.actions.filter( a => a.available );
+                    usedActions.forEach( a => stackSettings.actions[a.confKey] = true );
+
+                    // Persist labels
+                    const distinctActionKeys = usedActions.reduce( (_distinct, a) => {
+                        if( !_distinct.includes(a.action) ) { _distinct.push( a.action ); }
+                        return _distinct;
+                    }, []);
+                    distinctActionKeys.forEach( actionKey => {
+                        const labelDef = actionGroup.labels.find( l => l.action === actionKey );
+                        if( labelDef.current != labelDef.default ) {
+                            stackSettings.labels[labelDef.confKey] = labelDef.current;
+                        }
+                    });
+
+                    // Persist parameters
+                    actionGroup.parameters.filter( p => {
+                        return distinctActionKeys.includes(p.action);
+                    }).filter( p => {
+                        return p.current != p.default;
+                    }).forEach( p => {
+                        stackSettings.parameters[p.confKey] = p.current;
+                    });
                 });
 
-                // Persist parameters
-                actionGroup.parameters.filter( p => {
-                    return distinctActionKeys.includes(p.action);
-                }).filter( p => {
-                    return p.current != p.default;
-                }).forEach( p => {
-                    stackSettings.parameters[p.confKey] = p.current;
-                });
-            });
+            }
+
 
             // Persist only if there is some data set for this stack
-            if( Object.keys(stackSettings.actions).length > 0 ) {
+            if( Object.keys(stackSettings.actions).length > 0 || Object.keys(stackSettings.parameters).length > 0 ) {
                 newSettings[stackData.key] = stackSettings;
             }
         });
@@ -415,6 +432,13 @@ export class AvailableActionService {
             action: action,
             onLeft: onLeftSide
         }
+    }
+
+    customGUIAction(name, action) {
+        return this.asGUIAction({
+            signature: "custom-action",
+            name: name,
+        }, {action});
     }
 
     /**

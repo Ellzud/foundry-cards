@@ -231,10 +231,8 @@ const actionGroupsForGUI = (stack) => {
 		groupGui.toggle.checkCss = used ? ( fullyUsed ? 'far fa-check-square' : 'far fa-minus-square' ) : 'far fa-square';
 		groupGui.toggle.foldCss = groupDef.unfolded ? 'far fa-folder-open' : 'far fa-folder';
 
-		if( !locked ) {
-			groupGui.toggle.checkCss += ' active';
-			groupGui.toggle.foldCss += ' active';
-		}
+		groupGui.toggle.checkCss += locked ? '' : ' active';
+		groupGui.toggle.foldCss += ' active'; // Can still navigate
 
 		// Action list displays chosen ones, as well as invalid or not chosen
 		groupGui.actions = computeDisplayedOptions(groupDef).map( option => {

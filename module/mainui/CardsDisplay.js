@@ -1043,41 +1043,6 @@ export class CustomCardsDisplay extends CardsConfig {
         this.render();
     }
 
-    async _onClickPlayMultipleCards(event) {
-        const deck = new CustomCardStack(this.currentSelection.source);
-        const coreKey = deck.coreStackRef;
-
-        const maxCards = this._custom.sortedAvailableCards.filter(c => {
-            const ccs = new CustomCardStack(c.source);
-            return ccs.coreStackRef == coreKey;
-        }).length;
-        const options = {
-            maxAmount: Math.max(1, maxCards-1),
-            buttonLabel: this._custom.localizedLabel('sheet.actions.playMultiple') 
-        };
-
-        // Prepare available stacks for selection
-        //----------------------------------------
-        options.fromStacks = [this._custom];
-
-        // For selected card (criteria and callback)
-        //------------------------------------------
-        options.criteria = (card) => { 
-            const ccs = new CustomCardStack(card.source);
-            return ccs.coreStackRef === coreKey; 
-        };
-        options.callBack = async (selection, from, additionalCards) => { 
-            const cardIds = [selection.id];
-            cardIds.push(...additionalCards.map(c => c.id));
-            await this._custom.playCards(cardIds);
-        };
-
-        const selectTitle = this._custom.localizedLabel('sheet.parameters.cards.playTitle');
-        this._actionParameters = new CardActionParametersForCardSelection(this, selectTitle, options );
-
-        this.render();
-    }
-
     async _onClickRevealCard(event) {
         event.preventDefault();
         await this._custom.revealCards([this.currentSelection.id]);
