@@ -102,11 +102,19 @@ cardStacksDefinition.core.event = {
     labelBaseKey : 'AESYSTEM.cards.event.',
     resourceBaseDir : 'systems/acariaempire/resources/cards/event',
     presetLoader: loadEventCards,
-    config: { // Most of the conf is not used here since cardClass is overloaded
-        fromHandDrawCard: false,
-        fromRevealedDrawCard: false,
-        fromHandRotateCard: false,
-        fromRevealedRotateCard: false // Rotation is automatic for spirit cards
+    defaultSettings: { // Will be the actions used by default, if the deck config is not unlocked
+        actions: {
+            'dealCard-GHDE': true,
+            'dealCard-GRDE': true,
+            'dealCard-PHDE': true,
+            'dealCard-PRDE': true,
+        },
+        labels: {
+            'dealCard-deal': 'Event dealing'
+        },
+        parameters: {
+            'moveCard-discardOne-discardAll': '1'
+        }
     }
 };
 ~~~
@@ -133,14 +141,11 @@ cardStacksDefinition.core.xxx.presetLoader: async () => return CardData[]
 
 ### Choosing the available actions
 
-The `config` part will allow you to directly choose which actions will be available on this deck.
+The `defaultSettings.actions` part will allow you to directly choose which actions will be available on this deck.
 
-Missing config keys will be considered as available actions for the deck.
+Missing actions keys will be considered as not chosen for this deck.
 
-All available actions can de found here :
-~~~js
-cardStacksDefinition.shared.configKeys
-~~~
+Check the `StackConfigurationGroup` inside `constants.js` for the diffirent action groups and actions :
 
 ## Before going further : Understanding the `cardClass`
 

@@ -14,42 +14,6 @@
  */
 
 /**
- * Config stored for core stack definition.
- */
-export const StackConfiguration = {
-    fromDeckPeekOn: 'fromDeckPeekOn',
-    fromDeckDealCardsToHand: 'fromDeckDealCardsToHand',//
-    fromDeckDealRevealedCards: 'fromDeckDealRevealedCards',//
-    fromDeckDiscardDirectly: 'fromDeckDiscardDirectly',//
-    fromDeckResetAll: 'fromDeckResetAll',
-    fromDeckShuffleRemainingCards: 'fromDeckShuffleRemainingCards',
-    fromDeckLoopThroughFaces: 'fromDeckLoopThroughFaces',
-    fromDeckRotateCard: 'fromDeckRotateCard',
-    fromHandDrawCard: 'fromHandDrawCard',
-    fromHandPlayCard: 'fromHandPlayCard',//
-    fromHandPlayMultiple: 'fromHandPlayMultiple',
-    fromHandRevealCard: 'fromHandRevealCard',//
-    fromHandExchangeCard: 'fromHandExchangeCard',//
-    fromHandExchangeWithPlayer: 'fromHandExchangeWithPlayer',//
-    fromHandDiscardCard: 'fromHandDiscardCard',//
-    fromHandRotateCard: 'fromHandRotateCard',
-    fromHandLoopThroughFaces: 'fromHandLoopThroughFaces',
-    fromRevealedDrawCard: 'fromRevealedDrawCard',
-    fromRevealedPlayCard: 'fromRevealedPlayCard',//
-    fromRevealedPlayMultiple: 'fromRevealedPlayMultiple',
-    fromRevealedBackToHand: 'fromRevealedBackToHand',//
-    fromRevealedDiscardCard: 'fromRevealedDiscardCard', //
-    fromRevealedRotateCard: 'fromRevealedRotateCard',
-    fromRevealedLoopThroughFaces: 'fromRevealedLoopThroughFaces',
-    fromRevealedExchangeCard: 'fromRevealedExchangeCard',//
-    fromRevealedExchangeWithPlayer: 'fromRevealedExchangeWithPlayer',//
-    fromDiscardBackToDeck: 'fromDiscardBackToDeck',//
-    fromDiscardRotateCard: 'fromDiscardRotateCard',
-    fromDiscardLoopThroughFaces: 'fromDiscardLoopThroughFaces',
-    fromDiscardResetAll: 'fromDiscardResetAll'
-};
-
-/**
  * All target possibilities.
  * Values are also used inside a css grid (Source x Target)
  */

@@ -1,6 +1,6 @@
 import { CARD_STACKS_DEFINITION } from './StackDefinition.js';
 import { CustomCardStack } from './CustomCardStack.js';
-import { DeckParameters, GlobalConfiguration, StackConfiguration } from './constants.js';
+import { GlobalConfiguration } from './constants.js';
 import { cardStackSettings, updateCardStackSettings } from './tools.js';
 import { CustomCardGUIWrapper } from './mainui/CustomCardGUIWrapper.js';
 import { CustomCardSimple } from './mainui/CustomCardSimple.js';
