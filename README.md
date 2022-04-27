@@ -105,7 +105,7 @@ When a deck configuration is locked, you can dwelve into action categories to se
 
 You will first see actions for deck and discard cards. Those actions are for GMs. (Some of them are also accessible to players if you give them ownership on those stacks.)
 
-For each of there action groups, will you be able to define where this action can be done, and by who :
+For each of these action groups, will you be able to define where this action can be done, and by who :
 
 ![Choosing actions grid](docs/README_choosing_action_grid.webp?raw=true)
 
@@ -142,9 +142,11 @@ With this action, the GM may see other player cards, or even the deck cards.
 ![Peeking on warning](docs/README_peek_on_hand_warning.webp?raw=true)
 
 This is what he will see by default :
+
 ![Before peeking on](docs/README_peek_on_hand_default.webp?raw=true)
 
 And once he clicks on the `Peek on content` button :
+
 ![After peeking on](docs/README_peek_on_hand_after.webp?raw=true)
 
 
@@ -161,6 +163,7 @@ Its grid is the most complex one. When you put the mouse cursor on top of one of
 
 
 **All discard in batch**
+
 ![Batch discard](docs/README_choosing_move_params.webp?raw=true)
 
 This will add a button on left side to discard all card of this type. If not set, the discard will need to be done by selecting each card one by one.
@@ -180,9 +183,11 @@ This one has mulitple parameters, allowing different play modes :
 **Show played cards in chat**
 
 By default, only the card name and description is shown in chat. 
+
 ![Basic play message](docs/README_play_card.webp?raw=true)
 
 By setting it to `1`, the card image will also be put in the message.
+
 ![Card shown when played](docs/README_choosing_play_message.webp?raw=true)
 
 **Multiple cards play range**
@@ -204,7 +209,9 @@ You have to use one of the following syntaxes :
 
 Only used if the `Playing card mode` is set to Card cost.
 
-Works like the `Multiple cards plays range` attribute, except that the card will be labelled as discard instead of played. If the `Show played cards in chat` has been set to `1`, those card image won't be displayed in chat. Only the first selected card image will be displayed.
+Works like the `Multiple cards plays range` attribute, except that the card will be labelled as discard instead of played. 
+
+If the `Show played cards in chat` has been set to `1`, those card image won't be displayed in chat. Only the first selected card image will be displayed.
 
 ### Action group : Exchanging card with another player
 
@@ -220,9 +227,10 @@ This action can be done as long as the card is visible for you and you own the s
 
 You also need to have multiple faces for your card or this action won't be displayed.
 
-![Exchanging cards](docs/README_choosing_flip_paramswebp?raw=true)
+![Flipping cards](docs/README_choosing_flip_params.webp?raw=true)
 
 **Card back is included**
+
 By default, the card back is considered as a valid card face, making all cards having at least two faces. You can choose to remove this face from the available faces by setting this parameter to `0`
 
 
@@ -354,8 +362,6 @@ The first two ones are for the chatlog when GM is doing actions
 `Cards in hands` and `Revealed cards` can be toggled to delete players hands or revealed cards. That way, Players will only have one stack to manage. But the related actions won't be available anymore.
 
 `Peek on player's hand` : Uncheck it if you don't want to be tempted !
-
-`Discard all hand` and `Discard all revealed cards` : Thoses actions do not depends on a specific deck and are present even if no cards are selected.
 
 ## For advanced users
 
