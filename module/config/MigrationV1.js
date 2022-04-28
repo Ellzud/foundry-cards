@@ -5,8 +5,10 @@ export const migrateFromV1 = async () => {
     // Old stack values, need to transfer them into new storage system
     let oldStacksSettings =  game.settings.get('ready-to-use-cards', "stacks");
     const newStacksSettings = {};
+    const customDeckIds = []; // The one which have been added via hooks
 
-    if( oldStacksSettings && oldStacksSettings != '') {
+    const someDataInV1 = oldStacksSettings && oldStacksSettings != '';
+    if( someDataInV1 ) {
         
         // Loop through each stack
         const registeredDecksKeys = Object.keys(oldStacksSettings);
@@ -205,6 +207,7 @@ export const migrateFromV1 = async () => {
             });
             if( parameters.hasOwnProperty("core-overrideConf") ) {
                 // For deck added via code, force the overrideConf to be sure everything won't be lost if the other module hasn't been updated
+                customDeckIds.push(deckKey);
                 parameters["core-overrideConf"] = true;
             }
         }
@@ -223,6 +226,21 @@ export const migrateFromV1 = async () => {
             deckSettings.parameters["moveCards-discardOne-discardAll"] = allDisardAllowed ? "1" : "0";
         }
     }
+
+    // A message to warn the GM
+    if( someDataInV1 ) {
+        const templateLoader = await getTemplate('modules/ready-to-use-cards/resources/migrations/v1message.hbs');
+        const message = templateLoader({customDeckIds});
+        ChatMessage.create({
+            content: message,
+            whisper: game.users.filter(u => u.isGM).map(u => u._id),
+            speaker: {
+                alias: game.i18n.localize("RTUCards.migration.fromV1.message.title")
+            }
+        });
+    }
+
+
     await game.settings.set('ready-to-use-cards', "stacksV2", newStacksSettings);
     return VERSION_KEYS.V2;
 }

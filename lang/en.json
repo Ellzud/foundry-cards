@@ -1,4 +1,13 @@
 {
+    "RTUCards.migration.fromV1.message.title": "RTUC - Migrating to V1.10...",
+    "RTUCards.migration.fromV1.message.success": "Your registered decks data have been successfully migrated from previous version",
+    "RTUCards.migration.fromV1.message.hint": "Normally, your players won't see much changes. But you have now more options on what can be allowed to your players. Please check the readme file for more details.",
+    "RTUCards.migration.fromV1.message.noWorry": "You can still go back to previous version.",
+    "RTUCards.migration.fromV1.message.fallback": "No configuration has been deleted. If the new configuration GUI and options displease you, you can downgrade to V1.9.",
+    "RTUCards.migration.fromV1.message.customDecks.warnings": "Some of your decks were build via hooks.",
+    "RTUCards.migration.fromV1.message.customDecks.explain": "Since hook signature has been modified, their action configuration panel avec been unlocked. (To ensure your don't loose your current decks configurations). When you're sure the other modules have ugraded their hooks, please lock back their configuration panels. It will then again map their actions to the ones defined in hooks",
+    "RTUCards.migration.fromV1.message.customDecks.list": "Related decks :",
+
     "RTUCards.settings.config-actions.menu": "Deck configuration menu",
     "RTUCards.settings.config-actions.title": "Setup which decks you want!",
     "RTUCards.settings.config-actions.hint": "Once set, cards stacks will be automatically created",

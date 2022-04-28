@@ -1,4 +1,13 @@
 {
+    "RTUCards.migration.fromV1.message.title": "RTUC - Migration pour la V1.10...",
+    "RTUCards.migration.fromV1.message.success": "Vos decks ont été migrés avec succès vers la version 1.10",
+    "RTUCards.migration.fromV1.message.hint": "Cela ne devrait avoir que très peu d'impact pour vos joueurs. Vous disposez à présent d'options supplémentaires pour configurer les options possibles.",
+    "RTUCards.migration.fromV1.message.noWorry": "La version précédente reste compatible.",
+    "RTUCards.migration.fromV1.message.fallback": "Les données utilisées par la version précédente n'ont pas été supprimées. Si la nouvelle manière de configurer les decks ne vous plait pas, vous pouvez retourner sur la version 1.9",
+    "RTUCards.migration.fromV1.message.customDecks.warnings": "Certains de vos decks ont été initialisés via des hooks.",
+    "RTUCards.migration.fromV1.message.customDecks.explain": "La signature des hooks a changé. Pour éviter que vous perdiez toutes les actions configurées sur vos decks, ils ont été flaggés en configuration manuelle. Une fois que vous êtes certains que le module initialisant les hooks a été mis à jour, verrouillez-les à nouveau. Ils reprendront alors les configurations définies dans les hooks.",
+    "RTUCards.migration.fromV1.message.customDecks.list": "Decks impactés :",
+
     "RTUCards.settings.config-actions.menu": "Configuration des jeux de cartes",
     "RTUCards.settings.config-actions.title": "Choisissez vos decks!",
     "RTUCards.settings.config-actions.hint": "Une fois choisis, les decks et défausses seront créées automatiquement",

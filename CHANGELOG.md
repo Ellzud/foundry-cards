@@ -9,7 +9,7 @@
 ### Translation
 - Removed labels : `RTUCards.settings.sheet.labels.from*`
 - Modified labels : `RTUCards.settings.config-actions.*`
-- Added labels : `RTUCards.action.*`
+- Added labels : `RTUCards.action.*`, `RTUCards.migration.fromV1.*`
 
 ### Issues
 - Error when clicking to open card from chat - "Cannot read properties of null (reading 'stack')"
