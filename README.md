@@ -73,33 +73,174 @@ If you choose the second method, config panel will directly be set on the click 
 
 Each checkbox is linked to a possible action in the main GUI.
 
-### Filtering choice pool
+### Additional data for a deck
 
-There are many available actions. When you have many decks, it can becomes pretty difficult to see if you have done the right configuration for each one.
+Appear when a deck is unfolded. This first paragraph gives you additional information on this deck, and let you decide some general parameters :
 
-To solve this, a prior filtering is available. By using it, you can greatly reduce your choice pool inside each deck :
+![Additional parameters](docs/README_choosing_action_core_parameters.webp?raw=true)
 
-![Choosing actions filtering](docs/README_choosing_action_filtering.webp?raw=true)
+> Those parameters are for an advanced usage of this module. If you just want to know how to select the available actions for your deck, you can skip those details 
 
-When untouched, the filter allow every actions. You can manually remove some or click on the `Recreate filter` button. If you do so, it will disable all actions which are not currently used by your decks.
+**Used prefix for labels**
 
-![Choosing actions filtering](docs/README_choosing_action_filtering_rebuild.webp?raw=true)
+Most of the decks only have this parameter.
 
-> If you choose to rebuild the filter when you have no toggled decks, all actions will be disabled
-
-> If later, you add new decks, they will automatically use the current filter.
-
-### Other parameters
-
-There exists other parameters linked to each decks. If you use pre-generated decks or decks issued from RTUC presets, you won't need to change those :
-
-![Additional parameters](docs/README_choosing_action_parameters.webp?raw=true)
-
-But if you're creating you're own custom decks, you may want to check what those parameters does :
-
-`Used prefix for labels` : Labels for deck name, actions or chat messages are constructed with a prefix depending from the deck. (It will try with the given prefix, and fallback to `RTUCards.default.` if not found ).
+It indicates RTUC where to search for labels when cards of this deck are played. Labels for deck name, actions or chat messages are constructed with a prefix depending from the deck. (It will try with the given prefix, and fallback to `RTUCards.default.` if not found ).
 
 You will have more details on how this works inside [README LABELS](./README_DEVELOPERS.md)
+
+**The deck configuration is locked**
+
+This parameter only appear when a deck has been registred inside RTUC via hooks. By unlocking it, you will be able to modify what has been defined in the hook.
+
+If you lock it back, it will fallback to the default settings defined in the hook.
+
+> With version 1.10.0, the hook signature has slightly changed, and available actions for the deck have to be defined differently.  When migrating from a previous version, this parameters will be set to `unlocked` so that you won't loose your previously defined actions.
+
+> Once you're sure the module/system calling the hook has also been updated, you can lock it back. It will then retrieve the defaultSettings from the hook.
+
+When a deck configuration is locked, you can dwelve into action categories to see which actions have been chosen, but you won't be able to change them.
+
+### Actions are grouped by categories
+
+You will first see actions for deck and discard cards. Those actions are for GMs. (Some of them are also accessible to players if you give them ownership on those stacks.)
+
+For each of these action groups, will you be able to define where this action can be done, and by who :
+
+![Choosing actions grid](docs/README_choosing_action_grid.webp?raw=true)
+
+And depending on which options you took, you will be able to define additionnal properties :
+
+![Choosing actions params](docs/README_choosing_action_params.webp?raw=true)
+
+All those properties have default values. Apart from the button text, a next chapter will describe the utility of each one.
+
+When an action group is folded, the square icon will help you see if you took :
+- All related actions : the box is checked
+- Some of the related actions : the box has a minus sign inside it
+- No related actions have been chosen : the box is empty
+
+Some actions groups have no grid : It just means that there is only on action related to this group.
+
+### Some rules for the card stacks
+
+**Player card stacks rules :**
+- Hand is visible only by owner. Revealed cards are visible by everybody. It's the same for the GM card stacks.
+
+**Decks and Discard piles rules :**
+- Only the GM can do actions on them.
+
+
+### Action group : Peeks on cards
+
+By default, GM can't see a player hand, but there are some cases where it can be useful. Mainly for assisting a player who hasn't understood one of its cards.
+
+With this action, the GM may see other player cards, or even the deck cards.
+
+**If the GM choose to do so, players will be warned**
+
+![Peeking on warning](docs/README_peek_on_hand_warning.webp?raw=true)
+
+This is what he will see by default :
+
+![Before peeking on](docs/README_peek_on_hand_default.webp?raw=true)
+
+And once he clicks on the `Peek on content` button :
+
+![After peeking on](docs/README_peek_on_hand_after.webp?raw=true)
+
+
+### Action group : Moving a card through stacks
+
+It regroups multiple actions, each one making a card go from a stack to another :
+- Discard card
+- Give card
+- Put a card back inside the deck
+
+Its grid is the most complex one. When you put the mouse cursor on top of one of the grid boxes, it will let you see which action is concerned.
+
+![Move through stacks](docs/README_choosing_move_grid.webp?raw=true)
+
+
+**All discard in batch**
+
+![Batch discard](docs/README_choosing_move_params.webp?raw=true)
+
+This will add a button on left side to discard all card of this type. If not set, the discard will need to be done by selecting each card one by one.
+
+### Action group : Play cards
+
+This one has mulitple parameters, allowing different play modes :
+
+![Play cards params](docs/README_choosing_play_params.webp?raw=true)
+
+**Playing card mode**
+
+- Single card : Card play is free. Card are played one by one.
+- Multiple cards : Card play is stil free. You can play multiple cards in one action. See `Multiple cards paly range` for more information.
+- Card cost : For playing a card, you will need to discard some others. See `Amount of discarded cards` for more information
+
+**Show played cards in chat**
+
+By default, only the card name and description is shown in chat. 
+
+![Basic play message](docs/README_play_card.webp?raw=true)
+
+By setting it to `1`, the card image will also be put in the message.
+
+![Card shown when played](docs/README_choosing_play_message.webp?raw=true)
+
+**Multiple cards play range**
+
+Only used if the `Playing card mode` is set to Multiple cards.
+
+When click on the button for playing a card, you will have access to a second panel, allowing you to select additional cards.
+
+![Multiple card selection](docs/README_play_multiple.webp?raw=true)
+
+This parameter allows you to define the min and max amount of cards that have to be added.
+
+You have to use one of the following syntaxes :
+- a range. Example `0-2`. 
+- a simple number. Example : `1`. ***In this case, min and max will have this number value.***
+- a card attribute. Example : `$value`. ***In this case, it will try to retrieve this attribute on the card data. This attribute value should be a number or a range***
+
+**Amount of discarded cards**
+
+Only used if the `Playing card mode` is set to Card cost.
+
+Works like the `Multiple cards plays range` attribute, except that the card will be labelled as discard instead of played. 
+
+If the `Show played cards in chat` has been set to `1`, those card image won't be displayed in chat. Only the first selected card image will be displayed.
+
+### Action group : Exchanging card with another player
+
+For this action, you need to choose two things :
+- With who you want to exchange cards
+- Selecting the card to exchange with inside his hand or revealed cards
+
+![Exchanging cards](docs/README_exchange_cards.webp?raw=true)
+
+### Action group : Looping through card faces
+
+This action can be done as long as the card is visible for you and you own the stack.
+
+You also need to have multiple faces for your card or this action won't be displayed.
+
+![Flipping cards](docs/README_choosing_flip_params.webp?raw=true)
+
+**Card back is included**
+
+By default, the card back is considered as a valid card face, making all cards having at least two faces. You can choose to remove this face from the available faces by setting this parameter to `0`
+
+
+### Action group : Rotating selected card
+
+This one is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
+
+Mainly useful for cards who can be read from the two ways.
+
+
 
 ## Changing icons and card default background
 
@@ -115,69 +256,6 @@ Be it Actors, Items, or Card stacks, their are represented inside Chat or Right 
 
 ![Additional parameters](docs/README_icons_and_back.webp?raw=true)
 
-
-## Understanding the GUI
-
-### Rules
-
-**Player card stacks rules :**
-- Hand is visible only by owner. Revealed cards are visible by everybody. It's the same for the GM card stacks.
-
-**Decks and Discard piles rules :**
-- Only the GM can do actions on them.
-
-### Action example : GM peeks on a player card hands
-
-Did I say otherwise just several lines earlier ? By default, GM can't see a player hand, but there are some cases where it can be useful. Mainly for assisting a player who hasn't understood one of its cards.
-
-**If the GM choose to do so, players will be warned**
-
-![Peeking on warning](docs/README_peek_on_hand_warning.webp?raw=true)
-
-This is what he will see by default :
-![Before peeking on](docs/README_peek_on_hand_default.webp?raw=true)
-
-And once he clicks on the `Peek on content` button :
-![After peeking on](docs/README_peek_on_hand_after.webp?raw=true)
-
-
-### Action example : Dealing cards
-
-For this action, destination targets will differ depending on what has been configured :
-
-![Dealing cards](docs/README_deal_cards.webp?raw=true)
-
-### Action example : Play multiple cards
-
-For this action, you can select additionnal cards after selecting the first one :
-
-![Playing multiple cards](docs/README_play_multiple.webp?raw=true)
-
-### Action example : Exchanging card with another player
-
-For this action, you need to choose two things :
-- With who you want to exchange cards
-- Selecting the card to exchange with inside his hand or revealed cards
-
-![Exchange cards](docs/README_exchange_cards.webp?raw=true)
-
-### Action example : Looping through card faces
-
-This action can be done as long as the card is visible for you and you own the stack.
-
-![Looping through cards](docs/README_loop_through_faces.webp?raw=true)
-
-You also need to have multiple faces for your card or this action won't be displayed.
-
-> By default, the card back is considered as a valid card face, making all cards having at least two faces. You can remove this parameter here :
-
-![Removing card back face](docs/README_loop_through_faces_removed.webp?raw=true)
-
-
-### Action example : Rotating selected card
-
-This one is slightly different from the others : It actually doesn't add any changes to the card. Only the GUI is altered. The card is put upside down.
-Mainly useful for cards who can be read from the two ways.
 
 
 ## Using Hand and Revealed cards summary
@@ -284,8 +362,6 @@ The first two ones are for the chatlog when GM is doing actions
 `Cards in hands` and `Revealed cards` can be toggled to delete players hands or revealed cards. That way, Players will only have one stack to manage. But the related actions won't be available anymore.
 
 `Peek on player's hand` : Uncheck it if you don't want to be tempted !
-
-`Discard all hand` and `Discard all revealed cards` : Thoses actions do not depends on a specific deck and are present even if no cards are selected.
 
 ## For advanced users
 

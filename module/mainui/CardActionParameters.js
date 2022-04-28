@@ -1,5 +1,5 @@
-import { CustomCardStack } from "./CustomCardStack.js";
-import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { CustomCardStack } from "../CustomCardStack.js";
+import { GlobalConfiguration } from "../constants.js";
 
 const loadStackDataInfos = ( customStack, selectedStackIds ) => { 
 
@@ -40,6 +40,48 @@ const loadStackDataInfos = ( customStack, selectedStackIds ) => {
 }
 
 
+/**
+ * Deduce selectable stacks from a list of StackTargetPossibilities
+ * @param {string[]} availableTargets List of StackTargetPossibilities
+ * @param {boolean} includeSelf if you can target your own stacks
+ * @returns {CustomCardStack[]} Selectable stacks
+ */
+const deduceStacksFromAvailableTargets = ( availableTargets, includeSelf) => {
+
+    const stacks = game.cards.map( stack => {
+        return new CustomCardStack(stack);
+    }).filter( (customCardStack) => {
+        const stackOwner = customCardStack.stackOwner;
+        if( stackOwner.forGMs ) {
+            if( customCardStack.stack.type === "hand" ) {
+                return availableTargets.includes("GH");
+            } else {
+                return availableTargets.includes("GR");
+            }
+
+        } else if( stackOwner.forPlayers ) {
+            if( !includeSelf && stackOwner.playedId === game.user.id) {
+                return false;
+            }
+
+            if( customCardStack.stack.type === "hand" ) {
+                return availableTargets.includes("PH");
+            } else {
+                return availableTargets.includes("PR");
+            }
+
+        } else if( stackOwner.forNobody ) {
+            if( customCardStack.stack.type === "deck" ) {
+                return availableTargets.includes("DE");
+            } else {
+                return availableTargets.includes("DI");
+            }
+        }
+
+        return false;
+    });
+    return stacks;
+}
 
 
 export class CardActionParametersBase {
@@ -75,14 +117,16 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      * Used to inform the GUI that the user needs to select some additional cards
      * @param {CustomCardsDisplay} sheet The sheet where those paramters will be chosen
      * @param {string} actionTitle What will be displayed on top of the selection
-     * @param {CustomCardStack[]} [fromStacks] Available stacks from which the cards could be displayed. null means it will be the cards of the current deck
+     * @param {CustomCardStack[]} [fromStacks] Available target stacks. (Pick this or [availableTargets])
+     * @param {string[]} [availableTargets] For building fromStacks criteria. Should contains some StackTargetPossibilities (Pick this or [fromStacks])
+     * @param {boolean} [includeSelf] Used with [availableTargets]. Allow to target his own stacks
      * @param {int} [minAmount] min amount of cards which needs to be selected before the 'OK' button becomes available
      * @param {int} [maxAmount] max amount
      * @param {string} [buttonLabel] What the say inside the ok button.
      * @param {*} [criteria] Applied to availableCards for filter. If null, all cards will be available
      * @param {*} [callBack] What to call once cards have been selected. If null, it will call playCards with all ids.
      */
-    constructor( sheet, actionTitle, {fromStacks=null, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
+    constructor( sheet, actionTitle, {fromStacks=null, availableTargets=[], includeSelf=false, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
         super(sheet, actionTitle);
 
         const defaultCriteria = (c) => { return true; };
@@ -92,13 +136,9 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
             return this.sheet.cards.playCards(cardIds);
         };
 
-        if( !fromStacks || fromStacks.length == 0 ) {
-            this.from = new CustomCardStack(this.sheet._cards);
-            this.availableStacks = [this.from];
-        } else {
-            this.from = fromStacks.length > 1 ? null : fromStacks[0];
-            this.availableStacks = fromStacks;
-        }
+        // If more than one choice, let the user decide
+        this.availableStacks = fromStacks ?? deduceStacksFromAvailableTargets(availableTargets, includeSelf);
+        this.from = this.availableStacks.length > 1 ? null : this.availableStacks[0];
 
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
@@ -228,24 +268,16 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
      * @param {string} actionTitle What will be displayed on top of the selection
      * @param {boolean} [specifyAmount] If the user should specifiy an mount on top of selecting users
      * @param {boolean} [onlyOne] If only one stack can be selected. In that case, selection will remove previous one
-     * @param {boolean} [gmIncluded] If gm piles should be displayed
      * @param {string} [buttonLabel] What the say inside the ok button.
-     * @param {*} [criteria] Applied to stacks for filter. If null, all player stacks will be available
+     * @param {CustomCardStack[]} [fromStacks] Available target stacks. (Pick this or [availableTargets])
+     * @param {string[]} [availableTargets] For building fromStacks criteria. Should contains some StackTargetPossibilities (Pick this or [fromStacks])
+     * @param {boolean} [includeSelf] Used with [availableTargets]. Allow to target his own stacks
      * @param {*} [callBack] What to call once cards have been selected. If null, it will call dealCards to all selected players
      */
-    constructor( sheet, actionTitle, {specifyAmount = false, onlyOne = false, gmIncluded = true, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
+    constructor( sheet, actionTitle, {specifyAmount = false, onlyOne = false, fromStacks = null, availableTargets = [], includeSelf=false, buttonLabel = 'ok', callBack = null}={} ) {
         super(sheet, actionTitle);
 
         const deck = new CustomCardStack( this.sheet._cards );
-        const deckConfig = deck.stackConfig;
-        const keys = StackConfiguration;
-    
-        const defaultCriteria = (ccs) => { 
-
-            const isHandStack = ccs.stack.type == 'hand';
-            if( isHandStack ) { return deckConfig[keys.fromDeckDealCardsToHand]; }
-            return deckConfig[keys.fromDeckDealRevealedCards]; ;
-        };
         const defaultCallback = async (selection, selectedStacks, amount) => { 
             await deck.dealCards(selectedStacks, amount);
         };
@@ -256,41 +288,11 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
         this.onlyOne = onlyOne;
         this.amount = 1;
 
-        this.gmIncluded = gmIncluded;
         this.selectedStackIds = [];
         this.gmSelected = false;
 
-        this.criteria = criteria ?? defaultCriteria;
+        this.fromStacks = fromStacks ?? deduceStacksFromAvailableTargets(availableTargets, includeSelf);
         this.callBack = callBack ?? defaultCallback;
-    }
-
-    get filteredStacks() {
-
-        const result = game.cards.map( stack => {
-            return new CustomCardStack(stack);
-
-        }).filter( ccs => {
-            const owner = ccs.stackOwner;
-
-            if( owner.forGMs ) {
-                if( !this.gmIncluded ) { 
-                    return false; 
-                }
-
-            } else if( owner.forPlayers ) {
-                const user = game.users.get(owner.playerId);
-                if(!user) { 
-                    return false; 
-                }
-
-            } else { // Deck and discard piles are not available here
-                return false; 
-            }
-
-            return this.criteria(ccs);
-        });
-
-        return result;
     }
 
     /**
@@ -311,14 +313,12 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
             button: this.buttonLabel
         };
 
-        const base = this.filteredStacks;
-
-        const handsInfo = base.filter( ccs => ccs.stack.type == 'hand' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
+        const handsInfo = this.fromStacks.filter( ccs => ccs.stack.type == 'hand' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
         handsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.hands = handsInfo;
         parameters.handsDisplayed = handsInfo.length > 0;
 
-        const revealedCardsInfo = base.filter( ccs => ccs.stack.type == 'pile' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
+        const revealedCardsInfo = this.fromStacks.filter( ccs => ccs.stack.type == 'pile' ).map( ccs => loadStackDataInfos(ccs, this.selectedStackIds) );
         revealedCardsInfo.sort( (a,b) => a.name.localeCompare(b.name) );
         parameters.revealedCards = revealedCardsInfo;
         parameters.revealedCardsDisplayed = revealedCardsInfo.length > 0;
@@ -367,7 +367,7 @@ export class CardActionParametersForPlayerSelection extends CardActionParameters
 
     async onClickPerformAction(event) {
         event.preventDefault();
-        const selectedStacks = this.filteredStacks.filter( c => this.selectedStackIds.includes(c.stack.id) );
+        const selectedStacks = this.fromStacks.filter( c => this.selectedStackIds.includes(c.stack.id) );
         await this.callBack(this.sheet.currentSelection, selectedStacks, this.amount);
         this.resumeAction();
     }

@@ -1,5 +1,4 @@
-import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
-import { CardActionsClasses, StackConfiguration } from './constants.js';
+import { CardActionParametersBase, CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './mainui/CardActionParameters.js';
 
 
 /* -------------------------------------------- */
@@ -15,7 +14,7 @@ import { CardActionsClasses, StackConfiguration } from './constants.js';
  * @property {string} [customDesc]      Description for this deck and discard pile. If not set, descirption will be retrieved from a subkey of labelBaseKey
  * @property {string} [preset]          Either preset or presetLoader should be present. Path to this deck preset.
  * @property {function} [presetLoader]  Should be an async function taking no parameters and return à list of cardData. Will be used to fill the deck
- * @property {object} [config]          Each child has for key one of the CardActionsClasses. As for value, its a boolean. True means the option is taken. Missing configs will be considered as taken.
+ * @property {object} [defaultSettings] Settings which will be store in flags on load as long as overrideConf is not set. See AvailableActionService for more details.
  */
 
 
@@ -48,8 +47,6 @@ export const CARD_STACKS_DEFINITION = {
         // childs will be added during load. Each child should follow the CoreStackDefinition
     },
     shared: { // To share some const enums and some basic implems
-        actionCss: CardActionsClasses,
-        configKeys: StackConfiguration,
         actionParametersClasses: {
             base: CardActionParametersBase,
             cardSelection: CardActionParametersForCardSelection,

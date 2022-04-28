@@ -1,4 +1,4 @@
-import { SingleCardDisplay } from "./SingleCardDisplay.js";
+import { SingleCardDisplay } from "./mainui/SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
     const flags = message.data.flags;
@@ -53,7 +53,7 @@ export const alterCardMessage = (message, html) => {
         for( const current of customPool ) {
             if(card) { continue; }
             custom = current;
-            card = current.stack.cards.find(c => c.data.name === cardName);
+            card = current?.stack.cards.find(c => c.data.name === cardName);
         }
 
         // Second : Card wasn't found on stack. Maybe it has already been played?

@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Release 1.10.0
+
+### Features
+- Big changes on Action config panel. Check Readme for more details
+- Allowing card image to be displayed in chat when the card is played.
+
+### Translation
+- Removed labels : `RTUCards.settings.sheet.labels.from*`
+- Modified labels : `RTUCards.settings.config-actions.*`
+- Added labels : `RTUCards.action.*`, `RTUCards.migration.fromV1.*`
+
+### Issues
+- Error when clicking to open card from chat - "Cannot read properties of null (reading 'stack')"
+
+
 ## Release 1.9.0
 
 ### Features

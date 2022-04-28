@@ -1,4 +1,4 @@
-import { GlobalConfiguration, StackConfiguration } from "./constants.js";
+import { GlobalConfiguration } from "./constants.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 export const cardStackSettings = () => {
@@ -9,25 +9,6 @@ export const cardStackSettings = () => {
 
 export const updateCardStackSettings = async (newSettings) => {
 	const result = await game.settings.set('ready-to-use-cards', GlobalConfiguration.stacks, newSettings ?? {} );
-	return result;
-}
-
-
-export const cardFilterSettings = () => {
-	let filter = game.settings.get('ready-to-use-cards', GlobalConfiguration.filter);
-	if( !filter || filter == '' ) { filter = {}; }
-
-	Object.values(StackConfiguration).forEach( key => {
-		if( !filter.hasOwnProperty(key) ) {
-			filter[key] = true;
-		}
-	});
-	
-	return filter;
-}
-
-export const updateCardFilterSettings = async (newFilter) => {
-	const result = await game.settings.set('ready-to-use-cards', GlobalConfiguration.filter, newFilter ?? {} );
 	return result;
 }
 

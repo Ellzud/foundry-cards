@@ -1,13 +1,13 @@
-import { cardFilterSettings, cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
-import { DeckParameters, GlobalConfiguration, StackConfiguration } from "./constants.js";
-import { CustomCardGUIWrapper } from "./CustomCardGUIWrapper.js";
+import { cardStackSettings, deckBacksSettings, updateCardStackSettings, updateDeckBacksSettings } from "./tools.js";
+import { GlobalConfiguration } from "./constants.js";
+import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
 
 const assertStackIsNotADiscardPile = ( customCardStack ) => {
 
     const discardPiles = Object.values(customCardStack.cardStacks.piles);
     if( discardPiles.find( p => p == customCardStack ) ) {
-        throw 'Cards already in discard can\'t be discareded'; 
+        throw 'Cards already in discard can\'t be discarded'; 
     }
 }
 
@@ -38,14 +38,35 @@ const assertStackType = ( customCardStack, {decks=false, hands=false, piles=fals
     }
 }
 
+/**
+ * Process the options for soon to be discarded cards
+ * @param {Cards} discardStack Where the cards will go
+ */
+const optionsForDiscardedCards = ( discardStack ) => {
+    const options = {
+        chatNotification: false
+    };
+    const maxDiscardOrder = discardStack.availableCards.reduce( (_max, _card) => {
+        const order = _card.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+        return Math.max(_max, order);
+    }, 0);
+    
+    const discardFlags = {};
+    discardFlags['flags.ready-to-use-cards.discardOrder'] = maxDiscardOrder + 1;
+    options.updateData = discardFlags;
+    return options;
+}
+
 export class CustomCardStack {
 
     constructor(stack) {
         this._stack = stack;
+        this.module = game.modules.get('ready-to-use-cards');
 
         // Some actions calls a reset. Also reset our flags
         const resetingFlags = {};
         resetingFlags['flags.ready-to-use-cards.currentFace'] = 0;
+        resetingFlags['flags.ready-to-use-cards.discardOrder'] = 0;
         this._resetingOptions = {
             chatNotification: false,
             updateData: resetingFlags    
@@ -73,6 +94,23 @@ export class CustomCardStack {
         return this.stack.getFlag("ready-to-use-cards", "core");
     }
 
+    /**
+     * Prefix used by ActionService to differenciate actions
+     */
+     get prefixForActions() {
+        const stackOwner = this.stackOwner;
+        const type = this._stack.type;
+        if( stackOwner.forNobody ) {
+            return type == 'deck' ? "DE" :  "DI";
+        } 
+        
+        if( stackOwner.forGMs ) {
+            return type == 'hand' ? "GH" :  "GR";
+        }
+
+        return type == 'hand' ? "PH" :  "PR";
+    }
+
     get backIcon() {
         return deckBacksSettings(this.coreStackRef).deckIcon;
     }
@@ -87,19 +125,6 @@ export class CustomCardStack {
 
     get frontDefaultImage() {
         return deckBacksSettings(this.coreStackRef).discardBg;
-    }
-
-    /**
-     * Some actions loops through the cards.
-     * If this is TRUE, the card back is added as the last face of the card.
-     * It's true by default. You can change it inside the action config panel.
-     * Is using DeckParameters.removeBackFace to see if it's true or not
-     */
-    get cardBackIsConsideredAsAFaceWhenLooping() {
-        const coreRef = this.coreStackRef;
-        const coreDef = CARD_STACKS_DEFINITION.core[coreRef];
-        const removed = coreDef[DeckParameters.removeBackFace] ?? false;
-        return !removed;
     }
 
     /**
@@ -135,6 +160,7 @@ export class CustomCardStack {
         return label.replace('STACK', this.stack.name).replace('CORE', coreTitle);
     }
     
+    /** @returns {CustomCardStackLoader} the loaded, which also reference all stacks */
     get cardStacks() {
 		return game.modules.get('ready-to-use-cards').cardStacks;
     }
@@ -157,43 +183,48 @@ export class CustomCardStack {
         return result;
     }
 
-    get stackConfig() {
-        const coreKey = this.coreStackRef;
-        if( coreKey ) {
-            const config = duplicate(CARD_STACKS_DEFINITION.core[coreKey].config); // Do not directly edit config. Read only
-
-            Object.values(StackConfiguration).forEach(confKey => { // By default all missing config are set to true
-                if( !config.hasOwnProperty(confKey) ) {  config[confKey] = true;}
-            });
-
-            // If players hands have been removed, some confs are automatically set to false.
-            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerHand) ) {
-                config[StackConfiguration.fromDeckDealCardsToHand] = false;
-                config[StackConfiguration.fromRevealedBackToHand] = false;
-            }
-
-            if( !game.settings.get("ready-to-use-cards", GlobalConfiguration.stackForPlayerRevealedCards) ) {
-                config[StackConfiguration.fromDeckDealRevealedCards] = false;
-                config[StackConfiguration.fromHandRevealCard] = false;
-            }
-            return config;
-
-        }
-        return null;
-    }
-
+    /**
+     * Available cards are sorted by types
+     */
     get sortedAvailableCards() {
+        const isMainDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === this.stack.id );
         const cards = this.stack.availableCards;
         cards.sort( (a,b) => {
+            // First comparison on card source deck
             const aCore = ( new CustomCardStack(a.source) ).coreStackRef ?? '';
             const bCore = ( new CustomCardStack(b.source) ).coreStackRef ?? '';
-            let sort = aCore.localeCompare(bCore);
-            if(!sort) {
-                sort = a.data.sort - b.data.sort;
+            let result = aCore.localeCompare(bCore);
+            if( result != 0 ) { return result; }
+
+            // Main discard have an additionnal sorting order
+            if( isMainDiscard ) {
+                const aSort = a.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+                const bSort = b.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
+                if( aSort != bSort ) {
+                    return bSort - aSort; // Last removed one on top
+                }
             }
-            return sort;
+
+            // Default sort
+            return a.data.sort - b.data.sort;
         });
         return cards;
+    }
+
+    /**
+     * Loop through all available cards and retrieve related coreStackRef
+     * @returns {CustomCardStack[]} Distinct core stack refs
+     */
+    get decksOfAvailableCards() {
+        const decks = this.sortedAvailableCards.reduce( (_decks, _card) => {
+            const customDeck = new CustomCardStack(_card.source);
+            const key = customDeck.coreStackRef;
+
+            const alreadyAdded = _decks.some( d => d.coreStackRef === key );
+            if( !alreadyAdded ) { _decks.push(customDeck); }
+            return _decks;
+        }, []);
+        return decks;
     }
 
     get ownedByCurrentPlayer() {
@@ -261,18 +292,12 @@ export class CustomCardStack {
         updateData['flags.ready-to-use-cards'] = flags;
         await this.stack.update(updateData);
 
-        // 2: Flag this coreStack as chosen in settings
-        const stackSettings = cardFilterSettings();
-        if(defaultParameters) {
-            stackSettings['parameters'] = defaultParameters;
-        }
-
         const chosenStacks = cardStackSettings();
-        chosenStacks[this.stack.id] = stackSettings;
+        chosenStacks[this.stack.id] = this.module.actionService.createSettingsForNewStack(this.stack);
         await updateCardStackSettings(chosenStacks);
 
         // 3: Reload all stacks
-        const cardStacks = game.modules.get('ready-to-use-cards').cardStacks;
+        const cardStacks = this.module.cardStacks;
         await cardStacks.loadCardStacks();
     }
 
@@ -388,17 +413,18 @@ export class CustomCardStack {
      * @param {string} flavor message flavor
      * @param {Card[]} cards List of cards which should be listed
      * @param {boolean} [addCardDescription] : If description should be added for each card
+     * @param {boolean} [displayCardImage] : Card image should also be added to chat
      * @param {boolean} [hideToStrangers] : If message should be hidden to strangers
      * @param {string} [sentToDiscard] : Discard stack id. When message is displayed, it will check if the player has enough rights to see the discard. If not, the card will be hidden
      * @param {boolean} [letGMSpeak] : If true, message will be formated as if it came from gmHand manipulaition
      */
-     async sendMessageForCards(flavor, cards, {addCardDescription=false, hideToStrangers=false, sentToDiscard=null, letGMSpeak=false} = {}) {
+     async sendMessageForCards(flavor, cards, {addCardDescription=false, displayCardImage=false, hideToStrangers=false, sentToDiscard=null, letGMSpeak=false} = {}) {
 
         const from = letGMSpeak? this.cardStacks.gmHand : this;
         const data = { cards: [] };
         for( const card of cards ) {
             const wrapper = new CustomCardGUIWrapper(card);
-            const line = wrapper.buildCardInfoForListing(from, addCardDescription);
+            const line = wrapper.buildCardInfoForListing(from, addCardDescription, displayCardImage);
             data.cards.push( line );
         }
 
@@ -470,9 +496,16 @@ export class CustomCardStack {
         const stackType = this.stack.type;
         const inHand = stackType == 'hand';
 
-        const drawnCards = await this.stack.draw( from.stack, amount, {chatNotification: false} );
+        const cardIds = from.sortedAvailableCards.filter( (card, index) => {
+            return index < amount;
+        }).map( card => {
+            return card.id;
+        });
 
-        const flavor = this.getCardMessageFlavor(stackType, 'draw', drawnCards.length);
+        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: false} );
+
+        const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
+        const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
 
         await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: inHand});
 
@@ -481,14 +514,14 @@ export class CustomCardStack {
 
     /**
      * Give some cards to a player
+     * Do not use it to discard cards
      * @param {CustomCardStack} to The player which will receive the card
      * @param {string[]} cardIds The cards which should be transfered
      * @returns {Card[]} The transfered cards
      */
      async giveCards(to, cardIds) {
 
-        assertStackOwner(this, {forNobody: true});
-        assertStackType(this, {decks: true});
+        assertStackIsNotADiscardPile(this);
 
         const stackType = to.stack.type;
         const inHand = stackType == 'hand';
@@ -521,7 +554,10 @@ export class CustomCardStack {
 
         const target = withStack.stack;
 
-        const givenCards = await this.stack.pass( target, myCardIds, {chatNotification: false} );
+        const targetIsDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === target.id );
+        const giveOptions = targetIsDiscard ? optionsForDiscardedCards(target) : {chatNotification: false};
+        const givenCards = await this.stack.pass( target, myCardIds, giveOptions );
+
         const receivedCards = await target.pass( this.stack, receivedCardsId, {chatNotification: false} );
 
         const allCards = [];
@@ -557,7 +593,8 @@ export class CustomCardStack {
                     return custom.coreStackRef === coreKey;
                 }
             });
-            const cards = await this.stack.pass( pile.stack, ids, {chatNotification: false});
+            const options = optionsForDiscardedCards(pile.stack);
+            const cards = await this.stack.pass( pile.stack, ids, options);
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
@@ -648,7 +685,7 @@ export class CustomCardStack {
      * @param {string[]} cardsIds cards Ids
      * @returns {Card[]} The played cards (now in discard pile)
      */
-     async playCards(cardsIds) {
+     async playCards(cardsIds, {displayedInChat=false}={}) {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
         assertStackType(this, {hands: true, piles: true});
@@ -666,7 +703,7 @@ export class CustomCardStack {
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor('hand', 'play', cards.length, {alternativeCoreKey: coreKey});
-                await this.sendMessageForCards(flavor, cards, {addCardDescription: true});
+                await this.sendMessageForCards(flavor, cards, {addCardDescription: true, displayCardImage: displayedInChat});
         
                 playedCards.push( ...cards);
             }
@@ -723,6 +760,35 @@ export class CustomCardStack {
         await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'shuffle', 1);
+        await this.sendMessageForStacks(flavor, []);
+    }
+
+    /** 
+     * Shuffle the discard.
+     * Actually only update flags on each cards
+     */
+     async shuffleDiscard() {
+
+        assertStackOwner(this, {forNobody: true});
+        assertStackType(this, {piles: true});
+
+        // New sort for the cards
+        const twist = new MersenneTwister(Date.now());
+        const forSorting = this.stack.availableCards.map(c => {
+            return {newOrder: twist.random(), card: c};
+        });
+        forSorting.sort((a, b) => a.newOrder - b.newOrder);
+
+        // All updated in one go
+        const toUpdate = forSorting.map((cardSort, index) => {
+            const updatedData = { _id: cardSort.card.id };
+            updatedData['flags.ready-to-use-cards.discardOrder'] = index;
+            return updatedData;
+        });
+        await this.stack.updateEmbeddedDocuments("Card", toUpdate);
+
+        // Sending message
+        const flavor = this.getCardMessageFlavor('discard', 'shuffle', 1);
         await this.sendMessageForStacks(flavor, []);
     }
 

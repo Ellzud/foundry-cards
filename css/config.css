@@ -12,43 +12,161 @@
   padding: 3px;
   line-height: 18px;
   align-items: center;
-}
-
-.rtucards-config-actions .deck-row.content {
   margin-left: 20px;
   border-left: solid darkgray;
   font-style: italic;
 }
 
-.rtucards-config-actions .deck-row.content.header {
+.rtucards-config-actions .deck-row.header {
   padding-top: 10px;
   font-style: unset;
   text-decoration: underline;
 }
 
-.rtucards-config-actions .deck-row.content.conf {
-  padding-left: 10px;
+.rtucards-config-actions .deck-row.details {
+  padding: 0px 3px;
 }
 
-.rtucards-config-actions .deck-row .toggle-button {
+.rtucards-config-actions .details .unfolded-margin {
   flex: unset;
-  padding-top: 2px;
-  margin-right: 5px;
-  opacity: 0.6;
+  height: 20px;
 }
 
-.rtucards-config-actions .deck-row.action .toggle-button {
-  min-width: 18px;
+.rtucards-config-actions .details .line {
+  padding: 3px;
+  line-height: 18px;
+  align-items: center;
+}
+
+.rtucards-config-actions .details .line .action-title {
+  font-style: initial;
+  text-decoration: underline;
+}
+
+.rtucards-config-actions .details .line .action-param {
+  max-width: fit-content;
+  margin-right: 10px;
+}
+
+
+.rtucards-config-actions .details .group-tab {
+  border: groove;
+  border-radius: 1px;
   text-align: center;
+  margin: 0px 2px;
+  opacity: 0.5;
 }
 
-.rtucards-config-actions .deck-row .toggle-button.active {
+.rtucards-config-actions .details .group-tab.selected {
+  opacity: 1;
+}
+
+.rtucards-config-actions .details .group-tab:hover {
   opacity: 1;
   cursor: pointer;
 }
 
-.rtucards-config-actions .deck-row .toggle-button.active:hover {
+.rtucards-config-actions .toggle-button {
+  flex: unset;
+  padding-top: 2px;
+  margin-right: 5px;
+  opacity: 0.3;
+}
+
+.rtucards-config-actions .toggle-button.exact-width {
+  min-width: 18px;
+  text-align: center;
+}
+
+.rtucards-config-actions .toggle-button.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.rtucards-config-actions .toggle-button.active:hover {
   text-shadow: 0 0 4px darkblue;
+}
+
+.rtucards-config-actions .action-grid {
+  display: grid;
+  margin-left: 20px;
+  font-style: italic;
+  padding-top: 5px;
+}
+
+.rtucards-config-actions .action-grid.all-targets {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-DE T-DE DEDE DIDE GHDE GRDE PHDE PRDE'
+    'T-DI T-DI DEDI DIDI GHDI GRDI PHDI PRDI'
+    'T-Gx T-GH DEGH DIGH GHGH GRGH PHGH PRGH'
+    'T-Gx T-GR DEGR DIGR GHGR GRGR PHGR PRGR'
+    'T-Px T-PH DEPH DIPH GHPH GRPH PHPH PRPH'
+    'T-Px T-PR DEPR DIPR GHPR GRPR PHPR PRPR';
+}
+
+.rtucards-config-actions .action-grid.no-target {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-NO T-NO DEDE DIDI GHGH GRGR PHPH PRPR';
+}
+
+.rtucards-config-actions .action-grid.no-deck {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-DI T-DI DEDI DIDI GHDI GRDI PHDI PRDI'
+    'T-Gx T-GH DEGH DIGH GHGH GRGH PHGH PRGH'
+    'T-Gx T-GR DEGR DIGR GHGR GRGR PHGR PRGR'
+    'T-Px T-PH DEPH DIPH GHPH GRPH PHPH PRPH'
+    'T-Px T-PR DEPR DIPR GHPR GRPR PHPR PRPR';
+}
+
+.rtucards-config-actions .action-grid.user-only {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-Gx T-GH DEGH DIGH GHGH GRGH PHGH PRGH'
+    'T-Gx T-GR DEGR DIGR GHGR GRGR PHGR PRGR'
+    'T-Px T-PH DEPH DIPH GHPH GRPH PHPH PRPH'
+    'T-Px T-PR DEPR DIPR GHPR GRPR PHPR PRPR';
+}
+
+.rtucards-config-actions .action-grid.deck-only  {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-DE T-DE DEDE DIDE GHDE GRDE PHDE PRDE';
+}
+
+.rtucards-config-actions .action-grid.discard-only {
+  grid-template-areas:
+    'Fxxx Fxxx F-DE F-DI F-Gx F-Gx F-Px F-Px'
+    'Txxx Txxx F-DE F-DI F-GH F-GR F-PH F-PR'
+    'T-DI T-DI DEDI DIDI GHDI GRDI PHDI PRDI';
+}
+
+.rtucards-config-actions .action-grid div {
+  border: groove 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rtucards-config-actions .action-grid div.left-col {
+  padding: 0px 5px;
+  justify-content: left;
+}
+
+.rtucards-config-actions .action-grid div.right-col {
+  padding: 0px 5px;
+  justify-content: right;
+}
+
+.rtucards-config-actions .action-grid div.header {
+  background-color: rgba(0,0,0,0.05);
 }
 
 /* ------------------------

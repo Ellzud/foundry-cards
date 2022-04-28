@@ -3,8 +3,8 @@
    It handle basic CustomCard behavior and can be extends for additional features
 -----------------------------------------------------------------------------------*/
 
-import { CustomCardStack } from "./CustomCardStack.js";
-import { CARD_STACKS_DEFINITION } from "./StackDefinition.js";
+import { CustomCardStack } from "../CustomCardStack.js";
+import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
 
 
 export class CustomCardGUIWrapper {
@@ -17,6 +17,10 @@ export class CustomCardGUIWrapper {
         const coreKey = this._custom.coreStackRef;
         const cls = CARD_STACKS_DEFINITION.core[coreKey].cardClass;
         this._wrapped = new cls(card);
+
+        const module = game.modules.get('ready-to-use-cards');
+        this.actionService = module.actionService;
+        this.paramService = module.parameterService;
     }
 
     get card() {
@@ -61,8 +65,10 @@ export class CustomCardGUIWrapper {
                 return data;
             });
     
-            const setting = this._custom.cardBackIsConsideredAsAFaceWhenLooping;
-            if( setting ) {
+            const backIncluded = this.paramService.parseBoolean(
+                this.paramService.getParam(this._custom.coreStackRef, "flipCard", "flip", "includeBack").current
+            );
+            if( backIncluded ) {
                 const back = {
                     name: this._card.data.back?.name,
                     text: this._card.data.back?.text,
@@ -140,25 +146,11 @@ export class CustomCardGUIWrapper {
      */
     shouldBeRotated( rotatingAsked ) {
 
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const keys = def.shared.configKeys;
-        
-        // Choose the right rotate conf key
-        const stackOwner = this._currently.stackOwner;
-        let configKey;
-        if( stackOwner.forNobody ) {
-            if( this.card.parent.type == 'deck' ) {
-                configKey =  keys.fromDeckRotateCard;
-            } else {
-                configKey =  keys.fromDiscardRotateCard;
-            }
-        } else if( this.card.parent.type == 'hand' ) {
-            configKey =  keys.fromHandRotateCard;
-        } else {
-            configKey =  keys.fromRevealedRotateCard;
-        }
+        const deckKey = this._custom.coreStackRef;
+        const prefix = this._currently.prefixForActions;
+        const actions = this.actionService.getActionPossibilities(deckKey, ["rotateCard"], {from: prefix, target: prefix});
 
-        const allowed = this._custom.stackConfig[configKey];
+        const allowed = actions.length > 0;
         const result = allowed && rotatingAsked;
 
         // Call the potential implementation inside wrapped impl
@@ -188,10 +180,11 @@ export class CustomCardGUIWrapper {
      * Used when lisiting cards inside chat message.
      * Those info will be added inside the listing-card template
      * @param {CustomCardStack} from : Where the card was previously
-     * @param {boolean} addCardDescription : If description should be added for each card
+     * @param {boolean} [addCardDescription] : If description should be added for each card
+     * @param {boolean} [displayCardImage] : Card image should also be added to chat
      * @returns {object} Card data wich will be added to the listing-card-template
      */
-    buildCardInfoForListing(from, addCardDescription=false) {
+    buildCardInfoForListing(from, addCardDescription=false, displayCardImage=false) {
 
         const stackOwner = this._currently.stackOwner;
         const playerFlag = stackOwner.forPlayers ? stackOwner.playerId : 'gm';
@@ -214,6 +207,17 @@ export class CustomCardGUIWrapper {
             }
         }
 
+        if( displayCardImage ) {
+            let template = document.createElement('template');
+            template.innerHTML = "<div class=\"flexcol card-slot display-content\" " + 
+                                      "style=\"background-image: url('" + this.currentFace.img +"');\"></div>";
+            const htmlDiv = template.content.firstChild;
+            this.fillCardContent(htmlDiv);
+            result.image = {
+                htmlDiv: htmlDiv.outerHTML
+            };
+        }
+
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterBuildCardInfoForListing ) {
             this._wrapped.alterBuildCardInfoForListing(result, from, addCardDescription);
@@ -230,28 +234,39 @@ export class CustomCardGUIWrapper {
     loadActionsWhileInDeck(detailsHaveBeenForced) {
 
         const actions = [];
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
 
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
+        const isOwner = this.card.parent.testUserPermission(game.user, "OWNER");
 
-        const owner = this.card.parent.testUserPermission(game.user, "OWNER");
+        const deckKey = this._custom.coreStackRef;
+        const prefix = this._currently.prefixForActions; // "DE"
 
-        if( detailsHaveBeenForced ) {
-            if( owner && this.allFaces.length > 1 ) { // Need edit rights for this action
-                tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromDeckLoopThroughFaces]});
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
+        possibilities.forEach( p => {
+
+            const guiAction = this.actionService.asGUIAction(p);
+            switch( p.signature ) {
+
+                case "flipCard-flip" : {
+                    if( !detailsHaveBeenForced || !isOwner || this.allFaces.length <= 1 ) { return; }
+                    break;
+                }
+
+                case "rotateCard-rotate" : {
+                    if( !detailsHaveBeenForced ) { return; }
+                    break;
+                }
+
+                case "moveCard-give" :
+                case "moveCard-discardOne" : {
+                    if( !isOwner ) { return; }
+                }
             }
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDeckRotateCard]} );
-            tools.addCssOnLastAction(actions, css.separator);
-        }
+            actions.push(guiAction);
+        });
 
-        if( owner ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.giveCard, 'sheet.actions.giveCard', {atLeastOne:[keys.fromDeckDealCardsToHand ,keys.fromDeckDealRevealedCards]} );
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromDeckDiscardDirectly]} );
-            tools.addCssOnLastAction(actions, css.separator);
-        }
+        // Separate rotate and flip from real actions
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDeck ) {
@@ -271,31 +286,39 @@ export class CustomCardGUIWrapper {
     loadActionsWhileInHand(stackOwnedByUser, detailsHaveBeenForced) {
 
         const actions = [];
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
-
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
 
         const cardsAreVisible = detailsHaveBeenForced || stackOwnedByUser;
-        if( cardsAreVisible ) {
-            if( this.allFaces.length > 1 ) {
-                tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromHandLoopThroughFaces]});
-            }
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromHandRotateCard]});
-            tools.addCssOnLastAction(actions, css.separator);
-        }
 
-        if( stackOwnedByUser ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromHandPlayCard]} );
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromHandPlayMultiple]} );
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.revealCard, 'sheet.actions.revealCard', {allKeys:[keys.fromHandRevealCard]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromHandExchangeCard]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangePlayer, 'sheet.actions.exchangePlayer', {allKeys:[keys.fromHandExchangeWithPlayer]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromHandDiscardCard]});
-            tools.addCssOnLastAction(actions, css.separator);
-        }
+        const deckKey = this._custom.coreStackRef;
+        const prefix = this._currently.prefixForActions; // "PH" or "GH"
+
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "exchangeCard", "transferCards", "swapCards"], {from: prefix});
+        possibilities.forEach( p => {
+
+            const guiAction = this.actionService.asGUIAction(p);
+            switch( p.signature ) {
+
+                case "flipCard-flip" : {
+                    if( !stackOwnedByUser || this.allFaces.length <= 1 ) { return; }
+                    break;
+                }
+
+                case "rotateCard-rotate" : {
+                    if( !cardsAreVisible ) { return; }
+                    break;
+                }
+
+                default: { // All the others
+                    if( !stackOwnedByUser ) { return; }
+                    break;
+                }
+            }
+            actions.push(guiAction);
+        });
+
+        // Separate rotate and flip from real actions
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInHand ) {
@@ -313,28 +336,36 @@ export class CustomCardGUIWrapper {
     loadActionsWhileInRevealedCards(stackOwnedByUser) {
         
         const actions = [];
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
 
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
+        const deckKey = this._custom.coreStackRef;
+        const prefix = this._currently.prefixForActions; // "PR" or "GR"
 
-        if( stackOwnedByUser && this.allFaces.length > 1 ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromRevealedLoopThroughFaces]});
-        }
-        tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromRevealedRotateCard]});
-        tools.addCssOnLastAction(actions, css.separator);
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "playCard", "moveCard", "transferCards", "exchangeCard", "swapCards"], {from: prefix});
+        possibilities.forEach( p => {
 
-        if( stackOwnedByUser ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.playCard, 'sheet.actions.playCard', {allKeys:[keys.fromRevealedPlayCard]} );
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.playMultiple, 'sheet.actions.playMultiple', {allKeys:[keys.fromRevealedPlayMultiple]} );
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.backToHandCard, 'sheet.actions.backToHand', {allKeys:[keys.fromRevealedBackToHand]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangeCard, 'sheet.actions.exchangeCard', {allKeys:[keys.fromRevealedExchangeCard]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.exchangePlayer, 'sheet.actions.exchangePlayer', {allKeys:[keys.fromRevealedExchangeWithPlayer]});
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.discardCard, 'sheet.actions.discardCard', {allKeys:[keys.fromRevealedDiscardCard]});
-            tools.addCssOnLastAction(actions, css.separator);
-        }
+            const guiAction = this.actionService.asGUIAction(p);
+            switch( p.signature ) {
+
+                case "flipCard-flip" : {
+                    if( !stackOwnedByUser || this.allFaces.length <= 1 ) { return; }
+                    break;
+                }
+
+                case "rotateCard-rotate" : {
+                    break; // Always here
+                }
+
+                default: { // All the others
+                    if( !stackOwnedByUser ) { return; }
+                    break;
+                }
+            }
+            actions.push(guiAction);
+        });
+
+        // Separate rotate and flip from real actions
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
+        this.actionService.addCssAfterSomeGuiActions(actions, ["playCard-", "moveCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInRevealedCards ) {
@@ -350,30 +381,40 @@ export class CustomCardGUIWrapper {
      * @returns {CardActionData}  See constants.js
      */
      loadActionsWhileInDiscard() {
+
         const actions = [];
-        const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-        const css = def.shared.actionCss;
 
-        const deckConfig = this._custom.stackConfig;
-        const keys = def.shared.configKeys;
-        const tools = def.shared.actionTools;
+        const isOwner = this.card.parent.testUserPermission(game.user, "OWNER");
+        const isObserver = this.card.parent.testUserPermission(game.user, "OBSERVER");
 
-        const owner = this.card.parent.testUserPermission(game.user, "OWNER");
-        const observer = this.card.parent.testUserPermission(game.user, "OBSERVER");
+        const deckKey = this._custom.coreStackRef;
+        const prefix = this._currently.prefixForActions; // "DI"
 
-        if( owner && this.allFaces.length > 1 ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.loopFaces, 'sheet.actions.loopFaces', {allKeys:[keys.fromDiscardLoopThroughFaces]});
-        }
-        if( observer ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.rotateCard, 'sheet.actions.rotateCard', {allKeys:[keys.fromDiscardRotateCard]});
-        }
-        tools.addCssOnLastAction(actions, css.separator);
-    
+        const possibilities = this.actionService.getActionPossibilities(deckKey, ["flipCard", "rotateCard", "moveCard"], {from: prefix});
+        possibilities.forEach( p => {
 
-        if( this.card.parent.testUserPermission(game.user, "OWNER") ) {
-            tools.addAvailableAction(actions, deckConfig, this._custom, css.backToDeckCard, 'sheet.actions.backToDeck', {allKeys:[keys.fromDiscardBackToDeck]});
-            tools.addCssOnLastAction(actions, css.separator);
-        }
+            const guiAction = this.actionService.asGUIAction(p);
+            switch( p.signature ) {
+
+                case "flipCard-flip" : {
+                    if( !isOwner || this.allFaces.length <= 1 ) { return; }
+                    break;
+                }
+
+                case "rotateCard-rotate" : {
+                    if( !isObserver ) { return; }
+                    break;
+                }
+
+                case "moveCard-backDeck" : {
+                    if( !isOwner ) { return; }
+                }
+            }
+            actions.push(guiAction);
+        });
+
+        // Separate rotate and flip from real actions
+        this.actionService.addCssAfterSomeGuiActions(actions, ["flipCard-", "rotateCard-"]);
 
         // Call the potential implementation inside wrapped impl
         if( this._wrapped.alterLoadActionsWhileInDiscard ) {
@@ -384,7 +425,7 @@ export class CustomCardGUIWrapper {
     }
 
     /**
-     * Triggered when CardActionsClasses.customAction is clicked
+     * Triggered when .customAction is clicked
      * Shopuld be overriden. Do nothing in this implem
      * @param {string} action 
      */
