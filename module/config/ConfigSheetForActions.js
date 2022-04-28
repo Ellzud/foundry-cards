@@ -554,6 +554,7 @@ export class ConfigSheetForActions extends FormApplication {
 		});
 
 		await this.module.actionService.updateSettingsWithCurrentActionDetails(wholeDetails);
+		await this.module.cardStacks.loadCardStacks();
 		this.close();
 	}
 
