@@ -1,5 +1,5 @@
 import { CustomCardStack } from "./CustomCardStack.js";
-import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
+import { ConfigSheetForActions } from "./config/ConfigSheetForActions.js";
 
 /**
  * Add some entries for the contextMenu

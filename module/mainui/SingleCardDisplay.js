@@ -21,7 +21,7 @@ export class SingleCardDisplay extends CustomCardsDisplay {
     }
 
     /** @override */
-    get detailsForced() {
+    currentlyPeekingOnCardType(coreStackRef) {
         return true;
     }
 
