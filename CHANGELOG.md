@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.10.1
+
+### Issues
+- Regression : A F5 was needed after updating action configuration
+
 ## Release 1.10.0
 
 ### Features
