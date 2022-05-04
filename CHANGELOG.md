@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Release 1.10.2
+
+### Issues
+- Bug : Module is Hiding Pause
+- 
+
 ## Release 1.10.1
 
 ### Issues

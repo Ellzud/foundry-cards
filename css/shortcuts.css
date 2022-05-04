@@ -3,7 +3,7 @@
   ------------------------*/
 .rtucards.shortcut {
   position: fixed;
-  z-index: 71;
+  z-index: 59; /* Behind the pause icon */
   padding: 4px;
   border: 3px groove;
   background: rgba(0, 0, 0, 0.5);
