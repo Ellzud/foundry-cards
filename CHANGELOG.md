@@ -4,7 +4,7 @@
 
 ### Issues
 - Bug : Module is Hiding Pause
-- 
+- Bug : Dealing cards were accessible to everyone
 
 ## Release 1.10.1
 

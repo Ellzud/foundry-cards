@@ -367,7 +367,7 @@ export class CustomCardsDisplay extends CardsConfig {
                 case "dealCard-deal" :
                 case "shuffleDeck-shuffle" : 
                 case "resetDeck-reset" : {
-                    if( !cardsLeft ) { return; }
+                    if( !isOwner || !cardsLeft ) { return; }
                     break;
                 }
             }
