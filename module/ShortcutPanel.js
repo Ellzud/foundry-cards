@@ -2,8 +2,8 @@ import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "./constants.js";
 import { ConfigSheetForShortcuts } from "./config/ConfigSheetForShortcuts.js";
 import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 
-const HEIGHT_FOR_ONE_CARD = 772;
-const WIDTH_FOR_ONE_CARD = 510;
+const HEIGHT_FOR_ONE_CARD = 800;
+const WIDTH_FOR_ONE_CARD = 520;
 const ADDITIONNAL_FRAME_WIDTH = 530;
 
 /**
