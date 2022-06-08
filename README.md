@@ -293,6 +293,20 @@ The left icon of each shortcut is draggable. Use them to move your shortcuts whe
 - The eye icon in the summary simply open the stack display
 
 
+## Hide/Display card listing inside main UI
+
+![Manage card listing](README_config_listing.webp?raw=true)
+
+### By clicking on the eye icon 
+
+It will simply toggle the listing display.
+
+### By using double clicks
+
+- On selected card : Will also toggle the listing display
+- On one of the cards of the list : Will select the card and hide listing
+
+
 ## Following the actions on the chat message
 
 Each action comes with a message sent to the chat log.

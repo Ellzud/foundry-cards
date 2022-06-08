@@ -6,6 +6,9 @@
 - Bug : Module is Hiding Pause
 - Bug : Dealing cards were accessible to everyone
 
+### Features
+- Double clicks now allow a better card listing management inside main UI
+
 ## Release 1.10.1
 
 ### Issues

@@ -649,9 +649,11 @@ export class CustomCardsDisplay extends CardsConfig {
 
         // Listing panel clicks
         //-------------------------
+        html.find(".listing-panel .card-slot").click(event => this._onClickToggleSelection(event) );
+
+        html.find(".main-card-slot .card-slot").dblclick(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.toggle").click(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.edit-backs").click(event => this._onClickDisplayBacksEdition(event) );
-        html.find(".listing-panel .card-slot").click(event => this._onClickToggleSelection(event) );
     }
 
     addAdditionnalContentOnCards(html) {
@@ -1063,10 +1065,19 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickToggleSelection(event) {
         event.preventDefault();
-        const key = event.currentTarget.dataset.key;
+
+        // On simple click : select the card. Also select it again if double click
+        if (event.detail === 1 || !this._currentSelection) {
+            const key = event.currentTarget.dataset.key;
         
-        const unselect = key === this.currentSelection?.id;
-        this.selectAvailableCard( unselect ? null : key);
+            const unselect = key === this.currentSelection?.id;
+            this.selectAvailableCard( unselect ? null : key);
+        } 
+        
+        // On double click : hide the list
+        if( event.detail === 2 ) {
+            this._listingOpened = false;
+        }
         this.render();
     }
 
