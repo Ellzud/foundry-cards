@@ -295,7 +295,7 @@ The left icon of each shortcut is draggable. Use them to move your shortcuts whe
 
 ## Hide/Display card listing inside main UI
 
-![Manage card listing](README_config_listing.webp?raw=true)
+![Manage card listing](docs/README_config_listing.webp?raw=true)
 
 ### By clicking on the eye icon 
 
