@@ -190,9 +190,16 @@ export class AvailableActionService {
 
         const parameters = {};
         const defaultParameters = stack.getFlag('ready-to-use-cards', 'default-parameters');
-        parameters["core-labelBaseKey"] = defaultParameters.labelBaseKey ?? "RTUCards.default.";
-        parameters["core-resourceBaseDir"] = defaultParameters.resourceBaseDir ?? "";
-        parameters["core-removeBackFace"] = false;
+        if(defaultParameters){
+            parameters["core-labelBaseKey"] = defaultParameters.labelBaseKey ?? "RTUCards.default.";
+            parameters["core-resourceBaseDir"] = defaultParameters.resourceBaseDir ?? "";
+            parameters["core-removeBackFace"] = false;
+        }
+        else{
+            parameters["core-labelBaseKey"] = "RTUCards.default.";
+            parameters["core-resourceBaseDir"] = "";
+            parameters["core-removeBackFace"] = false;
+        }
 
         return {
             actions: actions,
