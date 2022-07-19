@@ -50,7 +50,7 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
     else if( gmStack ) { checkedOwner = 'gm'; }
 
     const cardStack = game.cards.find( stack => {
-        const flag = stack.data.flags['ready-to-use-cards'] ?? {};
+        const flag = stack.flags['ready-to-use-cards'] ?? {};
 
         if( flag['owner'] != checkedOwner ) { return false; }
         if( coreKey && flag.core != coreKey ) { return false; }
@@ -111,9 +111,9 @@ const findStack = ( type, {coreKey=null, user=null, gmStack=false} = {} ) => {
  */
 const removeUnusedFolders = async () => {
     const unusedFolders = game.folders.filter(f => {
-        if( f.data.type != "Cards" ) { return false;} 
+        if( f.type != "Cards" ) { return false;} 
         
-        const flag = f.data.flags['ready-to-use-cards'];
+        const flag = f.flags['ready-to-use-cards'];
         if(!flag) { return false; }
 
         const used = game.cards.some( stack => {
@@ -291,9 +291,9 @@ const loadFolder = async (ownerId, folderName) => {
 
     // Does the folder already exists ?
     const existingFolder = game.folders.find(f => {
-        if( f.data.type != "Cards" ) { return false;} 
+        if( f.type != "Cards" ) { return false;} 
         
-        const flag = f.data.flags['ready-to-use-cards'] ?? {};
+        const flag = f.flags['ready-to-use-cards'] ?? {};
         return JSON.stringify(flag) == JSON.stringify(folderFlag);
     });
     if( existingFolder ) {
@@ -537,7 +537,7 @@ export class CustomCardStackLoader {
             const ccs = new CustomCardStack(s);
             if( !ccs.handledByModule ) { return false; }
             if( ccs.stackOwner.forNobody ) { return false; }
-            return s.data.permission.default != CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
+            return s.permission.default != CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
         });
 
         for( const ccs of customStacks ) {
@@ -566,7 +566,7 @@ export class CustomCardStackLoader {
             }
 
             if( !findCoreStack('pile', coreStack) ) {
-                const preset = await initCoreStackPreset('pile', coreStack, deck?.stack.data.img );
+                const preset = await initCoreStackPreset('pile', coreStack, deck?.stack.img );
                 toCreate.push(preset);
             }
         }

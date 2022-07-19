@@ -40,13 +40,13 @@ const assertStackType = ( customCardStack, {decks=false, hands=false, piles=fals
 
 /**
  * Process the options for soon to be discarded cards
- * @param {Cards} discardStack Where the cards will go
+ * @param {CustomCardStack} discardStack Where the cards will go
  */
 const optionsForDiscardedCards = ( discardStack ) => {
     const options = {
         chatNotification: false
     };
-    const maxDiscardOrder = discardStack.availableCards.reduce( (_max, _card) => {
+    const maxDiscardOrder = discardStack.sortedCardList.reduce( (_max, _card) => {
         const order = _card.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
         return Math.max(_max, order);
     }, 0);
@@ -67,7 +67,7 @@ export class CustomCardStack {
         const resetingFlags = {};
         resetingFlags['flags.ready-to-use-cards.currentFace'] = 0;
         resetingFlags['flags.ready-to-use-cards.discardOrder'] = 0;
-        this._resetingOptions = {
+        this._recallOptions = {
             chatNotification: false,
             updateData: resetingFlags    
         };
@@ -185,10 +185,11 @@ export class CustomCardStack {
 
     /**
      * Available cards are sorted by types
+     * Can be used for every type of stacks
      */
-    get sortedAvailableCards() {
+    get sortedCardList() {
         const isMainDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === this.stack.id );
-        const cards = this.stack.availableCards;
+        const cards = this.stack.type == 'deck' ? this.stack.availableCards : Array.from(this.stack.cards.values());
         cards.sort( (a,b) => {
             // First comparison on card source deck
             const aCore = ( new CustomCardStack(a.source) ).coreStackRef ?? '';
@@ -206,7 +207,7 @@ export class CustomCardStack {
             }
 
             // Default sort
-            return a.data.sort - b.data.sort;
+            return a.sort - b.sort;
         });
         return cards;
     }
@@ -216,7 +217,7 @@ export class CustomCardStack {
      * @returns {CustomCardStack[]} Distinct core stack refs
      */
     get decksOfAvailableCards() {
-        const decks = this.sortedAvailableCards.reduce( (_decks, _card) => {
+        const decks = this.sortedCardList.reduce( (_decks, _card) => {
             const customDeck = new CustomCardStack(_card.source);
             const key = customDeck.coreStackRef;
 
@@ -284,7 +285,7 @@ export class CustomCardStack {
 
         flags['registered-as'] = {
             name: this.stack.name,
-            desc: this.stack.data.description
+            desc: this.stack.description
         };
 
         flags['core'] = this.stack.id;
@@ -375,7 +376,7 @@ export class CustomCardStack {
 
         const preparedData = {
             from: {
-                icon: this.stack.data.img,
+                icon: this.stack.img,
                 message: flavor
             },
             stacks: stacks.map( s => {
@@ -496,13 +497,13 @@ export class CustomCardStack {
         const stackType = this.stack.type;
         const inHand = stackType == 'hand';
 
-        const cardIds = from.sortedAvailableCards.filter( (card, index) => {
+        const cardIds = from.sortedCardList.filter( (card, index) => {
             return index < amount;
         }).map( card => {
             return card.id;
         });
 
-        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: false} );
+        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: true} );
 
         const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
         const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
@@ -526,7 +527,7 @@ export class CustomCardStack {
         const stackType = to.stack.type;
         const inHand = stackType == 'hand';
 
-        const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: false} );
+        const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: true} );
 
         const flavor = to.getCardMessageFlavor(stackType, 'give', givenCards.length);
 
@@ -555,7 +556,7 @@ export class CustomCardStack {
         const target = withStack.stack;
 
         const targetIsDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === target.id );
-        const giveOptions = targetIsDiscard ? optionsForDiscardedCards(target) : {chatNotification: false};
+        const giveOptions = targetIsDiscard ? optionsForDiscardedCards(withStack) : {chatNotification: false};
         const givenCards = await this.stack.pass( target, myCardIds, giveOptions );
 
         const receivedCards = await target.pass( this.stack, receivedCardsId, {chatNotification: false} );
@@ -593,7 +594,7 @@ export class CustomCardStack {
                     return custom.coreStackRef === coreKey;
                 }
             });
-            const options = optionsForDiscardedCards(pile.stack);
+            const options = optionsForDiscardedCards(pile);
             const cards = await this.stack.pass( pile.stack, ids, options);
 
             if( cards.length > 0 ) {
@@ -619,7 +620,7 @@ export class CustomCardStack {
         assertStackType(this, {piles: true});
 
         const currentCard = this.stack.cards.get(cardId);
-        const original = await currentCard?.reset(this._resetingOptions);
+        const original = await currentCard?.recall(this._recallOptions);
 
         const coreKey = this.coreStackRef;
         const deck = this.cardStacks.decks[coreKey]?.stack;
@@ -663,8 +664,8 @@ export class CustomCardStack {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {piles: true});
 
-        const amount = this.stack.availableCards.length;
-        await this.stack.reset(this._resetingOptions);
+        const amount = this.sortedCardList.length;
+        await this.stack.recall(this._recallOptions);
 
         const coreKey = this.coreStackRef;
         const deck = this.cardStacks.decks[coreKey]?.stack;
@@ -774,7 +775,7 @@ export class CustomCardStack {
 
         // New sort for the cards
         const twist = new MersenneTwister(Date.now());
-        const forSorting = this.stack.availableCards.map(c => {
+        const forSorting = this.sortedCardList.map(c => {
             return {newOrder: twist.random(), card: c};
         });
         forSorting.sort((a, b) => a.newOrder - b.newOrder);
@@ -802,7 +803,7 @@ export class CustomCardStack {
 
         const resetingFlags = [];
         resetingFlags['flags.ready-to-user-cards.currentFace'] = 0;
-        await this.stack.reset(this._resetingOptions);
+        await this.stack.recall(this._recallOptions);
         await this.stack.shuffle({chatNotification: false});
 
         const flavor = this.getCardMessageFlavor('deck', 'reset', 1);

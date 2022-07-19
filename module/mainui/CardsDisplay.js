@@ -40,7 +40,7 @@ export class CustomCardsDisplay extends CardsConfig {
     get title() {
 
         let result = this._cards.name;
-        const cards = this._custom.sortedAvailableCards;
+        const cards = this._custom.sortedCardList;
         if( this.currentSelection && cards.length != 0 ) {
             const readableIndex = cards.findIndex( c => c.id === this.currentSelection.id ) + 1;
             result += ' ' + readableIndex + ' / ' + cards.length;
@@ -58,7 +58,7 @@ export class CustomCardsDisplay extends CardsConfig {
      * @param {string} cardId The card Id
      */
     selectAvailableCard( cardId ){
-        this._currentSelection =  this._cards.availableCards.find( c => c.id === cardId );
+        this._currentSelection =  this._custom.sortedCardList.find( c => c.id === cardId );
     }
 
     get listingAllowed() {
@@ -168,13 +168,13 @@ export class CustomCardsDisplay extends CardsConfig {
     /* -------------------------------------------- */
 
     /** @override */
-    getData() {
-        const data = super.getData();
+    getData(options) {
+        const data = super.getData(options);
         this._refreshCurrentSelection();
 
         data.currentSelection = this._buildCardInfo(this.currentSelection);
         if( !data.currentSelection.contentDisplayed ) {
-            const msg = this._custom.localizedLabel('sheet.contentHidden').replace('NB', '' + this._cards.availableCards.length);
+            const msg = this._custom.localizedLabel('sheet.contentHidden').replace('NB', '' + this._custom.sortedCardList.length);
             data.currentSelection.summary = msg;
         }
 
@@ -185,7 +185,7 @@ export class CustomCardsDisplay extends CardsConfig {
                 displayed : game.user.isGM && this._custom.stackOwner.forNobody
             }
         };
-        data.listing.cards = this._custom.sortedAvailableCards.map( c => {
+        data.listing.cards = this._custom.sortedCardList.map( c => {
             const cardInfo = this._buildCardInfo(c);
             if( cardInfo.id === this.currentSelection?.id ) {
                 cardInfo.classes += ' selected';
@@ -250,8 +250,8 @@ export class CustomCardsDisplay extends CardsConfig {
 
         } else {
             // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
-            let background = card?.data.back.img;
-            if(!background) {
+            let background = card?.back.img;
+            if(!background || background == 'icons/svg/card-joker.svg') {
                 const type = this._cards.type;
                 const owner = this._custom.stackOwner;
                 const coreRef = this._custom.coreStackRef;
@@ -350,7 +350,7 @@ export class CustomCardsDisplay extends CardsConfig {
         possibilities.push( ...service.getActionPossibilities(deckKey, ["dealCard", "shuffleDeck", "resetDeck"]) );
 
         const isOwner = this._cards.testUserPermission(game.user, "OWNER");
-        const cardsLeft = this._cards.availableCards.length > 0;
+        const cardsLeft = this._custom.sortedCardList.length > 0;
 
         possibilities.forEach( p => {
 
@@ -414,7 +414,7 @@ export class CustomCardsDisplay extends CardsConfig {
         const possibilities = service.getActionPossibilities(deckKey, ["shuffleDiscard", "resetDiscard"]);
 
         const isOwner = this._cards.testUserPermission(game.user, "OWNER");
-        const cardsLeft = this._cards.availableCards.length > 0;
+        const cardsLeft = this._custom.sortedCardList.length > 0;
 
         possibilities.forEach( p => {
 
@@ -479,7 +479,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
             // Drawing cards from each decks and discards
             allSeenDecks.filter( cs => {
-                return cs.stack.availableCards.length != 0;
+                return cs.sortedCardList.length != 0;
             }).forEach( cs => {
                 const name = cs.retrieveStackBaseName();
 
@@ -490,7 +490,7 @@ export class CustomCardsDisplay extends CardsConfig {
             });
 
             allSeenDiscards.filter( cs => {
-                return cs.stack.availableCards.length != 0;
+                return cs.sortedCardList.length != 0;
             }).forEach( cs => {
                 const name = cs.retrieveStackBaseName();
 
@@ -572,7 +572,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
             // Drawing cards from each decks and discards
             allSeenDecks.filter( cs => {
-                return cs.stack.availableCards.length != 0;
+                return cs.sortedCardList.length != 0;
             }).forEach( cs => {
                 const name = cs.retrieveStackBaseName();
 
@@ -583,7 +583,7 @@ export class CustomCardsDisplay extends CardsConfig {
             });
 
             allSeenDiscards.filter( cs => {
-                return cs.stack.availableCards.length != 0;
+                return cs.sortedCardList.length != 0;
             }).forEach( cs => {
                 const name = cs.retrieveStackBaseName();
 
@@ -750,7 +750,7 @@ export class CustomCardsDisplay extends CardsConfig {
         event.preventDefault();
         const coreKey = event.currentTarget.dataset.action;
 
-        const cardIds = this._cards.availableCards.filter( c => {
+        const cardIds = this._custom.sortedCardList.filter( c => {
             const custom = new CustomCardStack(c.source);
             return custom.coreStackRef === coreKey;
         }).map( c => {
@@ -977,7 +977,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
         // Init options
         //----------------------
-        const maxCards = this._custom.sortedAvailableCards.filter(c => {
+        const maxCards = this._custom.sortedCardList.filter(c => {
             const ccs = new CustomCardStack(c.source);
             return ccs.coreStackRef == coreKey;
         }).length;

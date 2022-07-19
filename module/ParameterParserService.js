@@ -64,7 +64,7 @@ export class ParameterParserService {
 
     /**
      * Parameter should be a card attribute, a numeric, or a range.
-     * If a cardAttribute, should be in the form $xxx. We will try to retrieve card.data[xxxx]. 
+     * If a cardAttribute, should be in the form $xxx. We will try to retrieve card[xxxx]. 
      * Example : $value
      * 
      * If a numeric, should be a simple number.
@@ -105,7 +105,7 @@ export class ParameterParserService {
 
 
     /**
-     * Should be in the form $xxx. We will try to retrieve card.data[xxxx]. 
+     * Should be in the form $xxx. We will try to retrieve card[xxxx]. 
      * Example : $value
      * 
      * Othewise, will directly return cardAttribute
@@ -121,7 +121,7 @@ export class ParameterParserService {
         }
 
         let path = cardAttribute.substring(1).split(".");
-        let leaf = card.data;
+        let leaf = card;
         for( let key of path ) {
             if(!leaf) { break; }
             leaf = leaf[key];

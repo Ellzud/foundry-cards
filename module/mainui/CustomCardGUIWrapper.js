@@ -28,17 +28,17 @@ export class CustomCardGUIWrapper {
     }
 
     get cardData() {
-        return this._card.data.data;
+        return this._card.data;
     }
 
     get id() {
-        return this._card.data._id;
+        return this._card._id;
     }
 
     get name() {
         // WARNING : this._card.name exists but change depending on the current card face.
         // Since we are not using the face system, directly take the base card name
-        return this._card.data.name;
+        return this._card.name;
     }
 
     get img() {
@@ -53,14 +53,14 @@ export class CustomCardGUIWrapper {
     get allFaces() {
 
         if( !this._allFaces ) {
-            this._allFaces = this._card.data.faces.map(f => {
+            this._allFaces = this._card.faces.map(f => {
                 const data = {
                     name: f.name,
                     text: f.text,
                     img : f.img
                 };
                 if( !data.name || data.name == '' ) { data.name = this.name ?? ''; }
-                if( !data.text || data.text == '' ) { data.text = this._card.data.description ?? ''; }
+                if( !data.text || data.text == '' ) { data.text = this._card.description ?? ''; }
                 if( !data.img  || data.img == '' ) { data.img = this._custom.frontDefaultImage; }
                 return data;
             });
@@ -70,13 +70,13 @@ export class CustomCardGUIWrapper {
             );
             if( backIncluded ) {
                 const back = {
-                    name: this._card.data.back?.name,
-                    text: this._card.data.back?.text,
-                    img : this._card.data.back?.img
+                    name: this._card.back?.name,
+                    text: this._card.back?.text,
+                    img : this._card.back?.img
                 };
                 if( !back.name || back.name == '' ) { back.name = this.name ?? ''; }
-                if( !back.text || back.text == '' ) { back.text = this._card.data.description ?? ''; }
-                if( !back.img  || back.img == '' ) { back.img = this._custom.backDefaultImage; }
+                if( !back.text || back.text == '' ) { back.text = this._card.description ?? ''; }
+                if( !back.img  || back.img == '' || back.img == 'icons/svg/card-joker.svg' ) { back.img = this._custom.backDefaultImage; }
     
                 this._allFaces.push(back);
             }

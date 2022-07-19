@@ -51,7 +51,7 @@
 
         {{else}}
             <div class="flexrow cards scaled-scrollbar">
-                {{#each param.availableCards as |card|}}
+                {{#each param.sortedCardList as |card|}}
                     {{> cardDisplay card=card}}
                 {{/each}}
             </div>
