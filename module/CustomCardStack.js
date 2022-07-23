@@ -503,7 +503,7 @@ export class CustomCardStack {
             return card.id;
         });
 
-        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: true} );
+        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: false} );
 
         const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
         const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
@@ -527,7 +527,7 @@ export class CustomCardStack {
         const stackType = to.stack.type;
         const inHand = stackType == 'hand';
 
-        const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: true} );
+        const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: false} );
 
         const flavor = to.getCardMessageFlavor(stackType, 'give', givenCards.length);
 
