@@ -382,7 +382,7 @@ export class CustomCardStack {
             stacks: stacks.map( s => {
 
                 const owner = s.stackOwner;
-                const data = { id: s.stack.id, name: s.stack.name };
+                const data = { uuid: s.stack.uuid, id: s.stack.id, name: s.stack.name };
 
                 if( owner.forGMs ) {
                     data.icon = game.settings.get("ready-to-use-cards", GlobalConfiguration.gmIcon);
