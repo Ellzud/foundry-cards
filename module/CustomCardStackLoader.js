@@ -644,6 +644,18 @@ export class CustomCardStackLoader {
         this._gmRevealedCards = findGMCardStack('pile');
     }
 
+    get myHand() {
+        if( game.user.isGM ) { return this.gmHand; }
+
+        return this.findPlayerHand(game.user);
+    }
+
+    get myRevealedCards() {
+        if( game.user.isGM ) { return this.gmRevealedCards; }
+
+        return this.findRevealedCards(game.user);
+    }
+
     get gmHand() {
         return this._gmHand;
     }
