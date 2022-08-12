@@ -33,14 +33,8 @@
   For card  image in chat
   ------------------------*/
 .rtucards-message .card-slot {
-  min-width: 250px;
-  max-width: 250px;
-  height: 410px;
-  margin: 11px;
-  padding: 11px 29px 11px 29px;
-  color: #000000cc;
-  background-repeat: no-repeat;
-  background-size: 250px 410px;
-  overflow: hidden;
+  transform: scale(0.5);
+  transform-origin: top left;
+  margin-bottom: -370px;
 }
 
