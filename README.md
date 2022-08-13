@@ -363,7 +363,7 @@ If you change it to :
   - Same restrictions as above.
   - Players can't see the discard anymore and won't be able to know hom many cards are left.
 
-> Warning : If you choose to give OWNER rights to players, they will have access to the actions ***Put it back in the deck*** and ***Shuffle all discard inside deck***. Those actions usually shuffle the deck after putting the cards inside it. If the player doing it doesn't have the OWNER rights on the deck, the shuffle step will be ignored and the cards will be put on the top of the deck. (`card.data.sort` remained unchanged)
+> Warning : If you choose to give OWNER rights to players, they will have access to the actions ***Put it back in the deck*** and ***Shuffle all discard inside deck***. Those actions usually shuffle the deck after putting the cards inside it. If the player doing it doesn't have the OWNER rights on the deck, the shuffle step will be ignored and the cards will be put on the top of the deck. (`card.sort` remained unchanged)
 
 ## Additional configuration settings
 
