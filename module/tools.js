@@ -29,8 +29,8 @@ export const deckBacksSettings = (coreStackRef) => {
 		const module = game.modules.get('ready-to-use-cards');
 		const deck = module.cardStacks.decks[coreStackRef]
 		const discard = module.cardStacks.piles[coreStackRef]
-		backs.deckIcon = deck.stack.data.img;
-		backs.discardIcon = discard.stack.data.img;
+		backs.deckIcon = deck.stack.img;
+		backs.discardIcon = discard.stack.img;
 
 		const baseDir = CARD_STACKS_DEFINITION.core[coreStackRef].resourceBaseDir;
 		backs.deckBg = baseDir + '/background/back.webp';

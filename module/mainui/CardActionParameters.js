@@ -24,7 +24,7 @@ const loadStackDataInfos = ( customStack, selectedStackIds ) => {
     } else {
         isHere = true;
         result.name = customStack.stack.name;
-        result.icon = customStack.stack.data.img;
+        result.icon = customStack.stack.img;
     }
 
     if( !isHere ) { 
@@ -123,7 +123,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
      * @param {int} [minAmount] min amount of cards which needs to be selected before the 'OK' button becomes available
      * @param {int} [maxAmount] max amount
      * @param {string} [buttonLabel] What the say inside the ok button.
-     * @param {*} [criteria] Applied to availableCards for filter. If null, all cards will be available
+     * @param {*} [criteria] Applied to sortedCardList for filter. If null, all cards will be available
      * @param {*} [callBack] What to call once cards have been selected. If null, it will call playCards with all ids.
      */
     constructor( sheet, actionTitle, {fromStacks=null, availableTargets=[], includeSelf=false, minAmount=1, maxAmount=1, buttonLabel = 'ok', criteria = null, callBack = null}={} ) {
@@ -149,7 +149,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
     }
 
     get filteredCards() {
-        return this.from.sortedAvailableCards.filter( c => {
+        return this.from.sortedCardList.filter( c => {
             return c.id != this.sheet.currentSelection?.id;
         }).filter( c => {
             return this.criteria(c);
@@ -196,7 +196,7 @@ export class CardActionParametersForCardSelection extends CardActionParametersBa
             }
             return cardInfo;
         });
-        parameters.availableCards = availableCardsInfo;
+        parameters.sortedCardList = availableCardsInfo;
 
         // Title and ok button
         const suffix = ' (' + selectedAmount + '/' + this.maxAmount + ')';
