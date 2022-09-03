@@ -1,7 +1,7 @@
 import { SingleCardDisplay } from "./mainui/SingleCardDisplay.js";
 
 export const isACardMessage = (message) => {
-    const flags = message.data.flags;
+    const flags = message.flags;
     return flags['ready-to-use-cards']?.handleCards ? true : false;
 }
 
@@ -53,21 +53,21 @@ export const alterCardMessage = (message, html) => {
         for( const current of customPool ) {
             if(card) { continue; }
             custom = current;
-            card = current?.stack.cards.find(c => c.data.name === cardName);
+            card = current?.stack.cards.find(c => c.name === cardName);
         }
 
         // Second : Card wasn't found on stack. Maybe it has already been played?
         // => Check the discard pile
         if(!card) {
             custom = cardStacks.piles[cardType];
-            card = custom?.stack.cards.find(c => c.data.name === cardName);
+            card = custom?.stack.cards.find(c => c.name === cardName);
         }
 
 
         // Lastly : Fallback on card definition (stack won't be navigated)
         if(!card) {
             custom = cardStacks.decks[cardType];
-            card = custom?.stack.cards.find(c => c.data.name === cardName);
+            card = custom?.stack.cards.find(c => c.name === cardName);
         }
 
         // If found, display the stack GUI and select current card
@@ -94,7 +94,7 @@ export const alterCardMessage = (message, html) => {
         }
     };
 
-    const hideContent = needToHideContent(message.data.flags['ready-to-use-cards']?.handleCards);
+    const hideContent = needToHideContent(message.flags['ready-to-use-cards']?.handleCards);
     if( hideContent ) {
         html.find('.rtucards-message')[0].outerHTML= '';
     } else {

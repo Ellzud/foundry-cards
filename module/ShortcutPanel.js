@@ -98,7 +98,7 @@ class ShortcutPanel extends Application {
     async getData() {
 
         const customStack = this.customStack;
-        const allCards = customStack.sortedAvailableCards;
+        const allCards = customStack.sortedCardList;
         const displayedCards = this._chooseCardsToDisplay(allCards);
 
         const navigation = {

@@ -117,7 +117,7 @@ export class ConfigSheetForBacks extends Application {
 		// Update deck icon and potential current display
 		const deck = this.module.cardStacks.decks[this.coreStackRef]?.stack;
 		if(deck) {
-			if( deck.data.img != this.settings.deckIcon ) {
+			if( deck.img != this.settings.deckIcon ) {
 				const updatedData = { img: this.settings.deckIcon };
 				await deck.update( updatedData );
 			}
@@ -129,7 +129,7 @@ export class ConfigSheetForBacks extends Application {
 		// Update discard icon and potential current display
 		const discard = this.module.cardStacks.piles[this.coreStackRef]?.stack;
 		if(discard) {
-			if( discard.data.img != this.settings.discardIcon ) {
+			if( discard.img != this.settings.discardIcon ) {
 				const updatedData = { img: this.settings.discardIcon };
 				await discard.update( updatedData );
 			}

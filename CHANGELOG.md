@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.11.0
+
+### Compliance
+- Ready to use cards is now v10 compliant
+
 ## Release 1.10.2
 
 ### Issues
