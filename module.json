@@ -1,13 +1,19 @@
 {
-  "name": "ready-to-use-cards",
+  "id": "ready-to-use-cards",
   "title": "Ready To Use Cards",
   "description": "<p>Allow automatic card stack creation for every players.<ul><li>One for its hand.</li><li>The other revealed in front of him.</li></ul></p><p>For every decks, you will be able do edit which actions you want to allow.<br/><br/>Comes with some custom GUI</p>",
-  "author": "Adrien Schiehle",
-  "authors": [],
+	"authors": [{
+		"name": "Adrien SCHIEHLE",
+		"email": "adrien.schiehle@gmail.com",
+		"discord": "Didialchichi#2607"
+	}],
   "url": "https://gitlab.com/adrien.schiehle/ready-to-use-cards",
   "version": "1.10.2",
-  "minimumCoreVersion": "9",
-  "compatibleCoreVersion": "9",
+	"compatibility": {
+		"minimum": "10",
+		"verified": "10.284",
+		"maximum": "10"
+	},
   "scripts": [],
   "esmodules": [
     "main.js"
@@ -29,7 +35,7 @@
   ],
   "packs": [],
   "system": [],
-  "dependencies": [],
+	"relationships": {},
   "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/master/module.json",
   "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.10.2/ready-to-use-cards-release-1.10.2.zip"
 }
