@@ -137,7 +137,12 @@ const actionGroupsForGUI = (stack) => {
 					label: p.label,
 					default: p.default,
 					current: p.default != p.current ? p.current : "",
-					validation: p.validation
+					validation: p.validation,
+					checkbox: {
+						displayed: p.validation.pattern == "[0-1]",
+						default: p.current == p.default,
+						checked: p.current == "1"
+					}
 				};
 			});
 		});
@@ -430,6 +435,7 @@ export class ConfigSheetForActions extends FormApplication {
 
         html.find('.details.action-group .param-input.button-text').change(event => this._onChangeActionButtonText(event) );
         html.find('.details.action-group .param-input.real-param').change(event => this._onChangeActionParameter(event) );
+        html.find('.details.action-group .param-boolean-input').click(event => this._onChangeActionBooleanParameter(event) );
 
 		html.find('.details.core-params .toggle-button.active').click(event => this._onClickToggleCoreParameter(event) );
         html.find('.details.core-params .param-input').change(event => this._onClickEditCoreParameter(event) );
@@ -538,6 +544,24 @@ export class ConfigSheetForActions extends FormApplication {
 			const param = group.parameters.find(p => p.action === action && p.param === paramKey);
 			param.current = input.value;
 		}
+		this.render();
+	}
+
+	async _onChangeActionBooleanParameter(event) {
+
+		const checkbox = event.currentTarget;
+		const paramDiv = checkbox.parentElement.parentElement; 
+		const groupDiv = paramDiv.parentElement;
+
+		const paramKey = checkbox.dataset.param;
+		const action = paramDiv.dataset.action;
+		const deckKey = groupDiv.dataset.key;
+		const groupId = groupDiv.dataset.group;
+
+		const stack = this.object.stacks.find( s => s.key === deckKey);
+		const group = stack.groups[groupId];
+		const param = group.parameters.find(p => p.action === action && p.param === paramKey);
+		param.current = param.current == "1" ? "0" : "1";
 		this.render();
 	}
 

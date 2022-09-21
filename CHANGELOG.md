@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.12.0
+
+### Features
+- Inside deck configuration : Now properly using checkboxes for parameters when manipulating booleans
+
 ## Release 1.11.0
 
 ### Compliance
