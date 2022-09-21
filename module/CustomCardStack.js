@@ -727,8 +727,12 @@ export class CustomCardStack {
         const owner = this.stackOwner;
         const pile = owner.forGMs ? this.cardStacks.gmRevealedCards
                                   : this.cardStacks.findRevealedCards( game.users.get(owner.playerId) );
-        const cards = await this.stack.pass( pile.stack, cardIds, {chatNotification: false});
 
+        const options = {chatNotification: false};
+        const p = this.module.paramService;
+        const revealHiden = p.parseBoolean( p.getParam( this.coreStackRef, "transferCards", "reveal", "hidden" ) );
+
+        const cards = await this.stack.pass( pile.stack, cardIds, {chatNotification: false});
         const flavor = this.getCardMessageFlavor('hand', 'reveal', cardIds.length);
         await this.sendMessageForCards(flavor, cards, {addCardDescription: true} );
         return cards;

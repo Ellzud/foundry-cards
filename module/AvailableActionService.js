@@ -346,8 +346,9 @@ export class AvailableActionService {
             parameters: []
         };
         actionGroups.forEach( (actionGroup) => {
-            allGroupDetails.actions.push( ...this.getActionGroupDetails(stackKey, actionGroup).actions );
-            allGroupDetails.parameters.push( ...this.getActionGroupDetails(stackKey, actionGroup).parameters );
+            const details = this.getActionGroupDetails(stackKey, actionGroup);
+            allGroupDetails.actions.push( ...details.actions );
+            allGroupDetails.parameters.push( ...details.parameters );
         });
 
         allGroupDetails.actions = allGroupDetails.actions.filter( action => {
