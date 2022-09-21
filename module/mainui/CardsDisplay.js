@@ -251,20 +251,21 @@ export class CustomCardsDisplay extends CardsConfig {
         } else {
             // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
             let background = card?.back.img;
-            const isStackIcon = this._custom.stack.img === background;
+            const isStackIcon = wrapper?._custom.stack.img === background;
             if(!background || isStackIcon || background == 'icons/svg/card-joker.svg') {
+
                 const type = this._cards.type;
-                const owner = this._custom.stackOwner;
-                const coreRef = this._custom.coreStackRef;
-                const def = game.modules.get('ready-to-use-cards').stacksDefinition;
-                if( owner.forPlayers || owner.forGMs ) {
+                const coreRef = wrapper?._custom.coreStackRef ?? this._custom.coreStackRef;
+                if( coreRef ) {
+                    const backSettings = deckBacksSettings(coreRef);
+                    background = type=='pile' ? backSettings.discardBg : backSettings.deckBg;
+
+                } else { // Should not happen anymore
+                    const owner = this._custom.stackOwner;
+                    const def = game.modules.get('ready-to-use-cards').stacksDefinition;
                     const base = owner.forPlayers ? def.playerStacks : def.gmStacks;
                     const baseDir = base.resourceBaseDir;
                     background = baseDir + '/background/' + (type=='pile'? 'front.webp' : 'back.webp');
-
-                } else {
-                    const backSettings = deckBacksSettings(coreRef);
-                    background = type=='pile' ? backSettings.discardBg : backSettings.deckBg;
                 }
             }
 
