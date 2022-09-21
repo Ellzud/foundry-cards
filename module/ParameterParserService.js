@@ -1,4 +1,5 @@
 import { cardStackSettings } from "./tools.js";
+import { DeckParameters } from "./constants.js";
 
 
 const parseNumberOrNull = (value) => {
@@ -36,6 +37,16 @@ export class ParameterParserService {
         const parameters = settings_allParameters(stackKey);
         const paramKey = "core-" + paramName;
         return parameters[paramKey];
+    }
+
+    /**
+     * CoreParam 'revealedFaceDown' possess a default value : false
+     * @param {string} stackKey The stack key, as defined in flags
+     * @returns TRUE/FALSE (Default: False)
+     */
+    areRevealedCardsPutFaceDown(stackKey) {
+        const result = this.getCoreParam(stackKey, DeckParameters.revealedFaceDown);
+        return result ?? false;
     }
 
     /**

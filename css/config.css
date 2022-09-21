@@ -48,6 +48,27 @@
   margin-right: 10px;
 }
 
+.rtucards-config-actions .details .line .param-boolean-input {
+  min-width: 20px;
+  height: var(--form-field-height);
+  font-size: large;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 3px 6px;
+  line-height: inherit;
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.rtucards-config-actions .details .line .param-boolean-input.default {
+  color:rgba(0, 0, 0, 0.5)
+}
+
+.rtucards-config-actions .details .line .param-boolean-input:hover {
+  text-shadow: 0 0 4px darkblue;
+}
+
+
 
 .rtucards-config-actions .details .group-tab {
   border: groove;

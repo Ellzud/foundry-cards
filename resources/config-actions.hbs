@@ -104,22 +104,31 @@
                 <div class="flexrow line">
                     <i class="toggle-button exact-width"></i>
                     <div class="action-param">{{param.label}}</div>
-                    <input  id="{{param.id}}"
-                            type="text" class="param-input real-param" 
-                            data-param="{{param.param}}"
-                            value="{{param.current}}" 
-                            placeholder="{{param.default}}"
-                            list="{{param.id}}-valid-values"
-                            title="{{param.validation.tooltip}}"
-                            {{#if param.validation.pattern}}
-                                pattern="{{param.validation.pattern}}" 
-                            {{/if}}
-                            >
-                    <datalist id="{{param.id}}-valid-values">
-                        {{#each param.validation.datalist as |option|}}
-                            <option value="{{option}}"></option>
-                        {{/each}}
-                    </datalist>
+
+                    {{#if param.checkbox.displayed }}
+                        <i class="param-boolean-input {{#if param.checkbox.default}}default{{/if}} 
+                                  far fa-{{#if param.checkbox.checked}}check-{{/if}}square"
+                           data-param="{{param.param}}" >
+                        </i>
+                    {{else}}
+                        <input  id="{{param.id}}"
+                                type="text" class="param-input real-param" 
+                                data-param="{{param.param}}"
+                                value="{{param.current}}" 
+                                placeholder="{{param.default}}"
+                                list="{{param.id}}-valid-values"
+                                title="{{param.validation.tooltip}}"
+                                {{#if param.validation.pattern}}
+                                    pattern="{{param.validation.pattern}}" 
+                                {{/if}}
+                                >
+                        <datalist id="{{param.id}}-valid-values">
+                            {{#each param.validation.datalist as |option|}}
+                                <option value="{{option}}"></option>
+                            {{/each}}
+                        </datalist>
+                    {{/if}}
+
                 </div>
             {{/each}}
         </div>

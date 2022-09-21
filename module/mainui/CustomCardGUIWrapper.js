@@ -6,7 +6,6 @@
 import { CustomCardStack } from "../CustomCardStack.js";
 import { CARD_STACKS_DEFINITION } from "../StackDefinition.js";
 
-
 export class CustomCardGUIWrapper {
 
     constructor(card) {
@@ -65,10 +64,8 @@ export class CustomCardGUIWrapper {
                 return data;
             });
     
-            const backIncluded = this.paramService.parseBoolean(
-                this.paramService.getParam(this._custom.coreStackRef, "flipCard", "flip", "includeBack").current
-            );
-            if( backIncluded ) {
+            // Multiple parameters can induce back to be a valid face
+            if( this._custom.backIsAValidFaceForCards ) {
                 const back = {
                     name: this._card.back?.name,
                     text: this._card.back?.text,

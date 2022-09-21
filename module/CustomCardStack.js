@@ -53,6 +53,7 @@ const optionsForDiscardedCards = ( discardStack ) => {
     
     const discardFlags = {};
     discardFlags['flags.ready-to-use-cards.discardOrder'] = maxDiscardOrder + 1;
+    discardFlags['flags.ready-to-use-cards.currentFace'] = 0;
     options.updateData = discardFlags;
     return options;
 }
@@ -125,6 +126,25 @@ export class CustomCardStack {
 
     get frontDefaultImage() {
         return deckBacksSettings(this.coreStackRef).discardBg;
+    }
+
+    /**
+     * Multiple parameters can induce the back to be a valid face
+     * As long as one is checked, the back will be considered as a valid face
+     */
+    get backIsAValidFaceForCards() {
+
+        // CoreParam 'revealedFaceDown' can need the back to be a valid face
+        const putFaceDown = this.module.parameterService.areRevealedCardsPutFaceDown(this.coreStackRef);
+        if(putFaceDown) {
+            return true;
+        }
+
+        // Flip action can need the back to be a valid face
+        const possibilities = this.module.actionService.getActionPossibilities(this.coreStackRef, ["flipCard"]);
+        const actionDef = possibilities.find( a => a.action === "flip" );
+        const paramValue = actionDef?.parameters.find(p => p.param = "includeBack").current;
+        return paramValue && this.module.parameterService.parseBoolean(paramValue);
     }
 
     /**
@@ -236,6 +256,71 @@ export class CustomCardStack {
         } else {
             return owner === game.user.id;
         }
+    }
+
+    /**
+     * Convenience function
+     * Sort cards from this stack and return multiple arrays. One for each face amount and core stacks
+     * @param {CustomCardGUIWrapper[]} customCards Already wrapped cards list (may come from different stacks)
+     * @returns Array of { nbFaces: int, deck: CustomCards, cards: Card[] }
+     */
+    sortCardsByFaceAmountAndSource(customCards) {
+
+        const result = [];
+        customCards.forEach( c => {
+            const deck = c._custom;
+            const nbFaces = c.allFaces.length;
+            const existing = result.find( r => r.nbFaces == nbFaces && r.deck.coreStackRef === deck.coreStackRef );
+            if( existing ) {
+                existing.cards.push( c.card );
+            } else {
+                result.push({
+                    nbFaces: nbFaces,
+                    deck: deck,
+                    cards: [c.card]
+                });
+            }
+        });
+        return result;
+    }
+
+    /**
+     * Convenience function
+     * After sorted cards by nbFaces and coreStack, check for each stack if it needs to put revealed cards face down
+     * Those who doesn't need it are push in a simple card list .noNeed
+     * The others are push in sub lists inside .need
+     * @param {string[]} [cardIds] Id for cards which should be is this stack. Ids which weren't found are ignored
+     * @param {Cards[]} [cards] Cards to wrap
+     * @param {CustomCardGUIWrapper[]} [customCards] Already wrapped cards list (may come from different stacks)
+     * @returns {noNeed: Card[], need: { nbFaces: int, cards: Card[] }[] }
+     */
+    splitBetweenThoseNeedingFaceDownAndTheOthers({cardIds=null, cards=null, customCards=null}={}) {
+
+        // Parse parameters
+        const allCards = [];
+        if( cardIds ) { allCards.push(... this.sortedCardList.filter( c => cardIds.includes(c.id) ).map( c => new CustomCardGUIWrapper(c) ) ); }
+        if( cards ) { allCards.push(... cards.map( c => new CustomCardGUIWrapper(c) ) ); }
+        if( customCards ) { allCards.push(... customCards); }
+        const sorted = this.sortCardsByFaceAmountAndSource(allCards);
+
+        const noNeedFaceDown = []; // Card[]
+        const needFaceDown = []; // { nbFaces: int, cards: Card[] }
+        sorted.forEach( res => {
+            const revealedFaceDown = this.module.parameterService.areRevealedCardsPutFaceDown(res.deck.coreStackRef);
+            if( !revealedFaceDown ) {
+                noNeedFaceDown.push(... res.cards);
+            } else {
+                const existing = needFaceDown.find( nfd => nfd.nbFaces === res.nbFaces );
+                if( existing ) {
+                    existing.cards.push(... res.cards);
+                } else {
+                    const newOne = { nbFaces: res.nbFaces, cards: [] };
+                    newOne.cards.push(...res.cards);
+                    needFaceDown.push(newOne);
+                }
+            }
+        });
+        return { noNeed: noNeedFaceDown, need: needFaceDown };
     }
 
     /* -------------------------------------------- 
@@ -494,21 +579,33 @@ export class CustomCardStack {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
 
+        const cards = from.sortedCardList.filter( (card, index) => index < amount );
+
         const stackType = this.stack.type;
         const inHand = stackType == 'hand';
+        const revealedFaceDown = !inHand && this.module.parameterService.areRevealedCardsPutFaceDown(from.coreStackRef);
 
-        const cardIds = from.sortedCardList.filter( (card, index) => {
-            return index < amount;
-        }).map( card => {
-            return card.id;
-        });
+        // Different behavior when revealed face down is set
+        //----------------------------------------------------
+        const options = {chatNotification: false};
+        const drawnCards = [];
+        if( inHand || !revealedFaceDown ) {
+            const newCards = await from.stack.pass(this.stack, cards.map(c => c.id), options);
+            drawnCards.push(... newCards);
 
-        const drawnCards = await from.stack.pass(this.stack, cardIds, {chatNotification: false} );
+        } else {
+            options.updateData = {};
+            const cardLists = this.splitBetweenThoseNeedingFaceDownAndTheOthers({cards: cards}).need; // revealedFaceDown has been checked before. Will only return .need 
+            for( let need of cardLists ) {
+                options.updateData['flags.ready-to-use-cards.currentFace'] = need.nbFaces - 1;
+                const cardList =  await from.stack.pass(this.stack, need.cards.map(c => c.id), options);
+                drawnCards.push(... cardList);
+            }
+        }
 
         const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
         const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
-
-        await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: inHand});
+        await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: (inHand || revealedFaceDown)});
 
         return drawnCards;
     }
@@ -648,10 +745,36 @@ export class CustomCardStack {
         const owner = this.stackOwner;
         const hand = owner.forGMs ? this.cardStacks.gmHand
                                   : this.cardStacks.findPlayerHand( game.users.get(owner.playerId) );
-        const cards = await this.stack.pass( hand.stack, cardIds, {chatNotification: false});
 
-        const flavor = this.getCardMessageFlavor('pile', 'backToHand', cardIds.length);
-        await this.sendMessageForCards(flavor,  cards );
+
+        // Revealed face down management
+        //-----------------------------
+        const cards = [];
+        const options = {chatNotification: false};
+        const splitted = this.splitBetweenThoseNeedingFaceDownAndTheOthers({cardIds: cardIds});
+        if( splitted.noNeed.length > 0 ) {
+            const newCards = await this.stack.pass( hand.stack, splitted.noNeed.map(c => c.id) , options);
+            cards.push(...newCards);
+
+            const flavor = this.getCardMessageFlavor('pile', 'backToHand', newCards.length);
+            await this.sendMessageForCards(flavor, cards);
+        }
+
+        if( splitted.need.length > 0 ) {
+            options.updateData = {};
+            options.updateData['flags.ready-to-use-cards.currentFace'] = 0;
+
+            const idsToRetrieve = splitted.need.reduce( (_res, _curr) => {
+                _res.push(... _curr.cards.map(c => c.id) );
+                return _res;
+            }, []);
+
+            const newCards =  await this.stack.pass( hand.stack, idsToRetrieve, options);
+            cards.push(... newCards);
+
+            const flavor = this.getCardMessageFlavor('pile', 'backToHand', newCards.length);
+            await this.sendMessageForCards(flavor, cards, {hideToStrangers: true} );
+        }
         return cards;
     }
 
@@ -727,10 +850,35 @@ export class CustomCardStack {
         const owner = this.stackOwner;
         const pile = owner.forGMs ? this.cardStacks.gmRevealedCards
                                   : this.cardStacks.findRevealedCards( game.users.get(owner.playerId) );
-        const cards = await this.stack.pass( pile.stack, cardIds, {chatNotification: false});
 
-        const flavor = this.getCardMessageFlavor('hand', 'reveal', cardIds.length);
-        await this.sendMessageForCards(flavor, cards, {addCardDescription: true} );
+        // Revealed face down management
+        //-----------------------------
+        const options = {chatNotification: false};
+        const cards = [];
+        const splitted = this.splitBetweenThoseNeedingFaceDownAndTheOthers({cardIds: cardIds});
+        if( splitted.noNeed.length > 0 ) {
+            const newCards = await this.stack.pass( pile.stack, splitted.noNeed.map(c => c.id) , options);
+            cards.push(...newCards);
+
+            const flavor = this.getCardMessageFlavor('hand', 'reveal', newCards.length);
+            await this.sendMessageForCards(flavor, cards, {addCardDescription: true} );
+        }
+
+        if( splitted.need.length > 0 ) {
+            options.updateData = {};
+
+            const newCards = [];
+            for( let need of splitted.need ) {
+                options.updateData['flags.ready-to-use-cards.currentFace'] = need.nbFaces - 1;
+                const cardList =  await this.stack.pass( pile.stack, need.cards.map(c => c.id) , options);
+                newCards.push(... cardList);
+            }
+            cards.push(... newCards);
+
+            const flavor = this.getCardMessageFlavor('hand', 'reveal', newCards.length);
+            await this.sendMessageForCards(flavor, cards, {addCardDescription: true, hideToStrangers: true} );
+        }
+
         return cards;
     }
 
@@ -744,7 +892,36 @@ export class CustomCardStack {
         assertStackOwner(this, {forNobody: true});
         assertStackType(this, {decks: true});
 
-        await this.stack.deal( to.map( ccs => ccs.stack ), amount, {chatNotification: false});
+        // Different behavior when revealed face down is set
+        //----------------------------------------------------
+        const options = {chatNotification: false};
+        const revealedFaceDown = this.module.parameterService.areRevealedCardsPutFaceDown(this.coreStackRef);
+        if( !revealedFaceDown ) {
+            await this.stack.deal( to.map( ccs => ccs.stack ), amount, options);
+
+        } else {
+            const reveleadStacks = [];
+            const handStacks = [];
+            to.forEach( ccs => {
+                const list = ccs.stack.type == "hand" ? handStacks : reveleadStacks;
+                list.push(ccs);
+            });
+
+            await this.stack.deal( handStacks.map( ccs => ccs.stack ), amount, options);
+            
+            // Deal for revealed stack are simulated
+            options.action = "deal";
+            options.updateData = {};
+
+            for( let revealed of reveleadStacks ) {
+                const cards = this.sortedCardList.filter( (card, index) => index < amount );
+                const cardLists = this.splitBetweenThoseNeedingFaceDownAndTheOthers({cards: cards}).need; // revealedFaceDown has been checked before. Will only return .need 
+                for( let need of cardLists ) {
+                    options.updateData['flags.ready-to-use-cards.currentFace'] = need.nbFaces - 1;
+                    await this.stack.pass(revealed.stack, need.cards.map(c => c.id), options);
+                }
+            }
+        }
 
         const flavor = this.getCardMessageFlavor('deck', 'deal', amount);
         await this.sendMessageForStacks(flavor, to);
