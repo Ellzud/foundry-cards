@@ -251,7 +251,8 @@ export class CustomCardsDisplay extends CardsConfig {
         } else {
             // Choosing background depending on the selected card. Or by default the one in xxx/background/back.webp
             let background = card?.back.img;
-            if(!background || background == 'icons/svg/card-joker.svg') {
+            const isStackIcon = this._custom.stack.img === background;
+            if(!background || isStackIcon || background == 'icons/svg/card-joker.svg') {
                 const type = this._cards.type;
                 const owner = this._custom.stackOwner;
                 const coreRef = this._custom.coreStackRef;

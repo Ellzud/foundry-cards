@@ -46,25 +46,6 @@ export class CustomCardGUIWrapper {
 
 
     /**
-     * Multiple parameters can induce the back to be a valid face
-     * As long as one is checked, the back will be considered as a valid face
-     */
-    get backIsAValidFace() {
-
-        // CoreParam 'revealedFaceDown' can need the back to be a valid face
-        const putFaceDown = this.paramService.areRevealedCardsPutFaceDown(this._custom.coreStackRef);
-        if(putFaceDown) {
-            return true;
-        }
-
-        // Flip action can need the back to be a valid face
-        const possibilities = this.actionService.getActionPossibilities(this._custom.coreStackRef, ["flipCard"]);
-        const actionDef = possibilities.find( a => a.action === "flip" );
-        const paramValue = actionDef?.parameters.find(p => p.param = "includeBack").current;
-        return paramValue && this.paramService.parseBoolean(paramValue);
-    }
-
-    /**
      * Manage all faces with default values.
      * If settings says so, alos add the back as the last face
      */
@@ -84,7 +65,7 @@ export class CustomCardGUIWrapper {
             });
     
             // Multiple parameters can induce back to be a valid face
-            if( this.backIsAValidFace ) {
+            if( this._custom.backIsAValidFaceForCards ) {
                 const back = {
                     name: this._card.back?.name,
                     text: this._card.back?.text,

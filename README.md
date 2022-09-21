@@ -89,6 +89,12 @@ It indicates RTUC where to search for labels when cards of this deck are played.
 
 You will have more details on how this works inside [README LABELS](./README_DEVELOPERS.md)
 
+**Revealed cards put face down**
+
+By default, revealed cards are handled the same way the some way has the hand stacks. This options can allow players to reveal cards face down.
+
+When this option is chosen, the revealed cards are directly put face down and the other players don't see anything in chat. (Same behavior as when players draw cards in their hand)
+
 **The deck configuration is locked**
 
 This parameter only appear when a deck has been registred inside RTUC via hooks. By unlocking it, you will be able to modify what has been defined in the hook.
