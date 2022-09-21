@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Release 1.12.0
+
+### Features
+- Inside deck configuration : Now properly using checkboxes for parameters when manipulating booleans
+- Since last versions, card background were not correctly detected and were replaced by icons : Fixed
+- New parameter for stacks : Revealed cards can be put face down.
+
+### Translation
+- Added labels : `RTUCards.settings.config-actions.additionalData.revealedFaceDown`
+
 ## Release 1.11.0
 
 ### Compliance

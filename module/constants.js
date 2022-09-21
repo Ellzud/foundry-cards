@@ -382,7 +382,8 @@ export const StackConfigurationGroup = {
 export const DeckParameters = {
 	overrideConf : 'overrideConf',
 	labelBaseKey: 'labelBaseKey',
-	resourceBaseDir: 'resourceBaseDir'
+	resourceBaseDir: 'resourceBaseDir',
+    revealedFaceDown: 'revealedFaceDown'
 }
 
 /**

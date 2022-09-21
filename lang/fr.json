@@ -18,6 +18,7 @@
     "RTUCards.settings.config-actions.additionalData.labelBaseKey": "Préfixe pour les libellés : ",
     "RTUCards.settings.config-actions.additionalData.resourceBaseDir": "Répertoire pour les images : ",
     "RTUCards.settings.config-actions.additionalData.overrideConf": "Si déverrouillé, permet de modifier les actions disponibles pour ce deck. À ne faire que si vous êtes certain que le code permettant la déclaration de ce deck n'évoluera plus en terme d'actions disponibles. Vérrouillez-le à nouveau si vous voulez repasser sur les actions par défaut.",
+    "RTUCards.settings.config-actions.additionalData.revealedFaceDown": "Si coché, les cartes révélées sont posées faces cachées",
 
     "RTUCards.settings.config-actions.actionParams.header": "Paramètres correspondants",
     "RTUCards.settings.config-actions.actionParams.buttonText": "Libéllé du bouton",
