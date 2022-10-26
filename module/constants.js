@@ -253,7 +253,12 @@ export const StackConfigurationGroup = {
             {action: 'discardAll', default: 'RTUCards.action.moveCard.discardAll.label'},
         ],
         parameters: [
-            {action: 'discardOne', param: 'discardAll', label: 'RTUCards.action.moveCard.discardOne.discardAll', default: '1', validation: 'boolean'}
+            {action: 'backDeck', param: 'notifyOnGMAction', label: 'RTUCards.action.moveCard.backDeck.notifyOnGMAction', default: '1', validation: 'boolean'},
+            {action: 'discardOne', param: 'discardAll', label: 'RTUCards.action.moveCard.discardOne.discardAll', default: '1', validation: 'boolean'},
+            {action: 'discardOne', param: 'notifyOnGMAction', label: 'RTUCards.action.moveCard.discardOne.notifyOnGMAction', default: '1', validation: 'boolean'},
+            {action: 'discardOne', param: 'notifyOnPlayerAction', label: 'RTUCards.action.moveCard.discardOne.notifyOnPlayerAction', default: '1', validation: 'boolean'},
+            {action: 'give', param: 'notifyOnGMAction', label: 'RTUCards.action.moveCard.give.notifyOnGMAction', default: '1', validation: 'boolean'},
+            {action: 'give', param: 'notifyOnPlayerAction', label: 'RTUCards.action.moveCard.give.notifyOnPlayerAction', default: '1', validation: 'boolean'},
         ]
     },
     exchangeCard: {
