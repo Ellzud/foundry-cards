@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Release 1.12.1
+
+### Features
+- New option when moving cards through stacks : Until now, each time a card moved from a stack to another, everyone was notified by a message listing all card which were moved. The new options let GM choose who will see the detailed list (notification will still be send to everyone)
+
+![Additional options](docs/README_choosing_move_params.webp?raw=true)
+
 ## Release 1.12.0
 
 ### Features

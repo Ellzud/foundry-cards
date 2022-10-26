@@ -203,12 +203,17 @@ export class CustomCardStack {
         return result;
     }
 
+    get isMainDiscard() {
+        return Object.values(this.cardStacks.piles).some( p => p._stack.id === this.stack.id );
+    }
+
+
     /**
      * Available cards are sorted by types
      * Can be used for every type of stacks
      */
     get sortedCardList() {
-        const isMainDiscard = Object.values(this.cardStacks.piles).find( p => p._stack.id === this.stack.id );
+        const isMainDiscard = this.isMainDiscard;
         const cards = this.stack.type == 'deck' ? this.stack.availableCards : Array.from(this.stack.cards.values());
         cards.sort( (a,b) => {
             // First comparison on card source deck
@@ -622,13 +627,27 @@ export class CustomCardStack {
         assertStackIsNotADiscardPile(this);
 
         const stackType = to.stack.type;
-        const inHand = stackType == 'hand';
-
+        const toHand = stackType == "hand";
         const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: false} );
 
         const flavor = to.getCardMessageFlavor(stackType, 'give', givenCards.length);
 
-        await to.sendMessageForCards(flavor, givenCards, {hideToStrangers: inHand});
+        // For message, parameter will depend on card origin
+        const byCoreKeys = {};
+        for( let card of givenCards ) {
+            const coreKey = new CustomCardStack(card.source).coreStackRef;
+            if( ! (coreKey in byCoreKeys) ) {
+                byCoreKeys[coreKey] = [];
+            }
+            byCoreKeys[coreKey].push(card);
+        }
+
+        const paramKey = game.user.isGM ? "notifyOnGMAction" : "notifyOnPlayerAction";
+        for( const [coreKey, cards] of Object.entries(byCoreKeys) ) {
+            const param = this.module.parameterService.getParam(coreKey, "moveCard", "give", paramKey);
+            const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
+            await to.sendMessageForCards(flavor, cards, {hideToStrangers: (toHand || !notificationAllowed) });
+        }
 
         return givenCards;
     }
@@ -696,7 +715,12 @@ export class CustomCardStack {
 
             if( cards.length > 0 ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
-                await this.sendMessageForCards( flavor, cards, {sentToDiscard: pile.stack.id} );
+
+                const paramKey = game.user.isGM ? "notifyOnGMAction" : "notifyOnPlayerAction";
+                const param = this.module.parameterService.getParam(coreKey, "moveCard", "discardOne", paramKey);
+                const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
+                
+                await this.sendMessageForCards( flavor, cards, {sentToDiscard: pile.stack.id, hideToStrangers: !notificationAllowed} );
         
                 discardCards = discardCards.concat(cards);
             }
@@ -726,9 +750,12 @@ export class CustomCardStack {
         } else {
             console.warn('RTUC-Actions | You didn\'t have enough permissions to shuffle the deck. Skipped.');
         }
-
+        
         const flavor = this.getCardMessageFlavor('pile', 'backToDeck', 1);
-        await this.sendMessageForCards(flavor,  [original], {letGMSpeak:true} );
+        const param = this.module.parameterService.getParam(coreKey, "moveCard", "backDeck", "notifyOnGMAction");
+        const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
+
+        await this.sendMessageForCards(flavor,  [original], {letGMSpeak:true, hideToStrangers: !notificationAllowed} );
     }
 
     /** 

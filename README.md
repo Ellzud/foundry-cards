@@ -168,7 +168,7 @@ Its grid is the most complex one. When you put the mouse cursor on top of one of
 ![Move through stacks](docs/README_choosing_move_grid.webp?raw=true)
 
 
-**All discard in batch**
+**All discard in batch & Detailed messages**
 
 ![Batch discard](docs/README_choosing_move_params.webp?raw=true)
 
