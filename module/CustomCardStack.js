@@ -578,9 +578,10 @@ export class CustomCardStack {
      * Draw some cards.
      * @param {CustomCardStack} from The deck you will draw from
      * @param {int} amount Amount of drawn cards. By default: 1
+     * @param {boolean} [sendMessage] If a message is sent
      * @returns {Card[]} The discarded cards
      */
-     async drawCards(from, amount = 1) {
+     async drawCards(from, amount = 1, {sendMessage=true}={}) {
 
         assertStackOwner(this, {forGMs: true, forPlayers: true});
 
@@ -608,10 +609,11 @@ export class CustomCardStack {
             }
         }
 
-        const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
-        const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
-        await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: (inHand || revealedFaceDown)});
-
+        if( sendMessage ) {
+            const action = from.stack.type == 'pile' ? 'drawDiscard' : 'draw';
+            const flavor = this.getCardMessageFlavor(stackType, action, drawnCards.length);
+            await this.sendMessageForCards(flavor, drawnCards, {hideToStrangers: (inHand || revealedFaceDown)});
+        }
         return drawnCards;
     }
 
@@ -620,9 +622,10 @@ export class CustomCardStack {
      * Do not use it to discard cards
      * @param {CustomCardStack} to The player which will receive the card
      * @param {string[]} cardIds The cards which should be transfered
+     * @param {boolean} [sendMessage] If a message is sent
      * @returns {Card[]} The transfered cards
      */
-     async giveCards(to, cardIds) {
+     async giveCards(to, cardIds, {sendMessage=true}={}) {
 
         assertStackIsNotADiscardPile(this);
 
@@ -642,11 +645,13 @@ export class CustomCardStack {
             byCoreKeys[coreKey].push(card);
         }
 
-        const paramKey = game.user.isGM ? "notifyOnGMAction" : "notifyOnPlayerAction";
-        for( const [coreKey, cards] of Object.entries(byCoreKeys) ) {
-            const param = this.module.parameterService.getParam(coreKey, "moveCard", "give", paramKey);
-            const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
-            await to.sendMessageForCards(flavor, cards, {hideToStrangers: (toHand || !notificationAllowed) });
+        if( sendMessage ) {
+            const paramKey = game.user.isGM ? "notifyOnGMAction" : "notifyOnPlayerAction";
+            for( const [coreKey, cards] of Object.entries(byCoreKeys) ) {
+                const param = this.module.parameterService.getParam(coreKey, "moveCard", "give", paramKey);
+                const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
+                await to.sendMessageForCards(flavor, cards, {hideToStrangers: (toHand || !notificationAllowed) });
+            }
         }
 
         return givenCards;
@@ -658,10 +663,10 @@ export class CustomCardStack {
      * @param {CustomCardStack} withStack Card stack which have the receivedCardsId
      * @param {string[]} myCardIds Cards you will be separated
      * @param {string[]} receivedCardsId Cards you will get
-     * @param {string[]} receivedCardsId Cards you will get
+     * @param {boolean} [sendMessage] If a message is sent
      * @returns {Card[]} Received Cards
      */
-     async exchangeCards(withStack, myCardIds, receivedCardsId) {
+     async exchangeCards(withStack, myCardIds, receivedCardsId, {sendMessage=true}={}) {
 
         assertStackOwner(this, {forGMs: true, forPlayers:true});
         assertStackType(this, {hands: true, piles:true});
@@ -681,10 +686,11 @@ export class CustomCardStack {
         allCards.push(...givenCards);
         allCards.push(...receivedCards);
 
-        let flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
-        flavor = flavor.replace('FROM', target.name );
-
-        await this.sendMessageForCards(flavor, allCards, {hideToStrangers: inHand});
+        if( sendMessage ) {
+            let flavor = this.getCardMessageFlavor(stackType, 'exchange', givenCards.length);
+            flavor = flavor.replace('FROM', target.name );
+            await this.sendMessageForCards(flavor, allCards, {hideToStrangers: inHand});
+        }
 
         return givenCards;
     }
@@ -693,9 +699,10 @@ export class CustomCardStack {
      * Discard some cards.
      * Message will be grouped for each card type
      * @param {string[]} cardsIds cards Ids
+     * @param {boolean} [sendMessage] If a message is sent
      * @returns {Card[]} The discarded cards
      */
-     async discardCards(cardsIds) {
+     async discardCards(cardsIds, {sendMessage=true}={}) {
 
         assertStackIsNotADiscardPile(this);
 
@@ -712,17 +719,15 @@ export class CustomCardStack {
             });
             const options = optionsForDiscardedCards(pile);
             const cards = await this.stack.pass( pile.stack, ids, options);
+            discardCards = discardCards.concat(cards);
 
-            if( cards.length > 0 ) {
+            if( cards.length > 0 && sendMessage ) {
                 const flavor =  this.getCardMessageFlavor(stackType, 'discard', cards.length, {alternativeCoreKey: coreKey});
 
                 const paramKey = game.user.isGM ? "notifyOnGMAction" : "notifyOnPlayerAction";
                 const param = this.module.parameterService.getParam(coreKey, "moveCard", "discardOne", paramKey);
                 const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
-                
                 await this.sendMessageForCards( flavor, cards, {sentToDiscard: pile.stack.id, hideToStrangers: !notificationAllowed} );
-        
-                discardCards = discardCards.concat(cards);
             }
         }
 

@@ -94,11 +94,11 @@
 
     "RTUCards.action.shuffleDeck.label": "Mélanger le deck",
     "RTUCards.action.shuffleDeck.desc": "Le MJ peut mélanger les cartes restantes du deck. Cette action est disponible en visualisant le deck, dans la section gauche.",
-    "RTUCards.action.shuffleDeck.reset.label": "Mélanger",
+    "RTUCards.action.shuffleDeck.shuffle.label": "Mélanger",
 
     "RTUCards.action.resetDeck.label": "Réinitialiser le deck",
     "RTUCards.action.resetDeck.desc": "Le MJ peut choisir de rappatrier toutes les cartes du deck avant de remélanger le paquet. Cette action est disponible en visualisant le deck, dans la section gauche.",
-    "RTUCards.action.resetDeck.shuffle.label": "Réinitialiser",
+    "RTUCards.action.resetDeck.reset.label": "Réinitialiser",
 
     "RTUCards.action.drawDiscardCard.label": "Piocher la première carte de la défausse",
     "RTUCards.action.drawDiscardCard.desc": "Les joueurs peuvent piocher eux même les cartes de la défausse. Cette action est disponible en visualisant le paquet de joueur, dans la section gauche.",

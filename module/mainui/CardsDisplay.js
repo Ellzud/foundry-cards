@@ -61,6 +61,10 @@ export class CustomCardsDisplay extends CardsConfig {
         this._currentSelection =  this._custom.sortedCardList.find( c => c.id === cardId );
     }
 
+    selectFirstCard() {
+        this._currentSelection = this._custom.sortedCardList[0];
+    }
+
     get listingAllowed() {
         return !this._actionParameters;
     }
