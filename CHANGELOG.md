@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.12.2
+
+### Features
+- Foundry v11 compatibility
+
 ## Release 1.12.1
 
 ### Features

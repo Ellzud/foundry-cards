@@ -8,11 +8,11 @@
 		"discord": "Didialchichi#2607"
 	}],
   "url": "https://gitlab.com/adrien.schiehle/ready-to-use-cards",
-  "version": "1.12.1",
+  "version": "1.12.2",
 	"compatibility": {
-		"minimum": "10",
-		"verified": "10.284",
-		"maximum": "10"
+		"minimum": "11",
+		"verified": "11",
+		"maximum": "11"
 	},
   "scripts": [],
   "esmodules": [
@@ -37,5 +37,5 @@
   "system": [],
 	"relationships": {},
   "manifest": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/raw/master/module.json",
-  "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.12.1/ready-to-use-cards-release-1.12.1.zip"
+  "download": "https://gitlab.com/adrien.schiehle/ready-to-use-cards/-/archive/release-1.12.2/ready-to-use-cards-release-1.12.2.zip"
 }

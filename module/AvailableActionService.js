@@ -418,28 +418,28 @@ export class AvailableActionService {
         return [discardAll];
     }
 
-    asGUIAction(possibility, {action=null} = {}) {
+    asGUIAction(possibility, {action=null, onLeftSide=false} = {}) {
 
-        let onLeftSide = [
+        let onLeft = [
             "peekOnCards", "dealCard", "drawDeckCard", 
             "shuffleDeck", "resetDeck", "drawDiscardCard", 
             "shuffleDiscard", "resetDiscard"].includes( possibility.actionGroupId );
 
-        onLeftSide = onLeftSide || possibility.signature === "moveCard-discardAll";
+        onLeft = onLeft || possibility.signature === "moveCard-discardAll" || onLeftSide;
 
         return {
             classes: possibility.signature,
             label: possibility.name,
             action: action,
-            onLeft: onLeftSide
+            onLeft: onLeft
         }
     }
 
-    customGUIAction(name, action) {
+    customGUIAction(name, action, onLeftSide = false) {
         return this.asGUIAction({
             signature: "custom-action",
             name: name,
-        }, {action});
+        }, {action, onLeftSide});
     }
 
     /**

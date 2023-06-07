@@ -37,20 +37,20 @@ export const registerCardSystem = () => {
 		}
 
 		/** @override */
-		_onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-			super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+		_onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
+			super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
 			Hooks.call('updateCustomCardsContent', this, options, userId);
 		}
 
 		/** @override */
-		_onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-			super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+		_onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+			super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
 			Hooks.call('updateCustomCardsContent', this, options, userId);
 		}
 
 		/** @override */
-		_onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-			super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
+		_onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+			super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
 			Hooks.call('updateCustomCardsContent', this, options, userId);
 		}
 	}
