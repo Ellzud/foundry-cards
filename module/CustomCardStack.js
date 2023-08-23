@@ -110,13 +110,16 @@ export class CustomCardStack {
         } else if( this.isMainDiscard ) {
             return STACK_SORT_CHOICES.DISCARD_ORDER;
         } else {
-            return this.stack.getFlag("ready-to-use-cards", "sort") ?? STACK_SORT_CHOICES.DECK_ORDER;
+            const root = game.settings.get("ready-to-use-cards", GlobalConfiguration.sortOptions) ?? {};
+            return root[this.stack.id] ?? STACK_SORT_CHOICES.DECK_ORDER;
         }
     }
 
     /** Some stacks can specify a custom sort */
     async changeSortChoice(newChoice) {
-        return this.stack.setFlag("ready-to-use-cards", "sort", newChoice);
+        const root = game.settings.get("ready-to-use-cards", GlobalConfiguration.sortOptions) ?? {};
+        root[this.stack.id] = newChoice;
+        return game.settings.set("ready-to-use-cards", GlobalConfiguration.sortOptions, root);
     }
 
     /**

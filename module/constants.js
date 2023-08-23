@@ -399,6 +399,7 @@ export const GlobalConfiguration = {
     gmIcon: 'gmIcon',
     shortcuts: 'shortcuts',
     smallDisplay: 'smallDisplay',
+    sortOptions: 'sortOptions',
     stacks: 'stacksV2',
     backs: 'backs',
     stackForPlayerHand: 'stackForPlayerHand',

@@ -126,12 +126,25 @@ export const loadCardSettings = () => {
 	// Data will be stored inside 'shortcuts'
 	game.settings.register("ready-to-use-cards", GlobalConfiguration.shortcuts, {
 		scope: "client",
-		config: false,
-		default: null,
 		type: Object,
+		default: null,
 		onChange: async c => {
 			const app = Object.values(ui.windows).find(a => a.constructor === ConfigSheetForShortcuts);
 			if ( app ) app.render();
+		},
+		config: false
+	});
+
+	// Registering another setting which will store user choice in card sorting.
+	// It will directly be handled by the CustomCardStack class
+	game.settings.register("ready-to-use-cards", GlobalConfiguration.sortOptions, {
+		scope: "client",
+		type: Object,
+		default: null,
+		onChange: async c => {
+			const module = game.modules.get('ready-to-use-cards');
+			module.shortcuts.hand.render();
+			module.shortcuts.revealed.render();
 		},
 		config: false
 	});
@@ -183,7 +196,7 @@ export const loadCardSettings = () => {
 		config: true,
 		onChange: () => game.modules.get('ready-to-use-cards').cardStacks.loadCardStacks()
 	});
-  
+	
 }
 
 /**
