@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.12.3
+
+### Features
+- Adding sort option inside Hand and Pile stacks
+
 ## Release 1.12.2
 
 ### Features
