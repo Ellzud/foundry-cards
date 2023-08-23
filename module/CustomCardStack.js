@@ -58,6 +58,14 @@ const optionsForDiscardedCards = ( discardStack ) => {
     return options;
 }
 
+/** Some stack can specify a custom sort  */
+export const STACK_SORT_CHOICES = {
+    DECK_ORDER: 0,
+    DISCARD_ORDER: 1,
+    LOWEST_TO_HIGHEST: 2,
+    HIGHEST_TO_LOWEST: 3
+};
+
 export class CustomCardStack {
 
     constructor(stack) {
@@ -95,21 +103,36 @@ export class CustomCardStack {
         return this.stack.getFlag("ready-to-use-cards", "core");
     }
 
+    get currentSortChoice() {
+        // No choices for descks and main discard : 
+        if( this.isDeckStack ) {
+            return STACK_SORT_CHOICES.DECK_ORDER;
+        } else if( this.isMainDiscard ) {
+            return STACK_SORT_CHOICES.DISCARD_ORDER;
+        } else {
+            return this.stack.getFlag("ready-to-use-cards", "sort") ?? STACK_SORT_CHOICES.DECK_ORDER;
+        }
+    }
+
+    /** Some stacks can specify a custom sort */
+    async changeSortChoice(newChoice) {
+        return this.stack.setFlag("ready-to-use-cards", "sort", newChoice);
+    }
+
     /**
      * Prefix used by ActionService to differenciate actions
      */
      get prefixForActions() {
         const stackOwner = this.stackOwner;
-        const type = this._stack.type;
         if( stackOwner.forNobody ) {
-            return type == 'deck' ? "DE" :  "DI";
+            return this.isDeckStack ? "DE" :  "DI";
         } 
         
         if( stackOwner.forGMs ) {
-            return type == 'hand' ? "GH" :  "GR";
+            return this.isHandStack ? "GH" :  "GR";
         }
 
-        return type == 'hand' ? "PH" :  "PR";
+        return this.isHandStack ? "PH" :  "PR";
     }
 
     get backIcon() {
@@ -207,14 +230,22 @@ export class CustomCardStack {
         return Object.values(this.cardStacks.piles).some( p => p._stack.id === this.stack.id );
     }
 
+    get isHandStack() {
+        return this.stack.type == "hand";
+    }
+
+    get isDeckStack() {
+        return this.stack.type == "deck";
+    }
+
 
     /**
      * Available cards are sorted by types
      * Can be used for every type of stacks
      */
     get sortedCardList() {
-        const isMainDiscard = this.isMainDiscard;
-        const cards = this.stack.type == 'deck' ? this.stack.availableCards : Array.from(this.stack.cards.values());
+        const sortChoice = this.currentSortChoice;
+        const cards = this.isDeckStack ? this.stack.availableCards : Array.from(this.stack.cards.values());
         cards.sort( (a,b) => {
             // First comparison on card source deck
             const aCore = ( new CustomCardStack(a.source) ).coreStackRef ?? '';
@@ -223,16 +254,22 @@ export class CustomCardStack {
             if( result != 0 ) { return result; }
 
             // Main discard have an additionnal sorting order
-            if( isMainDiscard ) {
+            if( STACK_SORT_CHOICES.DISCARD_ORDER == sortChoice ) {
                 const aSort = a.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
                 const bSort = b.getFlag('ready-to-use-cards', 'discardOrder') ?? 0;
                 if( aSort != bSort ) {
                     return bSort - aSort; // Last removed one on top
                 }
-            }
 
-            // Default sort
-            return a.sort - b.sort;
+            } else if( STACK_SORT_CHOICES.LOWEST_TO_HIGHEST == sortChoice ) {
+                return this.stack.sortStandard(a,b);
+
+            } else if( STACK_SORT_CHOICES.HIGHEST_TO_LOWEST == sortChoice ) {
+                return this.stack.sortStandard(b,a);
+
+            }
+            // Default : DECK_ORDER
+            return this.stack.sortShuffled(a,b);
         });
         return cards;
     }
@@ -630,7 +667,6 @@ export class CustomCardStack {
         assertStackIsNotADiscardPile(this);
 
         const stackType = to.stack.type;
-        const toHand = stackType == "hand";
         const givenCards = await this.stack.pass( to.stack, cardIds, {chatNotification: false} );
 
         const flavor = to.getCardMessageFlavor(stackType, 'give', givenCards.length);
@@ -650,7 +686,7 @@ export class CustomCardStack {
             for( const [coreKey, cards] of Object.entries(byCoreKeys) ) {
                 const param = this.module.parameterService.getParam(coreKey, "moveCard", "give", paramKey);
                 const notificationAllowed = this.module.parameterService.parseBoolean(param.current);
-                await to.sendMessageForCards(flavor, cards, {hideToStrangers: (toHand || !notificationAllowed) });
+                await to.sendMessageForCards(flavor, cards, {hideToStrangers: (to.isHandStack || !notificationAllowed) });
             }
         }
 
@@ -935,7 +971,7 @@ export class CustomCardStack {
             const reveleadStacks = [];
             const handStacks = [];
             to.forEach( ccs => {
-                const list = ccs.stack.type == "hand" ? handStacks : reveleadStacks;
+                const list = ccs.isHandStack ? handStacks : reveleadStacks;
                 list.push(ccs);
             });
 

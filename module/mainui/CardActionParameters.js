@@ -53,7 +53,7 @@ const deduceStacksFromAvailableTargets = ( availableTargets, includeSelf) => {
     }).filter( (customCardStack) => {
         const stackOwner = customCardStack.stackOwner;
         if( stackOwner.forGMs ) {
-            if( customCardStack.stack.type === "hand" ) {
+            if( customCardStack.isHandStack ) {
                 return availableTargets.includes("GH");
             } else {
                 return availableTargets.includes("GR");
@@ -64,7 +64,7 @@ const deduceStacksFromAvailableTargets = ( availableTargets, includeSelf) => {
                 return false;
             }
 
-            if( customCardStack.stack.type === "hand" ) {
+            if( customCardStack.isHandStack ) {
                 return availableTargets.includes("PH");
             } else {
                 return availableTargets.includes("PR");

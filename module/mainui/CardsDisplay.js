@@ -1,6 +1,6 @@
 import { CardActionParametersForCardSelection, CardActionParametersForPlayerSelection } from './CardActionParameters.js';
 import { CustomCardGUIWrapper } from './CustomCardGUIWrapper.js';
-import { CustomCardStack } from '../CustomCardStack.js';
+import { CustomCardStack, STACK_SORT_CHOICES } from '../CustomCardStack.js';
 import { GlobalConfiguration } from '../constants.js';
 import { deckBacksSettings } from '../tools.js';
 import { ConfigSheetForActions } from '../config/ConfigSheetForActions.js';
@@ -182,9 +182,16 @@ export class CustomCardsDisplay extends CardsConfig {
             data.currentSelection.summary = msg;
         }
 
+        const currentSort = this._custom.currentSortChoice;
         data.listing = {
             allowed: this.listingAllowed,
             opened: this.listingOpened,
+            sort: {
+                canBeChosen: this.listingOpened && !this._custom.isDeckStack && !this._custom.isMainDiscard,
+                noSort: currentSort == STACK_SORT_CHOICES.DECK_ORDER,
+                asc: currentSort == STACK_SORT_CHOICES.LOWEST_TO_HIGHEST,
+                desc: currentSort == STACK_SORT_CHOICES.HIGHEST_TO_LOWEST
+            },
             editBack : {
                 displayed : game.user.isGM && this._custom.stackOwner.forNobody
             }
@@ -660,6 +667,7 @@ export class CustomCardsDisplay extends CardsConfig {
         html.find(".main-card-slot .card-slot").dblclick(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.toggle").click(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.edit-backs").click(event => this._onClickDisplayBacksEdition(event) );
+        html.find(".listing-panel .listing-icon.change-sort").click(event => this._onClickChangeSortOnListing(event) );
     }
 
     addAdditionnalContentOnCards(html) {
@@ -729,6 +737,20 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickDisplayBacksEdition(event) {
         const sheet = new ConfigSheetForBacks(this._custom.coreStackRef);
         sheet.render(true);
+    }
+
+    async _onClickChangeSortOnListing(event) {
+        const currentSort = this._custom.currentSortChoice;
+        let newSort;
+        if( currentSort == STACK_SORT_CHOICES.DECK_ORDER ) {
+            newSort = STACK_SORT_CHOICES.LOWEST_TO_HIGHEST;
+        } else if( currentSort == STACK_SORT_CHOICES.LOWEST_TO_HIGHEST ) {
+            newSort = STACK_SORT_CHOICES.HIGHEST_TO_LOWEST;
+        } else {
+            newSort = STACK_SORT_CHOICES.DECK_ORDER;
+        }
+        await this._custom.changeSortChoice(newSort);
+        this.render();
     }
 
     async _onClickDrawCard(event) {

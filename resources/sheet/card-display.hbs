@@ -34,6 +34,23 @@
     </div>
 {{/inline}}
 
+{{#*inline "showSortIcon"}}
+    {{#if sort.canBeChosen}}
+        <div class="listing-icon change-sort">
+            {{#if sort.noSort}}
+                <i class="fa-solid fa-sort"></i>
+            {{/if}}
+            {{#if sort.asc}}
+                <i class="fa-solid fa-arrow-up-1-9"></i>
+            {{/if}}
+            {{#if sort.desc}}
+                <i class="fa-solid fa-arrow-down-1-9"></i>
+            {{/if}}
+        </div>
+    {{/if}}    
+{{/inline}}
+
+
 {{#*inline "editBackIcon"}}
     {{#if displayed}}
         <div class="listing-icon edit-backs">
@@ -155,6 +172,7 @@
             
             {{> showListingIcon opened=listing.opened }}
             {{> editBackIcon displayed=listing.editBack.displayed}}
+            {{> showSortIcon sort=listing.sort }}
 
             {{#if listing.opened}}
                 <div class="flexrow all-cards scaled-scrollbar">
