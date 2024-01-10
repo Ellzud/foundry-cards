@@ -274,6 +274,22 @@ export class CustomCardGUIWrapper {
     }
 
     /**
+     * Available actions when this card has been selected inside the main deck.
+     * May be overriden
+     * @param {object[]} actions Already stored actions for this stack
+     * @returns {CardActionData}  See constants.js
+     */
+    loadBasicActionsForDeck(actions) {
+
+        // Call the potential implementation inside wrapped impl
+        if( this._wrapped.alterLoadBasicActionsForDeck ) {
+            this._wrapped.alterLoadBasicActionsForDeck(actions);
+        }
+
+        return actions;
+    }
+
+    /**
      * Available actions when this card has been selected inside a player hand
      * May be overriden
      * @param {boolean} stackOwnedByUser if this is the current user hand

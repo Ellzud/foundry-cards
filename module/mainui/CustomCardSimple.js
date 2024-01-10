@@ -50,6 +50,13 @@ export class CustomCardSimple {
     alterBuildCardInfoForListing(result, from, addCardDescription) {}
 
     /**
+     * You can modify the common available actions for deck. Those actions are available even if no cards are selected
+     * You should directly alter the result actions if you want to add changes. (returns nothing)
+     * @param {object[]} actions Action computed by the wrapper. (default result base on stack settings)
+     */
+    alterLoadBasicActionsForDeck(actions) {}
+
+    /**
      * You can modify the available actions when this selected card is inside the deck stack
      * You should directly alter the result actions if you want to add changes. (returns nothing)
      * @param {object[]} actions Action computed by the wrapper. (default result base on stack settings)

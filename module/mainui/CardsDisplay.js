@@ -386,6 +386,10 @@ export class CustomCardsDisplay extends CardsConfig {
             }
             actions.push(guiAction);
         });
+
+        const [firstCard] = this._cards.cards.values();
+        const wrapper = new CustomCardGUIWrapper(firstCard);
+        wrapper.loadBasicActionsForDeck(actions);
     }
 
     /**
@@ -1112,8 +1116,15 @@ export class CustomCardsDisplay extends CardsConfig {
     async _onClickCustomAction(event) {
         event.preventDefault();
         const action = event.currentTarget.dataset.action;
-        const wrapper = new CustomCardGUIWrapper(this.currentSelection);
-        await wrapper.onClickDoCustomAction(action);
+        let card = this.currentSelection;
+        if( !card ) {
+            const [firstCard] = this._cards.cards.values();
+            card = firstCard;
+        }
+        if( card ) {
+            const wrapper = new CustomCardGUIWrapper(card);
+            await wrapper.onClickDoCustomAction(action);
+        }
     }
 
     async _onClickRecallAllCards(event) {
