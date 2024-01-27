@@ -288,6 +288,8 @@ If you choose to display 0 cards, the panel will instead display the summary of 
 
 ![Shortcut zero cards](docs/README_shortcut_zero_cards.webp?raw=true)
 
+> There is also a keyboard binding `Shift + H` that allows the toggling of those two panels. This binding comes on top of thse configurations.
+
 ### Moving your panels
 
 The left icon of each shortcut is draggable. Use them to move your shortcuts where you want.

@@ -17,6 +17,7 @@ import * as config  from './module/config/config.js';
   console.log('Ready-To-Use Cards | Module initializing ...');
   config.loadCardSettings();
   config.registerCardSystem();
+  config.loadKeybindSettings();
 
   const module = game.modules.get('ready-to-use-cards');
   module.cardStacks = new CustomCardStackLoader();

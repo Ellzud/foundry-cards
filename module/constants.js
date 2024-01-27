@@ -398,6 +398,7 @@ export const GlobalConfiguration = {
     gmName: 'gmName',
     gmIcon: 'gmIcon',
     shortcuts: 'shortcuts',
+    shortcutsToggle: 'shortcutsToggle',
     smallDisplay: 'smallDisplay',
     sortOptions: 'sortOptions',
     stacks: 'stacksV2',
@@ -424,4 +425,9 @@ export const DEFAULT_SHORTCUT_SETTINGS = {
         maxPerLine: 5,
         icon: 'modules/ready-to-use-cards/resources/revealed-icon.webp'
     }
+};
+
+/** For storing toggles */
+export const Toggles = {
+    displayingShortcuts: true
 };

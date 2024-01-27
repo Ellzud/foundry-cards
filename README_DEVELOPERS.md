@@ -206,6 +206,13 @@ You have a full example of what can be done [here](https://gitlab.com/adrien.sch
      * @param {object[]} actions Action computed by the wrapper. (default result base on stack settings)
      */
      alterLoadActionsWhileInDiscard(actions) {}
+
+    /**
+     * You can modify the common available actions for deck. Those actions are available even if no cards are selected
+     * You should directly alter the result actions if you want to add changes. (returns nothing)
+     * @param {object[]} actions Action computed by the wrapper. (default result base on stack settings)
+     */
+    alterLoadBasicActionsForDeck(actions) {}
 ~~~
 
 When selecting a card inside the GUI, one of this method will be called.
@@ -248,6 +255,31 @@ You can also empty the list if you don't want the classic actions :
      */
      alterLoadActionsWhileInRevealedCards(actions, stackOwnedByUser) {
         actions.length = 0; // Clearing the action list
+    }
+~~~
+
+Here is an example on how to add some basic actions for deck (basic : actions which doesn't need a card to be selected)
+~~~js
+    /**
+     * You can modify the common available actions for deck. Those actions are available even if no cards are selected
+     * You should directly alter the result actions if you want to add changes. (returns nothing)
+     * @param {object[]} actions Action computed by the wrapper. (default result base on stack settings)
+     */
+    alterLoadBasicActionsForDeck(actions) {
+
+        if( actions.length ) {
+            actions[actions.length - 1].classes += " separator";
+        }
+
+        // Adding 4 custom actions, for each situation where the guardian spirit is changing mood
+        Object.values(DECK_ACTIONS).forEach( actionKey => {
+            const action = this.actionService.customGUIAction(
+                game.i18n.localize('AESYSTEM.cards.trouble.sheet.actions.' + actionKey + '.actionButton'), 
+                actionKey,
+                true
+            );
+            actions.push(action);
+        });
     }
 ~~~
 

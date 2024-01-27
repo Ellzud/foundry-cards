@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Release 1.12.4
+
+### Features
+- Keyboard binding `Shift + H` for toggling *Hands* and *Revealed cards* panels
+- New possible override `alterLoadBasicActionsForDeck()` for basic deck actions. (basic : actions which doesn't need a card to be selected)
+
 ## Release 1.12.3
 
 ### Features

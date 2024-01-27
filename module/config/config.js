@@ -1,6 +1,6 @@
 import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
-import { GlobalConfiguration } from "../constants.js";
+import { GlobalConfiguration, Toggles } from "../constants.js";
 import { CustomCardStack } from "../CustomCardStack.js";
 import { CustomCardsDisplay } from "../mainui/CardsDisplay.js";
 import { SingleCardDisplay } from "../mainui/SingleCardDisplay.js";
@@ -197,6 +197,29 @@ export const loadCardSettings = () => {
 		onChange: () => game.modules.get('ready-to-use-cards').cardStacks.loadCardStacks()
 	});
 	
+}
+
+/** Adding a new Keyboard binding Shift + H for displaying those panels */
+export const loadKeybindSettings = () => {
+	game.keybindings.register("ready-to-use-cards", GlobalConfiguration.shortcutsToggle, {
+        name: "RTUCards.settings.shortcutsToggle.label",
+        hint: "RTUCards.settings.shortcutsToggle.hint",
+		uneditable: [{
+			key: "KeyH",
+			modifiers: ["Shift"]
+		}],
+        onDown: async () => {
+			Toggles.displayingShortcuts = ! Toggles.displayingShortcuts;
+
+			const module = game.modules.get('ready-to-use-cards');
+			if( !!module.shortcuts ) {
+				module.shortcuts.hand.reload();
+				module.shortcuts.revealed.reload();
+			}
+        },
+        restricted: false,
+        precedence: CONST.KEYBINDING_PRECEDENCE.NORMAL,
+    });
 }
 
 /**

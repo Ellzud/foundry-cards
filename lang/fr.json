@@ -55,6 +55,9 @@
     "RTUCards.settings.gmIcon.label": "Icone du MJ",
     "RTUCards.settings.gmIcon.hint": "Icone affichée lorsque les MJ font des actions sur les decks",
 
+    "RTUCards.settings.shortcutsToggle.label": "Raccourci clavier",
+    "RTUCards.settings.shortcutsToggle.hint": "Pour afficher/cacher les fenêtres affichant votre main et vos cartes faces visibles.",
+
     "RTUCards.settings.smallDisplay.label": "Taille réduite",
     "RTUCards.settings.smallDisplay.hint": "L'affichage classique peut prendre trop de place si vous utilisez un PC portable",
 
