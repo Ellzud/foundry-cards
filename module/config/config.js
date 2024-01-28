@@ -1,6 +1,6 @@
 import { ConfigSheetForActions } from "./ConfigSheetForActions.js";
 import { ConfigSheetForShortcuts } from "./ConfigSheetForShortcuts.js";
-import { GlobalConfiguration, Toggles } from "../constants.js";
+import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "../constants.js";
 import { CustomCardStack } from "../CustomCardStack.js";
 import { CustomCardsDisplay } from "../mainui/CardsDisplay.js";
 import { SingleCardDisplay } from "../mainui/SingleCardDisplay.js";
@@ -209,12 +209,19 @@ export const loadKeybindSettings = () => {
 			modifiers: ["Shift"]
 		}],
         onDown: async () => {
-			Toggles.displayingShortcuts = ! Toggles.displayingShortcuts;
+			const wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts) ?? DEFAULT_SHORTCUT_SETTINGS;
+			const currentlyDisplayed = wholeSettings.hands.displayed || wholeSettings.revealed.displayed;
+			
+			const newSettings = foundry.utils.mergeObject( {hands:{}, revealed: {}}, wholeSettings); 
+			newSettings.hands.displayed = !currentlyDisplayed;
+			newSettings.revealed.displayed = !currentlyDisplayed;
 
-			const module = game.modules.get('ready-to-use-cards');
-			if( !!module.shortcuts ) {
-				module.shortcuts.hand.reload();
-				module.shortcuts.revealed.reload();
+			await game.settings.set('ready-to-use-cards', GlobalConfiguration.shortcuts, newSettings);
+
+			const shortcuts = game.modules.get('ready-to-use-cards')?.shortcuts;
+			if( shortcuts ) {
+				shortcuts.hand.someSettingsHaveChanged();
+				shortcuts.revealed.someSettingsHaveChanged();
 			}
         },
         restricted: false,

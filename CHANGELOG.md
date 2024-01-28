@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Release 1.12.5
+
+### Features
+- Keyboard binding `Shift + H` rework (persist between sessions)
+
 ## Release 1.12.4
 
 ### Features

@@ -1,4 +1,4 @@
-import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration, Toggles } from "./constants.js";
+import { DEFAULT_SHORTCUT_SETTINGS, GlobalConfiguration } from "./constants.js";
 import { ConfigSheetForShortcuts } from "./config/ConfigSheetForShortcuts.js";
 import { CustomCardGUIWrapper } from "./mainui/CustomCardGUIWrapper.js";
 
@@ -87,7 +87,7 @@ class ShortcutPanel extends Application {
      * Will close it if option unchecked
      */
     reload() {
-        if( ! Toggles.displayingShortcuts ||  !this.customStack || !this._currentSettings.displayed ) {
+        if( !this.customStack || !this._currentSettings.displayed ) {
             this.close();
         } else {
             this.render(true);

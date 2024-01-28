@@ -426,8 +426,3 @@ export const DEFAULT_SHORTCUT_SETTINGS = {
         icon: 'modules/ready-to-use-cards/resources/revealed-icon.webp'
     }
 };
-
-/** For storing toggles */
-export const Toggles = {
-    displayingShortcuts: true
-};
