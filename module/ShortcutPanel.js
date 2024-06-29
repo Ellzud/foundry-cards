@@ -12,7 +12,7 @@ const ADDITIONNAL_FRAME_WIDTH = 530;
 class ShortcutPanel extends Application {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             template: 'modules/ready-to-use-cards/resources/sheet/shortcuts.hbs',
             popOut: false,
             scrollY: [".card-list"],
@@ -306,7 +306,7 @@ class ShortcutPanel extends Application {
 export class ShortcutForHand extends ShortcutPanel {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "rtucards-shortcut-hand"
         });
     }
@@ -334,7 +334,7 @@ export class ShortcutForHand extends ShortcutPanel {
     async updateSettings() {
         let wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
         if( !wholeSettings || wholeSettings == '') {
-            wholeSettings = duplicate(DEFAULT_SHORTCUT_SETTINGS);
+            wholeSettings = foundry.utils.duplicate(DEFAULT_SHORTCUT_SETTINGS);
         }
 
         wholeSettings.hands = this._currentSettings;
@@ -349,7 +349,7 @@ export class ShortcutForHand extends ShortcutPanel {
  export class ShortcutForRevealedCards extends ShortcutPanel {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "rtucards-shortcut-revealed"
         });
     }
@@ -377,7 +377,7 @@ export class ShortcutForHand extends ShortcutPanel {
     async updateSettings() {
         let wholeSettings = game.settings.get('ready-to-use-cards', GlobalConfiguration.shortcuts);
         if( !wholeSettings || wholeSettings == '') {
-            wholeSettings = duplicate(DEFAULT_SHORTCUT_SETTINGS);
+            wholeSettings = foundry.utils.duplicate(DEFAULT_SHORTCUT_SETTINGS);
         }
 
         wholeSettings.revealed = this._currentSettings;

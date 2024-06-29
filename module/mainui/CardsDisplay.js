@@ -8,13 +8,17 @@ import { ConfigSheetForBacks } from '../config/ConfigSheetForBacks.js';
 
 export class CustomCardsDisplay extends CardsConfig {
 
+    #listingOpened = true;
+    get listingOpened() {
+        return this.#listingOpened && !this.#onTopOfMainCardSlot;
+    }
+
     constructor(cards, options) {
         super(cards, options);
 
         this._cards = cards;
         this._custom = new CustomCardStack(cards);
         this._currentSelection = null;
-        this._listingOpened = true;
         this._forceRotate = false;
         this._peekOn = []; // List of deck keys on which the GM can peek on
 
@@ -67,10 +71,6 @@ export class CustomCardsDisplay extends CardsConfig {
 
     get listingAllowed() {
         return !this._actionParameters;
-    }
-
-    get listingOpened() {
-        return this._listingOpened;
     }
 
     get forceRotate() {
@@ -214,6 +214,7 @@ export class CustomCardsDisplay extends CardsConfig {
             actions: actions.filter(a => !a.onLeft)
         }
         data.parameters = this._actionParameters?.loadParameters() ?? {none: true};
+
         return data;
     }
 
@@ -668,10 +669,12 @@ export class CustomCardsDisplay extends CardsConfig {
         //-------------------------
         html.find(".listing-panel .card-slot").click(event => this._onClickToggleSelection(event) );
 
-        html.find(".main-card-slot .card-slot").dblclick(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.toggle").click(event => this._onClickDisplayListing(event) );
         html.find(".listing-panel .listing-icon.edit-backs").click(event => this._onClickDisplayBacksEdition(event) );
         html.find(".listing-panel .listing-icon.change-sort").click(event => this._onClickChangeSortOnListing(event) );
+
+        html.find(".main-card-slot .card-slot").mouseover(event => this.#updateOnTopOfMainCardSlot(event));
+        html.find("div").mouseover(event => this.#handleOnTopOfMainCardSlot(event));
     }
 
     addAdditionnalContentOnCards(html) {
@@ -734,7 +737,7 @@ export class CustomCardsDisplay extends CardsConfig {
 
     async _onClickDisplayListing(event) {
         event.preventDefault();
-        this._listingOpened = !this._listingOpened;
+        this.#listingOpened = !this.#listingOpened;
         this.render();
     }
 
@@ -1108,7 +1111,7 @@ export class CustomCardsDisplay extends CardsConfig {
         
         // On double click : hide the list
         if( event.detail === 2 ) {
-            this._listingOpened = false;
+            this.#listingOpened = false;
         }
         this.render();
     }
@@ -1144,4 +1147,28 @@ export class CustomCardsDisplay extends CardsConfig {
         await this._custom.shuffleDiscardIntoDeck();
     }
 
+    /* -------------------------------------------- */
+
+    #onTopOfMainCardSlot = false;
+    #lastTimeSeenOnTopOfMainCardSlot = Date.now();
+
+    async #updateOnTopOfMainCardSlot(event) {
+        event.preventDefault();
+        this.#lastTimeSeenOnTopOfMainCardSlot = Date.now();
+    }
+
+    async #handleOnTopOfMainCardSlot(event) {
+        event.preventDefault();
+        const durationSinceOnTop = Date.now() - this.#lastTimeSeenOnTopOfMainCardSlot; 
+        //console.log("Duration since last onTop", durationSinceOnTop, this.#onTopOfMainCardSlot);
+        if( this.#onTopOfMainCardSlot && durationSinceOnTop > 50 ) {
+            //console.log("Not on top of main card slot anymore");
+            this.#onTopOfMainCardSlot = false;
+            this.render();
+        } else if( !this.#onTopOfMainCardSlot && durationSinceOnTop < 50 ) {
+            //console.log("Seen on top of main card slot");
+            this.#onTopOfMainCardSlot = true;
+            this.render();
+        }
+    }
 }

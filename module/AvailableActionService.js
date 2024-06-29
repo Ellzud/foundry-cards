@@ -46,7 +46,7 @@ const settings_allLabels = (stackKey) => {
  * @returns {object} See StackConfigurationGroup for its structure.
  */
 const definition_actionGroup = (actionGroupId) => {
-    const result = duplicate( StackConfigurationGroup[actionGroupId] );
+    const result = foundry.utils.duplicate( StackConfigurationGroup[actionGroupId] );
     result.id = actionGroupId;
     return result;
 }

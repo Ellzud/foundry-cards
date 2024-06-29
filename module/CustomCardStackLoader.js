@@ -151,7 +151,7 @@ const initCoreStackPreset = async (type, coreStack, defaultImg=null) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+        default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
     };
 
     const preset = initPreset(type, name, description, imgFile, stackFlag, permission );
@@ -190,7 +190,7 @@ const initCoreStackPreset = async (type, coreStack, defaultImg=null) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
+        default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
     };
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
@@ -218,7 +218,7 @@ const initCoreStackPreset = async (type, coreStack, defaultImg=null) => {
 
     // Permissions
     const permission = {
-        default: CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
+        default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
     };
 
     return initPreset(type, name, description, imgFile, stackFlag, permission, {folder: folder} );
@@ -332,7 +332,7 @@ const loadStackDefinition = async (defaultStacks) => {
 
         if( defaultStacks.hasOwnProperty(coreKey) ) { // Card stacks registered by code will be handled later
             const defaultCore = defaultStacks[coreKey];
-            const stackDef = duplicate(defaultCore);
+            const stackDef = foundry.utils.duplicate(defaultCore);
             stackDef.cardClass = defaultCore.cardClass; // Duplicate doesn't copy classes
             stackDef.presetLoader = defaultCore.presetLoader; // Duplicate doesn't copy function either
             def.core[coreKey] = stackDef;
@@ -537,12 +537,12 @@ export class CustomCardStackLoader {
             const ccs = new CustomCardStack(s);
             if( !ccs.handledByModule ) { return false; }
             if( ccs.stackOwner.forNobody ) { return false; }
-            return s.permission.default != CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
+            return s.permission.default != CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
         });
 
         for( const ccs of customStacks ) {
             const updateData = {
-              "permission.default" : CONST.DOCUMENT_PERMISSION_LEVELS.OWNER
+              "permission.default" : CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
             };
             await ccs.update(updateData);
         }

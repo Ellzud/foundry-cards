@@ -404,7 +404,7 @@ export class CustomCardStack {
         const updateData = {};
         updateData['name'] = this.stack.name + game.i18n.localize('RTUCards.coreStacks.suffix.deck');
         updateData['permission'] = {
-            default: CONST.DOCUMENT_PERMISSION_LEVELS.OBSERVER
+            default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER
         };
 
         const flags = {};
@@ -451,7 +451,7 @@ export class CustomCardStack {
         const suffix = game.i18n.localize('RTUCards.coreStacks.suffix.deck');
         updateData['name'] = this.stack.name.replace(suffix, '');
         updateData['permission'] = {
-            default: CONST.DOCUMENT_PERMISSION_LEVELS.NONE
+            default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
         };
 
         updateData['flags.ready-to-use-cards'] = {

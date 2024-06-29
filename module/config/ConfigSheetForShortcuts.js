@@ -32,9 +32,9 @@ export class ConfigSheetForShortcuts extends FormApplication {
 		super(object, options);
 		this.module = game.modules.get('ready-to-use-cards');
 		if(!this.object || this.object == '') {
-			this.object = duplicate(DEFAULT_SHORTCUT_SETTINGS);
+			this.object = foundry.utils.duplicate(DEFAULT_SHORTCUT_SETTINGS);
 
-			this.undo = duplicate(this.object);
+			this.undo = foundry.utils.duplicate(this.object);
 		}
 	}
 
@@ -43,7 +43,7 @@ export class ConfigSheetForShortcuts extends FormApplication {
 		if( settings && settings != '') { 
 			return settings;
 		}
-		return duplicate(DEFAULT_SHORTCUT_SETTINGS);
+		return foundry.utils.duplicate(DEFAULT_SHORTCUT_SETTINGS);
 
 	}
 
